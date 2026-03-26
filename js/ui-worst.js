@@ -51,6 +51,13 @@ function renderResults(data) {
   document.getElementById('loading').style.display = 'none';
   document.getElementById('verdict-block').style.display = 'block';
 
+  // Attenborough opening — above doom meter
+  const openingEl = document.getElementById('att-opening');
+  if (openingEl && data.attenborough_opening) {
+    openingEl.querySelector('.att-text').textContent = data.attenborough_opening;
+    openingEl.style.display = 'flex';
+  }
+
   updateDoom(data.doom_percentage);
 
   const container = document.getElementById('cards-out');
@@ -90,6 +97,19 @@ function renderResults(data) {
       card.style.transform = 'translateY(0)';
     }, 80 + i * 100);
   });
+
+  // Attenborough verdict — below cards, delayed
+  if (data.attenborough_verdict) {
+    const cardDelay = (data.panel?.length || 0) * 100 + 400;
+    const verdictEl = document.getElementById('att-verdict');
+    if (verdictEl) {
+      setTimeout(() => {
+        verdictEl.querySelector('.att-text').textContent = data.attenborough_verdict;
+        verdictEl.style.display = 'flex';
+        setTimeout(() => verdictEl.classList.add('visible'), 50);
+      }, cardDelay);
+    }
+  }
 }
 
 function hideResults() {
@@ -100,6 +120,10 @@ function hideResults() {
   document.getElementById('cards-out').innerHTML = '';
   document.getElementById('doom-pct').textContent = '0%';
   document.getElementById('doom-fill').style.width = '0%';
+  const opening = document.getElementById('att-opening');
+  if (opening) { opening.style.display = 'none'; }
+  const verdict = document.getElementById('att-verdict');
+  if (verdict) { verdict.style.display = 'none'; verdict.classList.remove('visible'); }
 }
 
 function setButtonState(disabled) {

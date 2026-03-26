@@ -350,6 +350,95 @@
       opacity: 0.7;
     }
 
+    /* Attenborough bookends */
+    .att-bookend {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      padding: 10px 14px;
+      background: var(--surface);
+      border: 0.5px solid var(--border);
+      border-radius: 8px;
+    }
+
+    .att-avatar {
+      width: 26px; height: 26px;
+      background: #1e1e1c;
+      color: #7a8a70;
+      border-radius: 50%;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 9px;
+      letter-spacing: 0.5px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .att-text {
+      font-family: 'Barlow', sans-serif;
+      font-weight: 300;
+      font-style: italic;
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--text-muted);
+    }
+
+    #att-opening { margin-bottom: 12px; }
+
+    #att-verdict {
+      margin-top: 12px;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+    }
+
+    #att-verdict.visible { opacity: 1; }
+
+    /* Inline turn bookends (reaction loop) */
+    .att-turn-header {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      padding: 8px 0 4px;
+    }
+
+    .att-turn-verdict {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      padding: 8px 0 4px;
+      margin-top: 4px;
+    }
+
+    .att-turn-verdict.att-fade {
+      opacity: 0;
+      transition: opacity 0.8s ease;
+    }
+
+    .att-turn-verdict.att-fade.visible { opacity: 1; }
+
+    .att-mini-avatar {
+      width: 20px; height: 20px;
+      background: #1e1e1c;
+      color: #7a8a70;
+      border-radius: 50%;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 8px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+
+    .att-mini-text {
+      font-family: 'Barlow', sans-serif;
+      font-weight: 300;
+      font-style: italic;
+      font-size: 13px;
+      line-height: 1.7;
+      color: var(--text-muted);
+    }
+
     /* Interaction */
     #interaction-block { display: none; margin-top: 1rem; }
 
@@ -570,6 +659,10 @@
       <span>PANEL CONVENING</span><span class="dots"></span>
     </div>
     <div id="verdict-block" style="display:none">
+      <div class="att-bookend" id="att-opening" style="display:none">
+        <div class="att-avatar">DA</div>
+        <div class="att-text"></div>
+      </div>
       <div class="verdict-bar">
         <div class="verdict-top">
           <div class="verdict-label">SURVIVAL PROBABILITY</div>
@@ -578,10 +671,13 @@
         <div class="meter">
           <div class="meter-fill" id="pct-fill" style="width:0%"></div>
         </div>
-        <div class="att-verdict" id="att-verdict"></div>
       </div>
       <div class="panel-label">PANEL ASSESSMENT</div>
       <div id="cards-out"></div>
+      <div class="att-bookend" id="att-verdict" style="display:none">
+        <div class="att-avatar">DA</div>
+        <div class="att-text"></div>
+      </div>
     </div>
     <div id="interaction-block"></div>
   </div>

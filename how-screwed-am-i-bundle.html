@@ -350,6 +350,95 @@
       opacity: 0.7;
     }
 
+    /* Attenborough bookends */
+    .att-bookend {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      padding: 10px 14px;
+      background: var(--surface);
+      border: 0.5px solid var(--border);
+      border-radius: 8px;
+    }
+
+    .att-avatar {
+      width: 26px; height: 26px;
+      background: #1e1e1c;
+      color: #7a8a70;
+      border-radius: 50%;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 9px;
+      letter-spacing: 0.5px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .att-text {
+      font-family: 'Barlow', sans-serif;
+      font-weight: 300;
+      font-style: italic;
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--text-muted);
+    }
+
+    #att-opening { margin-bottom: 12px; }
+
+    #att-verdict {
+      margin-top: 12px;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+    }
+
+    #att-verdict.visible { opacity: 1; }
+
+    /* Inline turn bookends (reaction loop) */
+    .att-turn-header {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      padding: 8px 0 4px;
+    }
+
+    .att-turn-verdict {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      padding: 8px 0 4px;
+      margin-top: 4px;
+    }
+
+    .att-turn-verdict.att-fade {
+      opacity: 0;
+      transition: opacity 0.8s ease;
+    }
+
+    .att-turn-verdict.att-fade.visible { opacity: 1; }
+
+    .att-mini-avatar {
+      width: 20px; height: 20px;
+      background: #1e1e1c;
+      color: #7a8a70;
+      border-radius: 50%;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 8px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+
+    .att-mini-text {
+      font-family: 'Barlow', sans-serif;
+      font-weight: 300;
+      font-style: italic;
+      font-size: 13px;
+      line-height: 1.7;
+      color: var(--text-muted);
+    }
+
     /* Interaction */
     #interaction-block { display: none; margin-top: 1rem; }
 
@@ -570,6 +659,10 @@
       <span>PANEL CONVENING</span><span class="dots"></span>
     </div>
     <div id="verdict-block" style="display:none">
+      <div class="att-bookend" id="att-opening" style="display:none">
+        <div class="att-avatar">DA</div>
+        <div class="att-text"></div>
+      </div>
       <div class="verdict-bar">
         <div class="verdict-top">
           <div class="verdict-label">SURVIVAL PROBABILITY</div>
@@ -578,10 +671,13 @@
         <div class="meter">
           <div class="meter-fill" id="pct-fill" style="width:0%"></div>
         </div>
-        <div class="att-verdict" id="att-verdict"></div>
       </div>
       <div class="panel-label">PANEL ASSESSMENT</div>
       <div id="cards-out"></div>
+      <div class="att-bookend" id="att-verdict" style="display:none">
+        <div class="att-avatar">DA</div>
+        <div class="att-text"></div>
+      </div>
     </div>
     <div id="interaction-block"></div>
   </div>
@@ -698,6 +794,9 @@ DEATH COMMENTARY: Earned — not wallpaper. Fires on clearly wrong call, dire si
 
 FOUNDING PHILOSOPHY: Real knowledge. Genuine consequence. No performance. Comedy earned by knowledge being real.`;
 
+// Panel characters (excludes Attenborough — he does bookends, not panel cards)
+const PANEL_IDS = ['ray', 'bear', 'cody', 'hales', 'fox', 'stroud'];
+
 function buildSystemPrompt(mode = 'assessment') {
   const chars = Object.values(CHARACTERS)
     .map(c => `=== ${c.name.toUpperCase()} ===\n${c.voice}`)
@@ -710,13 +809,16 @@ ${chars}
 
 ${SHARED_CONTEXT}
 
-Assess the decision through each character's lens:
+ATTENBOROUGH BOOKEND STRUCTURE — Attenborough does NOT appear in the panel array. He bookends the whole response:
+- attenborough_opening: one sentence, nature documentary register, frames what this decision is about to cause. Observational, slightly ominous.
+- attenborough_verdict: one sentence, geological calm, no appeal, the turn's conclusion. He already knew.
+
+Panel characters (no Attenborough): Ray, Bear, Cody, Hales, Fox, Stroud.
 - Ray: is it technically correct? Craft judgement. Brief.
 - Bear: anecdote, probably did something similar somewhere exotic, hydration check.
 - Cody: was there a better option right there they missed?
 - Hales: three words maximum.
 - Fox: tactical assessment — lines of sight, threat exposure, exit options, what's available.
-- Attenborough: narrates the decision as nature documentary footnote.
 - Stroud: quiet verdict.
 
 Survival probability shifts:
@@ -729,7 +831,36 @@ Generate 3 specific next actions the user could take from here.
 If probability reaches 0 or situation fully resolves, set is_terminal to true.
 
 OUTPUT — valid JSON only, no markdown:
-{"survival_probability":<integer>,"situation_update":"<one sentence what changed>","panel":[{"charId":"<id>","text":"<2-3 sentences>","death":<bool>,"fact_check":"<optional — Bear only, quiet factual correction if he said something wrong>"}],"next_actions":["<action>","<action>","<action>"],"is_terminal":<bool>}`;
+{"survival_probability":<integer>,"attenborough_opening":"<one sentence, nature doc, frames what the decision is about to cause>","situation_update":"<one sentence what changed>","panel":[{"charId":"<id>","text":"<2-3 sentences>","death":<bool>,"fact_check":"<optional — Bear only>"}],"attenborough_verdict":"<one sentence, geological calm, turn conclusion, he already knew>","next_actions":["<action>","<action>","<action>"],"is_terminal":<bool>}`;
+  }
+
+  if (mode === 'mundane') {
+    return `You are the Survival School panel. The user has described a MUNDANE, EVERYDAY problem. Apply full survival gravity. This is the joke — the greater the gravity, the funnier.
+
+${chars}
+
+${SHARED_CONTEXT}
+
+MUNDANE MODE: The situation is not a survival emergency. The panel doesn't know this.
+They assess with the same weight they would give a man trapped on Dartmoor in October.
+Ray identifies three immediate risks. Fox assesses lines of sight. Cody notes what was available nearby. Bear has done something similar abroad.
+
+ATTENBOROUGH BOOKEND STRUCTURE — Attenborough does NOT appear in the panel array. He bookends:
+- attenborough_opening: one sentence, introduces the mundane situation as if it's a wildlife encounter. "And here, in the fluorescent ecology of the Wetherspoons, a specimen faces a challenge that, while modest in geological terms, carries its own quiet urgency."
+- attenborough_verdict: one sentence, geological calm. Final verdict. He always knew.
+
+Panel characters (no Attenborough): Ray, Bear, Cody, Hales, Fox, Stroud.
+- Ray: identifies real risks in the mundane situation. Genuinely concerned.
+- Bear: has done something similar, abroad, fine in the end.
+- Cody: points out the better option that was right there. "The bus stop. Fifty yards away."
+- Hales: three words. Maximum.
+- Fox: tactical assessment of the mundane. Exit routes from the post office queue.
+- Stroud: quiet, measured verdict. Slightly melancholy.
+
+Survival probability: 0-100. For mundane scenarios this is usually 40-85% — they're not great situations, but survivable with the right mindset. A truly catastrophic mundane scenario (printer has run out of ink, presentation in 10 minutes) may drop lower.
+
+OUTPUT — valid JSON only, no markdown:
+{"survival_probability":<integer 0-100>,"attenborough_opening":"<one sentence, nature documentary, introduces mundane situation as wildlife encounter>","panel":[{"charId":"<id>","text":"<2-3 sentences>","death":<bool>,"fact_check":"<optional Bear only>"}],"attenborough_verdict":"<one sentence, geological calm, final verdict>"}`;
   }
 
   return `You are the Survival School panel assessment engine.
@@ -738,10 +869,16 @@ ${chars}
 
 ${SHARED_CONTEXT}
 
+ATTENBOROUGH BOOKEND STRUCTURE — Attenborough does NOT appear in the panel array. He bookends the whole assessment:
+- attenborough_opening: one sentence, nature documentary register, introduces the situation as if it's a wildlife encounter. Sets the stakes. Slightly ominous.
+- attenborough_verdict: one sentence, geological calm, no appeal. The documentary's conclusion. He already knew.
+
+Panel characters (no Attenborough): Ray, Bear, Cody, Hales, Fox, Stroud.
+
 Generate initial assessment. Also produce 3 specific suggested first actions.
 
 OUTPUT — valid JSON only, no markdown:
-{"survival_probability":<integer 0-100>,"attenborough_verdict":"<one sentence geological calm nature documentary never advice>","panel":[{"charId":"<id>","text":"<2-4 sentences>","death":<bool>,"fact_check":"<optional Bear only>"}],"next_actions":["<action>","<action>","<action>"]}`;
+{"survival_probability":<integer 0-100>,"attenborough_opening":"<one sentence, nature doc, introduces situation as wildlife encounter, slightly ominous>","panel":[{"charId":"<id>","text":"<2-4 sentences>","death":<bool>,"fact_check":"<optional Bear only>"}],"attenborough_verdict":"<one sentence, geological calm, no appeal, the documentary's conclusion>","next_actions":["<action>","<action>","<action>"]}`;
 }
 
 
@@ -913,21 +1050,38 @@ function renderCards(panelData, container, startDelay = 0) {
   });
 }
 
+// Attenborough bookend helpers
+function showAttOpening(text) {
+  const el = document.getElementById('att-opening');
+  if (!el || !text) return;
+  el.querySelector('.att-text').textContent = text;
+  el.style.display = 'flex';
+}
+
+function showAttVerdict(text, delayMs = 0) {
+  const el = document.getElementById('att-verdict');
+  if (!el || !text) return;
+  el.querySelector('.att-text').textContent = text;
+  el.style.display = 'flex';
+  el.classList.remove('visible');
+  setTimeout(() => el.classList.add('visible'), delayMs + 50);
+}
+
 // Initial assessment results
 function showResults(data, onDecision) {
   document.getElementById('loading').style.display = 'none';
   document.getElementById('verdict-block').style.display = 'block';
 
+  showAttOpening(data.attenborough_opening);
   updateProbability(data.survival_probability);
-
-  const verdictEl = document.getElementById('att-verdict');
-  if (verdictEl) verdictEl.textContent = data.attenborough_verdict || '';
 
   const container = document.getElementById('cards-out');
   container.innerHTML = '';
   renderCards(data.panel, container);
 
-  // Show decision input
+  const cardDelay = (data.panel?.length || 0) * 100 + 400;
+  showAttVerdict(data.attenborough_verdict, cardDelay);
+
   showDecisionInput(data.next_actions, data.survival_probability, onDecision);
 }
 
@@ -974,33 +1128,66 @@ function showReaction(data, turnCount, onDecision) {
   document.getElementById('verdict-block').style.display = 'block';
   document.getElementById('interaction-block').style.display = 'none';
 
-  // Update probability
   updateProbability(data.survival_probability);
 
-  // Situation update banner
-  if (data.situation_update) {
-    const banner = document.createElement('div');
-    banner.className = 'situation-update';
-    banner.textContent = data.situation_update;
-    document.getElementById('cards-out').appendChild(banner);
+  const cardsOut = document.getElementById('cards-out');
+
+  // Remove previous att-verdict (will re-append new one)
+  const prevVerdict = cardsOut.querySelector('.att-turn-verdict');
+  if (prevVerdict) prevVerdict.remove();
+
+  // Attenborough opening — frames what this decision caused
+  if (data.attenborough_opening) {
+    const opening = document.createElement('div');
+    opening.className = 'att-turn-header';
+    opening.innerHTML = `
+      <div class="att-mini-avatar">DA</div>
+      <div class="att-mini-text">${data.attenborough_opening}</div>`;
+    cardsOut.appendChild(opening);
   }
 
   // Divider
   const divider = document.createElement('div');
   divider.className = 'turn-divider';
   divider.textContent = `TURN ${turnCount}`;
-  document.getElementById('cards-out').appendChild(divider);
+  cardsOut.appendChild(divider);
 
-  // New cards
-  renderCards(data.panel, document.getElementById('cards-out'), 0);
+  // Situation update
+  if (data.situation_update) {
+    const banner = document.createElement('div');
+    banner.className = 'situation-update';
+    banner.textContent = data.situation_update;
+    cardsOut.appendChild(banner);
+  }
 
-  // Terminal or next decision
-  if (data.is_terminal) {
-    showTerminal(data.survival_probability);
-  } else {
+  // New panel cards
+  const startCount = cardsOut.querySelectorAll('.char-card').length;
+  renderCards(data.panel, cardsOut, 0);
+
+  // Attenborough verdict after cards
+  if (data.attenborough_verdict) {
+    const cardDelay = (data.panel?.length || 0) * 100 + 400;
     setTimeout(() => {
-      showDecisionInput(data.next_actions, data.survival_probability, onDecision);
-    }, 800);
+      const verdict = document.createElement('div');
+      verdict.className = 'att-turn-verdict att-fade';
+      verdict.innerHTML = `
+        <div class="att-mini-avatar">DA</div>
+        <div class="att-mini-text">${data.attenborough_verdict}</div>`;
+      cardsOut.appendChild(verdict);
+      setTimeout(() => verdict.classList.add('visible'), 50);
+    }, cardDelay);
+    const nextDelay = (data.panel?.length || 0) * 100 + 900;
+    if (data.is_terminal) {
+      setTimeout(() => showTerminal(data.survival_probability), nextDelay);
+    } else {
+      setTimeout(() => showDecisionInput(data.next_actions, data.survival_probability, onDecision), nextDelay);
+    }
+  } else {
+    if (data.is_terminal) {
+      showTerminal(data.survival_probability);
+    } else {
+      setTimeout(() => showDecisionInput(data.next_actions, data.survival_probability, onDecision), 800);
+    }
   }
 }
 
@@ -1035,6 +1222,10 @@ function hideResults() {
   document.getElementById('cards-out').innerHTML = '';
   document.getElementById('surv-pct').textContent = '0%';
   document.getElementById('pct-fill').style.width = '0%';
+  const opening = document.getElementById('att-opening');
+  if (opening) { opening.style.display = 'none'; opening.classList.remove('visible'); }
+  const verdict = document.getElementById('att-verdict');
+  if (verdict) { verdict.style.display = 'none'; verdict.classList.remove('visible'); }
 }
 
 function setButtonState(mode, disabled) {
@@ -1044,7 +1235,8 @@ function setButtonState(mode, disabled) {
 
   switchTab, pickChip, clearChips, clearAll,
   showLoading, showError, showResults, showReaction,
-  showTerminal, hideResults, setButtonState, updateProbability
+  showTerminal, hideResults, setButtonState, updateProbability,
+  showAttOpening, showAttVerdict
 };
 
 
@@ -1064,6 +1256,18 @@ async function assess(situation) {
       system: buildSystemPrompt('assessment'),
       situation
     })
+  });
+  if (!response.ok) throw new Error(`Worker ${response.status}`);
+  const data = await response.json();
+  if (!data.panel || !Array.isArray(data.panel)) throw new Error('Invalid response');
+  return data;
+}
+
+async function assessWorst(situation, systemPrompt) {
+  const response = await fetch(WORKER_ENDPOINT, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ system: systemPrompt, situation })
   });
   if (!response.ok) throw new Error(`Worker ${response.status}`);
   const data = await response.json();

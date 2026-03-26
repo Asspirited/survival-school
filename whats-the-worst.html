@@ -359,6 +359,50 @@
     }
 
     .btn-reset:hover { color: var(--text); border-color: var(--blood); }
+
+    /* Attenborough bookends */
+    .att-bookend {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      padding: 10px 14px;
+      background: var(--surface);
+      border: 0.5px solid var(--border);
+      border-radius: 8px;
+    }
+
+    .att-avatar {
+      width: 26px; height: 26px;
+      background: #1e1e1c;
+      color: #7a8a70;
+      border-radius: 50%;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 9px;
+      letter-spacing: 0.5px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .att-text {
+      font-family: 'Barlow', sans-serif;
+      font-weight: 300;
+      font-style: italic;
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--text-muted);
+    }
+
+    #att-opening { margin-bottom: 12px; }
+
+    #att-verdict {
+      margin-top: 12px;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+    }
+
+    #att-verdict.visible { opacity: 1; }
   </style>
 </head>
 <body>
@@ -424,6 +468,10 @@
       <span>PANEL CONVENING</span><span class="dots"></span>
     </div>
     <div id="verdict-block" style="display:none">
+      <div class="att-bookend" id="att-opening" style="display:none">
+        <div class="att-avatar">DA</div>
+        <div class="att-text"></div>
+      </div>
       <div class="verdict-bar">
         <div class="verdict-top">
           <div class="verdict-label">DOOM PERCENTAGE</div>
@@ -435,6 +483,10 @@
       </div>
       <div class="panel-label">PANEL ASSESSMENT</div>
       <div id="cards-out"></div>
+      <div class="att-bookend" id="att-verdict" style="display:none">
+        <div class="att-avatar">DA</div>
+        <div class="att-text"></div>
+      </div>
       <div class="reset-row">
         <button class="btn-reset" onclick="onClear()">NEW INCIDENT</button>
       </div>

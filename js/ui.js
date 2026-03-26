@@ -100,21 +100,38 @@ function renderCards(panelData, container, startDelay = 0) {
   });
 }
 
+// Attenborough bookend helpers
+function showAttOpening(text) {
+  const el = document.getElementById('att-opening');
+  if (!el || !text) return;
+  el.querySelector('.att-text').textContent = text;
+  el.style.display = 'flex';
+}
+
+function showAttVerdict(text, delayMs = 0) {
+  const el = document.getElementById('att-verdict');
+  if (!el || !text) return;
+  el.querySelector('.att-text').textContent = text;
+  el.style.display = 'flex';
+  el.classList.remove('visible');
+  setTimeout(() => el.classList.add('visible'), delayMs + 50);
+}
+
 // Initial assessment results
 function showResults(data, onDecision) {
   document.getElementById('loading').style.display = 'none';
   document.getElementById('verdict-block').style.display = 'block';
 
+  showAttOpening(data.attenborough_opening);
   updateProbability(data.survival_probability);
-
-  const verdictEl = document.getElementById('att-verdict');
-  if (verdictEl) verdictEl.textContent = data.attenborough_verdict || '';
 
   const container = document.getElementById('cards-out');
   container.innerHTML = '';
   renderCards(data.panel, container);
 
-  // Show decision input
+  const cardDelay = (data.panel?.length || 0) * 100 + 400;
+  showAttVerdict(data.attenborough_verdict, cardDelay);
+
   showDecisionInput(data.next_actions, data.survival_probability, onDecision);
 }
 
@@ -161,33 +178,66 @@ function showReaction(data, turnCount, onDecision) {
   document.getElementById('verdict-block').style.display = 'block';
   document.getElementById('interaction-block').style.display = 'none';
 
-  // Update probability
   updateProbability(data.survival_probability);
 
-  // Situation update banner
-  if (data.situation_update) {
-    const banner = document.createElement('div');
-    banner.className = 'situation-update';
-    banner.textContent = data.situation_update;
-    document.getElementById('cards-out').appendChild(banner);
+  const cardsOut = document.getElementById('cards-out');
+
+  // Remove previous att-verdict (will re-append new one)
+  const prevVerdict = cardsOut.querySelector('.att-turn-verdict');
+  if (prevVerdict) prevVerdict.remove();
+
+  // Attenborough opening — frames what this decision caused
+  if (data.attenborough_opening) {
+    const opening = document.createElement('div');
+    opening.className = 'att-turn-header';
+    opening.innerHTML = `
+      <div class="att-mini-avatar">DA</div>
+      <div class="att-mini-text">${data.attenborough_opening}</div>`;
+    cardsOut.appendChild(opening);
   }
 
   // Divider
   const divider = document.createElement('div');
   divider.className = 'turn-divider';
   divider.textContent = `TURN ${turnCount}`;
-  document.getElementById('cards-out').appendChild(divider);
+  cardsOut.appendChild(divider);
 
-  // New cards
-  renderCards(data.panel, document.getElementById('cards-out'), 0);
+  // Situation update
+  if (data.situation_update) {
+    const banner = document.createElement('div');
+    banner.className = 'situation-update';
+    banner.textContent = data.situation_update;
+    cardsOut.appendChild(banner);
+  }
 
-  // Terminal or next decision
-  if (data.is_terminal) {
-    showTerminal(data.survival_probability);
-  } else {
+  // New panel cards
+  const startCount = cardsOut.querySelectorAll('.char-card').length;
+  renderCards(data.panel, cardsOut, 0);
+
+  // Attenborough verdict after cards
+  if (data.attenborough_verdict) {
+    const cardDelay = (data.panel?.length || 0) * 100 + 400;
     setTimeout(() => {
-      showDecisionInput(data.next_actions, data.survival_probability, onDecision);
-    }, 800);
+      const verdict = document.createElement('div');
+      verdict.className = 'att-turn-verdict att-fade';
+      verdict.innerHTML = `
+        <div class="att-mini-avatar">DA</div>
+        <div class="att-mini-text">${data.attenborough_verdict}</div>`;
+      cardsOut.appendChild(verdict);
+      setTimeout(() => verdict.classList.add('visible'), 50);
+    }, cardDelay);
+    const nextDelay = (data.panel?.length || 0) * 100 + 900;
+    if (data.is_terminal) {
+      setTimeout(() => showTerminal(data.survival_probability), nextDelay);
+    } else {
+      setTimeout(() => showDecisionInput(data.next_actions, data.survival_probability, onDecision), nextDelay);
+    }
+  } else {
+    if (data.is_terminal) {
+      showTerminal(data.survival_probability);
+    } else {
+      setTimeout(() => showDecisionInput(data.next_actions, data.survival_probability, onDecision), 800);
+    }
   }
 }
 
@@ -222,6 +272,10 @@ function hideResults() {
   document.getElementById('cards-out').innerHTML = '';
   document.getElementById('surv-pct').textContent = '0%';
   document.getElementById('pct-fill').style.width = '0%';
+  const opening = document.getElementById('att-opening');
+  if (opening) { opening.style.display = 'none'; opening.classList.remove('visible'); }
+  const verdict = document.getElementById('att-verdict');
+  if (verdict) { verdict.style.display = 'none'; verdict.classList.remove('visible'); }
 }
 
 function setButtonState(mode, disabled) {
@@ -232,5 +286,6 @@ function setButtonState(mode, disabled) {
 export {
   switchTab, pickChip, clearChips, clearAll,
   showLoading, showError, showResults, showReaction,
-  showTerminal, hideResults, setButtonState, updateProbability
+  showTerminal, hideResults, setButtonState, updateProbability,
+  showAttOpening, showAttVerdict
 };
