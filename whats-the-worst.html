@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>How Bad Is This? — Survival School</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0f1209;
+      --surface: #181d10;
+      --surface2: #1e2514;
+      --border: rgba(120,160,60,0.15);
+      --border-strong: rgba(120,160,60,0.3);
+      --green: #7aad3a;
+      --green-dim: #4a7020;
+      --green-bright: #a0d050;
+      --amber: #BA7517;
+      --amber-dim: #5c3a08;
+      --bark: #8B6040;
+      --bark-dim: #3d2008;
+      --text: #e8edd8;
+      --text-muted: #7a8a60;
+      --blood: #cc1111;
+      --blood-dim: #3a0808;
+    }
+
+    body {
+      font-family: 'Barlow', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    #app {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 1.5rem 1rem 3rem;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 0.5px solid var(--border);
+    }
+
+    .title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 40px;
+      letter-spacing: 3px;
+      line-height: 1;
+    }
+
+    .title span { color: var(--blood); }
+
+    .subtitle {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--text-muted);
+      letter-spacing: 1.5px;
+      margin-top: 5px;
+    }
+
+    .field-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      margin-top: 16px;
+    }
+
+    .field-label:first-child { margin-top: 0; }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-bottom: 8px;
+    }
+
+    .chip {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      padding: 5px 10px;
+      border: 0.5px solid var(--border-strong);
+      border-radius: 5px;
+      cursor: pointer;
+      background: none;
+      color: var(--text-muted);
+      transition: all 0.15s;
+      white-space: nowrap;
+      user-select: none;
+    }
+
+    .chip:hover, .chip.sel { border-color: var(--blood); color: var(--blood); }
+
+    input[type="text"], textarea {
+      width: 100%;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+      padding: 9px 12px;
+      border: 0.5px solid var(--border-strong);
+      border-radius: 6px;
+      background: var(--surface);
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.15s;
+    }
+
+    input[type="text"]:focus, textarea:focus { border-color: var(--blood); }
+
+    .btn-row { display: flex; gap: 8px; margin-top: 16px; }
+
+    .btn-assess {
+      flex: 1;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 11px;
+      background: var(--blood);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: opacity 0.15s;
+    }
+
+    .btn-assess:hover { opacity: 0.88; }
+    .btn-assess:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    .btn-clear {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 1px;
+      padding: 11px 16px;
+      border: 0.5px solid var(--border-strong);
+      border-radius: 6px;
+      background: none;
+      cursor: pointer;
+      color: var(--text-muted);
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    .btn-clear:hover { color: var(--text); border-color: var(--blood); }
+
+    /* Results */
+    .results { display: none; margin-top: 1.5rem; }
+    .results.show { display: block; }
+
+    .loading {
+      padding: 2rem;
+      text-align: center;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      color: var(--text-muted);
+      letter-spacing: 1px;
+    }
+
+    .dots::after {
+      content: '';
+      animation: dots 1.5s steps(3, end) infinite;
+    }
+
+    @keyframes dots {
+      0%   { content: '.'; }
+      33%  { content: '..'; }
+      66%  { content: '...'; }
+      100% { content: ''; }
+    }
+
+    /* Doom meter */
+    .verdict-bar {
+      border: 0.5px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin-bottom: 1rem;
+      background: var(--surface);
+    }
+
+    .verdict-top {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .verdict-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 2px;
+      color: var(--text-muted);
+    }
+
+    /* Doom: red=bad, amber=mid, green=fine — inverted from survival probability */
+    .pct.doom { color: var(--blood); }
+    .pct.doom.mid { color: var(--amber); }
+    .pct.doom.ok  { color: var(--green); }
+
+    .pct {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 52px;
+      line-height: 1;
+      transition: color 0.5s;
+    }
+
+    .meter {
+      height: 4px;
+      background: var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .meter-fill {
+      height: 100%;
+      background: var(--blood);
+      border-radius: 2px;
+      transition: width 1.2s ease, background 0.5s;
+    }
+
+    .meter-fill.mid { background: var(--amber); }
+    .meter-fill.ok  { background: var(--green); }
+
+    /* Panel cards */
+    .panel-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 2px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+      margin-top: 1rem;
+    }
+
+    .char-card {
+      border: 0.5px solid var(--border);
+      border-radius: 10px;
+      margin-bottom: 8px;
+      overflow: hidden;
+      background: var(--surface);
+    }
+
+    .char-card.death-card { border-color: var(--blood); }
+
+    .char-card.cody-card {
+      border-color: var(--green-dim);
+      background: #131a0d;
+    }
+
+    .card-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 14px;
+      background: var(--surface2);
+      border-bottom: 0.5px solid var(--border);
+    }
+
+    .cody-card .card-head {
+      background: var(--green-dim);
+      border-bottom-color: rgba(120,160,60,0.25);
+    }
+
+    .avatar {
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 0.5px;
+      flex-shrink: 0;
+    }
+
+    .av-green  { background: var(--green-dim);  color: var(--green-bright); }
+    .av-bark   { background: var(--bark-dim);   color: var(--bark); }
+    .av-amber  { background: var(--amber-dim);  color: var(--amber); }
+    .av-blue   { background: #0c1f3a;           color: #5a9fd4; }
+    .av-gray   { background: #1e1e1c;           color: #7a8a70; }
+
+    .char-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0.5px;
+      color: var(--text);
+    }
+
+    .char-role {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      color: var(--text-muted);
+    }
+
+    .card-body {
+      padding: 11px 14px;
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--text);
+      font-weight: 400;
+    }
+
+    .death-note {
+      margin-top: 8px;
+      padding: 7px 11px;
+      background: var(--blood-dim);
+      border-left: 3px solid var(--blood);
+      border-radius: 0 4px 4px 0;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--blood);
+      font-weight: 500;
+    }
+
+    .fact-check {
+      margin-top: 6px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--text-muted);
+      border-top: 0.5px solid var(--border);
+      padding-top: 6px;
+      opacity: 0.7;
+    }
+
+    /* Cody action line */
+    .action-line {
+      margin-top: 10px;
+      padding: 8px 12px;
+      background: var(--green-dim);
+      border-left: 3px solid var(--green);
+      border-radius: 0 4px 4px 0;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      color: var(--green-bright);
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+
+    .reset-row { margin-top: 1rem; text-align: center; }
+
+    .btn-reset {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--text-muted);
+      background: none;
+      border: 0.5px solid var(--border-strong);
+      border-radius: 6px;
+      padding: 7px 16px;
+      cursor: pointer;
+      letter-spacing: 1px;
+      transition: all 0.15s;
+    }
+
+    .btn-reset:hover { color: var(--text); border-color: var(--blood); }
+  </style>
+</head>
+<body>
+<div id="app">
+
+  <div class="header">
+    <div class="title">HOW <span>BAD</span> IS THIS?</div>
+    <div class="subtitle">the panel will tell you exactly how worried to be.</div>
+  </div>
+
+  <div class="field-label">What happened?</div>
+  <div class="chips" id="chips-event">
+    <div class="chip" onclick="onChip(this,'event','bitten by a snake')">bitten by snake</div>
+    <div class="chip" onclick="onChip(this,'event','stung or bitten by something venomous')">stung / bitten</div>
+    <div class="chip" onclick="onChip(this,'event','bear encounter, it\'s charging')">bear charging</div>
+    <div class="chip" onclick="onChip(this,'event','something is circling me')">being circled</div>
+    <div class="chip" onclick="onChip(this,'event','knocked from boat into open water')">overboard</div>
+    <div class="chip" onclick="onChip(this,'event','I\'ve been stalked for the last 20 minutes')">being stalked</div>
+    <div class="chip" onclick="onChip(this,'event','pinned or trapped, cannot move')">pinned / trapped</div>
+    <div class="chip" onclick="onChip(this,'event','attacked by something I did not expect to be aggressive')">unexpected attack</div>
+  </div>
+  <input type="text" id="event-input" placeholder="or describe what happened..." oninput="onFieldInput('event',this.value)"/>
+
+  <div class="field-label">The animal or hazard</div>
+  <div class="chips" id="chips-animal">
+    <div class="chip" onclick="onChip(this,'animal','king cobra')">king cobra</div>
+    <div class="chip" onclick="onChip(this,'animal','black mamba')">black mamba</div>
+    <div class="chip" onclick="onChip(this,'animal','Brazilian wandering spider')">Brazilian wandering spider</div>
+    <div class="chip" onclick="onChip(this,'animal','grizzly bear')">grizzly bear</div>
+    <div class="chip" onclick="onChip(this,'animal','polar bear')">polar bear</div>
+    <div class="chip" onclick="onChip(this,'animal','great white shark')">great white shark</div>
+    <div class="chip" onclick="onChip(this,'animal','saltwater crocodile')">saltwater croc</div>
+    <div class="chip" onclick="onChip(this,'animal','Komodo dragon')">Komodo dragon</div>
+    <div class="chip" onclick="onChip(this,'animal','pack of spotted hyenas')">hyena pack</div>
+    <div class="chip" onclick="onChip(this,'animal','box jellyfish')">box jellyfish</div>
+    <div class="chip" onclick="onChip(this,'animal','hippo')">hippo</div>
+    <div class="chip" onclick="onChip(this,'animal','cassowary')">cassowary</div>
+    <div class="chip" onclick="onChip(this,'animal','manatee')">manatee</div>
+    <div class="chip" onclick="onChip(this,'animal','swan')">swan</div>
+  </div>
+  <input type="text" id="animal-input" placeholder="or name the animal or hazard..." oninput="onFieldInput('animal',this.value)"/>
+
+  <div class="field-label">Circumstances</div>
+  <div class="chips" id="chips-circ">
+    <div class="chip" onclick="onChip(this,'circ','alone, no communication')">alone, no comms</div>
+    <div class="chip" onclick="onChip(this,'circ','2 hours from nearest hospital')">2hrs from hospital</div>
+    <div class="chip" onclick="onChip(this,'circ','remote wilderness, helicopter is the only option')">remote, heli only</div>
+    <div class="chip" onclick="onChip(this,'circ','urban, ambulance 10 minutes away')">urban, 10min ETA</div>
+    <div class="chip" onclick="onChip(this,'circ','no medical kit at all')">no kit</div>
+    <div class="chip" onclick="onChip(this,'circ','basic first aid kit available')">first aid kit</div>
+    <div class="chip" onclick="onChip(this,'circ','dark, nightfall already')">nightfall</div>
+    <div class="chip" onclick="onChip(this,'circ','trained medic in the group')">medic with me</div>
+  </div>
+  <input type="text" id="circ-input" placeholder="or describe your circumstances..." oninput="onFieldInput('circ',this.value)"/>
+
+  <div class="btn-row">
+    <button class="btn-assess" id="btn-assess" onclick="onAssess()">HOW BAD IS THIS? ↗</button>
+    <button class="btn-clear" onclick="onClear()">CLEAR</button>
+  </div>
+
+  <div class="results" id="results">
+    <div class="loading" id="loading">
+      <span>PANEL CONVENING</span><span class="dots"></span>
+    </div>
+    <div id="verdict-block" style="display:none">
+      <div class="verdict-bar">
+        <div class="verdict-top">
+          <div class="verdict-label">DOOM PERCENTAGE</div>
+          <div class="pct doom" id="doom-pct">0%</div>
+        </div>
+        <div class="meter">
+          <div class="meter-fill" id="doom-fill" style="width:0%"></div>
+        </div>
+      </div>
+      <div class="panel-label">PANEL ASSESSMENT</div>
+      <div id="cards-out"></div>
+      <div class="reset-row">
+        <button class="btn-reset" onclick="onClear()">NEW INCIDENT</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script type="module">
+  import * as State from './js/state-worst.js';
+  import * as UI    from './js/ui-worst.js';
+  import * as API   from './js/api.js';
+  import { buildWorstSystemPrompt } from './js/characters-worst.js';
+
+  window.onChip = (el, field, val) => {
+    document.querySelectorAll(`#chips-${field} .chip`).forEach(c => c.classList.remove('sel'));
+    el.classList.add('sel');
+    if (field === 'event')  { State.setEvent(val); document.getElementById('event-input').value = val; }
+    if (field === 'animal') { State.setAnimal(val); document.getElementById('animal-input').value = val; }
+    if (field === 'circ')   { State.setCircumstances(val); document.getElementById('circ-input').value = val; }
+  };
+
+  window.onFieldInput = (field, val) => {
+    UI.clearChips(field);
+    if (field === 'event')  State.setEvent(val);
+    if (field === 'animal') State.setAnimal(val);
+    if (field === 'circ')   State.setCircumstances(val);
+  };
+
+  window.onClear = () => {
+    State.reset();
+    UI.clearAll();
+    UI.hideResults();
+    UI.setButtonState(false);
+  };
+
+  window.onAssess = async () => {
+    const situation = State.buildSituation();
+    if (!situation) { alert('Tell us something about your incident first.'); return; }
+
+    UI.setButtonState(true);
+    UI.showLoading();
+
+    try {
+      const data = await API.assessWorst(situation, buildWorstSystemPrompt());
+      UI.renderResults(data);
+    } catch (e) {
+      UI.showError('Panel unavailable. They may already know how this ends.');
+    } finally {
+      UI.setButtonState(false);
+    }
+  };
+</script>
+
+</body>
+</html>

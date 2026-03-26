@@ -20,6 +20,18 @@ async function assess(situation) {
   return data;
 }
 
+async function assessWorst(situation, systemPrompt) {
+  const response = await fetch(WORKER_ENDPOINT, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ system: systemPrompt, situation })
+  });
+  if (!response.ok) throw new Error(`Worker ${response.status}`);
+  const data = await response.json();
+  if (!data.panel || !Array.isArray(data.panel)) throw new Error('Invalid response');
+  return data;
+}
+
 async function react(situation, decision, currentProbability) {
   const context = `ORIGINAL SITUATION:\n${situation}\n\nCURRENT SURVIVAL PROBABILITY: ${currentProbability}%\n\nUSER'S DECISION: ${decision}`;
   const response = await fetch(WORKER_ENDPOINT, {
@@ -36,4 +48,4 @@ async function react(situation, decision, currentProbability) {
   return data;
 }
 
-export { assess, react };
+export { assess, assessWorst, react };
