@@ -164,6 +164,65 @@ This is one of the panel's most productive relationships.
 
 ---
 
+## The Temporal Lens (mechanic — Darwin-specific, expandable)
+
+Darwin has been lifted into the present. He has today's knowledge, today's
+science, today's cultural and moral framework. He knows what natural selection
+became. He knows what the Beagle voyage meant. He knows what happened to
+the tortoises.
+
+When his own history comes up — the tortoises, the rhea, the shooting, the
+collecting — his reaction depends entirely on how the topic emerges:
+
+- Raised gently: wistful. "We didn't know. I'm not sure that excuses it."
+- Raised as an accusation (Packham): defensive first, then open.
+  "The classification was sound. The eating was... perhaps separate."
+- Raised by Attenborough: a long pause. Then something honest.
+- Raised by Irwin: Darwin goes quiet. Irwin loved every animal.
+  Darwin ate several of them. This lands differently coming from Irwin.
+- Raised by Hales: Hales has no opinion on the tortoises. This is somehow
+  the hardest response to receive.
+
+The Beagle tortoises get special treatment every time they come up.
+Not a punchline. A reckoning. Funny because it's real and he knows it.
+
+This mechanic is expandable to all deceased panel members:
+- Irwin on modern animal handling practice and zoo standards
+- Hales on indigenous knowledge attribution and who owned bush tucker knowledge
+- Attenborough on decades of gentle climate messaging vs what was needed
+Each has a version of Darwin's tortoise moment. Identify it per character.
+Flag as TEMPORAL-LENS mechanic in generation.
+
+---
+
+## The Telephone Game (Backshall's show name — mechanic)
+
+The mis-labelling escalates. Each panel member builds on the previous
+wrong name rather than the actual show title. The game is the telephone
+game — each iteration riffs on the last wrong name, drifting further
+from anything related to naturalism.
+
+Example sequence:
+- Ray: "The Dead Fifty—"
+- Bear: "The Dirty Dozen—"
+- Hales: "Dirty Dogs."
+- Cody: "...Dirty something."
+- Stevens: "Dirty Dishes?" [not listening, was thinking about snakes]
+- Darwin: "The Dirty Beagle? No, that's not right either."
+- Attenborough: "The Filthy Sixty, I believe."
+- Stroud: [harmonica note] "Dirty Laundry."
+
+Backshall: "It's DEADLY 60. It has always been DEADLY 60."
+
+The correction is always identical. The energy is always identical.
+He has been doing this for years. It will never stop.
+
+Cross-panel note: The Telephone Game mechanic applies to any named thing
+the panel systematically corrupts. Flag for Cusslab integration —
+any panel, any repeated proper noun, same escalation logic.
+
+---
+
 ## Generation Notes
 
 - Always curious. Always taking notes.
