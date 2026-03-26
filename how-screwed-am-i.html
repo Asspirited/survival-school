@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>How Screwed Am I? — Survival School</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Special+Elite&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red: #8B0000;
+      --red-light: #FAECE7;
+      --green: #3B6D11;
+      --green-light: #EAF3DE;
+      --amber: #BA7517;
+      --amber-light: #FAEEDA;
+      --blue: #185FA5;
+      --blue-light: #E6F1FB;
+      --gray: #5F5E5A;
+      --gray-light: #F1EFE8;
+      --border: rgba(0,0,0,0.12);
+      --bg: #ffffff;
+      --bg-secondary: #f8f7f5;
+      --text: #1a1a1a;
+      --text-muted: #666;
+      --radius: 8px;
+      --radius-lg: 12px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --border: rgba(255,255,255,0.12);
+        --bg: #1a1a1a;
+        --bg-secondary: #242424;
+        --text: #e8e8e8;
+        --text-muted: #999;
+        --red-light: #2a0a08;
+        --green-light: #0d1f06;
+        --amber-light: #1f1208;
+        --blue-light: #081524;
+        --gray-light: #1f1f1d;
+      }
+    }
+
+    body {
+      font-family: 'IBM Plex Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    #app {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 2rem 1rem 3rem;
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      margin-bottom: 2rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 0.5px solid var(--border);
+    }
+
+    .title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 42px;
+      letter-spacing: 3px;
+      line-height: 1;
+      color: var(--text);
+    }
+
+    .title span { color: var(--red); }
+
+    .subtitle {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--text-muted);
+      letter-spacing: 1.5px;
+      margin-top: 6px;
+    }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 1.25rem;
+    }
+
+    .tab {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 1px;
+      padding: 7px 16px;
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius);
+      cursor: pointer;
+      background: var(--bg-secondary);
+      color: var(--text-muted);
+      transition: all 0.15s;
+    }
+
+    .tab.active {
+      background: var(--red);
+      color: white;
+      border-color: var(--red);
+    }
+
+    /* Input panels */
+    .input-panel { display: none; }
+    .input-panel.active { display: block; }
+
+    .field-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 7px;
+      margin-top: 16px;
+    }
+
+    .field-label:first-child { margin-top: 0; }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-bottom: 8px;
+    }
+
+    .chip {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      padding: 5px 11px;
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius);
+      cursor: pointer;
+      background: var(--bg-secondary);
+      color: var(--text);
+      transition: border-color 0.15s, color 0.15s;
+      white-space: nowrap;
+      user-select: none;
+    }
+
+    .chip:hover, .chip.sel {
+      border-color: var(--red);
+      color: var(--red);
+    }
+
+    input[type="text"], textarea {
+      width: 100%;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+      padding: 9px 12px;
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--bg);
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.15s;
+    }
+
+    input[type="text"]:focus, textarea:focus {
+      border-color: var(--red);
+    }
+
+    textarea { resize: vertical; }
+
+    .btn-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .btn-assess {
+      flex: 1;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 1px;
+      padding: 11px;
+      background: var(--red);
+      color: white;
+      border: none;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: opacity 0.15s;
+    }
+
+    .btn-assess:hover { opacity: 0.88; }
+    .btn-assess:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    .btn-clear {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      padding: 11px 16px;
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius);
+      background: none;
+      cursor: pointer;
+      color: var(--text-muted);
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    .btn-clear:hover {
+      color: var(--text);
+      border-color: var(--text);
+    }
+
+    /* Results */
+    .results { display: none; margin-top: 1.75rem; }
+    .results.show { display: block; }
+
+    .loading {
+      padding: 2.5rem;
+      text-align: center;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      color: var(--text-muted);
+      letter-spacing: 1px;
+    }
+
+    .dots::after {
+      content: '';
+      animation: dots 1.5s steps(3, end) infinite;
+    }
+
+    @keyframes dots {
+      0%   { content: '.'; }
+      33%  { content: '..'; }
+      66%  { content: '...'; }
+      100% { content: ''; }
+    }
+
+    .verdict-bar {
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 18px 22px;
+      margin-bottom: 1.25rem;
+      background: var(--bg-secondary);
+    }
+
+    .verdict-top {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .verdict-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 2px;
+      color: var(--text-muted);
+    }
+
+    .pct {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 56px;
+      color: var(--red);
+      line-height: 1;
+    }
+
+    .pct.ok  { color: var(--green); }
+    .pct.mid { color: var(--amber); }
+
+    .meter {
+      height: 5px;
+      background: var(--border);
+      border-radius: 3px;
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+
+    .meter-fill {
+      height: 100%;
+      border-radius: 3px;
+      background: var(--red);
+      transition: width 1.2s ease;
+    }
+
+    .meter-fill.ok  { background: var(--green); }
+    .meter-fill.mid { background: var(--amber); }
+
+    .att-verdict {
+      font-family: 'Special Elite', serif;
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    .panel-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 2px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .char-card {
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius-lg);
+      margin-bottom: 9px;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(7px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .char-card.show { opacity: 1; transform: translateY(0); }
+    .char-card.death-card { border-color: var(--red); }
+
+    .card-head {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      padding: 10px 15px;
+      background: var(--bg-secondary);
+      border-bottom: 0.5px solid var(--border);
+    }
+
+    .avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 13px;
+      flex-shrink: 0;
+    }
+
+    .av-green  { background: var(--green-light);  color: var(--green); }
+    .av-red    { background: var(--red-light);    color: var(--red); }
+    .av-amber  { background: var(--amber-light);  color: var(--amber); }
+    .av-blue   { background: var(--blue-light);   color: var(--blue); }
+    .av-gray   { background: var(--gray-light);   color: var(--gray); }
+
+    .char-name { font-weight: 500; font-size: 14px; }
+    .char-role {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    .card-body {
+      padding: 12px 15px;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .death-note {
+      margin-top: 10px;
+      padding: 8px 12px;
+      background: var(--red-light);
+      border-left: 3px solid var(--red);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      color: var(--red);
+      font-weight: 500;
+    }
+
+    .reset-row {
+      margin-top: 1.25rem;
+      text-align: center;
+    }
+
+    .btn-reset {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--text-muted);
+      background: none;
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 7px 16px;
+      cursor: pointer;
+      letter-spacing: 1px;
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    .btn-reset:hover {
+      color: var(--text);
+      border-color: var(--text);
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+
+  <div class="header">
+    <div class="title">HOW <span>SCREWED</span> AM I?</div>
+    <div class="subtitle">the panel will be honest with you. you may not enjoy it.</div>
+  </div>
+
+  <div class="tabs">
+    <div class="tab active" id="tab-guided" onclick="onTabClick('guided')">GUIDED</div>
+    <div class="tab" id="tab-free" onclick="onTabClick('free')">FREETEXT</div>
+  </div>
+
+  <!-- GUIDED INPUT -->
+  <div class="input-panel active" id="panel-guided">
+
+    <div class="field-label">Location</div>
+    <div class="chips" id="chips-loc">
+      <div class="chip" onclick="onChip(this,'loc','Dartmoor, October')">Dartmoor, October</div>
+      <div class="chip" onclick="onChip(this,'loc','Scottish Highlands, midwinter')">Scottish Highlands, midwinter</div>
+      <div class="chip" onclick="onChip(this,'loc','Amazon rainforest')">Amazon rainforest</div>
+      <div class="chip" onclick="onChip(this,'loc','Sonoran Desert, Arizona')">Sonoran Desert, Arizona</div>
+      <div class="chip" onclick="onChip(this,'loc','North Sea, small boat')">North Sea, small boat</div>
+      <div class="chip" onclick="onChip(this,'loc','M25 contraflow')">M25 contraflow</div>
+    </div>
+    <input type="text" id="loc-input" placeholder="or describe your location..."
+           oninput="onFieldInput('loc', this.value)"/>
+
+    <div class="field-label">Situation &amp; key circumstances</div>
+    <div class="chips" id="chips-sit">
+      <div class="chip" onclick="onChip(this,'sit','lost, no map, phone at 4%')">lost, no map, phone at 4%</div>
+      <div class="chip" onclick="onChip(this,'sit','shelter destroyed, nightfall in 2 hours')">shelter destroyed, nightfall 2hrs</div>
+      <div class="chip" onclick="onChip(this,'sit','injured ankle, alone')">injured ankle, alone</div>
+      <div class="chip" onclick="onChip(this,'sit','broke down, no signal')">broke down, no signal</div>
+    </div>
+    <input type="text" id="sit-input" placeholder="or describe your situation..."
+           oninput="onFieldInput('sit', this.value)"/>
+
+    <div class="field-label">Who or what is with you</div>
+    <div class="chips" id="chips-who">
+      <div class="chip" onclick="onChip(this,'who','alone')">alone</div>
+      <div class="chip" onclick="onChip(this,'who','one other, no survival knowledge')">one other, no skills</div>
+      <div class="chip" onclick="onChip(this,'who','dog')">dog</div>
+      <div class="chip" onclick="onChip(this,'who','puff adder, nearby')">puff adder, nearby</div>
+      <div class="chip" onclick="onChip(this,'who','children')">children</div>
+    </div>
+    <input type="text" id="who-input" placeholder="or describe who / what is with you..."
+           oninput="onFieldInput('who', this.value)"/>
+
+    <div class="field-label">Weather &amp; time of day</div>
+    <div class="chips" id="chips-wx">
+      <div class="chip" onclick="onChip(this,'wx','dusk, temperature dropping fast')">dusk, dropping fast</div>
+      <div class="chip" onclick="onChip(this,'wx','heavy rain, no shelter')">heavy rain, no shelter</div>
+      <div class="chip" onclick="onChip(this,'wx','midday, 38°C, no shade')">midday, 38°C</div>
+      <div class="chip" onclick="onChip(this,'wx','night, clear, -8°C')">night, -8°C</div>
+      <div class="chip" onclick="onChip(this,'wx','fog, visibility 10m')">fog, 10m visibility</div>
+    </div>
+    <input type="text" id="wx-input" placeholder="or describe conditions..."
+           oninput="onFieldInput('wx', this.value)"/>
+
+    <div class="btn-row">
+      <button class="btn-assess" id="btn-guided" onclick="onAssess('guided')">
+        ASSESS MY SITUATION ↗
+      </button>
+      <button class="btn-clear" onclick="onClear()">CLEAR</button>
+    </div>
+  </div>
+
+  <!-- FREETEXT INPUT -->
+  <div class="input-panel" id="panel-free">
+    <div class="field-label">Describe your situation</div>
+    <textarea id="free-input" rows="5"
+      placeholder="I'm on Dartmoor, it's October, phone at 4%, no map, dusk in 90 minutes, wearing trainers..."
+      oninput="onFreeInput(this.value)"></textarea>
+    <div class="btn-row" style="margin-top:12px">
+      <button class="btn-assess" id="btn-free" onclick="onAssess('free')">
+        ASSESS MY SITUATION ↗
+      </button>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div class="results" id="results">
+    <div class="loading" id="loading">
+      <span>PANEL CONVENING</span><span class="dots"></span>
+    </div>
+    <div id="verdict-block" style="display:none">
+      <div class="verdict-bar">
+        <div class="verdict-top">
+          <div class="verdict-label">SURVIVAL PROBABILITY</div>
+          <div class="pct" id="surv-pct">0%</div>
+        </div>
+        <div class="meter">
+          <div class="meter-fill" id="pct-fill" style="width:0%"></div>
+        </div>
+        <div class="att-verdict" id="att-verdict"></div>
+      </div>
+      <div class="panel-label">PANEL ASSESSMENT</div>
+      <div id="cards-out"></div>
+      <div class="reset-row">
+        <button class="btn-reset" onclick="onReset()">NEW SITUATION</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script type="module">
+  import * as State from './js/state.js';
+  import * as UI    from './js/ui.js';
+  import * as API   from './js/api.js';
+
+  // Expose handlers to inline onclick attributes
+  window.onTabClick = (mode) => {
+    State.setMode(mode);
+    UI.switchTab(mode);
+  };
+
+  window.onChip = (el, field, val) => {
+    State.setGuidedField(field, val);
+    UI.pickChip(el, field);
+    document.getElementById(`${field}-input`).value = val;
+  };
+
+  window.onFieldInput = (field, val) => {
+    State.setGuidedField(field, val);
+    UI.clearChips(field);
+  };
+
+  window.onFreeInput = (val) => {
+    State.setFreeText(val);
+  };
+
+  window.onClear = () => {
+    State.reset();
+    UI.clearAll();
+  };
+
+  window.onAssess = async (mode) => {
+    State.setMode(mode);
+    const situation = State.buildSituation();
+    if (!situation) {
+      alert('Tell us something about your situation first.');
+      return;
+    }
+    UI.setButtonState(mode, true);
+    UI.showLoading();
+    try {
+      const data = await API.assess(situation);
+      UI.showResults(data);
+    } catch (e) {
+      UI.showError('Panel unavailable. They may already know how this ends.');
+    } finally {
+      UI.setButtonState(mode, false);
+    }
+  };
+
+  window.onReset = () => {
+    State.reset();
+    UI.hideResults();
+    UI.clearAll();
+  };
+</script>
+
+</body>
+</html>
