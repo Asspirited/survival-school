@@ -11,6 +11,7 @@
 | TBD | SS-001 — Complete project brief | Open |
 | TBD | SS-002 — ADR: tech stack decision | Open |
 | TBD | SS-003 — Define HDD hypothesis | Open |
+| 27 | SS-004 — Pre-flight covers all founding/character docs | Done |
 
 ---
 
@@ -100,3 +101,26 @@ Feature: HDD hypothesis
 
 ### Notes
 - Depends on SS-001.
+
+---
+
+## SS-004 — Pre-flight covers all founding/character docs
+
+**Status:** Done
+**Priority:** Critical
+**Loop:** Protocol
+**Raised:** 2026-03-26
+**Closed:** 2026-03-26
+
+### What was fixed
+
+Pre-flight command in `session-startup.md` Step 0 updated to include:
+- `docs/founding-docs-raw.md`
+- `docs/founding-notes.md`
+- `$(find docs/characters/ -name "*.md" 2>/dev/null | sort)` — auto-picks up all future character files
+
+Pre-close check added to `session-closedown.md` Step 8b — requires verifying pre-flight covers any new files before closing.
+
+### Root cause
+
+Original pre-flight only pulled 5 files. Founding docs and character notes written in a previous session were not included, causing Claude.ai to start the next session blind.

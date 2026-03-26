@@ -83,6 +83,20 @@ Format so Claude.ai can read it cold in the next session.
 
 ---
 
+### Step 8b: Pre-flight sync check
+
+Before writing shared state, verify the pre-flight command in `session-startup.md` Step 0
+covers every content file created this session.
+
+Check:
+- Any new files in `docs/` not already in the cat command? Add them.
+- Any new `docs/characters/*.md` files? The `find` glob picks these up automatically.
+- Any new founding or notes files? Add explicitly.
+
+If changes needed: update the cat command in Step 0 now, before closing.
+
+---
+
 ### Step 9: Commit reminder
 
 List files that need committing:
