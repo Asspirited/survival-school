@@ -5,85 +5,66 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>How Screwed Am I? — Survival School</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Special+Elite&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --red: #8B0000;
-      --red-light: #FAECE7;
-      --green: #3B6D11;
-      --green-light: #EAF3DE;
+      --bg: #0f1209;
+      --surface: #181d10;
+      --surface2: #1e2514;
+      --border: rgba(120,160,60,0.15);
+      --border-strong: rgba(120,160,60,0.3);
+      --green: #7aad3a;
+      --green-dim: #4a7020;
+      --green-bright: #a0d050;
       --amber: #BA7517;
-      --amber-light: #FAEEDA;
-      --blue: #185FA5;
-      --blue-light: #E6F1FB;
-      --gray: #5F5E5A;
-      --gray-light: #F1EFE8;
-      --border: rgba(0,0,0,0.12);
-      --bg: #ffffff;
-      --bg-secondary: #f8f7f5;
-      --text: #1a1a1a;
-      --text-muted: #666;
-      --radius: 8px;
-      --radius-lg: 12px;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --border: rgba(255,255,255,0.12);
-        --bg: #1a1a1a;
-        --bg-secondary: #242424;
-        --text: #e8e8e8;
-        --text-muted: #999;
-        --red-light: #2a0a08;
-        --green-light: #0d1f06;
-        --amber-light: #1f1208;
-        --blue-light: #081524;
-        --gray-light: #1f1f1d;
-      }
+      --amber-dim: #5c3a08;
+      --bark: #8B6040;
+      --bark-dim: #3d2008;
+      --text: #e8edd8;
+      --text-muted: #7a8a60;
+      --blood: #cc1111;
+      --blood-dim: #3a0808;
     }
 
     body {
-      font-family: 'IBM Plex Sans', sans-serif;
+      font-family: 'Barlow', sans-serif;
       background: var(--bg);
       color: var(--text);
       min-height: 100vh;
     }
 
     #app {
-      max-width: 700px;
+      max-width: 680px;
       margin: 0 auto;
-      padding: 2rem 1rem 3rem;
+      padding: 1.5rem 1rem 3rem;
     }
 
-    /* Header */
     .header {
       text-align: center;
-      margin-bottom: 2rem;
-      padding-bottom: 1.25rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
       border-bottom: 0.5px solid var(--border);
     }
 
     .title {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 42px;
+      font-size: 40px;
       letter-spacing: 3px;
       line-height: 1;
-      color: var(--text);
     }
 
-    .title span { color: var(--red); }
+    .title span { color: var(--blood); }
 
     .subtitle {
       font-family: 'IBM Plex Mono', monospace;
       font-size: 11px;
       color: var(--text-muted);
       letter-spacing: 1.5px;
-      margin-top: 6px;
+      margin-top: 5px;
     }
 
-    /* Tabs */
     .tabs {
       display: flex;
       gap: 8px;
@@ -94,22 +75,17 @@
       font-family: 'IBM Plex Mono', monospace;
       font-size: 11px;
       letter-spacing: 1px;
-      padding: 7px 16px;
+      padding: 7px 14px;
       border: 0.5px solid var(--border);
-      border-radius: var(--radius);
+      border-radius: 6px;
       cursor: pointer;
-      background: var(--bg-secondary);
+      background: var(--surface);
       color: var(--text-muted);
       transition: all 0.15s;
     }
 
-    .tab.active {
-      background: var(--red);
-      color: white;
-      border-color: var(--red);
-    }
+    .tab.active { background: var(--blood); color: white; border-color: var(--blood); }
 
-    /* Input panels */
     .input-panel { display: none; }
     .input-panel.active { display: block; }
 
@@ -119,8 +95,8 @@
       letter-spacing: 1.5px;
       color: var(--text-muted);
       text-transform: uppercase;
-      margin-bottom: 7px;
-      margin-top: 16px;
+      margin-bottom: 6px;
+      margin-top: 14px;
     }
 
     .field-label:first-child { margin-top: 0; }
@@ -135,57 +111,49 @@
     .chip {
       font-family: 'IBM Plex Mono', monospace;
       font-size: 11px;
-      padding: 5px 11px;
-      border: 0.5px solid var(--border);
-      border-radius: var(--radius);
+      padding: 5px 10px;
+      border: 0.5px solid var(--border-strong);
+      border-radius: 5px;
       cursor: pointer;
-      background: var(--bg-secondary);
-      color: var(--text);
-      transition: border-color 0.15s, color 0.15s;
+      background: none;
+      color: var(--text-muted);
+      transition: all 0.15s;
       white-space: nowrap;
       user-select: none;
     }
 
-    .chip:hover, .chip.sel {
-      border-color: var(--red);
-      color: var(--red);
-    }
+    .chip:hover, .chip.sel { border-color: var(--green); color: var(--green); }
 
     input[type="text"], textarea {
       width: 100%;
       font-family: 'IBM Plex Mono', monospace;
       font-size: 13px;
       padding: 9px 12px;
-      border: 0.5px solid var(--border);
-      border-radius: var(--radius);
-      background: var(--bg);
+      border: 0.5px solid var(--border-strong);
+      border-radius: 6px;
+      background: var(--surface);
       color: var(--text);
       outline: none;
       transition: border-color 0.15s;
     }
 
-    input[type="text"]:focus, textarea:focus {
-      border-color: var(--red);
-    }
-
+    input[type="text"]:focus, textarea:focus { border-color: var(--green); }
     textarea { resize: vertical; }
 
-    .btn-row {
-      display: flex;
-      gap: 8px;
-      margin-top: 16px;
-    }
+    .btn-row { display: flex; gap: 8px; margin-top: 14px; }
 
     .btn-assess {
       flex: 1;
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 12px;
-      letter-spacing: 1px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
       padding: 11px;
-      background: var(--red);
-      color: white;
+      background: var(--green);
+      color: var(--bg);
       border: none;
-      border-radius: var(--radius);
+      border-radius: 6px;
       cursor: pointer;
       transition: opacity 0.15s;
     }
@@ -196,26 +164,24 @@
     .btn-clear {
       font-family: 'IBM Plex Mono', monospace;
       font-size: 11px;
+      letter-spacing: 1px;
       padding: 11px 16px;
-      border: 0.5px solid var(--border);
-      border-radius: var(--radius);
+      border: 0.5px solid var(--border-strong);
+      border-radius: 6px;
       background: none;
       cursor: pointer;
       color: var(--text-muted);
       transition: color 0.15s, border-color 0.15s;
     }
 
-    .btn-clear:hover {
-      color: var(--text);
-      border-color: var(--text);
-    }
+    .btn-clear:hover { color: var(--text); border-color: var(--green); }
 
     /* Results */
-    .results { display: none; margin-top: 1.75rem; }
+    .results { display: none; margin-top: 1.5rem; }
     .results.show { display: block; }
 
     .loading {
-      padding: 2.5rem;
+      padding: 2rem;
       text-align: center;
       font-family: 'IBM Plex Mono', monospace;
       font-size: 12px;
@@ -237,17 +203,17 @@
 
     .verdict-bar {
       border: 0.5px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 18px 22px;
-      margin-bottom: 1.25rem;
-      background: var(--bg-secondary);
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin-bottom: 1rem;
+      background: var(--surface);
     }
 
     .verdict-top {
       display: flex;
       align-items: baseline;
       justify-content: space-between;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     .verdict-label {
@@ -259,38 +225,40 @@
 
     .pct {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 56px;
-      color: var(--red);
+      font-size: 52px;
+      color: var(--blood);
       line-height: 1;
+      transition: color 0.5s;
     }
 
     .pct.ok  { color: var(--green); }
     .pct.mid { color: var(--amber); }
 
     .meter {
-      height: 5px;
+      height: 4px;
       background: var(--border);
-      border-radius: 3px;
+      border-radius: 2px;
       overflow: hidden;
       margin-bottom: 12px;
     }
 
     .meter-fill {
       height: 100%;
-      border-radius: 3px;
-      background: var(--red);
-      transition: width 1.2s ease;
+      background: var(--blood);
+      border-radius: 2px;
+      transition: width 1.2s ease, background 0.5s;
     }
 
     .meter-fill.ok  { background: var(--green); }
     .meter-fill.mid { background: var(--amber); }
 
     .att-verdict {
-      font-family: 'Special Elite', serif;
-      font-size: 15px;
+      font-family: 'Barlow', sans-serif;
+      font-weight: 300;
+      font-style: italic;
+      font-size: 14px;
       line-height: 1.7;
       color: var(--text-muted);
-      font-style: italic;
     }
 
     .panel-label {
@@ -303,91 +271,228 @@
 
     .char-card {
       border: 0.5px solid var(--border);
-      border-radius: var(--radius-lg);
-      margin-bottom: 9px;
+      border-radius: 10px;
+      margin-bottom: 8px;
       overflow: hidden;
-      opacity: 0;
-      transform: translateY(7px);
-      transition: opacity 0.3s ease, transform 0.3s ease;
+      background: var(--surface);
     }
 
-    .char-card.show { opacity: 1; transform: translateY(0); }
-    .char-card.death-card { border-color: var(--red); }
+    .char-card.death-card { border-color: var(--blood); }
 
     .card-head {
       display: flex;
       align-items: center;
-      gap: 11px;
-      padding: 10px 15px;
-      background: var(--bg-secondary);
+      gap: 10px;
+      padding: 9px 14px;
+      background: var(--surface2);
       border-bottom: 0.5px solid var(--border);
     }
 
     .avatar {
-      width: 32px;
-      height: 32px;
+      width: 30px; height: 30px;
       border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 13px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 0.5px;
       flex-shrink: 0;
     }
 
-    .av-green  { background: var(--green-light);  color: var(--green); }
-    .av-red    { background: var(--red-light);    color: var(--red); }
-    .av-amber  { background: var(--amber-light);  color: var(--amber); }
-    .av-blue   { background: var(--blue-light);   color: var(--blue); }
-    .av-gray   { background: var(--gray-light);   color: var(--gray); }
+    .av-green  { background: var(--green-dim);  color: var(--green-bright); }
+    .av-bark   { background: var(--bark-dim);   color: var(--bark); }
+    .av-amber  { background: var(--amber-dim);  color: var(--amber); }
+    .av-blue   { background: #0c1f3a;           color: #5a9fd4; }
+    .av-gray   { background: #1e1e1c;           color: #7a8a70; }
 
-    .char-name { font-weight: 500; font-size: 14px; }
+    .char-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0.5px;
+      color: var(--text);
+    }
+
     .char-role {
-      font-size: 11px;
-      color: var(--text-muted);
       font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      color: var(--text-muted);
     }
 
     .card-body {
-      padding: 12px 15px;
+      padding: 11px 14px;
+      font-family: 'Barlow', sans-serif;
       font-size: 14px;
       line-height: 1.7;
+      color: var(--text);
+      font-weight: 400;
     }
 
     .death-note {
-      margin-top: 10px;
-      padding: 8px 12px;
-      background: var(--red-light);
-      border-left: 3px solid var(--red);
-      border-radius: 0 var(--radius) var(--radius) 0;
+      margin-top: 8px;
+      padding: 7px 11px;
+      background: var(--blood-dim);
+      border-left: 3px solid var(--blood);
+      border-radius: 0 4px 4px 0;
       font-family: 'IBM Plex Mono', monospace;
-      font-size: 12px;
-      color: var(--red);
+      font-size: 11px;
+      color: var(--blood);
       font-weight: 500;
     }
 
-    .reset-row {
-      margin-top: 1.25rem;
-      text-align: center;
+    .fact-check {
+      margin-top: 6px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--text-muted);
+      border-top: 0.5px solid var(--border);
+      padding-top: 6px;
+      opacity: 0.7;
     }
+
+    /* Interaction */
+    #interaction-block { display: none; margin-top: 1rem; }
+
+    .decision-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .decision-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 2px;
+      color: var(--green);
+    }
+
+    .turn-pct {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .action-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-bottom: 10px;
+    }
+
+    .action-chip {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      padding: 5px 11px;
+      border: 0.5px solid var(--border-strong);
+      border-radius: 5px;
+      cursor: pointer;
+      color: var(--text-muted);
+      background: none;
+      transition: all 0.15s;
+      white-space: nowrap;
+    }
+
+    .action-chip:hover, .action-chip.sel {
+      border-color: var(--green);
+      color: var(--green);
+      background: var(--surface2);
+    }
+
+    .decision-input-row {
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn-decide {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 1.5px;
+      padding: 9px 16px;
+      background: var(--green);
+      color: var(--bg);
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: opacity 0.15s;
+    }
+
+    .btn-decide:hover { opacity: 0.88; }
+
+    /* Turn history */
+    .turn-divider {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 3px;
+      color: var(--green-dim);
+      text-align: center;
+      padding: 10px 0 6px;
+      border-top: 0.5px solid var(--border);
+      margin-top: 8px;
+    }
+
+    .situation-update {
+      font-family: 'Barlow', sans-serif;
+      font-weight: 300;
+      font-style: italic;
+      font-size: 13px;
+      color: var(--text-muted);
+      padding: 8px 0;
+      margin-top: 4px;
+    }
+
+    /* Terminal */
+    .terminal {
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    .terminal-dead {
+      background: var(--blood-dim);
+      border: 0.5px solid var(--blood);
+    }
+
+    .terminal-alive {
+      background: var(--green-dim);
+      border: 0.5px solid var(--green);
+    }
+
+    .terminal-label {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 28px;
+      letter-spacing: 3px;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .terminal-sub {
+      font-family: 'Barlow', sans-serif;
+      font-weight: 300;
+      font-style: italic;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .reset-row { margin-top: 1rem; text-align: center; }
 
     .btn-reset {
       font-family: 'IBM Plex Mono', monospace;
       font-size: 11px;
       color: var(--text-muted);
       background: none;
-      border: 0.5px solid var(--border);
-      border-radius: var(--radius);
+      border: 0.5px solid var(--border-strong);
+      border-radius: 6px;
       padding: 7px 16px;
       cursor: pointer;
       letter-spacing: 1px;
-      transition: color 0.15s, border-color 0.15s;
+      transition: all 0.15s;
     }
 
-    .btn-reset:hover {
-      color: var(--text);
-      border-color: var(--text);
-    }
+    .btn-reset:hover { color: var(--text); border-color: var(--green); }
   </style>
 </head>
 <body>
@@ -403,9 +508,7 @@
     <div class="tab" id="tab-free" onclick="onTabClick('free')">FREETEXT</div>
   </div>
 
-  <!-- GUIDED INPUT -->
   <div class="input-panel active" id="panel-guided">
-
     <div class="field-label">Location</div>
     <div class="chips" id="chips-loc">
       <div class="chip" onclick="onChip(this,'loc','Dartmoor, October')">Dartmoor, October</div>
@@ -415,8 +518,7 @@
       <div class="chip" onclick="onChip(this,'loc','North Sea, small boat')">North Sea, small boat</div>
       <div class="chip" onclick="onChip(this,'loc','M25 contraflow')">M25 contraflow</div>
     </div>
-    <input type="text" id="loc-input" placeholder="or describe your location..."
-           oninput="onFieldInput('loc', this.value)"/>
+    <input type="text" id="loc-input" placeholder="or describe your location..." oninput="onFieldInput('loc',this.value)"/>
 
     <div class="field-label">Situation &amp; key circumstances</div>
     <div class="chips" id="chips-sit">
@@ -425,8 +527,7 @@
       <div class="chip" onclick="onChip(this,'sit','injured ankle, alone')">injured ankle, alone</div>
       <div class="chip" onclick="onChip(this,'sit','broke down, no signal')">broke down, no signal</div>
     </div>
-    <input type="text" id="sit-input" placeholder="or describe your situation..."
-           oninput="onFieldInput('sit', this.value)"/>
+    <input type="text" id="sit-input" placeholder="or describe your situation..." oninput="onFieldInput('sit',this.value)"/>
 
     <div class="field-label">Who or what is with you</div>
     <div class="chips" id="chips-who">
@@ -436,8 +537,7 @@
       <div class="chip" onclick="onChip(this,'who','puff adder, nearby')">puff adder, nearby</div>
       <div class="chip" onclick="onChip(this,'who','children')">children</div>
     </div>
-    <input type="text" id="who-input" placeholder="or describe who / what is with you..."
-           oninput="onFieldInput('who', this.value)"/>
+    <input type="text" id="who-input" placeholder="or describe who / what is with you..." oninput="onFieldInput('who',this.value)"/>
 
     <div class="field-label">Weather &amp; time of day</div>
     <div class="chips" id="chips-wx">
@@ -447,31 +547,24 @@
       <div class="chip" onclick="onChip(this,'wx','night, clear, -8°C')">night, -8°C</div>
       <div class="chip" onclick="onChip(this,'wx','fog, visibility 10m')">fog, 10m visibility</div>
     </div>
-    <input type="text" id="wx-input" placeholder="or describe conditions..."
-           oninput="onFieldInput('wx', this.value)"/>
+    <input type="text" id="wx-input" placeholder="or describe conditions..." oninput="onFieldInput('wx',this.value)"/>
 
     <div class="btn-row">
-      <button class="btn-assess" id="btn-guided" onclick="onAssess('guided')">
-        ASSESS MY SITUATION ↗
-      </button>
+      <button class="btn-assess" id="btn-guided" onclick="onAssess('guided')">ASSESS MY SITUATION ↗</button>
       <button class="btn-clear" onclick="onClear()">CLEAR</button>
     </div>
   </div>
 
-  <!-- FREETEXT INPUT -->
   <div class="input-panel" id="panel-free">
     <div class="field-label">Describe your situation</div>
     <textarea id="free-input" rows="5"
       placeholder="I'm on Dartmoor, it's October, phone at 4%, no map, dusk in 90 minutes, wearing trainers..."
       oninput="onFreeInput(this.value)"></textarea>
     <div class="btn-row" style="margin-top:12px">
-      <button class="btn-assess" id="btn-free" onclick="onAssess('free')">
-        ASSESS MY SITUATION ↗
-      </button>
+      <button class="btn-assess" id="btn-free" onclick="onAssess('free')">ASSESS MY SITUATION ↗</button>
     </div>
   </div>
 
-  <!-- RESULTS -->
   <div class="results" id="results">
     <div class="loading" id="loading">
       <span>PANEL CONVENING</span><span class="dots"></span>
@@ -489,10 +582,8 @@
       </div>
       <div class="panel-label">PANEL ASSESSMENT</div>
       <div id="cards-out"></div>
-      <div class="reset-row">
-        <button class="btn-reset" onclick="onReset()">NEW SITUATION</button>
-      </div>
     </div>
+    <div id="interaction-block"></div>
   </div>
 
 </div>
@@ -502,44 +593,31 @@
   import * as UI    from './js/ui.js';
   import * as API   from './js/api.js';
 
-  // Expose handlers to inline onclick attributes
-  window.onTabClick = (mode) => {
-    State.setMode(mode);
-    UI.switchTab(mode);
-  };
-
+  // Tab / chip / input handlers
+  window.onTabClick = (mode) => { State.setMode(mode); UI.switchTab(mode); };
   window.onChip = (el, field, val) => {
     State.setGuidedField(field, val);
     UI.pickChip(el, field);
     document.getElementById(`${field}-input`).value = val;
   };
+  window.onFieldInput = (field, val) => { State.setGuidedField(field, val); UI.clearChips(field); };
+  window.onFreeInput = (val) => State.setFreeText(val);
+  window.onClear = () => { State.reset(); UI.clearAll(); };
 
-  window.onFieldInput = (field, val) => {
-    State.setGuidedField(field, val);
-    UI.clearChips(field);
-  };
-
-  window.onFreeInput = (val) => {
-    State.setFreeText(val);
-  };
-
-  window.onClear = () => {
-    State.reset();
-    UI.clearAll();
-  };
-
+  // Initial assessment
   window.onAssess = async (mode) => {
     State.setMode(mode);
     const situation = State.buildSituation();
-    if (!situation) {
-      alert('Tell us something about your situation first.');
-      return;
-    }
+    if (!situation) { alert('Tell us something about your situation first.'); return; }
+
+    State.setSituation(situation);
     UI.setButtonState(mode, true);
     UI.showLoading();
+
     try {
       const data = await API.assess(situation);
-      UI.showResults(data);
+      State.setProbability(data.survival_probability);
+      UI.showResults(data, handleDecision);
     } catch (e) {
       UI.showError('Panel unavailable. They may already know how this ends.');
     } finally {
@@ -547,10 +625,26 @@
     }
   };
 
-  window.onReset = () => {
+  // Decision loop
+  async function handleDecision(decision) {
+    const s = State.getState();
+    UI.showLoading('PANEL REACTING');
+
+    try {
+      const data = await API.react(s.situation, decision, s.probability);
+      State.recordDecision(decision, data.survival_probability, data.situation_update);
+      UI.showReaction(data, s.turnCount + 1, handleDecision);
+    } catch (e) {
+      UI.showError('Panel unavailable.');
+    }
+  }
+
+  // Reset
+  window._onReset = () => {
     State.reset();
     UI.hideResults();
     UI.clearAll();
+    ['guided','free'].forEach(m => UI.setButtonState(m, false));
   };
 </script>
 

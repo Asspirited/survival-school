@@ -1,42 +1,39 @@
-// api.js
+// api.js — v2 with reaction mode support
 // Single responsibility: Worker integration and API calls.
-// Nothing outside this file knows how to talk to the backend.
-// PACT contract lives here — if the Worker changes, this file changes.
 
 import { buildSystemPrompt } from './characters.js';
 
 const WORKER_ENDPOINT = '/survival-school/assess';
 
-// PACT contract — request shape
-function buildRequest(situation) {
-  return {
-    system: buildSystemPrompt(),
-    situation: situation
-  };
-}
-
-// PACT contract — response shape
-// { survival_probability, attenborough_verdict, panel[] }
-// panel[]: { charId, text, death }
 async function assess(situation) {
   const response = await fetch(WORKER_ENDPOINT, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(buildRequest(situation))
+    body: JSON.stringify({
+      system: buildSystemPrompt('assessment'),
+      situation
+    })
   });
-
-  if (!response.ok) {
-    throw new Error(`Worker responded ${response.status}`);
-  }
-
+  if (!response.ok) throw new Error(`Worker ${response.status}`);
   const data = await response.json();
-
-  // Validate response shape before returning
-  if (!data.panel || !Array.isArray(data.panel)) {
-    throw new Error('Invalid response shape from Worker');
-  }
-
+  if (!data.panel || !Array.isArray(data.panel)) throw new Error('Invalid response');
   return data;
 }
 
-export { assess };
+async function react(situation, decision, currentProbability) {
+  const context = `ORIGINAL SITUATION:\n${situation}\n\nCURRENT SURVIVAL PROBABILITY: ${currentProbability}%\n\nUSER'S DECISION: ${decision}`;
+  const response = await fetch(WORKER_ENDPOINT, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      system: buildSystemPrompt('reaction'),
+      situation: context
+    })
+  });
+  if (!response.ok) throw new Error(`Worker ${response.status}`);
+  const data = await response.json();
+  if (!data.panel || !Array.isArray(data.panel)) throw new Error('Invalid response');
+  return data;
+}
+
+export { assess, react };
