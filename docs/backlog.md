@@ -12,8 +12,20 @@
 | 27 | SS-040 — Build full test pipeline (L0–L5, YGW pattern) | IN PROGRESS | TDD |
 | TBD | SS-042 — Location chip library: full sub-categorised expansion | Open | DDD |
 | TBD | SS-043 — Cascading input redesign: Location → Event → Context | Open | BDD |
-| TBD | SS-044 — Homepage: tiled clickable icons for location group categories (Cusslab pattern) | Open | BDD |
-| TBD | SS-045 — Homepage nav category: "The Colosseum" containing Animal Deathmatch | Open | BDD |
+| TBD | SS-044 — Homepage redesign: tiled category nav (Cusslab pattern), no About tile | Open | BDD |
+| TBD | SS-048 — Mode architecture: CASEVAC / EXFIL / SITREP / INFIL / EYES ON / CHUCK NORRIS | Open | DDD |
+| TBD | SS-049 — Character: Jason Fox (Foxy) — SBS, quiet, PTSD survivor, one line lands clean | Open | DDD |
+| TBD | SS-050 — Character: Billy Billingham — SAS WO1, IRA bait, assessed Brangelina professionally | Open | DDD |
+| TBD | SS-051 — Character: Ollie Ollerton — SBS (on SAS show, says nothing), addiction recovery, refuses to perform cruelty | Open | DDD |
+| TBD | SS-052 — Character: Christian Craighead / Obi-Wan Nairobi — shower, phone call, drove himself, 5 terrorists, banned memoir | Open | DDD |
+| TBD | SS-053 — Character: Coyote Peterson — pain scale assessor, rates everything, carefully replaces the trolley | Open | DDD |
+| TBD | SS-057 — Feature: "How Much Does That Hurt?" — standalone Coyote Peterson pain scale feature, top-level nav | Open | BDD |
+| TBD | SS-054 — Feature: "One Man In" — EXFIL/INFIL mode, Craighead framing, solo entry, no chain of command | Open | BDD |
+| TBD | SS-055 — Scenario bank: Bravo Two Zero (goat herder / tab to Syria / leave Vince) | Open | DDD |
+| TBD | SS-056 — Scenario bank: Operation Nimrod (telex room controversy, Tak on the rope) | Open | DDD |
+| TBD | SS-045 — Nav category: "The Colosseum" → Animal Deathmatch | Open | BDD |
+| TBD | SS-046 — Nav category: "The Panel" → Irwin Memorial (+ future panel features) | Open | BDD |
+| TBD | SS-047 — App footer: logo, stamp, About link | Open | BDD |
 | 27 | SS-001 — Complete project brief | DONE | HDD |
 | 27 | SS-003 — Define HDD hypothesis | DONE | HDD |
 | 18 | SS-002 — ADR: tech stack | DONE | DDD |
@@ -952,3 +964,243 @@ Feature: Cascading location → conditions → event → context input
     And survival probability is shown as for any other event
     And no panel member acknowledges this is unusual
 ```
+
+---
+
+### SS-048 — Mode architecture: CASEVAC / EXFIL / SITREP / INFIL / EYES ON / CHUCK NORRIS MODE
+
+**Status:** Open
+**Priority:** High — structural, shapes everything built after it
+**Loop:** DDD
+**Raised:** 2026-03-27
+
+**The six modes — each changes input, panel role, output schema, and comedy register:**
+
+| Mode | You are | Panel role | Output | Comedy register |
+|------|---------|-----------|--------|-----------------|
+| **CASEVAC** | The casualty — compromised, possibly dying | Triage team deciding if you're worth extracting | Survival probability, extraction options, who does what | Panel debates whether to send the helicopter |
+| **EXFIL** | Fit, alone, compromised, need to get yourself out | Mission briefing team | Escape route, what to abandon, how to move | Chris Ryan, 300km, one chocolate bar, trust no one |
+| **SITREP** | Pre-situation — walking into something | Intelligence briefing | Threat assessment before you commit | Ray notes the exits. Bear has been here before. |
+| **INFIL** | Need to get in somewhere undetected | Insertion planning team | Approach, cover, risks, abort criteria | Infiltrating a Waitrose. Bear goes through the skylight. |
+| **EYES ON** | Observing before committing | Recce debrief team | What you're looking at, danger signs, go/no-go | "I'm approaching the Tesco car park on Christmas Eve. What am I looking at?" |
+| **CHUCK NORRIS MODE** | Already unstoppable — not the concern | Assessing the threat to everyone else | What the jaguar should do now you've arrived | Attenborough narrates you as apex predator. Cody nods quietly. |
+
+**CASEVAC covers:** How Screwed Am I, I've Been Bit, Guys — both are you as the casualty.
+**EXFIL name:** "One Man In" (Craighead's banned memoir title). See SS-054.
+
+**Design first:** each mode needs its own input structure, system prompt variant, and response schema before any UI is built.
+
+---
+
+### SS-049 — Character: Jason Fox (Foxy)
+
+**Status:** Open
+**Priority:** High
+**Loop:** DDD
+**Raised:** 2026-03-27
+
+**Service:** Special Boat Service (not SAS — show branding notwithstanding). Royal Marines from 16. SBS selection 2001. Jungle survival specialist, combat swimmer, explosives, dog handler. Medically discharged 2012 with PTSD.
+
+**The PTSD arc:** Not cinematic. A grey fog — loss of all enjoyment, disappearance of drive. Escalated to suicidal ideation. Co-founded Rock2Recovery. Rowed the Atlantic and went to the North Pole as part of recovery. Disclosed publicly on his own show. Describes it with clinical dark humour.
+
+**Panel voice:**
+- The quiet one. Not the shouter. Watches, observes, asks the question you weren't ready for.
+- Dry wit — one line, landed clean, not a spray.
+- Core ethos: "cheerfulness in the face of adversity" — Royal Marines pillar. Dark humour as tool, not deflection.
+- Jungle/maritime texture — different register to the desert-army crowd.
+- Genuinely empathetic. Will never say so directly.
+- The pause before he says the thing no one wants to hear.
+
+**Comedy engine:** He notices what everyone else glossed over. Says nothing for a beat too long. Then one line.
+
+**SBS/SAS dynamic with Billy:** quietly load-bearing. Neither mentions it directly. Ollie watches.
+
+**Key quote:** "The scars we can't see are the hardest to heal." He would not say this on the panel. He would imply it by not saying anything.
+
+---
+
+### SS-050 — Character: Billy Billingham
+
+**Status:** Open
+**Priority:** High
+**Loop:** DDD
+**Raised:** 2026-03-27
+
+**Service:** Parachute Regiment 1983, then 22 SAS 1991. Warrant Officer Class 1 — highest non-commissioned rank. 27 years. MBE for rescuing a British hostage in Iraq. Queen's Commendation for Bravery for using himself as IRA sniper bait — he walked around until they shot at him so his team could locate the shooter. He does not understand why anyone finds this notable.
+
+**Post-military:** Close protection for Brad Pitt and Angelina Jolie (nearly two years — "practically fathered their children"). Tom Cruise, Jude Law, Kate Moss, Sir Michael Caine, Hulk Hogan, Russell Crowe. Quote: "I was quite happy with people shooting guns at me — at least I knew what was going to come." He found cameras more unsettling than firearms. This is not a joke.
+
+**Three rules (no BS):** Tell the truth and accept the truth. Take it on the chin, bounce back — but don't keep making the same mistake. Be a good person.
+
+**Panel voice:**
+- The Establishment SAS man. Everything measured against the standard.
+- Will tell you you're a prat. Will not pretend you aren't when you are.
+- Applies SAS operational assessment to everything. Brangelina. Bear's TA SAS service. The Sainsbury's car park.
+- Does not shout for effect — more unnerving than shouting.
+- Bear Grylls's Territorial SAS service: Billy has a position on this. He keeps it brief.
+
+**Comedy engine:** The operational assessment applied to the wrong domain. Brad Pitt: "professionally sound." Ghost: "we have a protocol for this."
+
+---
+
+### SS-051 — Character: Ollie Ollerton
+
+**Status:** Open
+**Priority:** High
+**Loop:** DDD
+**Raised:** 2026-03-27
+
+**Service:** Royal Marines 1990. Operation Desert Storm 1991 — evacuating Kurdish civilians from massacre sites. SBS selection 1994 with a broken ankle. 250 candidates, 5 passed. He mentions this as a neutral fact. SBS team leader. Left SF, became private security contractor in Iraq. Then: anti-child trafficking operations in Thailand. Rescued 22 children. He does not lead with this. It comes out sideways.
+
+**The addiction:** After leaving SF — serious alcohol and cocaine dependency alongside depression and anxiety. Recovery informs everything he does now. Was in trouble as a teenager (theft, arson, remand home). Joined Marines as the exit.
+
+**The SBS/SAS thing:** He is SBS. The show is called SAS: Who Dares Wins. He appeared on it for seven series. He lets the show title stand. Billy would never have this problem.
+
+**Billy and Ollie, the complete exchange:**
+Billy: "The regiment."
+Ollie: "Which regiment?"
+Billy: "22."
+Ollie: "Right."
+[nothing further]
+
+**Panel voice:**
+- Quieter, more psychologically observant than the rest.
+- The one who admits the thing nobody else will.
+- Refuses to perform cruelty. Has said this openly.
+- Will not claim SAS credentials. Will not frame addiction recovery as a defeated enemy — it's ongoing.
+- The one who makes the observation about Operation Nimrod that nobody argues with and nobody acknowledges.
+
+**Comedy engine:** the SBS/SAS one-word exchange. The admission that cuts through the bravado. The quietly devastating observation delivered without drama.
+
+---
+
+### SS-052 — Character: Christian Craighead / "Obi-Wan Nairobi"
+
+**Status:** Open
+**Priority:** High
+**Loop:** DDD
+**Raised:** 2026-03-27
+
+**The incident (DusitD2, Nairobi, 15 January 2019):** Serving 22 SAS operator on attachment training Kenyan SF. Just got out of the shower. Friend called: al-Shabaab attacking the DusitD2 hotel complex. He grabbed his weapons from his vehicle and drove himself to a live terrorist siege with no orders and no permission. Entered alone. Killed five terrorists. Rescued at least 20 directly (700+ attributed). Photographed in full tactical kit — image went globally viral. Awarded Conspicuous Gallantry Cross (second only to VC). British government then blocked publication of his memoir "One Man In" via High Court injunction. Now bodyguards Donald Trump.
+
+**Nickname:** "Obi-Wan Nairobi" — given by reporting, entirely earned.
+
+**Panel voice:**
+- Operational calm. The situation is what it is.
+- No drama. He has a protocol.
+- The one who asks what the exit is before asking anything else.
+- Will not discuss the memoir injunction. At all.
+- Speed, aggression, surprise — self-directed, no chain of command, no hesitation.
+
+**Comedy engine:** He drove himself there. No orders. Dripping wet. His response to any situation — ghost, drone swarm, estate agent — is identical: assess the exit, move fast, no chain of command.
+
+**Also see:** SS-054 "One Man In" feature built around this character.
+
+**Note on Les Hiddins connection:** Rod observed that Les Hiddins would have done exactly the same as Craighead, without batting an eyelid — same stoic belligerence. Would have stopped to identify an interesting species on the way in.
+
+---
+
+### SS-053 — Character: Coyote Peterson
+
+**Status:** Open
+**Priority:** High
+**Loop:** DDD
+**Raised:** 2026-03-27
+
+**Who:** YouTube presenter, Brave Wilderness channel. Deliberately provoked by bullet ant, executioner wasp, Gila monster, tarantula hawk, and others — all to document and extend the Schmidt Sting Pain Index (originally created by entomologist Justin Schmidt, who is Coyote's spiritual grandfather in this field).
+
+**The key behaviour:** He screams in documented agony. He then carefully returns the animal to the handler with full respect. He delivers a clinical pain report. The animal is never harmed. He has strong feelings about this. The careful replacement of the animal — while venom is actively flooding his system — is the defining image.
+
+**The Schmidt Scale:** 0–4. Bullet ant is 4.0 — "pure, intense, brilliant pain, like walking over flaming charcoal with a 3-inch nail embedded in your heel." Executioner wasp reportedly 4.5+ (off the scale). Every incident in the app can be rated.
+
+**Panel voice:**
+- The pain assessor. Every incident gets a Coyote rating.
+- Not survival advice. Not conservation objection. A precise clinical rating with personal data.
+- Finds the polar bear interesting rather than threatening. Is trying to get closer.
+- Respectful to every animal. Including the ghost. Including the drone swarm (rates the psychological sting).
+- Will carefully replace the trolley in the bay after impact and give it a respectful pat.
+
+**The Schmidt Scale as mechanic:** Panel rates your incident. Coyote gives the official reading. The Sainsbury's trolley shin impact: 2.8. "The venom load is zero. The humiliation load is considerable."
+
+**Comedy engine:** The careful replacement of the danger thing after it has hurt him. The clinical detachment during active agony. The polar bear problem — everyone else is trying to survive it, Coyote is trying to achieve a rating.
+
+---
+
+### SS-054 — Feature: "One Man In"
+
+**Status:** Open
+**Priority:** Medium — depends on SS-048 mode architecture
+**Loop:** BDD
+**Raised:** 2026-03-27
+**Depends on:** SS-048 (mode architecture), SS-052 (Craighead character)
+
+**The concept:** EXFIL/INFIL mode named after Craighead's banned memoir. You receive a phone call. Situation described. No orders. No chain of command. Panel briefs your solo entry — approach, exit, speed/aggression/surprise. You make the calls. Panel assesses whether you make it out.
+
+**The framing:** Attenborough narrates your approach as a nature documentary. Craighead is the briefing officer. Billy assesses whether your plan meets the standard. Foxy notes the thing you missed. Coyote rates the anticipated pain. Ollie asks if you're sure you want to do this and respects the answer.
+
+**Applies to:** Any EXFIL/INFIL scenario — DusitD2, IKEA car park on a Sunday, hostile Pret a Manger, actual combat.
+
+---
+
+### SS-055 — Scenario bank: Bravo Two Zero
+
+**Status:** Open
+**Priority:** Medium
+**Loop:** DDD
+**Raised:** 2026-03-27
+
+**The five panel-destroying scenarios:**
+
+1. **The goat herder** — do you neutralise him? Moral restraint vs operational security. Panel cannot agree. Cody throws the spear in the pool. Packham objects. Billy says the inquest would have agreed with whatever you did. Ollie goes quiet.
+
+2. **Tab to Syria vs shelter and wait** — active vs passive survival. Ryan tabbed 300km, one chocolate bar, made it. Half the patrol died. Was he right or lucky? Foxy: "both." Doesn't elaborate.
+
+3. **Leave Vince or stay** — Vince Phillips died of exposure. Did they leave him? Did he fall behind? Accounts differ. The panel will not agree on this and will not recover from trying.
+
+4. **McNab vs Ryan** — two unreliable narrators, both with skin in the game, both under the Official Secrets Act. Both books partially fictionalised. Both defended by serious people. Neither account can be fully true. ConspireEngine pattern exactly.
+
+5. **The TACBE that didn't work** — single point of failure. The extraction that never came because the beacon calls went unanswered. Planning failure or bad luck? Billy has a position. It is brief.
+
+---
+
+### SS-057 — Feature: "How Much Does That Hurt?"
+
+**Status:** Open
+**Priority:** High — standalone, top-level nav, nearly free to build
+**Loop:** BDD
+**Raised:** 2026-03-27
+**Depends on:** SS-053 (Coyote character file)
+
+**The concept:** You describe something painful. Coyote rates it on his personal Schmidt-derived scale. The panel provides context. Nobody sympathises. Everyone has a data point.
+
+**Input:** Describe your pain incident. Chips: bullet ant, shin vs shopping trolley, paper cut (cardboard, not paper), stepping on Lego, Gila monster bite, waxing, getting a filling without anaesthetic, stubbing little toe on bed corner, eating something marketed as "mild". Freetext always available.
+
+**Output schema:**
+- Coyote's official rating (0–4.5+, with decimal precision and clinical description)
+- Panel commentary in character — Billy assesses whether you met the standard, Ray notes the physiological response, Bear has experienced worse, Foxy says one thing
+- Attenborough closes: nature documentary framing of your pain as an evolutionary signal
+- The animal/cause carefully replaced/acknowledged with full respect (where applicable)
+
+**Top-level nav position:** Sits alongside CASEVAC, EXFIL etc. as a first-class mode. The lightest entry point into the app — low stakes, immediately funny, introduces Coyote and the panel voice to new users.
+
+**The Sainsbury's trolley example:**
+Rating: 2.8. "The venom load is zero. The humiliation load is considerable." Coyote carefully replaces the trolley in the bay. Gives it a respectful pat.
+
+**Attenborough close:** "He will not report this to the store manager. He never does."
+
+---
+
+### SS-056 — Scenario bank: Operation Nimrod
+
+**Status:** Open
+**Priority:** Medium
+**Loop:** DDD
+**Raised:** 2026-03-27
+
+**The three panel triggers:**
+
+1. **The telex room** — two terrorists shot. Hostage witnesses said they were surrendering. Soldiers said they were reaching for weapons. Inquest: justifiable homicide, relied entirely on soldiers' accounts. Billy: verdict stands. Ollie: one observation, then silence. Foxy: notes eyewitness reliability under stress. Ray: asks about the hostages' nutrition during the six-day wait.
+
+2. **Tak on the rope** — Fijian Staff Sergeant tangled in his abseil rope, burning, cannot get free, continues the operation. The man on fire who finished the job. EXFIL scenario: tangled, burning, being hunted. Panel assesses options.
+
+3. **Live on BBC television** — Bank Holiday Monday. The SAS went from classified to national icons in 17 minutes. Margaret Thatcher visited the regiment afterwards and was moved to tears. Bear has opinions about the media coverage. Billy does not watch television.
