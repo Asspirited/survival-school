@@ -104,42 +104,37 @@ describe('Feature: Bear Fact-Checker page contains expected content', () => {
   });
 });
 
-// ── Feature: How Screwed Am I homepage nav shows LIVE status (SS-011, SS-008) ──
+// ── Feature: Homepage tile grid reflects live feature status (SS-044) ──
 describe('Feature: Survival School home nav reflects feature status', () => {
 
   test('Given the homepage loads, Then Animal Deathmatch nav shows LIVE', async () => {
     const r = await fetch(`${BASE}/survival-school`, { signal: AbortSignal.timeout(TIMEOUT) });
     const html = await r.text();
-    // The deathmatch nav item must have badge-live not badge-soon
-    const dmIdx = html.indexOf('data-panel="deathmatch"');
-    assert.ok(dmIdx !== -1, 'deathmatch nav item must exist');
-    const navSection = html.substring(dmIdx, dmIdx + 200);
-    assert.ok(navSection.includes('badge-live'), 'deathmatch must show badge-live');
-    assert.ok(!navSection.includes('badge-soon'), 'deathmatch must NOT show badge-soon');
+    // SS-044 tile grid: deathmatch tile links to /survival-school/deathmatch with badge-live
+    const dmIdx = html.indexOf('href="/survival-school/deathmatch"');
+    assert.ok(dmIdx !== -1, 'deathmatch tile link must exist');
+    const tileSection = html.substring(dmIdx, dmIdx + 300);
+    assert.ok(tileSection.includes('badge-live'), 'deathmatch tile must show badge-live');
+    assert.ok(!tileSection.includes('badge-soon'), 'deathmatch tile must NOT show badge-soon');
   });
 
   test('Given the homepage loads, Then Bear Fact-Checker nav shows LIVE', async () => {
     const r = await fetch(`${BASE}/survival-school`, { signal: AbortSignal.timeout(TIMEOUT) });
     const html = await r.text();
-    const fcIdx = html.indexOf('data-panel="fact-checker"');
-    assert.ok(fcIdx !== -1, 'fact-checker nav item must exist');
-    const navSection = html.substring(fcIdx, fcIdx + 200);
-    assert.ok(navSection.includes('badge-live'), 'fact-checker must show badge-live');
-    assert.ok(!navSection.includes('badge-soon'), 'fact-checker must NOT show badge-soon');
+    const fcIdx = html.indexOf('href="/survival-school/fact-checker"');
+    assert.ok(fcIdx !== -1, 'fact-checker tile link must exist');
+    const tileSection = html.substring(fcIdx, fcIdx + 300);
+    assert.ok(tileSection.includes('badge-live'), 'fact-checker tile must show badge-live');
+    assert.ok(!tileSection.includes('badge-soon'), 'fact-checker tile must NOT show badge-soon');
   });
 
-  test('Given the homepage loads, Then deathmatch panel contains an iframe not coming-soon', async () => {
+  test('Given the home page loads, Then tile-grid contains live deathmatch link not coming-soon', async () => {
     const r = await fetch(`${BASE}/survival-school`, { signal: AbortSignal.timeout(TIMEOUT) });
     const html = await r.text();
-    const panelStart = html.indexOf('id="panel-deathmatch"');
-    assert.ok(panelStart !== -1, 'panel-deathmatch must exist');
-    // Capture only this panel's content: from its opening tag to the next panel's opening tag
-    const nextPanelIdx = html.indexOf('id="panel-', panelStart + 20);
-    const panel = nextPanelIdx !== -1
-      ? html.substring(panelStart, nextPanelIdx)
-      : html.substring(panelStart, panelStart + 600);
-    assert.ok(panel.includes('<iframe'), 'deathmatch panel must contain iframe');
-    assert.ok(!panel.includes('coming-soon'), 'deathmatch panel must NOT show coming-soon');
+    // SS-044: no sidebar panels, no iframes on home — just tile links
+    assert.ok(html.includes('tile-grid'), 'home page must contain tile-grid');
+    assert.ok(html.includes('href="/survival-school/deathmatch"'), 'deathmatch tile link must exist');
+    assert.ok(!html.includes('id="panel-deathmatch"'), 'home page must NOT contain old sidebar panel div');
   });
 });
 
@@ -156,12 +151,11 @@ describe('Feature: The Coyote Index page contains expected content', () => {
   });
 });
 
-// ── Structural integrity: iframe CSS (WL-SS-008 pattern) ──
-// Checks that every live iframe panel has CSS height applied in the home page.
-// Rationale: adding a new live panel without updating the CSS selector is a recurring failure mode.
-describe('Feature: Live iframe panels have CSS height applied in home page', () => {
+// ── Structural integrity: tile grid has links for all live features (SS-044) ──
+// SS-044 replaced the iframe panel home with a tile grid.
+// This suite verifies all live feature tiles are present with correct href links.
+describe('Feature: Live feature tiles are present in home page tile grid', () => {
 
-  // Helper: extract the style block from the home page HTML
   let _homeHtml = null;
   async function getHomeHtml() {
     if (_homeHtml) return _homeHtml;
@@ -170,24 +164,22 @@ describe('Feature: Live iframe panels have CSS height applied in home page', () 
     return _homeHtml;
   }
 
-  const LIVE_IFRAME_PANELS = [
-    'panel-screwed',
-    'panel-worst',
-    'panel-mundane',
-    'panel-fact-checker',
-    'panel-deathmatch',
-    'panel-coyote',
+  const LIVE_TILES = [
+    { name: 'How Screwed Am I', href: '/survival-school/app' },
+    { name: "I've Been Bit Guys", href: '/survival-school/worst' },
+    { name: 'Mundane Mode', href: '/survival-school/mundane' },
+    { name: 'Animal Deathmatch', href: '/survival-school/deathmatch' },
+    { name: 'Bear Fact-Checker', href: '/survival-school/fact-checker' },
+    { name: 'The Coyote Index', href: '/survival-school/coyote' },
+    { name: 'Will You Eat It', href: '/survival-school/eat' },
   ];
 
-  for (const panelId of LIVE_IFRAME_PANELS) {
-    test(`Given the home page loads, Then #${panelId} iframe has a CSS height rule`, async () => {
+  for (const tile of LIVE_TILES) {
+    test(`Given the home page loads, Then ${tile.name} tile link is present`, async () => {
       const html = await getHomeHtml();
-      // The CSS selector must reference this panel's iframe with a height property.
-      // We look for the panel ID appearing in a CSS context followed by iframe, with height nearby.
-      const selector = `#${panelId} iframe`;
       assert.ok(
-        html.includes(selector),
-        `CSS must include selector "${selector}" — no height means invisible iframe`
+        html.includes(`href="${tile.href}"`),
+        `Home page must contain tile link href="${tile.href}"`
       );
     });
   }

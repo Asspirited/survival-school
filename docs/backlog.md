@@ -1,7 +1,7 @@
 # Backlog — Survival School
 # Prefix: SS-NNN
 # CD3 scoring: Confidence × Desirability × Deliverability (max 27)
-# Last updated: 2026-03-27
+# Last updated: 2026-03-27 (CD3 scored 2026-03-27)
 
 ---
 
@@ -10,62 +10,62 @@
 | CD3 | Item | Status | Loop |
 |-----|------|--------|------|
 | 27 | SS-040 — Build full test pipeline (L0–L5, YGW pattern) | IN PROGRESS | TDD |
-| TBD | SS-042 — Location chip library: full sub-categorised expansion | Open | DDD |
-| TBD | SS-043 — Cascading input redesign: Location → Event → Context | Open | BDD |
-| TBD | SS-044 — Homepage redesign: tiled category nav (Cusslab pattern), no About tile | Open | BDD |
-| TBD | SS-048 — Mode architecture: CASEVAC / EXFIL / SITREP / INFIL / EYES ON / CHUCK NORRIS | DONE (docs/modes.md 2026-03-27) | DDD |
-| TBD | SS-049 — Character: Jason Fox (Foxy) — SBS, quiet, PTSD survivor, one line lands clean | DONE (in characters.js) | DDD |
-| TBD | SS-050 — Character: Billy Billingham — SAS WO1, IRA bait, assessed Brangelina professionally | DONE (added characters.js 2026-03-27) | DDD |
-| TBD | SS-051 — Character: Ollie Ollerton — SBS (on SAS show, says nothing), addiction recovery, refuses to perform cruelty | DONE (added characters.js 2026-03-27) | DDD |
-| TBD | SS-052 — Character: Christian Craighead / Obi-Wan Nairobi — shower, phone call, drove himself, 5 terrorists, banned memoir | DONE (added characters.js 2026-03-27) | DDD |
-| TBD | SS-053 — Character: Coyote Peterson — pain scale assessor, rates everything, carefully replaces the trolley | DONE (added characters.js 2026-03-27) | DDD |
-| TBD | SS-057 — Feature: "The Coyote Index" — standalone Coyote Peterson pain scale feature, top-level nav | DONE (live 2026-03-27) | BDD |
-| TBD | SS-054 — Feature: "One Man In" — EXFIL/INFIL mode, Craighead framing, solo entry, no chain of command | Open | BDD |
-| TBD | SS-055 — Scenario bank: Bravo Two Zero (goat herder / tab to Syria / leave Vince) | DONE (added scenarios.js 2026-03-27) | DDD |
-| TBD | SS-056 — Scenario bank: Operation Nimrod (telex room controversy, Tak on the rope) | DONE (added scenarios.js 2026-03-27) | DDD |
-| TBD | SS-045 — Nav category: "The Colosseum" → Animal Deathmatch | Open | BDD |
-| TBD | SS-046 — Nav category: "The Panel" → Irwin Memorial (+ future panel features) | Open | BDD |
-| TBD | SS-047 — App footer: logo, stamp, About link | Open | BDD |
+| 27 | SS-015 — Survival Skills Taxonomy | Open | DDD |
+| 27 | SS-029 — Shareability / screenshot | Open | BDD |
+| 18 | SS-021 — Panel integrity spectrum | Open | DDD |
+| 18 | SS-023 — Logo integration into app | Open | BDD |
+| 18 | SS-009 — Mode A: Panel Q&A | Open | BDD |
+| 18 | SS-006 — Temporal Lens mechanic | Open | DDD |
+| 18 | SS-016 — Domain Knowledge Files | Open | DDD |
+| 18 | SS-018 — Remaining character files | Open | DDD |
+| 18 | SS-031 — Animal database — first 20 entries | Open | Feature |
+| 18 | SS-033 — Animal Deathmatch data layer | Open | Feature |
+| 18 | SS-034 — Panel response logic | Open | Feature |
+| 18 | SS-012 — Irwin Memorial Encounter | Open | BDD |
+| 18 | SS-014 — Attenborough Eulogy | Open | BDD |
+| 12 | SS-054 — Feature: "One Man In" — EXFIL/INFIL mode, Craighead framing, solo entry, no chain of command | Open | BDD |
+| 12 | SS-013 — Packham Ethical Override | Open | BDD |
+| 12 | SS-020 — Cody Override mechanic | Open | BDD |
+| 12 | SS-045 — Nav category: "The Colosseum" → Animal Deathmatch | Open | BDD |
+| 12 | SS-046 — Nav category: "The Panel" → Irwin Memorial (+ future panel features) | Open | BDD |
+| 12 | SS-047 — App footer: logo, stamp, About link | Open | BDD |
+| 8 | SS-044 — Homepage redesign: tiled category nav (Cusslab pattern), no About tile | Open | BDD |
+| 8 | SS-043 — Cascading input redesign: Location → Event → Context | Open | BDD |
+| 8 | SS-042 — Location chip library: full sub-categorised expansion | Open | DDD |
+| 8 | SS-032 — Archetypal scenarios | Open | Feature |
+| 8 | SS-005 — Telephone Game mechanic | Open | DDD |
+| 8 | SS-039 — Latin / indigenous naming layer in panel responses | Open | DDD |
+| 2 | SS-022 — Clay animal visuals | Open | DDD |
+| 2 | SS-038 — session-ref.md served as Cloudflare static URL | Open | DDD |
+| 8 | SS-026 — Fictional Great White Hunter | Ideas | HDD |
+| 8 | SS-028 — Spaced repetition quiz | Ideas | HDD |
+| 6 | SS-027 — Learning mode / skill tree | Ideas | HDD |
+| 4 | SS-024 — Terry Nutkins / Strachan | Ideas | HDD |
+| 4 | SS-025 — Roosevelt guest commentator | Ideas | HDD |
 | 27 | SS-001 — Complete project brief | DONE | HDD |
 | 27 | SS-003 — Define HDD hypothesis | DONE | HDD |
-| 18 | SS-002 — ADR: tech stack | DONE | DDD |
 | 27 | SS-004 — Fix session-ref pre-flight | DONE | DDD |
-| TBD | SS-005 — Telephone Game mechanic | Open | DDD |
-| TBD | SS-006 — Temporal Lens mechanic | Open | DDD |
-| TBD | SS-007 — How Screwed Am I (live) | DONE | BDD |
 | 27 | SS-008 — Bear Fact-Checker | DONE (standalone page live 2026-03-27) | BDD |
-| TBD | SS-009 — Mode A: Panel Q&A | Open | BDD |
-| TBD | SS-010 — Mundane Survival Mode | DONE | BDD |
-| TBD | SS-011 — Animal Deathmatch | DONE (nav fixed 2026-03-27) | BDD |
-| TBD | SS-012 — Irwin Memorial Encounter | Open | BDD |
-| TBD | SS-013 — Packham Ethical Override | Open | BDD |
-| TBD | SS-014 — Attenborough Eulogy | Open | BDD |
-| TBD | SS-015 — Survival Skills Taxonomy | Open | DDD |
-| TBD | SS-016 — Domain Knowledge Files | Open | DDD |
-| TBD | SS-017 — Worker fork trigger ADR | DONE | DDD |
-| TBD | SS-018 — Remaining character files | Open | DDD |
-| TBD | SS-019 — Will You Eat It? | DONE | BDD |
-| TBD | SS-020 — Cody Override mechanic | Open | BDD |
-| TBD | SS-021 — Panel integrity spectrum | Open | DDD |
-| TBD | SS-022 — Clay animal visuals | Open | DDD |
-| TBD | SS-023 — Logo integration into app | Open | BDD |
-| TBD | SS-024 — Terry Nutkins / Strachan | Ideas | HDD |
-| TBD | SS-025 — Roosevelt guest commentator | Ideas | HDD |
-| TBD | SS-026 — Fictional Great White Hunter | Ideas | HDD |
-| TBD | SS-027 — Learning mode / skill tree | Ideas | HDD |
-| TBD | SS-028 — Spaced repetition quiz | Ideas | HDD |
-| TBD | SS-029 — Shareability / screenshot | Open | BDD |
 | 27 | SS-030 — How Bad Is This? feature | DONE | Feature |
 | 27 | SS-041 — Rename "How Bad Is This?" to "I've Been Bit, Guys" (Austin Stevens ref) | DONE | Polish |
-| TBD | SS-038 — session-ref.md served as Cloudflare static URL | Open | DDD |
-| TBD | SS-039 — Latin / indigenous naming layer in panel responses | Open | DDD |
-| TBD | SS-031 — Animal database — first 20 entries | Open | Feature |
-| TBD | SS-032 — Archetypal scenarios | Open | Feature |
-| TBD | SS-033 — Animal Deathmatch data layer | Open | Feature |
-| TBD | SS-034 — Panel response logic | Open | Feature |
 | 27 | SS-035 — Attenborough bookend pattern | DONE | Feature |
 | 27 | SS-036 — Mundane Mode | DONE | Feature |
 | 27 | SS-037 — Rotating header taglines | DONE | Polish |
+| 18 | SS-002 — ADR: tech stack | DONE | DDD |
+| — | SS-007 — How Screwed Am I (live) | DONE | BDD |
+| — | SS-010 — Mundane Survival Mode | DONE | BDD |
+| — | SS-011 — Animal Deathmatch | DONE (nav fixed 2026-03-27) | BDD |
+| — | SS-017 — Worker fork trigger ADR | DONE | DDD |
+| — | SS-019 — Will You Eat It? | DONE | BDD |
+| — | SS-048 — Mode architecture: CASEVAC / EXFIL / SITREP / INFIL / EYES ON / CHUCK NORRIS | DONE (docs/modes.md 2026-03-27) | DDD |
+| — | SS-049 — Character: Jason Fox (Foxy) | DONE (in characters.js) | DDD |
+| — | SS-050 — Character: Billy Billingham | DONE (added characters.js 2026-03-27) | DDD |
+| — | SS-051 — Character: Ollie Ollerton | DONE (added characters.js 2026-03-27) | DDD |
+| — | SS-052 — Character: Christian Craighead / Obi-Wan Nairobi | DONE (added characters.js 2026-03-27) | DDD |
+| — | SS-053 — Character: Coyote Peterson | DONE (added characters.js 2026-03-27) | DDD |
+| — | SS-055 — Scenario bank: Bravo Two Zero | DONE (added scenarios.js 2026-03-27) | DDD |
+| — | SS-056 — Scenario bank: Operation Nimrod | DONE (added scenarios.js 2026-03-27) | DDD |
+| — | SS-057 — Feature: "The Coyote Index" | DONE (live 2026-03-27) | BDD |
 
 ---
 
