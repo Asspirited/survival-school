@@ -11,7 +11,17 @@
 | TBD | SS-001 — Complete project brief | Open |
 | TBD | SS-002 — ADR: tech stack decision | Open |
 | TBD | SS-003 — Define HDD hypothesis | Open |
-| 27 | SS-004 — Pre-flight covers all founding/character docs | Done |
+| 27  | SS-004 — Pre-flight covers all founding/character docs | Done |
+| 27  | SS-005 — Telephone Game mechanic | Open |
+| 27  | SS-006 — Temporal Lens mechanic | Open |
+| 27  | SS-030 — How Bad Is This? feature | Done |
+| TBD | SS-031 — Animal database — first 20 entries | Open |
+| TBD | SS-032 — Archetypal scenarios SS-INCIDENT-001 to SS-INCIDENT-010 | Open |
+| TBD | SS-033 — Animal Deathmatch data layer integration | Open |
+| TBD | SS-034 — Panel response logic: triage order, medical/comedy split | Open |
+| 27  | SS-035 — Attenborough bookend pattern | Done |
+| 27  | SS-036 — Mundane Mode | Done |
+| 27  | SS-037 — Rotating header taglines | Done |
 
 ---
 
@@ -124,3 +134,116 @@ Pre-close check added to `session-closedown.md` Step 8b — requires verifying p
 ### Root cause
 
 Original pre-flight only pulled 5 files. Founding docs and character notes written in a previous session were not included, causing Claude.ai to start the next session blind.
+
+---
+
+## SS-030 — How Bad Is This? feature
+
+**Status:** Done
+**Priority:** High
+**Loop:** Feature
+**Raised:** 2026-03-26 (Claude.ai session)
+**Closed:** 2026-03-26
+
+Three-input incident assessment: what happened, animal/hazard, circumstances.
+8-character panel (Ray, Fox, O'Shea, Stevens, Bear, Hales, Attenborough, Cody).
+Doom percentage meter (inverted — red=bad). Cody action line.
+O'Shea and Stevens defined as first-class characters.
+Live at /survival-school/worst.
+
+---
+
+## SS-031 — Animal database — first 20 entries
+
+**Status:** Open
+**Priority:** High
+**Loop:** Feature / Data
+**Raised:** 2026-03-26
+
+Schema defined in docs/survival-incidents.md. Start with 20 animals.
+Same data to feed How Bad Is This?, Animal Deathmatch, Panel Q&A, Will You Eat It?
+See docs/survival-incidents.md for schema format.
+
+---
+
+## SS-032 — Archetypal scenarios SS-INCIDENT-001 to SS-INCIDENT-010
+
+**Status:** Open
+**Priority:** Medium
+**Loop:** Feature
+**Raised:** 2026-03-26
+
+10 pre-loaded scenarios defined in docs/survival-incidents.md:
+001 King Cobra, 002 Grizzly, 003 Great White, 004 Brazilian wandering spider on chest,
+005 Hyena pack, 006 Roy Sullivan (7th lightning strike), 007 Komodo bite,
+008 Manatee (comedy), 009 Swan attack, 010 Andes (cannibalism framing).
+Implement as chip options in How Bad Is This?.
+
+---
+
+## SS-033 — Animal Deathmatch data layer integration
+
+**Status:** Open
+**Priority:** Low (depends on SS-031)
+**Loop:** Feature
+**Raised:** 2026-03-26
+
+Animal database from SS-031 feeds Animal Deathmatch UI.
+Single data source, multiple consuming features.
+
+---
+
+## SS-034 — Panel response logic: triage order, medical/comedy split
+
+**Status:** Open
+**Priority:** Medium
+**Loop:** Feature
+**Raised:** 2026-03-26
+
+Formalise the panel response order from docs/survival-incidents.md:
+Ray + Fox immediate, O'Shea/Stevens medical, Bear/Hales/Attenborough comedy layer.
+Implement in How Bad Is This? system prompt (partially done).
+
+---
+
+## SS-035 — Attenborough bookend pattern
+
+**Status:** Done
+**Priority:** High
+**Loop:** Feature
+**Raised:** 2026-03-27
+**Closed:** 2026-03-27
+
+Attenborough removed from panel array. Opens above meter (attenborough_opening),
+closes below last card with 400ms delayed fade (attenborough_verdict).
+Applied to How Screwed Am I (assessment + reaction), How Bad Is This?, Mundane Mode.
+Reaction turns each get their own bookend pair.
+
+---
+
+## SS-036 — Mundane Mode
+
+**Status:** Done
+**Priority:** High
+**Loop:** Feature
+**Raised:** 2026-03-27
+**Closed:** 2026-03-27
+
+Full survival gravity applied to everyday problems. Chips: missed bus, printer ink,
+locked out, wifi down, self-checkout assist, etc.
+6-character panel + Attenborough bookends. One-shot (no interaction loop).
+Live at /survival-school/mundane. Homepage nav updated: LIVE.
+
+---
+
+## SS-037 — Rotating header taglines
+
+**Status:** Done
+**Priority:** Low
+**Loop:** Polish
+**Raised:** 2026-03-27
+**Closed:** 2026-03-27
+
+8 lines cycling every 3.5s with CSS fade animation.
+Mix of originals and mashed brand slogans.
+"Finger lickin' fatality. FINISH HIM." — user's addition.

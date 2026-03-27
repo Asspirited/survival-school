@@ -11,7 +11,7 @@
 ### 0. PRE-FLIGHT — prime Downloads for Claude.ai (run first, no exceptions)
 
 ```bash
-cd /home/rodent/survival-school && cat .claude/session-startup.md .claude/shared-session-state.md .claude/project-brief.md docs/backlog.md docs/waste-log.md docs/founding-docs-raw.md docs/founding-notes.md $(find docs/characters/ -name "*.md" 2>/dev/null | sort) > /mnt/c/Users/roden/Downloads/session-ref.md && echo "session-ref.md ready"
+cd /home/rodent/survival-school && cat .claude/session-startup.md .claude/shared-session-state.md .claude/project-brief.md docs/backlog.md docs/waste-log.md docs/survival-incidents.md docs/founding-docs-raw.md docs/founding-notes.md $(find docs/characters/ -name "*.md" 2>/dev/null | sort) > /mnt/c/Users/roden/Downloads/session-ref.md && echo "session-ref.md ready"
 ```
 
 This creates `/mnt/c/Users/roden/Downloads/session-ref.md` — one file Claude.ai uploads to get
