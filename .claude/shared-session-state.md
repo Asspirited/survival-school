@@ -70,9 +70,17 @@ This session: discovered 80%+ of app was completely broken. Now fixed.
 
 ---
 
+## ⚠️ DEPLOY REQUIRED FIRST THING
+
+Panel conversation changes (SS-042) are committed but NOT deployed. Worker is one version behind.
+Run before anything else next session:
+```
+CLOUDFLARE_API_TOKEN=<token> wrangler deploy --config /home/rodent/cusslab/wrangler.toml
+```
+
 ## Session goal for next session
 
-Playwright L4 tests green. Ollie test done and reported.
+Deploy panel conversation. Playwright L4 tests green. Ollie test done and reported.
 
 ---
 
