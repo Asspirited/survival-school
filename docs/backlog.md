@@ -895,23 +895,58 @@ Modifiers that shift the panel's assessment:
 
 **Acceptance Criteria:**
 ```gherkin
-Feature: Cascading location → event → context input
+Feature: Cascading location → conditions → event → context input
 
-  Scenario: Location selection filters event suggestions
+  Scenario: Step 1 — location selection
+    Given I am on How Screwed Am I
+    Then I see Step 1 "Where are you?" with location chips grouped by sub-category
+    And a freetext field is available
+
+  Scenario: Step 2 appears after location selected
     Given I am on How Screwed Am I
     When I select "Amazon basin" as my location
-    Then the event chips include location-relevant options
-    And the universal absurdity options are also present
+    Then Step 2 "When and what's the situation?" appears
+    And the conditions chips are relevant to Amazon basin
+    And a freetext field is available
 
-  Scenario: Freetext available at every category
+  Scenario: Step 2 generic chips shown when location is freetexted
+    Given I freetext a location
+    Then Step 2 shows generic conditions chips
+    And the universal absurdity group is present
+
+  Scenario: Step 3 shows location-filtered events plus universal absurdity
+    Given I have selected "Amazon basin" as my location
+    When Step 3 "What's happening?" appears
+    Then I see Amazon-relevant animal and event chips
+    And I see a clearly separated "OR SOMETHING ELSE ENTIRELY" group
+    And that group contains ghost, drone swarm, military incursion, and other absurdity options
+
+  Scenario: Multi-select across step 3
+    Given I am on Step 3
+    When I select "jaguar" and "flash flood"
+    Then both remain selected
+    And both are included in the situation sent to the panel
+
+  Scenario: Step 4 context is always the same
+    Given I have reached Step 4 "Anything else?"
+    Then I see mental state, kit, and company chips
+    And these chips are the same regardless of location
+
+  Scenario: Freetext available at every step
     Given I am on How Screwed Am I
-    When I skip all chips
-    Then I can freetext location, event, and context independently
-    And the Assess button is enabled when at least one field has content
+    When I skip all chips at every step
+    Then I can freetext at each step independently
+    And the Assess button becomes active when any field has content
+
+  Scenario: Assess works with only one field filled
+    Given I have entered only a location
+    When I press Assess
+    Then the panel responds based on location alone
 
   Scenario: Absurdity events receive full panel response
-    Given I select "ghost" as my event
+    Given I select "ghost" from the absurdity group
     When I submit the assessment
     Then the panel responds with full survival gravity
-    And survival probability is calculated as for any other event
+    And survival probability is shown as for any other event
+    And no panel member acknowledges this is unusual
 ```
