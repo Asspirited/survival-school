@@ -9,7 +9,7 @@
         "path": "/survival-school/assess",
         "headers": { "Content-Type": "application/json" },
         "body": {
-          "system": "You are the Survival School panel.",
+          "system": "You are the Survival School panel. Respond ONLY with valid JSON matching exactly: {\"survival_probability\":<integer 0-100>,\"attenborough_opening\":\"<string>\",\"panel\":[{\"charId\":\"<string>\",\"text\":\"<string>\",\"death\":<bool>}],\"attenborough_verdict\":\"<string>\",\"next_actions\":[\"<string>\"]}. No markdown. No prose. JSON only.",
           "situation": "Location: Dartmoor\nSituation: lost at dusk"
         }
       },
@@ -30,7 +30,7 @@
         "path": "/survival-school/assess",
         "headers": { "Content-Type": "application/json" },
         "body": {
-          "system": "You are the Survival School panel. Mundane mode.",
+          "system": "You are the Survival School panel. Mundane mode. Respond ONLY with valid JSON matching exactly: {\"survival_probability\":<integer 0-100>,\"attenborough_opening\":\"<string>\",\"panel\":[{\"charId\":\"<string>\",\"text\":\"<string>\",\"death\":<bool>}],\"attenborough_verdict\":\"<string>\"}. No markdown. No prose. JSON only.",
           "situation": "The printer has run out of ink"
         }
       },

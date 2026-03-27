@@ -1,8 +1,14 @@
 #!/bin/bash
 # check-auth.sh — Survival School auth canary
 # Exits 0 (GREEN) if auth is valid. Exits 1 (RED) if not.
-# Usage: bash scripts/check-auth.sh
-# Requires: CLOUDFLARE_API_TOKEN in env or ~/.bashrc
+# Usage: bash scripts/check-auth.sh [--deploy]
+#   --deploy  Also verify token is present and valid (required before deploy)
+#   (no flag) Check worker endpoint only — safe for local test runs
+
+DEPLOY_MODE=0
+for arg in "$@"; do
+  [ "$arg" = "--deploy" ] && DEPLOY_MODE=1
+done
 
 ERRORS=0
 
@@ -15,27 +21,31 @@ if [ -z "${CLOUDFLARE_API_TOKEN:-}" ] && [ -f "$HOME/.bashrc" ]; then
   fi
 fi
 
-# ── Check 1: Token present ──
-if [ -z "${CLOUDFLARE_API_TOKEN:-}" ]; then
-  echo "RED: CLOUDFLARE_API_TOKEN not set"
-  echo "     Get token: dash.cloudflare.com → My Profile → API Tokens → Edit Cloudflare Workers"
-  ERRORS=$((ERRORS+1))
-else
-  echo "GREEN: CLOUDFLARE_API_TOKEN present"
-fi
-
-# ── Check 2: Token valid (wrangler whoami) ──
-if [ -n "${CLOUDFLARE_API_TOKEN:-}" ]; then
-  WHOAMI=$(CLOUDFLARE_API_TOKEN="$CLOUDFLARE_API_TOKEN" npx wrangler whoami 2>&1)
-  if echo "$WHOAMI" | grep -qi "leanspirited@gmail.com"; then
-    echo "GREEN: Cloudflare auth valid (leanspirited@gmail.com)"
-  else
-    echo "RED: Cloudflare auth failed — token may be expired"
-    echo "     Fix: dash.cloudflare.com → My Profile → API Tokens → Create Token → Edit Cloudflare Workers"
+if [ "$DEPLOY_MODE" = "1" ]; then
+  # ── Check 1: Token present ──
+  if [ -z "${CLOUDFLARE_API_TOKEN:-}" ]; then
+    echo "RED: CLOUDFLARE_API_TOKEN not set"
+    echo "     Get token: dash.cloudflare.com → My Profile → API Tokens → Edit Cloudflare Workers"
     ERRORS=$((ERRORS+1))
+  else
+    echo "GREEN: CLOUDFLARE_API_TOKEN present"
+  fi
+
+  # ── Check 2: Token valid (wrangler whoami) ──
+  if [ -n "${CLOUDFLARE_API_TOKEN:-}" ]; then
+    WHOAMI=$(CLOUDFLARE_API_TOKEN="$CLOUDFLARE_API_TOKEN" wrangler whoami 2>&1)
+    if echo "$WHOAMI" | grep -qi "leanspirited@gmail.com"; then
+      echo "GREEN: Cloudflare auth valid (leanspirited@gmail.com)"
+    else
+      echo "RED: Cloudflare auth failed — token may be expired"
+      echo "     Fix: dash.cloudflare.com → My Profile → API Tokens → Create Token → Edit Cloudflare Workers"
+      ERRORS=$((ERRORS+1))
+    fi
+  else
+    echo "SKIP: wrangler whoami skipped (no token)"
   fi
 else
-  echo "SKIP: wrangler whoami skipped (no token)"
+  echo "SKIP: token check skipped (not a deploy run)"
 fi
 
 # ── Check 3: Worker endpoint reachable ──
