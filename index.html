@@ -221,11 +221,15 @@
     /* ── Iframe panels — full height ────────────────────────────────────── */
     #panel-screwed,
     #panel-worst,
-    #panel-mundane { padding: 0; }
+    #panel-mundane,
+    #panel-eat,
+    #panel-deathmatch { padding: 0; }
 
     #panel-screwed iframe,
     #panel-worst iframe,
-    #panel-mundane iframe {
+    #panel-mundane iframe,
+    #panel-eat iframe,
+    #panel-deathmatch iframe {
       width: 100%;
       height: calc(100vh - 65px);
       border: none;
@@ -349,7 +353,9 @@
       .nav-item.active { border-bottom-color: var(--green); border-left: none; }
       #panel-screwed iframe,
       #panel-worst iframe,
-      #panel-mundane iframe { height: 80vh; }
+      #panel-mundane iframe,
+      #panel-eat iframe,
+      #panel-deathmatch iframe { height: 80vh; }
     }
   </style>
 </head>
@@ -417,10 +423,15 @@
         Mundane Mode
         <span class="nav-badge badge-live">LIVE</span>
       </div>
+      <div class="nav-item" data-panel="eat">
+        <span class="nav-icon">◎</span>
+        Will You Eat It?
+        <span class="nav-badge badge-live">LIVE</span>
+      </div>
       <div class="nav-item" data-panel="deathmatch">
         <span class="nav-icon">◎</span>
         Animal Deathmatch
-        <span class="nav-badge badge-soon">SOON</span>
+        <span class="nav-badge badge-live">LIVE</span>
       </div>
       <div class="nav-item" data-panel="irwin">
         <span class="nav-icon">◎</span>
@@ -516,21 +527,16 @@
               title="Mundane Mode"></iframe>
     </div>
 
-    <!-- ANIMAL DEATHMATCH -->
+    <!-- WILL YOU EAT IT? — live -->
+    <div class="panel" id="panel-eat">
+      <iframe src="https://cusslab-api.leanspirited.workers.dev/survival-school/eat"
+              title="Will You Eat It?"></iframe>
+    </div>
+
+    <!-- ANIMAL DEATHMATCH — live -->
     <div class="panel" id="panel-deathmatch">
-      <div class="coming-soon">
-        <div class="coming-soon-icon">◎</div>
-        <div class="coming-soon-title">Animal Deathmatch</div>
-        <div class="coming-soon-desc">
-          Two animals. One encounter. Who wins?
-          The panel disagrees violently and with great authority.
-        </div>
-        <ul class="feature-list">
-          <li class="fi-next"><span class="fi-dot"></span>Animal vs animal selection</li>
-          <li class="fi-next"><span class="fi-dot"></span>Panel adjudicates with full expertise</li>
-          <li class="fi-next"><span class="fi-dot"></span>Backshall and Irwin take opposing corners</li>
-        </ul>
-      </div>
+      <iframe src="https://cusslab-api.leanspirited.workers.dev/survival-school/deathmatch"
+              title="Animal Deathmatch"></iframe>
     </div>
 
     <!-- IRWIN MEMORIAL -->
