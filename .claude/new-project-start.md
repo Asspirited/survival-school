@@ -96,7 +96,7 @@ For each character, domain or concept requiring external knowledge:
 2. Claude researches — web search with the lens of the comedy register Rod has set
 3. Rod validates — confirms, corrects, adds what research missed
 
-**The Wayne Riley / Les Hales Rule** (formalised):
+**The Wayne Riley / Les Hiddins Rule** (formalised):
 Claude never assumes biographical accuracy from training memory alone.
 All character facts are verified by research before entering a character file.
 All character *registers* are validated by Rod before the file is considered complete.

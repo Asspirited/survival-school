@@ -58,7 +58,7 @@ Full green pipeline, 100% coverage.
 Knowledge-based survival panel app. Comedy panel of survival/wildlife experts.
 Founding philosophy: Cody Lundin's spear in the pool.
 Real knowledge. Genuine consequence. No performance.
-Panel: Bear Grylls, Ray Mears, Les Hales, Steve Irwin, David Attenborough,
+Panel: Bear Grylls, Ray Mears, Les Hiddins, Steve Irwin, David Attenborough,
 Chris Packham, Steve Backshall, Austin Stevens, Mark O'Shea, Les Stroud,
 Cody Lundin, Charles Darwin.
 New Project Start in progress — March 2026.

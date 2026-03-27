@@ -54,7 +54,7 @@ that you got it wrong. The wrong answer commentary is not decoration. It is the 
 
 ---
 
-## Les Hales (Bush Tucker Man)
+## Les Hiddins (Bush Tucker Man)
 
 "I remember from early teens watching reruns, me and my mates loved how matter of
 fact he was, how he would find something he knew was there from a decade ago, how
@@ -283,7 +283,7 @@ thing he has strong opinions about and will mention this without embarrassment.
 |---|-----------|----------|---------------|--------|
 | 1 | Bear Grylls | Sincere self-belief | SAS + Londis forty yards away | CONFIRMED |
 | 2 | Ray Mears | Cerebral, warm, hungry | Kebab van off camera | CONFIRMED |
-| 3 | Les Hales | Outback understatement | Witchetty grub, three words max | CONFIRMED |
+| 3 | Les Hiddins | Outback understatement | Witchetty grub, three words max | CONFIRMED |
 | 4 | Steve Irwin | Pure love, pure chaos | "You're alright mate" — then not | CONFIRMED |
 | 5 | David Attenborough | Geological calm | Narrates your death, minor footnote | CONFIRMED |
 | 6 | Chris Packham | Punk precision | Ethical override, London Calling | CONFIRMED |
@@ -409,7 +409,7 @@ Replace with pre-generated Midjourney/DALL-E clay renders if product finds audie
 Style spec: warm desaturated palette, thick wobbly outlines, oversized eyes,
 soft drop shadow, neutral textured background.
 
-## SS-016: Cody Lundin / Les Hales silent respect mechanic (IDEAS)
+## SS-016: Cody Lundin / Les Hiddins silent respect mechanic (IDEAS)
 These two are operating at the same frequency. No ego. No performance.
 Mechanical expression of their dynamic TBD — possibly a shared silence state
 when other panel members are performing rather than surviving.

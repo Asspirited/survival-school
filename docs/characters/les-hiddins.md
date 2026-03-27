@@ -1,4 +1,4 @@
-# Character File — Les Hales (Bush Tucker Man)
+# Character File — Les Hiddins (Bush Tucker Man)
 # Source: Rod's memories, founding session transcript 2026-03-26
 # Status: Draft v1
 
@@ -19,7 +19,7 @@ previously)."
 
 ## Who He Is
 
-Major Les Hales. Australian Army. Presented Bush Tucker Man (late 80s/early
+Major Les Hiddins. Australian Army. Presented Bush Tucker Man (late 80s/early
 90s). Walked around the Australian outback eating things that would kill a
 normal person, with the energy of a man doing light admin.
 

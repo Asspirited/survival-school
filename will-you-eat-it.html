@@ -175,7 +175,7 @@ const WORKER_ENDPOINT = 'https://cusslab-api.leanspirited.workers.dev/survival-s
 const CHARACTERS = {
   ray:     { name: 'Ray Mears',      role: 'Bushcraft',         av: 'RM', avClass: 'av-green' },
   bear:    { name: 'Bear Grylls',    role: 'Former SAS',        av: 'BG', avClass: 'av-bark'  },
-  hales:   { name: 'Les Hales',      role: 'Bush Tucker Man',   av: 'LH', avClass: 'av-amber' },
+  hales:   { name: 'Les Hiddins',      role: 'Bush Tucker Man',   av: 'LH', avClass: 'av-amber' },
   packham: { name: 'Chris Packham',  role: 'Conservation',      av: 'CP', avClass: 'av-green' },
   irwin:   { name: 'Steve Irwin',    role: 'Crocodile Hunter',  av: 'SI', avClass: 'av-amber' },
   stevens: { name: 'Austin Stevens', role: 'Snake Master',      av: 'AS', avClass: 'av-bark'  },
@@ -193,9 +193,13 @@ Brief. Clinical. Never dramatic. Silence about Bear's food choices is eloquent.
 Former SAS. Drinks own urine when Londis is forty yards away. Has eaten things he genuinely did not need to eat and got ill.
 Will eat it. Without question. Has eaten something like it, abroad, fine in the end. Fact-check footnote fires on factual claims about edibility. Uses "Hydration?" unprompted.
 
-=== LES HALES ===
-Bush Tucker Man. Witchetty grubs go down like a Rich Tea biscuit. Has eaten things that would hospitalise a normal person with the energy of a man doing light admin.
-ALWAYS EATS IT. One to three words only. Full stop. Never elaborates.
+=== LES HIDDINS ===
+Bush Tucker Man. Vietnam veteran. Walked 2,500km of remote northern Australia cataloguing food sources.
+Witchetty grubs taste like almonds raw, roast chicken cooked. He says this as curriculum, not novelty.
+ALWAYS EATS IT — with educational context, not bravado. "Have a look at this." is his opener.
+Cites Aboriginal knowledge without fail: "The Aboriginal people have been eating this for 40,000 years."
+"Not too bad — a bit starchy." is his highest food compliment. "She'll be right." is a complete preparation method.
+2-3 sentences. Calm. Understated. Genuinely interested in the organism.
 
 === CHRIS PACKHAM ===
 Wildlife presenter, conservationist, neurodivergent (openly autistic). Rapid, precise, pattern-recognition.
@@ -230,7 +234,7 @@ ATTENBOROUGH BOOKENDS — does NOT appear in panel array.
 PANEL ORDER: Ray, Bear, Hales, Packham, Irwin, Stevens, Darwin.
 
 OUTPUT — valid JSON only, no markdown:
-{"item_identified":"<common name (scientific name if known)>","edibility_verdict":"edible|not_edible|conditional|unknown","attenborough_opening":"<one sentence, natural history intro>","panel":[{"charId":"ray","text":"<2-3 sentences>","will_eat":<bool>,"fact_check":"<optional>"},{"charId":"bear","text":"<2-3 sentences>","will_eat":true,"fact_check":"<optional>"},{"charId":"hales","text":"<1-3 words only>","will_eat":true},{"charId":"packham","text":"<2-3 sentences>","will_eat":null,"source_challenge":"<his specific sourcing question>"},{"charId":"irwin","text":"<2-3 sentences>","will_eat":true,"impulse":"<what he immediately did, one phrase>"},{"charId":"stevens","text":"<1-2 sentences>","will_eat":false},{"charId":"darwin","text":"<2-3 sentences>","will_eat":true,"journal_note":"<one sentence from his journal, verbatim style>"}],"attenborough_verdict":"<one sentence>"}`;
+{"item_identified":"<common name (scientific name if known)>","edibility_verdict":"edible|not_edible|conditional|unknown","attenborough_opening":"<one sentence, natural history intro>","panel":[{"charId":"ray","text":"<2-3 sentences>","will_eat":<bool>,"fact_check":"<optional>"},{"charId":"bear","text":"<2-3 sentences>","will_eat":true,"fact_check":"<optional>"},{"charId":"hales","text":"<2-3 sentences, educational, cites Aboriginal knowledge>","will_eat":true},{"charId":"packham","text":"<2-3 sentences>","will_eat":null,"source_challenge":"<his specific sourcing question>"},{"charId":"irwin","text":"<2-3 sentences>","will_eat":true,"impulse":"<what he immediately did, one phrase>"},{"charId":"stevens","text":"<1-2 sentences>","will_eat":false},{"charId":"darwin","text":"<2-3 sentences>","will_eat":true,"journal_note":"<one sentence from his journal, verbatim style>"}],"attenborough_verdict":"<one sentence>"}`;
 
 let item = '';
 

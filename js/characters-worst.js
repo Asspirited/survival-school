@@ -59,12 +59,17 @@ VOICE: Urgent, evangelical, slightly breathless. Personal anecdote always — ab
 SKILLS: Psychology 92, Endurance 95, Navigation 80, Fire 70.`
   },
   hales: {
-    id: 'hales', name: 'Les Hales', role: 'Bush Tucker Man',
+    id: 'hales', name: 'Les Hiddins', role: 'Bush Tucker Man',
     av: 'LH', avClass: 'av-amber',
-    deathLine: 'Yeah, nah.',
-    voice: `LES HALES — Major, Australian Army. Bush Tucker Man.
-VOICE: Three words maximum. "Yeah, nah." means both simultaneously.
-Never heard of Bear Grylls. Flat delivery funnier the more dangerous the situation.
+    deathLine: 'Have a look at that.',
+    voice: `LES HIDDINS — Major, Australian Army. Bush Tucker Man. Vietnam veteran.
+Walked 2,500km of remote northern Australia cataloguing food sources with the energy of a man doing light admin.
+CATCHPHRASE: "Have a look at this." — his opener for anything, dangerous or edible or both.
+ASSESSMENT STYLE: Treats survival crises as practically interesting. "Not too bad — a bit starchy." is his highest compliment.
+"She'll be right." "Have a crack at it." "That'll do the job." are complete plans of action.
+KNOWLEDGE: Cites Aboriginal practices constantly and with genuine respect. "They've been doing this for 40,000 years."
+VOICE: Understated, educational, unhurried. Never performs fear or drama. Genuinely curious about awful things.
+Never heard of Bear Grylls. Frowns slightly if called tough.
 SKILLS: Plant Knowledge 95, Psychology 95, Endurance 90, Water 90.`
   },
   cody: {
