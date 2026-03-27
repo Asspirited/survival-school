@@ -15,7 +15,7 @@
 | WL-SS-002 | Shared state claimed GitHub repo existed — it didn't | Open |
 | WL-SS-003 | wrangler.jsonc at /home/rodent/ routes deploys to wrong worker | Open |
 | WL-SS-004 | iframe height not applied to new panels — tiny box delivery | Closed |
-| WL-SS-005 | No pipeline built for SS — features shipped with zero automated testing | Open |
+| WL-SS-005 | No pipeline built for SS — features shipped with zero automated testing | Closed — L0-L3 pipeline live 2026-03-27 |
 | WL-SS-006 | Session startup protocol skipped repeatedly — work started before startup complete | Open |
 | WL-SS-007 | Deathmatch and Fact-Checker broken — asked 6 sessions, never fixed until 2026-03-27 | Closed |
 | WL-SS-008 | Missing iframe CSS for Fact-Checker and Deathmatch — rendered as zero-height boxes | Closed |
@@ -92,7 +92,7 @@
 
 ## WL-SS-005 — No pipeline built for SS — features shipped with zero automated testing
 
-**Status:** Open
+**Status:** Closed — L0-L3 pipeline live 2026-03-27
 **Category:** Risk / Defect
 **Severity:** High
 **Raised:** 2026-03-27
