@@ -1171,7 +1171,12 @@ Ollie: "Right."
 **Raised:** 2026-03-27
 **Depends on:** SS-053 (Coyote character file)
 
-**The concept:** You describe something painful. Coyote rates it on his personal Schmidt-derived scale. The panel provides context. Nobody sympathises. Everyone has a data point.
+**The concept:** You describe something painful. Coyote assigns it a number. Then he describes something he experienced that is either horrifyingly more extreme OR absurdly less extreme — alternating between the two is the comedy engine. He delivers both with identical clinical enthusiasm. Nobody sympathises. Everyone has a data point.
+
+**The match/mismatch mechanic:**
+- You describe: paper cut. Coyote rates 0.4, then describes the executioner wasp (4.5+) with genuine excitement. Mismatch — your suffering is negligible. Panel reacts accordingly.
+- You describe: being gored by a bull. Coyote rates 3.8, then describes the time a caterpillar brushed his forearm and he logged it as 0.1 for completeness. Match collapses into absurdity.
+- The alternation is never predictable. That's the point. Sometimes he validates you. Sometimes he destroys you. Always clinically. Always with a personal anecdote. Always with full respect for the animal/object involved.
 
 **Input:** Describe your pain incident. Chips: bullet ant, shin vs shopping trolley, paper cut (cardboard, not paper), stepping on Lego, Gila monster bite, waxing, getting a filling without anaesthetic, stubbing little toe on bed corner, eating something marketed as "mild". Freetext always available.
 
