@@ -12,7 +12,7 @@
 | 27 | SS-040 — Build full test pipeline (L0–L5, YGW pattern) | IN PROGRESS | TDD |
 | 27 | SS-015 — Survival Skills Taxonomy | Open | DDD |
 | 27 | SS-029 — Shareability / screenshot | Open | BDD |
-| 18 | SS-021 — Panel integrity spectrum | Open | DDD |
+| 18 | SS-021 — Panel integrity spectrum | DONE (integrity attr in characters.js 2026-03-27) | DDD |
 | 18 | SS-023 — Logo integration into app | Open | BDD |
 | 18 | SS-009 — Mode A: Panel Q&A | Open | BDD |
 | 18 | SS-006 — Temporal Lens mechanic | Open | DDD |
@@ -29,9 +29,9 @@
 | 12 | SS-045 — Nav category: "The Colosseum" → Animal Deathmatch | Open | BDD |
 | 12 | SS-046 — Nav category: "The Panel" → Irwin Memorial (+ future panel features) | Open | BDD |
 | 12 | SS-047 — App footer: logo, stamp, About link | Open | BDD |
-| 8 | SS-044 — Homepage redesign: tiled category nav (Cusslab pattern), no About tile | Open | BDD |
-| 8 | SS-043 — Cascading input redesign: Location → Event → Context | Open | BDD |
-| 8 | SS-042 — Location chip library: full sub-categorised expansion | Open | DDD |
+| 8 | SS-044 — Homepage redesign: tiled category nav (Cusslab pattern), no About tile | DONE (tile grid live 2026-03-27) | BDD |
+| 8 | SS-043 — Cascading input redesign: Location → Event → Context | DONE (cascade live 2026-03-27) | BDD |
+| 8 | SS-042 — Location chip library: full sub-categorised expansion | DONE (scenarios.js 2026-03-27) | DDD |
 | 8 | SS-032 — Archetypal scenarios | Open | Feature |
 | 8 | SS-005 — Telephone Game mechanic | Open | DDD |
 | 8 | SS-039 — Latin / indigenous naming layer in panel responses | Open | DDD |
