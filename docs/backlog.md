@@ -1193,6 +1193,58 @@ Rating: 2.8. "The venom load is zero. The humiliation load is considerable." Coy
 
 **Attenborough close:** "He will not report this to the store manager. He never does."
 
+**Acceptance Criteria:**
+```gherkin
+Feature: The Coyote Index
+
+  Scenario: User selects a pain chip and receives a rating
+    Given I am on The Coyote Index page
+    When I select "shin vs shopping trolley" from the chips
+    And I press "Rate It"
+    Then Coyote assigns a numeric rating between 0 and 5 with decimal precision
+    And Coyote delivers a personal anecdote from his field work
+    And the panel responds in character
+    And Attenborough closes last
+
+  Scenario: Freetext input works
+    Given I am on The Coyote Index page
+    When I type a pain description in the freetext field
+    And I press "Rate It"
+    Then Coyote assigns a numeric rating
+    And Coyote delivers a personal anecdote
+
+  Scenario: Rating is always a number with decimal precision
+    Given I submit any pain description
+    Then the rating field in the response is a number
+    And it has at least one decimal place
+    And it is between 0 and 5
+
+  Scenario: Coyote always includes a personal anecdote
+    Given I submit any pain description
+    Then Coyote's response includes a reference to a specific incident from his field work
+    And the incident is described with clinical enthusiasm regardless of severity
+
+  Scenario: Coyote treats the source of pain with respect
+    Given I submit a pain caused by an animal
+    Then Coyote's response acknowledges the animal's behaviour as natural
+    And Coyote does not blame the animal
+
+  Scenario: Attenborough always closes
+    Given I receive a Coyote Index response
+    Then the last element rendered is Attenborough's closing line
+    And it is delivered as nature documentary narration
+
+  Scenario: Panel responds in character
+    Given I receive a Coyote Index response
+    Then at least two other panel members respond
+    And each response is consistent with their established voice
+
+  Scenario: Chip suggestions cover a range of severity
+    Given I am on The Coyote Index page
+    Then I see chip options ranging from trivial to severe
+    And the chips include at least one mundane option and one genuinely dangerous option
+```
+
 ---
 
 ### SS-056 — Scenario bank: Operation Nimrod
