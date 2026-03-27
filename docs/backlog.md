@@ -16,7 +16,7 @@
 | TBD | SS-005 — Telephone Game mechanic | Open | DDD |
 | TBD | SS-006 — Temporal Lens mechanic | Open | DDD |
 | TBD | SS-007 — How Screwed Am I (live) | DONE | BDD |
-| TBD | SS-008 — Bear Fact-Checker | Open | BDD |
+| 27 | SS-008 — Bear Fact-Checker | DONE | BDD |
 | TBD | SS-009 — Mode A: Panel Q&A | Open | BDD |
 | TBD | SS-010 — Mundane Survival Mode | DONE | BDD |
 | TBD | SS-011 — Animal Deathmatch | Open | BDD |
@@ -39,6 +39,8 @@
 | TBD | SS-028 — Spaced repetition quiz | Ideas | HDD |
 | TBD | SS-029 — Shareability / screenshot | Open | BDD |
 | 27 | SS-030 — How Bad Is This? feature | DONE | Feature |
+| TBD | SS-038 — session-ref.md served as Cloudflare static URL | Open | DDD |
+| TBD | SS-039 — Latin / indigenous naming layer in panel responses | Open | DDD |
 | TBD | SS-031 — Animal database — first 20 entries | Open | Feature |
 | TBD | SS-032 — Archetypal scenarios | Open | Feature |
 | TBD | SS-033 — Animal Deathmatch data layer | Open | Feature |
@@ -88,9 +90,10 @@ Feature: How Screwed Am I
 
 ### SS-008 — Bear Fact-Checker
 
-**Status:** Open
+**Status:** Done
 **Priority:** High — nearly free, highest comedy return on build investment
 **Loop:** BDD
+**Closed:** 2026-03-27 (already implemented in core build)
 
 Every Bear response gets a discreet factual footnote underneath.
 Stays dry. Never breaks the fiction aggressively. Just corrects him quietly.
@@ -187,7 +190,7 @@ Build it last. Make it the best writing in the product.
 ### SS-019 — Will You Eat It?
 
 **Status:** Open
-**Priority:** Medium
+**Priority:** High — Rod confirmed this is a strong concept, build soon
 **Loop:** BDD
 
 Panel presented with a foraged item. Each character gives verdict in character.
@@ -204,7 +207,7 @@ Darwin has eaten something similar. Has notes.
 ### SS-011 — Animal Deathmatch
 
 **Status:** Open
-**Priority:** Medium — needs skill ratings and environment data first
+**Priority:** High — Rod's son specifically wants this, strong pull
 **Loop:** BDD
 
 User picks Animal A vs Animal B in Environment X.
@@ -654,3 +657,51 @@ Live at /survival-school/mundane. Homepage nav updated: LIVE.
 8 lines cycling every 3.5s with CSS fade animation.
 Mix of originals and mashed brand slogans.
 "Finger lickin' fatality. FINISH HIM." — user's addition.
+
+---
+
+### SS-038 — session-ref.md served as Cloudflare static URL
+
+**Status:** Open
+**Priority:** Low
+**Loop:** DDD
+**Raised:** 2026-03-27
+
+Instead of Rod manually uploading session-ref.md to Claude.ai each session,
+serve it as a static asset at a known Cloudflare URL.
+Claude.ai could fetch it directly with a WebFetch tool call.
+
+Eliminates the biggest manual step in the Claude.ai session start.
+Low build effort — static asset hosting is already available via Cusslab worker.
+
+**Depends on:** Deciding whether session-ref.md content is safe to expose publicly.
+If yes: trivial to implement. If no: add basic auth header check.
+
+---
+
+### SS-039 — Latin / indigenous naming layer in panel responses
+
+**Status:** Open
+**Priority:** Medium
+**Loop:** DDD
+**Raised:** 2026-03-27
+
+Panel members with relevant knowledge use the correct scientific name (Latin)
+or local/indigenous name for animals and plants, not just the common English name.
+
+O'Shea: always uses binomial nomenclature. References it mid-sentence without breaking flow.
+Stevens: uses regional indigenous names when known. Adds spiritual register.
+Attenborough: uses both, usually Latin first, common name in parentheses.
+Hales: uses the Australian common name, which is often funnier.
+Bear: uses whatever sounds most dramatic. Fact-checker corrects quietly.
+Darwin: always Latin, often the name he personally assigned.
+
+**Rod's example:** "The Iroquois nations of the northeast have a word for your situation."
+[word meaning something between 'doomed' and 'entirely your own fault']
+The panel delivers it with complete sincerity. No translation offered.
+
+**Implementation:** Add `local_names` array and `indigenous_regional_names` to animal database schema.
+Already have `scientific` field. Panel voice profiles need one line on naming convention.
+Fires naturally — no special trigger logic needed, just baked into character voice.
+Stevens owns this mechanic most naturally. Hales has the Australian equivalent.
+Darwin has Latin. Bear has the name he made up. Fact-checker fires.
