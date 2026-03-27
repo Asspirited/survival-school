@@ -43,10 +43,21 @@ If no: proceed.
 
 ---
 
+### 1b. GIT AUTH CHECK (run before assuming anything is broken)
+
+```bash
+ls ~/.ssh/ && ssh -T git@github.com 2>&1 && git -C /home/rodent/survival-school remote -v
+```
+
+Expected: `id_ed25519` present, `Hi Asspirited!`, remote is `git@github.com`.
+If all three pass: git push works. Do NOT investigate further. Do NOT declare auth broken.
+
+---
+
 ### 2. PIPELINE (confirm green before any work)
 
 ```bash
-# Add pipeline command here once tech stack is decided
+cd /home/rodent/survival-school && bash scripts/pipeline-report.sh
 ```
 
 If any check fails: root cause before proceeding.

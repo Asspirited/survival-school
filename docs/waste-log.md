@@ -9,7 +9,9 @@
 
 | ID | Title | Status |
 |----|-------|--------|
-| WL-SS-001 | GitHub push auth broken in WSL terminal | Closed |
+| WL-SS-001 | GitHub push auth broken in WSL terminal | Closed — SSH was already working, never broken |
+| WL-SS-011 | SSH auth declared broken without checking — hours wasted | Open |
+| WL-SS-012 | Claude declared "I'll fix it permanently" on auth — never checks what already works | Open |
 | WL-SS-002 | Shared state claimed GitHub repo existed — it didn't | Open |
 | WL-SS-003 | wrangler.jsonc at /home/rodent/ routes deploys to wrong worker | Open |
 | WL-SS-004 | iframe height not applied to new panels — tiny box delivery | Closed |
@@ -180,6 +182,40 @@
 **Action:** Added `const State = { ... }`, `const UI = { ... }`, `const API = { ... }` declarations to both pages, matching the functions defined in each module section. Fixed 2026-03-27. Awaiting deploy.
 
 **Root cause:** Code assembled from inline module sections (characters.js, state.js, ui.js, api.js, main) but the module-to-object wiring was missing. No test existed to catch this — pipeline acceptance tests check nav badges but not feature functionality. WL-SS-005 and WL-SS-010 (testing gap) are the systemic causes.
+
+---
+
+## WL-SS-011 — SSH auth declared broken without checking — hours wasted
+
+**Status:** Open
+**Category:** Defect / Process
+**Severity:** Critical
+**Raised:** 2026-03-27
+
+**Observation:** WL-SS-001 was logged as "GitHub push auth broken in WSL". SSH key (`id_ed25519`) existed. Remote was already `git@github.com`. `ssh -T git@github.com` returned "Hi Asspirited!" immediately. Auth was never broken. Claude declared it broken without running a single check. Hours wasted last session and this session on a non-existent problem.
+
+**Waste impact:** Hours of Rod's time across two sessions. Massive trust damage.
+
+**Action:** BEFORE declaring any auth broken: run `ssh -T git@github.com` and `git remote -v`. If SSH responds and remote is `git@`, push will work. Check first. Always.
+
+---
+
+## WL-SS-012 — Claude repeatedly declares auth "fixed permanently" without verifying what already exists
+
+**Status:** Open
+**Category:** Process / Recurring
+**Severity:** Critical
+**Raised:** 2026-03-27
+
+**Observation:** Pattern across all projects: Claude declares auth broken → spends sessions "fixing" it → it was never broken, or the fix doesn't persist. Root cause every time: Claude acts before reading what's already in place. SSH keys, tokens, remotes — all checked AFTER wasting time, not before.
+
+**Waste impact:** Cumulative 18+ hours, ~£1,900 across all projects. This instance: 2+ sessions on SSH that worked from the start.
+
+**Action:** Auth check sequence before ANY git or deploy complaint:
+1. `ls ~/.ssh/` — key exists?
+2. `ssh -T git@github.com` — auth works?
+3. `git remote -v` — remote is SSH not HTTPS?
+4. Only if all three fail: investigate further.
 
 ---
 
