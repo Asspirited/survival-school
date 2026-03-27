@@ -19,6 +19,7 @@ cd /home/rodent/survival-school && cat \
   docs/waste-log.md \
   docs/founding-docs-raw.md \
   docs/founding-notes.md \
+  docs/testing-standards.md \
   $(find docs/characters/ -name "*.md" 2>/dev/null | sort) \
   > /mnt/c/Users/roden/Downloads/session-ref.md && echo "session-ref.md ready"
 ```

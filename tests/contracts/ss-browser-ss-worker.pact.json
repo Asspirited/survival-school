@@ -1,0 +1,78 @@
+{
+  "consumer": { "name": "ss-browser" },
+  "provider": { "name": "ss-worker" },
+  "interactions": [
+    {
+      "description": "POST /survival-school/assess returns structured JSON for assessment mode",
+      "request": {
+        "method": "POST",
+        "path": "/survival-school/assess",
+        "headers": { "Content-Type": "application/json" },
+        "body": {
+          "system": "You are the Survival School panel.",
+          "situation": "Location: Dartmoor\nSituation: lost at dusk"
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": { "Content-Type": "application/json" },
+        "schema": {
+          "required": ["survival_probability", "attenborough_opening", "panel", "attenborough_verdict", "next_actions"],
+          "panel_required_fields": ["charId", "text"],
+          "probability_range": [0, 100]
+        }
+      }
+    },
+    {
+      "description": "POST /survival-school/assess returns structured JSON for mundane mode",
+      "request": {
+        "method": "POST",
+        "path": "/survival-school/assess",
+        "headers": { "Content-Type": "application/json" },
+        "body": {
+          "system": "You are the Survival School panel. Mundane mode.",
+          "situation": "The printer has run out of ink"
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": { "Content-Type": "application/json" },
+        "schema": {
+          "required": ["survival_probability", "attenborough_opening", "panel", "attenborough_verdict"],
+          "panel_required_fields": ["charId", "text"],
+          "probability_range": [0, 100]
+        }
+      }
+    },
+    {
+      "description": "GET /survival-school/app returns HTML",
+      "request": { "method": "GET", "path": "/survival-school/app" },
+      "response": { "status": 200, "headers": { "Content-Type": "text/html; charset=utf-8" } }
+    },
+    {
+      "description": "GET /survival-school/worst returns HTML",
+      "request": { "method": "GET", "path": "/survival-school/worst" },
+      "response": { "status": 200, "headers": { "Content-Type": "text/html; charset=utf-8" } }
+    },
+    {
+      "description": "GET /survival-school/mundane returns HTML",
+      "request": { "method": "GET", "path": "/survival-school/mundane" },
+      "response": { "status": 200, "headers": { "Content-Type": "text/html; charset=utf-8" } }
+    },
+    {
+      "description": "GET /survival-school/eat returns HTML",
+      "request": { "method": "GET", "path": "/survival-school/eat" },
+      "response": { "status": 200, "headers": { "Content-Type": "text/html; charset=utf-8" } }
+    },
+    {
+      "description": "GET /survival-school/deathmatch returns HTML",
+      "request": { "method": "GET", "path": "/survival-school/deathmatch" },
+      "response": { "status": 200, "headers": { "Content-Type": "text/html; charset=utf-8" } }
+    },
+    {
+      "description": "GET /survival-school/fact-checker returns HTML",
+      "request": { "method": "GET", "path": "/survival-school/fact-checker" },
+      "response": { "status": 200, "headers": { "Content-Type": "text/html; charset=utf-8" } }
+    }
+  ]
+}

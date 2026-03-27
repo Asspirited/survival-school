@@ -15,6 +15,7 @@
 | WL-SS-004 | iframe height not applied to new panels — tiny box delivery | Closed |
 | WL-SS-005 | No pipeline built for SS — features shipped with zero automated testing | Open |
 | WL-SS-006 | Session startup protocol skipped repeatedly — work started before startup complete | Open |
+| WL-SS-007 | Deathmatch and Fact-Checker broken — asked 6 sessions, never fixed until 2026-03-27 | Closed |
 
 ---
 
@@ -126,3 +127,21 @@
 **Waste impact:** User saw broken layout on two new features. Trust impact.
 
 **Action:** Fixed — shared rule covering all three iframe panels. Root cause: pattern not documented when first implemented for How Screwed Am I.
+
+---
+
+## WL-SS-007 — Deathmatch and Fact-Checker broken — asked 6 sessions
+
+**Status:** Closed
+**Category:** Defect / Process
+**Severity:** High
+**Raised:** 2026-03-27
+**Closed:** 2026-03-27
+
+**Observation:** Animal Deathmatch and Bear Fact-Checker showed "coming soon" in the home nav and panel despite being listed as DONE in the backlog. Deathmatch: route existed in worker, standalone page existed, but home panel still showed "coming soon" placeholder instead of iframe. Fact-Checker: no standalone page existed (SS-008 implemented footnotes only), home panel showed "coming soon". Rod raised this in at least 6 consecutive sessions.
+
+**Waste impact:** 6+ sessions of unresolved bugs. Trust eroded. Rod's time wasted. Significant frustration.
+
+**Action:** Fixed 2026-03-27. Deathmatch: panel updated to iframe. Fact-Checker: standalone interactive page built, route added, panel updated to iframe. Both nav badges changed to LIVE. Deployed.
+
+**Root cause:** Session protocol skipped (WL-SS-006 pattern). No pipeline to catch regression. Live features confirmed by acceptance test: 12/12 pass.

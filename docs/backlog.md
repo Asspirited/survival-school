@@ -9,7 +9,7 @@
 
 | CD3 | Item | Status | Loop |
 |-----|------|--------|------|
-| 27 | SS-040 — Build full test pipeline (L0–L5, YGW pattern) | CRITICAL | TDD |
+| 27 | SS-040 — Build full test pipeline (L0–L5, YGW pattern) | IN PROGRESS | TDD |
 | 27 | SS-001 — Complete project brief | DONE | HDD |
 | 27 | SS-003 — Define HDD hypothesis | DONE | HDD |
 | 18 | SS-002 — ADR: tech stack | DONE | DDD |
@@ -17,10 +17,10 @@
 | TBD | SS-005 — Telephone Game mechanic | Open | DDD |
 | TBD | SS-006 — Temporal Lens mechanic | Open | DDD |
 | TBD | SS-007 — How Screwed Am I (live) | DONE | BDD |
-| 27 | SS-008 — Bear Fact-Checker | DONE | BDD |
+| 27 | SS-008 — Bear Fact-Checker | DONE (standalone page live 2026-03-27) | BDD |
 | TBD | SS-009 — Mode A: Panel Q&A | Open | BDD |
 | TBD | SS-010 — Mundane Survival Mode | DONE | BDD |
-| TBD | SS-011 — Animal Deathmatch | DONE | BDD |
+| TBD | SS-011 — Animal Deathmatch | DONE (nav fixed 2026-03-27) | BDD |
 | TBD | SS-012 — Irwin Memorial Encounter | Open | BDD |
 | TBD | SS-013 — Packham Ethical Override | Open | BDD |
 | TBD | SS-014 — Attenborough Eulogy | Open | BDD |
