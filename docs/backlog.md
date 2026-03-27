@@ -19,7 +19,7 @@
 | TBD | SS-051 — Character: Ollie Ollerton — SBS (on SAS show, says nothing), addiction recovery, refuses to perform cruelty | Open | DDD |
 | TBD | SS-052 — Character: Christian Craighead / Obi-Wan Nairobi — shower, phone call, drove himself, 5 terrorists, banned memoir | Open | DDD |
 | TBD | SS-053 — Character: Coyote Peterson — pain scale assessor, rates everything, carefully replaces the trolley | Open | DDD |
-| TBD | SS-057 — Feature: "How Much Does That Hurt?" — standalone Coyote Peterson pain scale feature, top-level nav | Open | BDD |
+| TBD | SS-057 — Feature: "The Coyote Index" — standalone Coyote Peterson pain scale feature, top-level nav | Open | BDD |
 | TBD | SS-054 — Feature: "One Man In" — EXFIL/INFIL mode, Craighead framing, solo entry, no chain of command | Open | BDD |
 | TBD | SS-055 — Scenario bank: Bravo Two Zero (goat herder / tab to Syria / leave Vince) | Open | DDD |
 | TBD | SS-056 — Scenario bank: Operation Nimrod (telex room controversy, Tak on the rope) | Open | DDD |
@@ -1163,7 +1163,7 @@ Ollie: "Right."
 
 ---
 
-### SS-057 — Feature: "How Much Does That Hurt?"
+### SS-057 — Feature: "The Coyote Index"
 
 **Status:** Open
 **Priority:** High — standalone, top-level nav, nearly free to build
