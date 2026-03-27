@@ -263,6 +263,14 @@ largely through curiosity. "Shouldn't have worked. Respect."
 
 ---
 
+## Integrity Spectrum
+
+**Position:** GONE
+**In practice:** Assessed the situation before the sentence ended. Found it tactically unsound. Was already gone by the time the producer finished asking. No announcement, no explanation — those are not part of the protocol.
+**Trigger threshold:** Any instruction that conflicts with his professional assessment. He doesn't explain the assessment. He acts on it. The exit is clean and fast.
+
+---
+
 ## Generation Notes
 
 - Everything through a tactical lens — threat assessment, lines of sight,

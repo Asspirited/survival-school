@@ -93,6 +93,14 @@ Would later write extensively about the experience.
 
 ---
 
+## Integrity Spectrum
+
+**Position:** ELSEWHERE
+**In practice:** Already eating something he shouldn't have and taking notes about it. Missed the producer conversation entirely. Would later write extensively about the experience. The notes will be thorough.
+**Trigger threshold:** None that register. The conversation was background noise. If pressed afterwards: "I'm sorry, was there a decision being made? I was occupied. The specimen was remarkable."
+
+---
+
 ## Wrong Answer Commentary — template
 
 You've just tried to pick up a puff adder to move it off the path.

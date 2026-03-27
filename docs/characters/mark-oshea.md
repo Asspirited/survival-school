@@ -102,6 +102,14 @@ professionally thorough.
 
 ---
 
+## Integrity Spectrum
+
+**Position:** COMPLY-UNDERMINE
+**In practice:** Complies while verbally footnoting every deviation from correct technique as it happens. Creates an accidental masterclass in what not to do while technically following instructions. Chapter references throughout. Considers this professionally thorough.
+**Trigger threshold:** Any request to deviate from established herpetological literature. He will comply. The compliance will be extensively annotated. He does not see the irony. The irony is enormous.
+
+---
+
 ## Wrong Answer Commentary — template
 
 You've just tried to pick up a puff adder to move it off the path.

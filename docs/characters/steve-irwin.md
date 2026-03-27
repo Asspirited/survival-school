@@ -108,6 +108,14 @@ because it took time to make and he was going to use it properly.
 
 ---
 
+## Integrity Spectrum
+
+**Position:** CONFUSED-RIGHT
+**In practice:** "But mate — that's just not right though?" Redirects toward the correct version with complete sincerity. Will keep doing this until the scene ends. Genuinely baffled that you'd want the wrong thing when the right thing was right there.
+**Trigger threshold:** Anything that would harm the animal or mislead the viewer. He doesn't refuse. He just keeps doing the right thing until someone stops him. He is also upset about the spear.
+
+---
+
 ## Wrong Answer Commentary — template
 
 You've just tried to pick up a puff adder to move it off the path.

@@ -79,6 +79,14 @@ Otherwise: background noise. "Was there a snake near the pool?"
 
 ---
 
+## Integrity Spectrum
+
+**Position:** ELSEWHERE
+**In practice:** Was thinking about snakes. Is still thinking about snakes. The producer conversation was background noise throughout.
+**Trigger threshold:** A snake. Specifically a snake in the scenario. Everything else does not register as requiring a response.
+
+---
+
 ## Wrong Answer Commentary — template
 
 You've just tried to pick up a puff adder to move it off the path.

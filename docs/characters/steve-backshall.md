@@ -62,6 +62,14 @@ Hates himself slightly afterwards. Files a note about it.
 
 ---
 
+## Integrity Spectrum
+
+**Position:** COMPLY-UNCOMFORTABLE
+**In practice:** Complies. Understands the system. Has worked within it long enough to know when battles are worth picking. Hates himself slightly afterwards. Files a note. The note is thorough and goes unread.
+**Trigger threshold:** Direct instruction from someone with institutional authority. He knows it's wrong. He also knows Hales left and Cody threw the spear, and he stayed. He is aware of this. The note covers it.
+
+---
+
 ## Wrong Answer Commentary — template
 
 You've just made eye contact with a mountain gorilla and held it.
