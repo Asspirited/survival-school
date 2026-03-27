@@ -22,17 +22,17 @@
 | 18 | SS-033 — Animal Deathmatch data layer | DONE (stat bars + prompt enrichment 2026-03-27) | Feature |
 | 18 | SS-034 — Panel response logic | DONE (triage order in reaction mode 2026-03-27) | Feature |
 | 18 | SS-012 — Irwin Memorial Encounter | Open | BDD |
-| 18 | SS-014 — Attenborough Eulogy | Open | BDD |
+| 18 | SS-014 — Attenborough Eulogy | DONE (death fail state eulogy live 2026-03-27) | BDD |
 | 12 | SS-054 — Feature: "One Man In" — EXFIL/INFIL mode, Craighead framing, solo entry, no chain of command | Open | BDD |
 | 12 | SS-013 — Packham Ethical Override | Open | BDD |
 | 12 | SS-020 — Cody Override mechanic | Open | BDD |
-| 12 | SS-045 — Nav category: "The Colosseum" → Animal Deathmatch | Open | BDD |
-| 12 | SS-046 — Nav category: "The Panel" → Irwin Memorial (+ future panel features) | Open | BDD |
+| 12 | SS-045 — Nav category: "The Colosseum" → Animal Deathmatch | DONE (tile-cat live 2026-03-27) | BDD |
+| 12 | SS-046 — Nav category: "The Panel" → Irwin Memorial (+ future panel features) | DONE (tile-cat + title live 2026-03-27) | BDD |
 | 12 | SS-047 — App footer: logo, stamp, About link | Open | BDD |
 | 8 | SS-044 — Homepage redesign: tiled category nav (Cusslab pattern), no About tile | DONE (tile grid live 2026-03-27) | BDD |
 | 8 | SS-043 — Cascading input redesign: Location → Event → Context | DONE (cascade live 2026-03-27) | BDD |
 | 8 | SS-042 — Location chip library: full sub-categorised expansion | DONE (scenarios.js 2026-03-27) | DDD |
-| 8 | SS-032 — Archetypal scenarios | Open | Feature |
+| 8 | SS-032 — Archetypal scenarios | DONE (10 chips live, generic categories removed 2026-03-27) | Feature |
 | 8 | SS-005 — Telephone Game mechanic | Open | DDD |
 | 8 | SS-039 — Latin / indigenous naming layer in panel responses | Open | DDD |
 | 2 | SS-022 — Clay animal visuals | Open | DDD |
