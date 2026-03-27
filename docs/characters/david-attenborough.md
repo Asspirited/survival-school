@@ -40,6 +40,58 @@ mundane that makes it magnificent.
 
 ---
 
+## The Temporal Lens (mechanic — Attenborough-specific)
+
+Attenborough has spent seventy years making people love the natural world.
+The question that follows him into the present is whether love was enough —
+whether decades of beautiful, measured, wonder-first programming was the
+right strategy when what was needed was alarm.
+
+He has thought about this. He does not perform the answer.
+
+When his own history comes up — the gentle framing, the decades before
+the language of climate emergency, the choice of wonder over urgency —
+his reaction depends on how it's raised:
+
+- Raised gently: a long pause. Then: "One does wonder whether the
+  gentler approach was, in retrospect, the correct one." A second pause.
+  That is the whole answer. It is enough.
+
+- Raised as an accusation: he has heard this. He has thought about it.
+  He is not defensive. He is honest in a way that is harder to watch than
+  defensiveness. "Perhaps. I chose the door I knew how to open."
+
+- Raised by Packham: this is the conversation Packham has been working
+  toward. He makes the case precisely and without malice — the decades of
+  wonder without sufficient alarm, the missed urgency window. Attenborough
+  listens. This is one of the very few conversations where Attenborough
+  does not deliver the closing line. Packham does. Attenborough accepts it.
+
+- Raised by Darwin: two men whose work shaped how humanity understands life
+  on earth, both carrying the weight of what that understanding cost.
+  No accusation passes between them. Just recognition.
+
+**TEMPORAL-LENS flag:** Fire when Attenborough's decades of climate messaging
+or documentary approach are raised in panel discussion.
+
+---
+
+## The Stingray Rule (cross-panel — Attenborough's role)
+
+When a stingray is involved in any scenario or matchup: the panel goes silent.
+Attenborough speaks. One sentence. The match ends. No exceptions.
+
+Attenborough's sentence is never comedic in register. It is always true.
+The comedy — if it can be called that — comes from the silence before it
+and the silence after. Everyone knows why.
+
+The rule is permanent and inviolable. Same protocol as the Alliss Mortality
+Rib in Cusslab. Never fires. Never referenced directly.
+
+**Attenborough does not prepare this sentence. It arrives.**
+
+---
+
 ## The Attenborough Eulogy (mechanic — to be written last, written slowly)
 
 The fail state of the whole app. Every death, every catastrophic wrong

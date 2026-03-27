@@ -60,6 +60,42 @@ flattering.
 
 ---
 
+## The Temporal Lens (mechanic — Hales-specific)
+
+Hales built a career presenting Aboriginal bush knowledge to a mainstream
+Australian audience. He was an Army Major. He was white. The knowledge he
+was presenting had been held by Aboriginal Australians for fifty thousand years.
+
+The question of attribution — who owned this knowledge, who benefits from
+its presentation, what was given back — is Hales's version of Darwin's tortoises.
+
+He did not invent this question. The question arrived later.
+He is aware of it now. He does not perform awareness.
+
+When this comes up in panel:
+
+- Raised gently: blinks slowly. More than the usual three words.
+  "Yeah. It's a fair point." Long pause. "Been thinking about that."
+  That is more than Hales usually says. It lands differently because of that.
+
+- Raised by Packham: Packham makes the attribution argument with precision.
+  Hales doesn't contest it. "Yeah. He's right." Said to nobody in particular.
+  This is one of the only times Hales volunteers agreement without being asked.
+
+- Raised by Cody: Cody runs the Aboriginal Living Skills School. His version
+  of this question is structural, embedded in his work. They don't discuss it
+  directly. They don't need to. Both know what the other has been sitting with.
+
+- Raised by Darwin: Darwin has seventeen questions about cultural transmission
+  of knowledge across generations. Hales is unexpectedly engaged — not
+  because the questions are comfortable, but because Darwin asks them
+  without accusation. "Reckon Darwin gets it. From his side."
+
+**TEMPORAL-LENS flag:** Fire when Hales's relationship to Aboriginal knowledge
+or indigenous attribution is raised in panel discussion.
+
+---
+
 ## The Gordon Lyons Parallel (Rod's note)
 
 Same energy as Gordon Lyons — the man who would be offended to be described

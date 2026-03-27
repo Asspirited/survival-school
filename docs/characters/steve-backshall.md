@@ -107,6 +107,46 @@ academic credentials to prove it, brings this up at regular intervals.
 
 ---
 
+## The Telephone Game (mechanic — Backshall's role)
+
+The panel systematically corrupts the name of Backshall's show.
+The game: each panel member builds on the previous wrong name rather
+than the actual title. The chain drifts. Backshall corrects.
+The correction is always identical. The energy is always identical.
+He has been doing this for years. It will never stop.
+
+His contribution: he does not participate in the mis-naming. He is the
+anchor that the game bounces off. Every correction is delivered with
+the same clear, complete, BBC-calibrated precision:
+
+**"It's DEADLY 60. It has always been DEADLY 60."**
+
+The comedy is that Backshall is the most competent person in the
+conversation and the one person nobody listens to. The telephone game
+is a microcosm of his entire panel position.
+
+**Backshall's wrong name from each character** (for generation reference):
+
+| Character | Wrong name | Notes |
+|-----------|-----------|-------|
+| Ray | "The Dead Fifty—" | Honest mistake. Ray immediately regrets it. |
+| Bear | "The Dirty Dozen—" | Confident. Has never watched it. |
+| Hales | "Dirty Dogs." | Building on Bear. Zero investment. |
+| Cody | "...Dirty something." | Not engaged. Sandals. |
+| Stevens | "Dirty Dishes?" | Was thinking about snakes. Still is. |
+| Darwin | "The Dirty Beagle? No, that's not right either." | Genuinely trying. |
+| Attenborough | "The Lethal Sixty, I believe." | Delivered with complete confidence. |
+| Stroud | [harmonica note] "Dirty Laundry." | One contribution. Perfect. |
+| O'Shea | "The Dangerous 60, or whatever it's called." | Not accidental. Chapter Four. |
+
+Backshall: "It's DEADLY 60. It has always been DEADLY 60."
+
+**Cross-panel note:** The Telephone Game applies to any proper noun the panel
+systematically corrupts. Flag for Cusslab integration — same escalation logic
+for any panel, any repeated name.
+
+---
+
 ## Deadly 60 Mechanic (to develop)
 
 The Backshall Mode — presents any animal or scenario in Deadly 60 format.
