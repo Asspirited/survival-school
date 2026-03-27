@@ -21,6 +21,7 @@
 | WL-SS-008 | Missing iframe CSS for Fact-Checker and Deathmatch — rendered as zero-height boxes | Closed |
 | WL-SS-009 | Missing State/UI/API object declarations in How Screwed and I've Been Bit — JS ReferenceError on all user actions | Closed |
 | WL-SS-010 | Acceptance tests checked page load and nav badges only — structural integrity and JS wiring invisible to pipeline | Closed |
+| WL-SS-013 | Deploy instruction treated as auth event — sent user to Cloudflare dashboard when token already in hand from same session | Open |
 
 ---
 
@@ -216,6 +217,21 @@
 2. `ssh -T git@github.com` — auth works?
 3. `git remote -v` — remote is SSH not HTTPS?
 4. Only if all three fail: investigate further.
+
+---
+
+## WL-SS-013 — Deploy instruction treated as auth event
+
+**Status:** Open
+**Category:** Over-processing / Recurring
+**Severity:** High
+**Raised:** 2026-03-27
+
+**Observation:** After a successful deploy at session start with a known working token, Claude issued the next deploy instruction with "In Cloudflare, dash.cloudflare.com → API token if needed" — implying the user might need to go get a new token. Token was already in hand. This is the same pattern as WL-SS-011/012: treating each deploy as a fresh auth problem rather than recognising a working token was just used.
+
+**Waste impact:** Frustration, broken flow, unnecessary auth theatre during active build work.
+
+**Action:** When a deploy was completed in the same session, next deploy instruction must say "same token as before" and give only the command. Never mention the Cloudflare dashboard unless the previous deploy explicitly failed with auth error.
 
 ---
 

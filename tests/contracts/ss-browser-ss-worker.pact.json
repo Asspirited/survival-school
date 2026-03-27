@@ -73,6 +73,33 @@
       "description": "GET /survival-school/fact-checker returns HTML",
       "request": { "method": "GET", "path": "/survival-school/fact-checker" },
       "response": { "status": 200, "headers": { "Content-Type": "text/html; charset=utf-8" } }
+    },
+    {
+      "description": "GET /survival-school/coyote returns HTML",
+      "request": { "method": "GET", "path": "/survival-school/coyote" },
+      "response": { "status": 200, "headers": { "Content-Type": "text/html; charset=utf-8" } }
+    },
+    {
+      "description": "POST /survival-school/coyote returns structured JSON with Coyote Index rating",
+      "request": {
+        "method": "POST",
+        "path": "/survival-school/coyote",
+        "headers": { "Content-Type": "application/json" },
+        "body": {
+          "system": "You are Coyote Peterson and the Survival School panel. Respond ONLY with valid JSON matching exactly: {\"rating\":<number 0.0-5.0 with one decimal place>,\"coyote_assessment\":\"<2-3 sentences, clinical, enthusiastic>\",\"coyote_anecdote\":\"<2-3 sentences, personal field story, match or mismatch in severity>\",\"anecdote_rating\":<number 0.0-5.0>,\"anecdote_direction\":\"higher|lower\",\"panel\":[{\"charId\":\"<string>\",\"text\":\"<1-2 sentences>\"}],\"attenborough_verdict\":\"<one sentence, nature documentary, final word>\"}. No markdown. No prose. JSON only.",
+          "incident": "shin struck by shopping trolley in Sainsbury's, Saturday afternoon"
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": { "Content-Type": "application/json" },
+        "schema": {
+          "required": ["rating", "coyote_assessment", "coyote_anecdote", "anecdote_rating", "anecdote_direction", "panel", "attenborough_verdict"],
+          "panel_required_fields": ["charId", "text"],
+          "rating_range": [0, 5],
+          "anecdote_direction_values": ["higher", "lower"]
+        }
+      }
     }
   ]
 }

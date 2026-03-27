@@ -69,6 +69,12 @@ describe('Feature: Survival School navigation', () => {
     const r = await fetch(`${BASE}/survival-school/fact-checker`, { signal: AbortSignal.timeout(TIMEOUT) });
     assert.strictEqual(r.status, 200);
   });
+
+  // Scenario: The Coyote Index page loads (SS-057)
+  test('Given a user navigates to The Coyote Index, Then the coyote page returns 200', async () => {
+    const r = await fetch(`${BASE}/survival-school/coyote`, { signal: AbortSignal.timeout(TIMEOUT) });
+    assert.strictEqual(r.status, 200);
+  });
 });
 
 // ── Feature: Animal Deathmatch live (SS-011) ──
@@ -137,6 +143,19 @@ describe('Feature: Survival School home nav reflects feature status', () => {
   });
 });
 
+// ── Feature: The Coyote Index (SS-057) ──
+describe('Feature: The Coyote Index page contains expected content', () => {
+
+  test('Given the coyote page loads, Then it contains the incident input and rate button', async () => {
+    const r = await fetch(`${BASE}/survival-school/coyote`, { signal: AbortSignal.timeout(TIMEOUT) });
+    const html = await r.text();
+    assert.ok(html.includes('COYOTE'), 'page should contain COYOTE heading');
+    assert.ok(html.includes('btn-rate'), 'page should contain rate button');
+    assert.ok(html.includes('incident-input'), 'page should contain incident input');
+    assert.ok(html.includes('rating-out'), 'page should contain rating output element');
+  });
+});
+
 // ── Structural integrity: iframe CSS (WL-SS-008 pattern) ──
 // Checks that every live iframe panel has CSS height applied in the home page.
 // Rationale: adding a new live panel without updating the CSS selector is a recurring failure mode.
@@ -157,6 +176,7 @@ describe('Feature: Live iframe panels have CSS height applied in home page', () 
     'panel-mundane',
     'panel-fact-checker',
     'panel-deathmatch',
+    'panel-coyote',
   ];
 
   for (const panelId of LIVE_IFRAME_PANELS) {
@@ -181,6 +201,7 @@ describe('Feature: Interactive pages declare State, UI, and API module objects',
   const PAGES = [
     { name: 'How Screwed Am I', url: '/survival-school/app',   objects: ['const State = {', 'const UI = {', 'const API = {'] },
     { name: "I've Been Bit, Guys", url: '/survival-school/worst', objects: ['const State = {', 'const UI = {', 'const API = {'] },
+    { name: 'The Coyote Index', url: '/survival-school/coyote', objects: ['const State = {', 'const UI = {', 'const API = {'] },
   ];
 
   for (const page of PAGES) {
