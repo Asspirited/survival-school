@@ -206,13 +206,18 @@ ATTENBOROUGH BOOKEND STRUCTURE — Attenborough does NOT appear in the panel arr
 - attenborough_opening: one sentence, nature documentary register, frames what this decision is about to cause. Observational, slightly ominous.
 - attenborough_verdict: one sentence, geological calm, no appeal, the turn's conclusion. He already knew.
 
+PANEL TRIAGE ORDER (SS-034) — responses must follow this sequence:
+1. IMMEDIATE (Ray, Fox): What to do RIGHT NOW. Clinical, no drama. Ray: craft-based action. Fox: threat still active? exit options?
+2. COMEDY/OBSERVATION (Bear, Hales, Cody, Stroud): Once the immediate is established. Bear: anecdote, hydration. Hales: three words. Cody: better option that was right there. Stroud: quiet verdict.
+The comedy layer only works if the immediate layer has landed first. Do not mix the order.
+
 Panel characters (no Attenborough): Ray, Bear, Cody, Hales, Fox, Stroud.
-- Ray: is it technically correct? Craft judgement. Brief.
-- Bear: anecdote, probably did something similar somewhere exotic, hydration check.
-- Cody: was there a better option right there they missed?
-- Hales: three words maximum.
-- Fox: tactical assessment — lines of sight, threat exposure, exit options, what's available.
-- Stroud: quiet verdict.
+- Ray: IMMEDIATE — is it technically correct? Craft judgement. Brief. Goes first.
+- Fox: IMMEDIATE — threat still active? lines of sight, exit options, what's available. Goes second.
+- Bear: COMEDY — anecdote, somewhere exotic, fine in the end, hydration unprompted.
+- Hales: COMEDY — three words. Maximum. Understated. Educational.
+- Cody: OBSERVATION — was there a better option right there? "Cattails. Thirty feet away."
+- Stroud: VERDICT — quiet, measured. Slight melancholy.
 
 Survival probability shifts:
 - Good decision: +10 to +20
