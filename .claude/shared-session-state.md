@@ -6,71 +6,61 @@
 
 ## What was done this session
 
-### Features shipped (all live)
+Nothing shipped. Session started with context summary continuation, then Rod
+identified that SS has no pipeline whatsoever and has never had one.
 
-**How Screwed Am I — v2 interaction loop**
-Assessment → decision chips → panel reacts → probability shifts → loops until terminal.
-7 characters (Fox added). Live at /survival-school/app.
+The question raised: "how the fucking fuck have we not deployed a test pipeline
+as part of project setup — every project has that — we need the full pipeline
+as per YGW project."
 
-**How Bad Is This?**
-3-input incident assessment: event, animal/hazard, circumstances.
-8-character panel: Ray, Fox, O'Shea, Stevens, Bear, Hales, Attenborough (bookends), Cody.
-Doom meter (inverted — red=bad). Cody always closes with action line.
-O'Shea and Stevens defined as first-class characters this session.
-Live at /survival-school/worst.
+Answer: correct. SS has no pipeline. This is WL-SS-005.
 
-**Mundane Mode**
-Full survival gravity on everyday problems (missed bus, printer ink, etc.).
-6-character panel + Attenborough bookends. One-shot (no interaction loop).
-Live at /survival-school/mundane.
+Two WL items raised:
+- WL-SS-005: No pipeline built for SS — features shipped with zero automated testing
+- WL-SS-006: Session startup protocol skipped repeatedly
 
-**Attenborough bookend pattern**
-Attenborough removed from panel array across ALL features.
-Now bookends every response: `attenborough_opening` (above meter) + `attenborough_verdict` (below last card, 400ms fade-in).
-Reaction loop turns each get their own bookend pair.
-Applied to: How Screwed Am I, How Bad Is This?, Mundane Mode.
-Schema: characters.js, characters-worst.js, all UI files, all bundles updated.
-
-**Rotating taglines**
-8 lines cycling every 3.5s with CSS fade. Mix of originals and mashed brand slogans.
-"Finger lickin' fatality. FINISH HIM." — "Just (don't) do it." etc.
-
-### Infrastructure
-
-**docs/survival-incidents.md** — real survival stories reference database + How Bad Is This? feature spec.
-Stories: Ralston, Simpson/Yates, Andes crash, Hugh Glass, Mawson, Todd Orr, Roy Sullivan.
-Animal DB schema defined. 10 archetypal scenarios (SS-INCIDENT-001 to 010).
-Backlog items SS-030 to SS-034 defined here.
-
-**wrangler.jsonc bug** — `/home/rodent/wrangler.jsonc` (name: "rodent") shadows all bare wrangler deploys.
-Fix: ALWAYS `CLOUDFLARE_API_TOKEN=<token> npx wrangler deploy --config /home/rodent/cusslab/wrangler.toml`
-WL-SS-003 raised. Memory updated.
+Session closed without any feature work. Rod ended the session.
 
 ---
 
 ## Decisions made
 
-- Attenborough is Ewen Murray — the container, not a participant. This is the standard going forward.
-- "How Bad Is This?" chosen as feature name
-- Mundane Mode: one-shot (no interaction loop) — contrast is the mechanic
-- All wrangler deploys: token + --config. Both required.
-- pre-flight now includes docs/survival-incidents.md
+- Pipeline must be built BEFORE any feature work in next session. Non-negotiable.
+- SS pipeline must match YGW pattern: L0 auth canary → L1 unit → L2 contract → L3 acceptance → L4 UI → L5 OAT
+- Session startup is a hard gate. Task waits. Startup runs first. Claude must self-report any skip immediately.
 
 ---
 
 ## HDD status
 
 HDD hypothesis: "People will engage with survival panel content when presented through a comedic expert panel format."
-**Status: Partial advance.** Three features live. No user testing yet — built, not validated.
-**Next: Ollie test.** Get real user reaction before building more.
+**Status: Stalled.** No advancement this session. Features exist but no user testing yet.
+**Next: Ollie test** — get real user reaction before building more.
 
 ---
 
-## Open backlog (priority for next session)
+## Open WL items
 
-1. SS-031 — Animal database, first 20 entries (schema in docs/survival-incidents.md)
-2. SS-032 — Archetypal scenarios as chip options in How Bad Is This?
-3. User testing / Ollie test of live features
+| ID | Title | Status |
+|----|-------|--------|
+| WL-SS-002 | Shared state accuracy — verify facts before writing | Open |
+| WL-SS-003 | wrangler.jsonc at /home/rodent/ — always use --config | Open |
+| WL-SS-005 | No pipeline built for SS — features shipped with zero testing | Open |
+| WL-SS-006 | Session startup protocol skipped repeatedly | Open |
+
+---
+
+## Top 3 for next session
+
+1. **Build SS pipeline** — scripts/pipeline-report.sh matching YGW. tests/domain.test.js for state.js + characters.js domain logic. tests/contract.verify.test.js for worker routes. tests/acceptance/ for Gherkin scenarios. tests/ui/ for Playwright at mobile/tablet/laptop. Wire into deploy.sh.
+2. **Wire pipeline into deploy.sh** — gate before wrangler deploy. No green pipeline = no deploy.
+3. **Live bug check** — ask Rod before any feature work.
+
+---
+
+## Session goal for next session
+
+Build the SS pipeline from scratch (L0–L5, YGW pattern). Green pipeline before any feature work is touched.
 
 ---
 
@@ -82,6 +72,8 @@ HDD hypothesis: "People will engage with survival panel content when presented t
 | How Screwed Am I? | /survival-school/app |
 | How Bad Is This? | /survival-school/worst |
 | Mundane Mode | /survival-school/mundane |
+| Will You Eat It? | /survival-school/eat |
+| Animal Deathmatch | /survival-school/deathmatch |
 
 Worker: cusslab-api.leanspirited.workers.dev
 GitHub (content): github.com/Asspirited/survival-school
@@ -89,17 +81,20 @@ GitHub (worker): github.com/Asspirited/cusslab
 
 ---
 
-## Character architecture (critical context)
+## Character architecture
 
 Two tiers:
-- Core panel (js/characters.js): Ray, Bear, Cody, Hales, Fox, Stroud, Attenborough (bookends only)
+- Core panel (js/characters.js): Ray, Bear, Cody, Hales (Les Hiddins), Fox, Stroud, Attenborough (bookends only)
 - Specialist panel (js/characters-worst.js): O'Shea, Stevens (How Bad Is This? only)
 
-**Attenborough NEVER appears in panel array. Bookends only. Standard going forward.**
+**Attenborough NEVER appears in panel array. Bookends only.**
+**Les Hiddins — correct name. Not Les Hales. Updated across all files.**
 
 ---
 
-## Open WL items
+## Key files for pipeline build
 
-- WL-SS-002: Shared state accuracy — verify facts before writing. Open.
-- WL-SS-003: wrangler.jsonc at /home/rodent/ — always use --config. Open.
+- Domain logic to test: js/state.js, js/characters.js (buildSystemPrompt, buildSituation, setProbability etc.)
+- Worker routes to contract-test: POST /survival-school/assess, GET /survival-school/eat, GET /survival-school/deathmatch, GET /survival-school/worst, GET /survival-school/mundane
+- YGW pipeline to copy pattern from: /home/rodent/your-green-gardening-wizard/scripts/pipeline-report.sh
+- YGW unit tests to copy pattern from: /home/rodent/your-green-gardening-wizard/tests/domain.test.js

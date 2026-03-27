@@ -9,6 +9,7 @@
 
 | CD3 | Item | Status | Loop |
 |-----|------|--------|------|
+| 27 | SS-040 — Build full test pipeline (L0–L5, YGW pattern) | CRITICAL | TDD |
 | 27 | SS-001 — Complete project brief | DONE | HDD |
 | 27 | SS-003 — Define HDD hypothesis | DONE | HDD |
 | 18 | SS-002 — ADR: tech stack | DONE | DDD |
@@ -19,7 +20,7 @@
 | 27 | SS-008 — Bear Fact-Checker | DONE | BDD |
 | TBD | SS-009 — Mode A: Panel Q&A | Open | BDD |
 | TBD | SS-010 — Mundane Survival Mode | DONE | BDD |
-| TBD | SS-011 — Animal Deathmatch | Open | BDD |
+| TBD | SS-011 — Animal Deathmatch | DONE | BDD |
 | TBD | SS-012 — Irwin Memorial Encounter | Open | BDD |
 | TBD | SS-013 — Packham Ethical Override | Open | BDD |
 | TBD | SS-014 — Attenborough Eulogy | Open | BDD |
@@ -27,7 +28,7 @@
 | TBD | SS-016 — Domain Knowledge Files | Open | DDD |
 | TBD | SS-017 — Worker fork trigger ADR | DONE | DDD |
 | TBD | SS-018 — Remaining character files | Open | DDD |
-| TBD | SS-019 — Will You Eat It? | Open | BDD |
+| TBD | SS-019 — Will You Eat It? | DONE | BDD |
 | TBD | SS-020 — Cody Override mechanic | Open | BDD |
 | TBD | SS-021 — Panel integrity spectrum | Open | DDD |
 | TBD | SS-022 — Clay animal visuals | Open | DDD |
@@ -189,9 +190,10 @@ Build it last. Make it the best writing in the product.
 
 ### SS-019 — Will You Eat It?
 
-**Status:** Open
+**Status:** Done
 **Priority:** High — Rod confirmed this is a strong concept, build soon
 **Loop:** BDD
+**Closed:** 2026-03-27
 
 Panel presented with a foraged item. Each character gives verdict in character.
 Hales always says yes — witchetty grub energy.
@@ -206,9 +208,10 @@ Darwin has eaten something similar. Has notes.
 
 ### SS-011 — Animal Deathmatch
 
-**Status:** Open
+**Status:** Done
 **Priority:** High — Rod's son specifically wants this, strong pull
 **Loop:** BDD
+**Closed:** 2026-03-27
 
 User picks Animal A vs Animal B in Environment X.
 Panel convenes — pre-fight analysis in character, match narrative,
@@ -705,3 +708,49 @@ Already have `scientific` field. Panel voice profiles need one line on naming co
 Fires naturally — no special trigger logic needed, just baked into character voice.
 Stevens owns this mechanic most naturally. Hales has the Australian equivalent.
 Darwin has Latin. Bear has the name he made up. Fact-checker fires.
+
+---
+
+### SS-040 — Build full test pipeline (L0–L5, YGW pattern)
+
+**Status:** CRITICAL — next session, before any feature work
+**CD3:** 27
+**Loop:** TDD
+**Raised:** 2026-03-27 (WL-SS-005)
+
+**Why:** Zero tests exist for Survival School. Every feature shipped untested. Pipeline should have been built at project start per new-project-start.md Section 6b. This is the debt.
+
+**Coverage target:** 100% statement and branch coverage (four-loops.md standard).
+
+**Deliverables:**
+- `package.json` — test/pipeline scripts (copy YGW pattern)
+- `scripts/check-auth.sh` — Cloudflare auth canary
+- `scripts/pipeline-report.sh` — 6-layer runner, exits 1 on RED
+- `tests/domain.test.js` — unit tests for js/state.js, js/characters.js (buildSituation, setProbability, recordDecision, buildSystemPrompt, buildSituation etc.)
+- `tests/contract.verify.test.js` — PACT contract for worker routes (POST /survival-school/assess, GET /survival-school/eat, GET /survival-school/deathmatch, GET /survival-school/worst, GET /survival-school/mundane)
+- `tests/contracts/ss-browser-ss-worker.pact.json` — PACT file
+- `tests/acceptance/` — Gherkin-driven tests for How Screwed Am I, How Bad Is This?, Mundane Mode, Will You Eat It, Animal Deathmatch
+- `tests/ui/` — Playwright tests at mobile 390×844 / tablet 768×1024 / laptop 1440×900
+- `features/` — Gherkin feature files (one per live feature)
+- `deploy.sh` updated — pipeline gate before wrangler deploy
+
+**Acceptance criteria:**
+```gherkin
+Feature: SS pipeline
+
+  Scenario: Pipeline gates deploy
+    Given the SS pipeline script exists at scripts/pipeline-report.sh
+    When I run bash scripts/pipeline-report.sh
+    Then all layers report GREEN or SKIP
+    And the script exits 0
+
+  Scenario: Unit tests cover domain logic
+    Given tests/domain.test.js exists
+    When I run node --test tests/domain.test.js
+    Then all domain functions are covered at 100% statement and branch
+
+  Scenario: Contract tests verify worker routes
+    Given tests/contract.verify.test.js exists
+    When I run node --test tests/contract.verify.test.js
+    Then all live worker routes are verified against the PACT contract
+```

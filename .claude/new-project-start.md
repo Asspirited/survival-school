@@ -96,7 +96,7 @@ For each character, domain or concept requiring external knowledge:
 2. Claude researches — web search with the lens of the comedy register Rod has set
 3. Rod validates — confirms, corrects, adds what research missed
 
-**The Wayne Riley / Les Hiddins Rule** (formalised):
+**The Wayne Riley / Les Hales Rule** (formalised):
 Claude never assumes biographical accuracy from training memory alone.
 All character facts are verified by research before entering a character file.
 All character *registers* are validated by Rod before the file is considered complete.
@@ -200,6 +200,33 @@ line of code is written. Agree it explicitly. It is hard to change later.
 
 ---
 
+## SECTION 6b — PIPELINE SCAFFOLD (mandatory — committed on first push)
+
+The pipeline scaffold is a project-start deliverable. It ships with the first push to live,
+even when every layer shows SKIP. An empty scaffold is not waste — it is the delivery gate
+from day one. Features without a pipeline gate are features without a contract.
+
+**What to build:**
+
+1. `package.json` — with `test`, `test:contract`, `test:all`, `pipeline` scripts (copy YGW pattern)
+2. `scripts/check-auth.sh` — Cloudflare auth canary (ping worker endpoint, verify 200/401 not 403/5xx)
+3. `scripts/pipeline-report.sh` — 6-layer runner (L0 auth → L1 unit → L2 contract → L3 acceptance → L4 UI → L5 OAT). Exits 1 on any RED. Copy YGW pattern exactly. Layers with no tests yet output `⏭  SKIP — no tests yet`.
+4. `tests/` directory:
+   - `tests/domain.test.js` — unit tests for all pure domain functions (state, build*, format* etc.)
+   - `tests/contract.verify.test.js` — PACT contract verification for worker routes
+   - `tests/contracts/` — PACT JSON files
+   - `tests/acceptance/` — Gherkin-driven acceptance tests (add first scenario at project start)
+   - `tests/ui/` — Playwright tests at mobile 390×844 / tablet 768×1024 / laptop 1440×900
+5. `features/` — Gherkin feature files, one per feature (at least one from day one)
+6. Wire `scripts/pipeline-report.sh` into deploy process as a gate — no green pipeline, no deploy
+
+**Rule:** Every layer must be wired up at project start, even if only reporting SKIP.
+Layers report SKIP until tests are written. They never simply not exist.
+
+**Canonical source:** `/home/rodent/your-green-gardening-wizard/scripts/pipeline-report.sh`
+
+---
+
 ## SECTION 7 — PANEL / CAST REGISTRY (if applicable)
 
 Full roster with for each character:
@@ -265,6 +292,8 @@ New Project Start is complete when ALL of the following exist:
 - [ ] Character/entity raw notes captured verbatim
 - [ ] Research protocol applied to at least the first character or domain
 - [ ] File architecture decided and documented
+- [ ] Pipeline scaffold committed: package.json, scripts/check-auth.sh, scripts/pipeline-report.sh, tests/ structure, features/ directory
+- [ ] Pipeline wired into deploy — no green pipeline, no deploy
 - [ ] Panel/cast registry populated (confirmed + backlog + ruled out)
 - [ ] Founding backlog written with correct prefix
 - [ ] First build defined as a BDD scenario

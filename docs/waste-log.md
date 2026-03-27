@@ -13,6 +13,8 @@
 | WL-SS-002 | Shared state claimed GitHub repo existed — it didn't | Open |
 | WL-SS-003 | wrangler.jsonc at /home/rodent/ routes deploys to wrong worker | Open |
 | WL-SS-004 | iframe height not applied to new panels — tiny box delivery | Closed |
+| WL-SS-005 | No pipeline built for SS — features shipped with zero automated testing | Open |
+| WL-SS-006 | Session startup protocol skipped repeatedly — work started before startup complete | Open |
 
 ---
 
@@ -78,6 +80,36 @@
 **Waste impact:** Silent wrong-worker deploys. Time spent debugging what appeared to be missing deployments. Changes deployed to "rodent" worker not "cusslab-api". High risk of repeat.
 
 **Action:** All cusslab-api deploys must use `CLOUDFLARE_API_TOKEN=<token> npx wrangler deploy --config /home/rodent/cusslab/wrangler.toml`. Memory updated. Could also delete /home/rodent/wrangler.jsonc if it's not needed — check first.
+
+---
+
+## WL-SS-005 — No pipeline built for SS — features shipped with zero automated testing
+
+**Status:** Open
+**Category:** Risk / Defect
+**Severity:** High
+**Raised:** 2026-03-27
+
+**Observation:** Survival School has no pipeline at all. No unit tests, no contract tests, no Gherkin acceptance tests, no UI tests, no NFT/OAT layer. Every feature shipped has been tested manually (if at all) and only after deploy. YGW has a full 5-layer pipeline (auth canary → unit → contract → acceptance → UI → OAT). SS has none of this.
+
+**Waste impact:** Every session risks shipping broken features. Every deploy is a gamble. Bugs only discovered by Rod after deploy. Estimated cost: hours of rework per session, plus trust erosion.
+
+**Action:** Build SS pipeline matching YGW pattern (scripts/pipeline-report.sh, tests/domain.test.js, tests/contract.verify.test.js, tests/acceptance/, tests/ui/). Wire into deploy.sh as a gate. This must be the FIRST item next session before any feature work.
+
+---
+
+## WL-SS-006 — In-session protocol skipped repeatedly — 4 loops not followed
+
+**Status:** Open
+**Category:** Defect / Process
+**Severity:** High
+**Raised:** 2026-03-27
+
+**Observation:** In-session delivery cycle (4 loops: HDD → DDD → BDD → TDD) not followed across multiple sessions. Features built without Gherkin gate, without failing tests, without pipeline green check. Steps skipped silently, not reported. Pipeline never built as part of project setup (new-project-start.md Section 6). This is not just a startup issue — it's an in-session issue every time.
+
+**Waste impact:** Every session requires Rod to re-correct behaviour. ~10 corrections given. Time wasted. Trust eroded. Features shipped untested.
+
+**Action:** Every step in the 4 loops requires explicit confirmation from Rod before proceeding — no autonomous skipping. Claude must ask if a step seems skippable. Self-report any skip immediately when it happens.
 
 ---
 
