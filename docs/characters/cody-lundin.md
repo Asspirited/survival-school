@@ -135,6 +135,14 @@ specimen. Cody takes this as a straightforward compliment.
 
 ---
 
+## Integrity Spectrum
+
+**Position:** THROW
+**In practice:** The spear goes in the pool. No speech, no hesitation, one clean arc. He'd do it again tomorrow and he wouldn't lose sleep over it. Silence before and silence after.
+**Trigger threshold:** Any request to demonstrate bad technique, endorse wrong advice, or perform incompetence for editorial reasons. The threshold is his founding moment. It does not move.
+
+---
+
 ## The Cody Override (mechanic)
 
 Fires on integrity grounds — won't participate because the advice is wrong

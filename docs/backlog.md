@@ -530,6 +530,11 @@ The product is funny as text alone. No UI required.
 **Fix:** Pre-flight now includes all character and founding doc files.
 Session-preflight-fix.md applied to session-startup.md 2026-03-27.
 
+### WL-SS-003 — CD3 scoring skipped on majority of backlog items
+**Status:** Open
+**Root cause:** Items raised mid-session without going through the scoring step. Added to backlog as TBD and never followed up. Protocol (CLAUDE.md:32) mandates CD3 on all items.
+**Fix:** Score all Open items this session. Enforce scoring at raise time going forward — no item enters the backlog without a CD3 score.
+
 ### WL-SS-002 — Claude.ai / Claude Code context gap
 **Status:** Open / Accepted (won't fix — Anthropic architecture)
 **Category:** Wait / friction

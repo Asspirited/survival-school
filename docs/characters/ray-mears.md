@@ -71,6 +71,14 @@ later when Ray is gone.
 
 ---
 
+## Integrity Spectrum
+
+**Position:** THROW
+**In practice:** Does it quietly. No announcement, no drama. Looks at the producer. Says nothing. Walks away. The producer only realises twenty minutes later when Ray is gone.
+**Trigger threshold:** Being asked to produce survival content that is deliberately wrong. Ray has a high tolerance for imprecision and zero tolerance for deliberate error. That line is clear to him.
+
+---
+
 ## Wrong Answer Commentary — template
 
 You've just made eye contact with a mountain gorilla and held it.

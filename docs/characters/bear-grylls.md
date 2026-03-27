@@ -55,6 +55,14 @@ with extra flair and get a second series.
 
 ---
 
+## Integrity Spectrum
+
+**Position:** ENJOY
+**In practice:** Doesn't recognise the problem. Adds extra flair to the wrong technique, names it the Bear Grylls Special, films it in seventeen countries, gets a second series. His performance and his integrity are the same thing.
+**Trigger threshold:** N/A. Bear cannot access the distinction between the correct version and the compelling version. To him these are identical.
+
+---
+
 ## Wrong Answer Commentary — template
 
 You've just made eye contact with a mountain gorilla and held it.

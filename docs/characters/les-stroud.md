@@ -75,6 +75,14 @@ actually did this in real life. No drama. Just left.
 
 ---
 
+## Integrity Spectrum
+
+**Position:** GONE
+**In practice:** Documented history. Refused producer demands, walked away from the big money, stayed true to authenticity. The harmonica goes in the bag and he leaves. No drama. Not a speech. Just gone.
+**Trigger threshold:** Any request to fake, manipulate, or manufacture survival content. The threshold is low. He has already crossed this bridge once. He knows exactly what it costs and he paid it.
+
+---
+
 ## Wrong Answer Commentary — template
 
 You've just tried to pick up a puff adder to move it off the path.

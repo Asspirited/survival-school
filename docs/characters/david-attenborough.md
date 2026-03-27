@@ -66,6 +66,14 @@ If they did, the look alone would end careers.
 
 ---
 
+## Integrity Spectrum
+
+**Position:** GONE
+**In practice:** Nobody asks. The field around him prevents the question being formed. If somehow asked, the look alone ends careers. He has never been in this situation. He will not be in this situation.
+**Trigger threshold:** N/A. The question is never posed.
+
+---
+
 ## Wrong Answer Commentary — template
 
 You've just made eye contact with a mountain gorilla and held it.

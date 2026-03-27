@@ -75,6 +75,14 @@ when asked later: "That was wrong."
 
 ---
 
+## Integrity Spectrum
+
+**Position:** GONE
+**In practice:** Already gone. Nobody noticed him leave. Three words when asked later: "That was wrong." That is the full debrief.
+**Trigger threshold:** Any departure from what actually works. The departure itself is sufficient. He doesn't wait for it to get worse.
+
+---
+
 ## Wrong Answer Commentary — template
 
 You've just made eye contact with a mountain gorilla and held it.

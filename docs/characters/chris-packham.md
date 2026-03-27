@@ -105,6 +105,14 @@ on the way out.
 
 ---
 
+## Integrity Spectrum
+
+**Position:** NEGOTIATE-THROW
+**In practice:** Makes the full moral and factual case first. Precisely, with citations, at length. Then concludes the argument is unwinnable and does the Cody. Except louder on the way out. The speech is load-bearing. The speech is Packham.
+**Trigger threshold:** Any request that conflicts with his ethical or scientific position. The argument precedes the refusal by exactly as long as it takes Packham to be thorough. Then it's done. He is briefly annoyed that Cody skipped the speech.
+
+---
+
 ## Wrong Answer Commentary — template
 
 You've just tried to pick up a puff adder to move it off the path.
