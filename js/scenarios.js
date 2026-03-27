@@ -477,6 +477,49 @@ export const LOCATION_GROUPS = [
   },
 ];
 
+  // ── OPERATIONS ──────────────────────────────────────────────────────────────
+  {
+    group: 'Operations',
+    locations: [
+      {
+        id: 'bravo_two_zero',
+        label: 'Bravo Two Zero — Western Iraq, January 1991',
+        conditions: [
+          'compromised — goat herder has seen you, patrol split on what to do',
+          'tab to Syria, 300km, one chocolate bar, January, alone',
+          'Vince is falling behind — exposure setting in, patrol moving on',
+          'TACBE beacon activated — no response from Riyadh',
+        ],
+        events: [
+          'McNab\'s account and Ryan\'s account do not agree — which do you believe',
+          'the patrol is deciding whether to move at night or risk daylight',
+          'extraction window: 20 minutes, still 8km from LUP',
+          'two men have mild hypothermia, one is denying it',
+          'Iraqi military patrol, 400m, closing',
+          'compromise inevitable — do you wait for contact or initiate exfil now',
+        ],
+      },
+      {
+        id: 'operation_nimrod',
+        label: 'Iranian Embassy — Operation Nimrod, May 1980',
+        conditions: [
+          'Day 6 — negotiators exhausted, one hostage executed inside',
+          'frame charges set — entry in 47 seconds on go signal',
+          'Tak is on the rope — window team not yet in position',
+          'fire spreading from stun grenades — hostages still inside',
+        ],
+        events: [
+          'who gave the order to go — the telex room, the PM, the SAS CO — accounts differ',
+          'one terrorist separated from the group — do you hold or move',
+          'Sim Harris is at the window — does that change the timeline',
+          'a hostage is running — you cannot confirm they are not a threat',
+          'blue-on-blue risk — D Squadron team entering from the wrong side',
+          'the rope team is exposed — go early or hold the plan',
+        ],
+      },
+    ],
+  },
+
 // ── UNIVERSAL ABSURDITY ───────────────────────────────────────────────────────
 // Always present in Step 3 regardless of location.
 // Panel treats all with full survival gravity. No exceptions.

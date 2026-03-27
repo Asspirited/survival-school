@@ -13,16 +13,16 @@
 | TBD | SS-042 — Location chip library: full sub-categorised expansion | Open | DDD |
 | TBD | SS-043 — Cascading input redesign: Location → Event → Context | Open | BDD |
 | TBD | SS-044 — Homepage redesign: tiled category nav (Cusslab pattern), no About tile | Open | BDD |
-| TBD | SS-048 — Mode architecture: CASEVAC / EXFIL / SITREP / INFIL / EYES ON / CHUCK NORRIS | Open | DDD |
-| TBD | SS-049 — Character: Jason Fox (Foxy) — SBS, quiet, PTSD survivor, one line lands clean | Open | DDD |
-| TBD | SS-050 — Character: Billy Billingham — SAS WO1, IRA bait, assessed Brangelina professionally | Open | DDD |
-| TBD | SS-051 — Character: Ollie Ollerton — SBS (on SAS show, says nothing), addiction recovery, refuses to perform cruelty | Open | DDD |
-| TBD | SS-052 — Character: Christian Craighead / Obi-Wan Nairobi — shower, phone call, drove himself, 5 terrorists, banned memoir | Open | DDD |
-| TBD | SS-053 — Character: Coyote Peterson — pain scale assessor, rates everything, carefully replaces the trolley | Open | DDD |
-| TBD | SS-057 — Feature: "The Coyote Index" — standalone Coyote Peterson pain scale feature, top-level nav | Open | BDD |
+| TBD | SS-048 — Mode architecture: CASEVAC / EXFIL / SITREP / INFIL / EYES ON / CHUCK NORRIS | DONE (docs/modes.md 2026-03-27) | DDD |
+| TBD | SS-049 — Character: Jason Fox (Foxy) — SBS, quiet, PTSD survivor, one line lands clean | DONE (in characters.js) | DDD |
+| TBD | SS-050 — Character: Billy Billingham — SAS WO1, IRA bait, assessed Brangelina professionally | DONE (added characters.js 2026-03-27) | DDD |
+| TBD | SS-051 — Character: Ollie Ollerton — SBS (on SAS show, says nothing), addiction recovery, refuses to perform cruelty | DONE (added characters.js 2026-03-27) | DDD |
+| TBD | SS-052 — Character: Christian Craighead / Obi-Wan Nairobi — shower, phone call, drove himself, 5 terrorists, banned memoir | DONE (added characters.js 2026-03-27) | DDD |
+| TBD | SS-053 — Character: Coyote Peterson — pain scale assessor, rates everything, carefully replaces the trolley | DONE (added characters.js 2026-03-27) | DDD |
+| TBD | SS-057 — Feature: "The Coyote Index" — standalone Coyote Peterson pain scale feature, top-level nav | DONE (live 2026-03-27) | BDD |
 | TBD | SS-054 — Feature: "One Man In" — EXFIL/INFIL mode, Craighead framing, solo entry, no chain of command | Open | BDD |
-| TBD | SS-055 — Scenario bank: Bravo Two Zero (goat herder / tab to Syria / leave Vince) | Open | DDD |
-| TBD | SS-056 — Scenario bank: Operation Nimrod (telex room controversy, Tak on the rope) | Open | DDD |
+| TBD | SS-055 — Scenario bank: Bravo Two Zero (goat herder / tab to Syria / leave Vince) | DONE (added scenarios.js 2026-03-27) | DDD |
+| TBD | SS-056 — Scenario bank: Operation Nimrod (telex room controversy, Tak on the rope) | DONE (added scenarios.js 2026-03-27) | DDD |
 | TBD | SS-045 — Nav category: "The Colosseum" → Animal Deathmatch | Open | BDD |
 | TBD | SS-046 — Nav category: "The Panel" → Irwin Memorial (+ future panel features) | Open | BDD |
 | TBD | SS-047 — App footer: logo, stamp, About link | Open | BDD |
