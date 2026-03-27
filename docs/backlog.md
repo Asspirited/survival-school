@@ -10,6 +10,8 @@
 | CD3 | Item | Status | Loop |
 |-----|------|--------|------|
 | 27 | SS-040 — Build full test pipeline (L0–L5, YGW pattern) | IN PROGRESS | TDD |
+| TBD | SS-042 — Location chip library: full sub-categorised expansion | Open | DDD |
+| TBD | SS-043 — Cascading input redesign: Location → Event → Context | Open | BDD |
 | 27 | SS-001 — Complete project brief | DONE | HDD |
 | 27 | SS-003 — Define HDD hypothesis | DONE | HDD |
 | 18 | SS-002 — ADR: tech stack | DONE | DDD |
@@ -780,4 +782,136 @@ Feature: Renamed How Bad Is This
     Given I am on the Survival School home page
     When I look at the navigation
     Then I see "I've Been Bit, Guys" not "How Bad Is This?"
+```
+
+---
+
+### SS-042 — Location chip library: full sub-categorised expansion
+
+**Status:** Open
+**Priority:** High — feeds SS-043 (cascading input redesign)
+**Loop:** DDD
+**Raised:** 2026-03-27
+
+**Purpose:** Build the full location library that powers the cascading input redesign. Rich, diverse, absurd-adjacent. Panel must be stretched. Real answers to unreal questions is the principle.
+
+**Sub-categories and seed examples (expand aggressively):**
+
+**Wilderness**
+- Jungles: Amazon basin, Congo rainforest, Borneo interior, Daintree (Australia)
+- Savannahs: Serengeti, Kruger, Maasai Mara, Okavango Delta
+- Mountains: Andean altiplano, Alpine ridge (exposed), Himalayan base camp approach, Cairngorm plateau in a whiteout
+- Arctic/Antarctic: Antarctic research station (winter-over, The Thing energy), Svalbard, Greenland ice sheet
+- Desert: Sonoran (Arizona), Atacama, Namib, Empty Quarter (Arabia), Sahel transition zone
+- Coastal/Water: North Sea fishing trawler, open ocean (solo sailor), mangrove swamp, coral reef at depth
+
+**Dangerous Jobs**
+- RNLI lifeboat, 3am, force 8
+- Replacing the bulb on a 600m comms tower (YouTube rabbit hole — the whole world has seen this)
+- Working a high-rise steel frame, 40 floors, no harness visible
+- Chernobyl exclusion zone (liquidator scenario, 1986 or current tourist)
+- Deep-sea fishing trawler, North Atlantic, January
+- Antarctic research station mid-winter — nearest human help is 6 months away (The Thing rules apply: no one is who they say they are, fire is your only friend)
+- Underwater welding (saturation diver, 300m, North Sea)
+- Bomb disposal, urban environment, legacy ordnance
+
+**Work / Commuting (Mundane Mode extension)**
+- M25 contraflow, lane 1, broken down
+- London Underground, rush hour, someone eating a full McDonald's
+- Cycling to work, roundabout, white van
+- Hanging from a packed commuter train, 8:12 to Waterloo
+- Fighting in Pret a Manger (queue dispute, scone incident)
+- Open-plan office, 3pm, everyone watching you eat something loud
+- Video call, camera on, cat is doing something inexplicable behind you
+- Self-checkout, unexpected item, assistant unreachable
+
+**Holiday Destinations**
+- All-inclusive resort, pool bar, 11am, the swim-up bar has run out of ice
+- Benidorm strip, 2am, questionable kebab decision pending
+- Safari vehicle, engine won't start, lions nearby
+- Budget airline, no legroom, middle seat, 9 hours
+- Airbnb, rural France, no WiFi, no hot water, owner not responding
+- Bali scooter rental, first time, rainy season, no helmet
+- Marrakech souk, phone died, no map
+
+**Airports / Transport Hubs**
+- Heathrow Terminal 5, bag on wrong belt, gate closing
+- Budget airport, no air conditioning, 4-hour delay, one Boots outlet
+- Train station, last train, platform not announced
+- Bus station, 1am, last bus cancelled, Uber surge 4.2x
+- Coach transfer, driver has taken wrong motorway, passengers realising
+
+**Civil / Institutional Environments**
+- Police station waiting area, unclear why you're there
+- A&E, Saturday night, triage nurse has seen everything
+- Estate agent office, being shown a flat described as "cosy"
+- Supermarket, Saturday afternoon, one till open, self-checkout broken
+- Hardware store, unsolicited advice from a man who has been here since 8am
+- IKEA (any area — the restaurant, the maze, the car park on a Sunday)
+- Post office queue, you have a parcel that requires a signature
+
+**Absurdity Layer (universal — available in all locations)**
+- Military incursion (unspecified nation, organised)
+- Drone swarm (civilian or military — panel debates which is worse)
+- Ghost (confirmed, visible, interactive)
+- Alien contact (first contact, unclear intent)
+- Sentient weather (the storm is making decisions)
+- Spontaneous medieval re-enactment (no one else seems alarmed)
+- The floor is lava (panel takes this literally)
+
+**Implementation note:** This is a data file, not new code paths. Existing chip mechanics handle it. No new Gherkin needed — the cascading display logic (SS-043) is the code change. This item is the content that feeds it.
+
+---
+
+### SS-043 — Cascading input redesign: Location → Event → Context
+
+**Status:** Open
+**Priority:** High
+**Loop:** BDD
+**Raised:** 2026-03-27
+**Depends on:** SS-042 (location library)
+
+**Design:**
+
+Three sequential categories. Each narrows the next.
+
+**Category 1 — Location**
+User picks or freetexts. Sets the survival context. Chips drawn from SS-042 library, sub-categorised. Freetext always available.
+
+**Category 2 — Event**
+What is actually happening. Chips are partly location-derived (Amazon → cobra, jaguar, flash flood) and partly universal absurdity (ghost, drone swarm, military incursion — always present, always treated with full panel sincerity).
+
+**Category 3 — Context**
+Modifiers that shift the panel's assessment:
+- Time of day: dawn / midday / dusk / night
+- Visibility: clear / fog / total darkness
+- Mental state: calm / panicking / mildly concussed / convinced I am fine
+- Kit: nothing / basic first aid / full pack / something inappropriate
+- Company: alone / children / dog / someone useless / someone worse than useless
+
+**Principle:** Real answers to unreal questions. Panel treats ghost, drone swarm, and cobra bite with identical gravity. Ray has a protocol for sentient weather. Cody has drilled for this. Bear has a story. Attenborough has observed it before.
+
+**Applies to:** How Screwed Am I and all future panel features using the same input pattern.
+
+**Acceptance Criteria:**
+```gherkin
+Feature: Cascading location → event → context input
+
+  Scenario: Location selection filters event suggestions
+    Given I am on How Screwed Am I
+    When I select "Amazon basin" as my location
+    Then the event chips include location-relevant options
+    And the universal absurdity options are also present
+
+  Scenario: Freetext available at every category
+    Given I am on How Screwed Am I
+    When I skip all chips
+    Then I can freetext location, event, and context independently
+    And the Assess button is enabled when at least one field has content
+
+  Scenario: Absurdity events receive full panel response
+    Given I select "ghost" as my event
+    When I submit the assessment
+    Then the panel responds with full survival gravity
+    And survival probability is calculated as for any other event
 ```
