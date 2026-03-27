@@ -19,7 +19,7 @@
 | 18 | SS-016 — Domain Knowledge Files | DONE (animal-encounters.md 2026-03-27 — first domain) | DDD |
 | 18 | SS-018 — Remaining character files | DONE (temporal lens, stingray rule, telephone game 2026-03-27) | DDD |
 | 18 | SS-031 — Animal database — first 20 entries | DONE (animals.js + ANIMAL_DB 2026-03-27) | Feature |
-| 18 | SS-033 — Animal Deathmatch data layer | Open | Feature |
+| 18 | SS-033 — Animal Deathmatch data layer | DONE (stat bars + prompt enrichment 2026-03-27) | Feature |
 | 18 | SS-034 — Panel response logic | DONE (triage order in reaction mode 2026-03-27) | Feature |
 | 18 | SS-012 — Irwin Memorial Encounter | Open | BDD |
 | 18 | SS-014 — Attenborough Eulogy | Open | BDD |
