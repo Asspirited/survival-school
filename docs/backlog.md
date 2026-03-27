@@ -12,6 +12,8 @@
 | 27 | SS-040 — Build full test pipeline (L0–L5, YGW pattern) | IN PROGRESS | TDD |
 | TBD | SS-042 — Location chip library: full sub-categorised expansion | Open | DDD |
 | TBD | SS-043 — Cascading input redesign: Location → Event → Context | Open | BDD |
+| TBD | SS-044 — Homepage: tiled clickable icons for location group categories (Cusslab pattern) | Open | BDD |
+| TBD | SS-045 — Homepage nav category: "The Colosseum" containing Animal Deathmatch | Open | BDD |
 | 27 | SS-001 — Complete project brief | DONE | HDD |
 | 27 | SS-003 — Define HDD hypothesis | DONE | HDD |
 | 18 | SS-002 — ADR: tech stack | DONE | DDD |
