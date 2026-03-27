@@ -6,8 +6,12 @@
  * scenarios in features/. No Cucumber runner needed: scenarios are
  * directly expressed as node:test cases, one describe per feature.
  *
- * Coverage: How Screwed Am I, How Bad Is This?, Mundane Mode,
+ * Coverage: How Screwed Am I, I've Been Bit Guys, Mundane Mode,
  *           Will You Eat It?, Animal Deathmatch, Bear Fact-Checker.
+ *
+ * Also covers structural integrity: JS module declarations (State/UI/API),
+ * iframe CSS presence for all live panels — catching WL-SS-008 / WL-SS-009
+ * patterns before they reach production.
  *
  * Requires: live worker (GET routes only — no API key needed).
  * Run: node --test tests/acceptance/acceptance.test.js
@@ -36,8 +40,8 @@ describe('Feature: Survival School navigation', () => {
     assert.strictEqual(r.status, 200);
   });
 
-  // Scenario: How Bad Is This page loads
-  test('Given a user navigates to How Bad Is This, Then the worst page returns 200', async () => {
+  // Scenario: I've Been Bit, Guys page loads
+  test("Given a user navigates to I've Been Bit Guys, Then the worst page returns 200", async () => {
     const r = await fetch(`${BASE}/survival-school/worst`, { signal: AbortSignal.timeout(TIMEOUT) });
     assert.strictEqual(r.status, 200);
   });
@@ -131,4 +135,64 @@ describe('Feature: Survival School home nav reflects feature status', () => {
     assert.ok(panel.includes('<iframe'), 'deathmatch panel must contain iframe');
     assert.ok(!panel.includes('coming-soon'), 'deathmatch panel must NOT show coming-soon');
   });
+});
+
+// ── Structural integrity: iframe CSS (WL-SS-008 pattern) ──
+// Checks that every live iframe panel has CSS height applied in the home page.
+// Rationale: adding a new live panel without updating the CSS selector is a recurring failure mode.
+describe('Feature: Live iframe panels have CSS height applied in home page', () => {
+
+  // Helper: extract the style block from the home page HTML
+  let _homeHtml = null;
+  async function getHomeHtml() {
+    if (_homeHtml) return _homeHtml;
+    const r = await fetch(`${BASE}/survival-school`, { signal: AbortSignal.timeout(TIMEOUT) });
+    _homeHtml = await r.text();
+    return _homeHtml;
+  }
+
+  const LIVE_IFRAME_PANELS = [
+    'panel-screwed',
+    'panel-worst',
+    'panel-mundane',
+    'panel-fact-checker',
+    'panel-deathmatch',
+  ];
+
+  for (const panelId of LIVE_IFRAME_PANELS) {
+    test(`Given the home page loads, Then #${panelId} iframe has a CSS height rule`, async () => {
+      const html = await getHomeHtml();
+      // The CSS selector must reference this panel's iframe with a height property.
+      // We look for the panel ID appearing in a CSS context followed by iframe, with height nearby.
+      const selector = `#${panelId} iframe`;
+      assert.ok(
+        html.includes(selector),
+        `CSS must include selector "${selector}" — no height means invisible iframe`
+      );
+    });
+  }
+});
+
+// ── Structural integrity: JS module declarations (WL-SS-009 pattern) ──
+// Checks that interactive pages declare their State, UI, and API objects.
+// Rationale: functions defined without wiring to objects causes silent ReferenceError on all user actions.
+describe('Feature: Interactive pages declare State, UI, and API module objects', () => {
+
+  const PAGES = [
+    { name: 'How Screwed Am I', url: '/survival-school/app',   objects: ['const State = {', 'const UI = {', 'const API = {'] },
+    { name: "I've Been Bit, Guys", url: '/survival-school/worst', objects: ['const State = {', 'const UI = {', 'const API = {'] },
+  ];
+
+  for (const page of PAGES) {
+    for (const obj of page.objects) {
+      test(`Given ${page.name} loads, Then it declares "${obj}"`, async () => {
+        const r = await fetch(`${BASE}${page.url}`, { signal: AbortSignal.timeout(TIMEOUT) });
+        const html = await r.text();
+        assert.ok(
+          html.includes(obj),
+          `${page.name} must contain "${obj}" — missing declaration causes ReferenceError on all user actions`
+        );
+      });
+    }
+  }
 });

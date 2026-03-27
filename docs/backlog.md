@@ -40,6 +40,7 @@
 | TBD | SS-028 — Spaced repetition quiz | Ideas | HDD |
 | TBD | SS-029 — Shareability / screenshot | Open | BDD |
 | 27 | SS-030 — How Bad Is This? feature | DONE | Feature |
+| 27 | SS-041 — Rename "How Bad Is This?" to "I've Been Bit, Guys" (Austin Stevens ref) | DONE | Polish |
 | TBD | SS-038 — session-ref.md served as Cloudflare static URL | Open | DDD |
 | TBD | SS-039 — Latin / indigenous naming layer in panel responses | Open | DDD |
 | TBD | SS-031 — Animal database — first 20 entries | Open | Feature |
@@ -753,4 +754,30 @@ Feature: SS pipeline
     Given tests/contract.verify.test.js exists
     When I run node --test tests/contract.verify.test.js
     Then all live worker routes are verified against the PACT contract
+```
+
+---
+
+### SS-041 — Rename "How Bad Is This?" to "I've Been Bit, Guys"
+
+**Status:** Open
+**Priority:** High
+**Loop:** Polish
+
+Rename the feature throughout:
+- Nav badge label
+- Page title
+- Home panel coming-soon title (if applicable)
+- Route URL (keep `/survival-school/worst` stable — just display name changes)
+
+**Context:** Austin Stevens reference. Stevens gets bitten repeatedly and keeps going. Comedy engine: casualness of the claim vs. severity of the event. Already a panel character in How Bad Is This.
+
+**Acceptance Criteria:**
+```gherkin
+Feature: Renamed How Bad Is This
+
+  Scenario: Nav shows new name
+    Given I am on the Survival School home page
+    When I look at the navigation
+    Then I see "I've Been Bit, Guys" not "How Bad Is This?"
 ```

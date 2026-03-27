@@ -16,6 +16,9 @@
 | WL-SS-005 | No pipeline built for SS — features shipped with zero automated testing | Open |
 | WL-SS-006 | Session startup protocol skipped repeatedly — work started before startup complete | Open |
 | WL-SS-007 | Deathmatch and Fact-Checker broken — asked 6 sessions, never fixed until 2026-03-27 | Closed |
+| WL-SS-008 | Missing iframe CSS for Fact-Checker and Deathmatch — rendered as zero-height boxes | Closed |
+| WL-SS-009 | Missing State/UI/API object declarations in How Screwed and I've Been Bit — JS ReferenceError on all user actions | Closed |
+| WL-SS-010 | Acceptance tests checked page load and nav badges only — structural integrity and JS wiring invisible to pipeline | Closed |
 
 ---
 
@@ -145,3 +148,54 @@
 **Action:** Fixed 2026-03-27. Deathmatch: panel updated to iframe. Fact-Checker: standalone interactive page built, route added, panel updated to iframe. Both nav badges changed to LIVE. Deployed.
 
 **Root cause:** Session protocol skipped (WL-SS-006 pattern). No pipeline to catch regression. Live features confirmed by acceptance test: 12/12 pass.
+
+---
+
+## WL-SS-008 — Missing iframe CSS for Fact-Checker and Deathmatch
+
+**Status:** Open
+**Category:** Defect
+**Severity:** High
+**Raised:** 2026-03-27
+
+**Observation:** When Fact-Checker and Deathmatch were shipped as live iframes (WL-SS-007 fix), the home page CSS selector for iframe height/width was not updated. Only `#panel-screwed`, `#panel-worst`, `#panel-mundane` had iframe styles. `#panel-fact-checker` and `#panel-deathmatch` had no width, height, or display CSS — iframes rendered as zero-height invisible boxes.
+
+**Waste impact:** Both features shipped visually broken. User could not interact with them at all.
+
+**Action:** Added `#panel-fact-checker` and `#panel-deathmatch` to both the base iframe CSS selector and the mobile `@media (max-width: 480px)` override. Fixed 2026-03-27. Awaiting deploy.
+
+---
+
+## WL-SS-009 — Missing State/UI/API object declarations — JS ReferenceError on all user actions
+
+**Status:** Open
+**Category:** Defect
+**Severity:** Critical
+**Raised:** 2026-03-27
+
+**Observation:** How Screwed Am I and How Bad Is This pages use `State.xxx()`, `UI.xxx()`, `API.xxx()` in their `// === main ===` sections, but `const State`, `const UI`, `const API` were never declared. Every user action (chip click, button press, text input) threw `ReferenceError: State is not defined` or similar. How Screwed Am I also had an orphaned `};` with no matching open — likely a SyntaxError crashing the entire script.
+
+**Waste impact:** How Screwed Am I: 100% non-functional. How Bad Is This: chips appeared to visually work (DOM manipulation before the State call) but state was never updated and the assess button did nothing.
+
+**Action:** Added `const State = { ... }`, `const UI = { ... }`, `const API = { ... }` declarations to both pages, matching the functions defined in each module section. Fixed 2026-03-27. Awaiting deploy.
+
+**Root cause:** Code assembled from inline module sections (characters.js, state.js, ui.js, api.js, main) but the module-to-object wiring was missing. No test existed to catch this — pipeline acceptance tests check nav badges but not feature functionality. WL-SS-005 and WL-SS-010 (testing gap) are the systemic causes.
+
+---
+
+## WL-SS-010 — Acceptance tests blind to structural integrity and JS wiring
+
+**Status:** Open
+**Category:** Risk (potential waste)
+**Severity:** High
+**Raised:** 2026-03-27
+
+**Observation:** The L3 acceptance test suite (tests/acceptance/acceptance.test.js) checked: page returns 200, page contains certain HTML element IDs, nav badge shows LIVE. It did NOT check: (a) that all live iframe panels have CSS height applied, (b) that interactive pages declare their State/UI/API module objects. Both WL-SS-008 and WL-SS-009 were invisible to the pipeline. Features were visually broken (tiny box, no response) while the pipeline showed green.
+
+**Waste impact:** Every deployment could ship silently broken features. Pipeline provides false confidence. Rod discovers bugs manually on his phone at bedtime.
+
+**Action:** Added two new L3 describe blocks to tests/acceptance/acceptance.test.js:
+1. `Feature: Live iframe panels have CSS height applied in home page` — iterates LIVE_IFRAME_PANELS and asserts the CSS selector `#panel-xxx iframe` exists in the home HTML. New live panels must be added to this array before going live.
+2. `Feature: Interactive pages declare State, UI, and API module objects` — checks each interactive page HTML for `const State = {`, `const UI = {`, `const API = {`. Catches missing module wiring immediately.
+
+**Next gap to close:** L4 Playwright tests that actually click a chip and verify the `sel` class is added, submit a form and verify loading state appears. These are the only tests that catch JavaScript execution failures in the browser context. Tracked as SS-040 (pipeline build, in progress).
