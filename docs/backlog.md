@@ -10,14 +10,14 @@
 | CD3 | Item | Status | Loop |
 |-----|------|--------|------|
 | 27 | SS-040 — Build full test pipeline (L0–L5, YGW pattern) | IN PROGRESS | TDD |
-| 27 | SS-015 — Survival Skills Taxonomy | Open | DDD |
+| 27 | SS-015 — Survival Skills Taxonomy | DONE (docs/domains/index.md 2026-03-27) | DDD |
 | 27 | SS-029 — Shareability / screenshot | Open | BDD |
-| 18 | SS-021 — Panel integrity spectrum | DONE (integrity attr in characters.js 2026-03-27) | DDD |
-| 18 | SS-023 — Logo integration into app | Open | BDD |
+| 18 | SS-021 — Panel integrity spectrum | DONE (design doc + all 13 character files 2026-03-27) | DDD |
+| 18 | SS-023 — Logo integration into app | DONE (bowie knife SVG live 2026-03-27) | BDD |
 | 18 | SS-009 — Mode A: Panel Q&A | Open | BDD |
 | 18 | SS-006 — Temporal Lens mechanic | Open | DDD |
-| 18 | SS-016 — Domain Knowledge Files | Open | DDD |
-| 18 | SS-018 — Remaining character files | Open | DDD |
+| 18 | SS-016 — Domain Knowledge Files | DONE (animal-encounters.md 2026-03-27 — first domain) | DDD |
+| 18 | SS-018 — Remaining character files | DONE (temporal lens, stingray rule, telephone game 2026-03-27) | DDD |
 | 18 | SS-031 — Animal database — first 20 entries | Open | Feature |
 | 18 | SS-033 — Animal Deathmatch data layer | Open | Feature |
 | 18 | SS-034 — Panel response logic | Open | Feature |
@@ -385,49 +385,42 @@ formal attribute in each character file.
 
 ### SS-015 — Survival Skills Taxonomy (12 domains)
 
-**Status:** Open
+**Status:** Done
 **Priority:** High — load-bearing for Deathmatch and Q&A
 **Loop:** DDD
+**Closed:** 2026-03-27
 
-Twelve domains:
-1. Shelter, 2. Fire, 3. Water, 4. Plant Knowledge, 5. Hunting & Trapping,
-6. Animal Encounters, 7. Navigation, 8. Terrain & Weather,
-9. Tool-making & Kit, 10. Psychology, 11. Endurance, 12. First Aid
-
-Panel skill ratings per domain already drafted in character files.
-Needs formalising as domain/index.json and per-domain .md knowledge files.
+All 12 domains formalised in `docs/domains/index.md`. Each domain has:
+panel authority rankings, numeric ratings per character, generation notes,
+full 13-character ratings matrix, authority summary table, and panel role profiles.
 
 ---
 
 ### SS-016 — Domain Knowledge Files
 
-**Status:** Open
+**Status:** Done (v1 — Animal Encounters)
 **Priority:** High — start with Animal Encounters
 **Loop:** DDD
+**Closed:** 2026-03-27 (first domain)
 
-One .md file per domain. Canonical knowledge base — what the app queries
-when a question comes in. Not the internet. Not the model's training.
-This file.
-
-Start with Animal Encounters — every character has strong opinions,
-most immediately testable, Stevens and O'Shea earn their place here.
+`docs/domains/animal-encounters.md` — 300 lines, v1.
+Covers threat recognition, species-specific cues, de-escalation, when to run/fight,
+post-encounter management. Remaining 11 domains to follow in subsequent sessions.
 
 ---
 
 ### SS-018 — Remaining character files
 
-**Status:** Open
+**Status:** Done
 **Priority:** High — needed before full panel Q&A
 **Loop:** DDD
+**Closed:** 2026-03-27
 
-Built this session: Cody, Bear, Ray, Hales, Backshall, Irwin,
-Attenborough, Packham, Stevens, O'Shea, Stroud, Darwin.
-
-Still needed:
-- Darwin temporal lens emotional states formally documented
-- Backshall wrong-name telephone game variants per character
-- Irwin Stingray Rule formally documented in all relevant files
-- Panel integrity spectrum attribute added to all files
+All 13 character files complete. Additions this session:
+- Darwin: Temporal Lens emotional states (wistful/defensive/open/regretful) formally documented
+- Backshall: Telephone Game mechanic variants per panel member documented
+- Irwin: Stingray Rule documented in irwin.md, attenborough.md, founding-docs-raw.md, and relevant mode/backlog files
+- All 13 files: Integrity Spectrum attribute added (position + in-practice + trigger threshold)
 
 ---
 
