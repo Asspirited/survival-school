@@ -199,6 +199,64 @@ describe('buildSystemPrompt — SS-062 triage order across all panel modes', () 
   });
 });
 
+// ── SS-059 — Social Dynamics Engine ─────────────────────────────────────────
+// Fails until SOCIAL DYNAMICS ENGINE block + panel_tension schema added to all modes,
+// and characters have documented incidents.
+
+describe('CHARACTERS — SS-059 documented incidents', () => {
+  test('characters with documented incidents have incidents array', () => {
+    // These characters must have incidents — the engine draws on them
+    const mustHaveIncidents = ['bear', 'cody', 'stevens', 'oshea', 'stroud'];
+    for (const id of mustHaveIncidents) {
+      const char = CHARACTERS[id];
+      assert.ok(char, `CHARACTERS must include '${id}'`);
+      assert.ok(Array.isArray(char.incidents),
+        `CHARACTERS['${id}'] must have an incidents array (SS-059)`);
+      assert.ok(char.incidents.length > 0,
+        `CHARACTERS['${id}'].incidents must not be empty`);
+    }
+  });
+});
+
+describe('buildSystemPrompt — SS-059 social dynamics engine in all panel modes', () => {
+
+  for (const mode of ['assessment', 'reaction', 'mundane', 'qa']) {
+    test(`mode '${mode}' contains SOCIAL DYNAMICS ENGINE instruction`, () => {
+      const prompt = buildSystemPrompt(mode);
+      assert.ok(
+        prompt.includes('SOCIAL DYNAMICS ENGINE') || prompt.includes('panel_tension'),
+        `mode '${mode}' must contain SOCIAL DYNAMICS ENGINE instruction (SS-059)`
+      );
+    });
+
+    test(`mode '${mode}' OUTPUT schema includes panel_tension field`, () => {
+      const prompt = buildSystemPrompt(mode);
+      assert.ok(
+        prompt.includes('panel_tension'),
+        `mode '${mode}' OUTPUT schema must include panel_tension field (SS-059)`
+      );
+    });
+  }
+
+  test("panel_tension schema defines all required types", () => {
+    const prompt = buildSystemPrompt('assessment');
+    const types = ['wound_reference', 'lie', 'callout', 'wolf_pack', 'none'];
+    for (const t of types) {
+      assert.ok(prompt.includes(t),
+        `SOCIAL DYNAMICS ENGINE must define panel_tension type '${t}'`);
+    }
+  });
+
+  test("panel_tension schema includes subject and by fields", () => {
+    const prompt = buildSystemPrompt('assessment');
+    assert.ok(prompt.includes('subject'), "panel_tension schema must include 'subject' field");
+    assert.ok(
+      prompt.includes('"by"') || prompt.includes("'by'") || prompt.includes(': ["'),
+      "panel_tension schema must include 'by' field"
+    );
+  });
+});
+
 // ── buildSystemPrompt('qa') — Panel Q&A mode ─────────────────────────────────
 
 describe("buildSystemPrompt('qa') — Panel Q&A mode", () => {
