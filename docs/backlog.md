@@ -58,6 +58,7 @@
 | 18 | SS-084 — Predicament chip: "why did Bear end up forcing the teacher to drink his urine out of a dead snake" | Open | BDD |
 | 27 | SS-085 — Per-character roast + inversion chips: real embarrassing moments + out-of-character scenarios they must defend (The Doors) | Open | DDD |
 | 12 | SS-086 — Review SS-085 material as stimulus for chips on other features (How Screwed, I've Had Worse, etc.) | Open | DDD |
+| 27 | SS-088 — Panel emotional state model: port LieEngine + composure from Cusslab, characters shift register mid-session | Open | DDD |
 | 27 | SS-087 — Cusslab crossover: non-survivalist protagonists through The Doors | Open | DDD |
 | 18 | SS-059 — Character interaction dynamics: wounds, lies, calling each other out | Open | DDD |
 | 8 | SS-005 — Telephone Game mechanic | Open | DDD |
@@ -2138,3 +2139,31 @@ These are not sarcastic. Gordon would agree with all of them. There might be sna
 **CD3:** C=3 D=3 D=3 → **CD3=27**
 **Status:** OPEN — raised 2026-03-28.
 
+
+---
+
+### SS-088 — Panel emotional state model
+
+**Status:** Open
+**Loop:** DDD
+**Epic:** Panel Interaction Model
+
+**What it is:** Port the Cusslab `LieEngine` and composure/temperament primitives into the SS panel system, so characters shift register mid-session based on what is happening in the room. Non-linear speaking order driven by emotional state. Characters cope — or don't — in character.
+
+**The angle:** Gordon remains completely unaffected by everything. O'Shea doubles down on credentials the worse it gets. Bear gets defensive when called out. Ray gets quieter. Fox gets more tactical. Stevens gets more mystical. The register shift IS the comedy — not the content but the character under pressure.
+
+**Cusslab primitives to port:**
+- `src/logic/lie-engine.js` — lie profiles, threat levels, wound activation (browser sessionStorage → worker state)
+- `golf-service/temperament-service.js` — composure delta model (golf-specific now, needs generalising)
+- `src/logic/ff-engine.js` — game state primitives (history, turnCount) — already panel-agnostic
+
+**What needs building:**
+- Per-character emotional profile (baseline composure, wound threshold, lie ceiling, tell phrase)
+- Composure state tracked across turns in session
+- Speaking order determined by composure ranking (lowest composure speaks first — or last, Three Amigos)
+- System prompt injection per character adjusted by current composure tier
+
+**Dependency:** SS-065 (pool) must ship first — composure state is per-character in the drawn pool.
+
+**CD3:** C=3 D=3 D=3 → **CD3=27**
+**Status:** OPEN — raised 2026-03-28.
