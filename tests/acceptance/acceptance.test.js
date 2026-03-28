@@ -474,3 +474,44 @@ describe('Feature: In My Defence panel response includes panel_tension (SS-093)'
     assert.ok(typeof data.panel_tension === 'object' && data.panel_tension !== null, 'panel_tension must be an object');
   });
 });
+
+// ── Feature: Composure Engine (SS-088) ──
+describe('Feature: Panel composure engine — How Screwed Am I (SS-088)', () => {
+  const POST_TIMEOUT = 25000;
+  const HSA_SYSTEM = `You are the Survival School panel. Respond ONLY with valid JSON: {"survival_probability":<integer 0-100>,"attenborough_opening":"<string>","panel":[{"charId":"<id>","text":"<string>"}],"attenborough_verdict":"<string>","next_actions":["<string>"],"is_terminal":false,"panel_tension":{"type":"callout","subject":"ray","by":["fox"],"note":"fox calls out ray"}}. No markdown. JSON only.`;
+
+  // Scenario: Given a first-round submission, Then the response includes an initialised composureState
+  test('Given a first-round submission, When the worker responds to POST /survival-school/assess, Then the response contains a composureState object with numeric values', async () => {
+    const response = await fetch(`${BASE}/survival-school/assess`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ system: HSA_SYSTEM, situation: 'Location: Dartmoor\nSituation: lost at dusk' }),
+      signal: AbortSignal.timeout(POST_TIMEOUT),
+    });
+    assert.strictEqual(response.status, 200);
+    const data = await response.json();
+    assert.ok(typeof data.composureState === 'object' && data.composureState !== null, 'response must contain composureState object');
+    for (const charId of ['ray', 'fox', 'bear', 'hales', 'cody', 'stroud']) {
+      assert.ok(typeof data.composureState[charId] === 'number', `composureState.${charId} must be a number`);
+    }
+  });
+
+  // Scenario: Given a second-round submission with composureState, Then the response includes an updated composureState
+  test('Given a second-round submission with composureState, When the worker responds, Then it returns an updated composureState', async () => {
+    const composureState = { ray: 8, fox: 9, bear: 7, hales: 8, cody: 6, stroud: 7, stevens: 9, cox: 5, faldo: 6, jim: 3, jeremy: 8 };
+    const response = await fetch(`${BASE}/survival-school/assess`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        system: HSA_SYSTEM,
+        situation: 'Location: Dartmoor\nSituation: still lost',
+        composureState,
+        panelCharIds: ['ray', 'fox', 'bear', 'hales', 'cody', 'stroud'],
+      }),
+      signal: AbortSignal.timeout(POST_TIMEOUT),
+    });
+    assert.strictEqual(response.status, 200);
+    const data = await response.json();
+    assert.ok(typeof data.composureState === 'object' && data.composureState !== null, 'response must contain updated composureState');
+  });
+});

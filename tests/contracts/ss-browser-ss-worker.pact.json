@@ -17,7 +17,7 @@
         "status": 200,
         "headers": { "Content-Type": "application/json" },
         "schema": {
-          "required": ["survival_probability", "attenborough_opening", "panel", "attenborough_verdict", "next_actions"],
+          "required": ["survival_probability", "attenborough_opening", "panel", "attenborough_verdict", "next_actions", "composureState"],
           "panel_required_fields": ["charId", "text"],
           "probability_range": [0, 100]
         }
