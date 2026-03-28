@@ -1791,25 +1791,33 @@ Feature: Panel triage order across all SS features
 
 **What it is:** When the user enters a room, they receive a send-off from Jim Morrison AND one or two banal good-luck messages from other sources. The comedy is the contrast: Morrison's cosmic-poetic prophecy alongside "You got this!", "Go Bear!", "Give 'em hell kid" — completely out of register, clumsy, cheerful, utterly useless as preparation for what's behind the door.
 
-**Sources for send-off messages:**
-- The user themselves (enthusiastic, clumsy)
-- Other panel members (Bear: "This is nothing. I once— actually. Good luck.")
-- Generic motivational banality
-- A made-up character (Corridor Attendant, vending machine)
+**Design principle (Three Amigos resolved 2026-03-28):**
+The send-off SOURCE reveals the character. Not generic well-wishes — protagonist-specific voices from people who would plausibly be in that corridor. The comedy is the gap between Morrison's cosmic register and whoever is standing behind the protagonist with a tin of beer.
 
-**Rod's examples:** "Good luck Bear", "you'll be fine......right?", "you got this", "Whoooop, go Bear", "Give em hell kid"
+**Per-protagonist send-off sources (locked):**
+
+| Protagonist | Send-off source | Notes |
+|---|---|---|
+| Gordon | Doug | Wheelchair. VB. Calls him Bruce first. Still waving. |
+| Bear | Baying crowd of fans + TV producer | "Rolling... and action, Bear!" Bear waves back. Bear always waves back. |
+| Ray | One man who did a 2009 weekend bushcraft course | Quiet. Has been wanting to say thank you ever since. That's enough. |
+| Fox | Nobody. Jim nods once. | The corridor is empty. This is correct. |
+| Hales | Group of Australian soldiers from 1985 | They never left the corridor. "Beauty, Les." No further explanation. |
+| Cody | Barefoot student offering to come in too | Also barefoot. Also inadvisable. Cody doesn't discourage him. |
+| Stroud | His own camera on a tripod | He set it up before he went in. Nobody else is there. The camera is rolling. |
 
 **Gordon-specific send-offs (canonical, Rod 2026-03-28):**
 - "What a guy."
 - "You got this one Gordon!"
 - "hope there's no fucking snakes in there Gordo!"
+- "don't put your fecking hand in the bag this time Bruce, sorry Gordo, you fucking twat" — Doug, self-correcting
 - Doug, from the corridor, waving, tin of VB: "shout if you need me to come in"
 
-**Design note:** The gap between Morrison and the send-offs IS the joke. Morrison must be played straight. The send-offs must be played straight too — nobody is winking. Gordon's send-offs establish the pattern: character-specific messages are funnier than generic ones. The protagonist's name in the send-off is essential — it personalises the clumsy affection.
+**Entrance design (Gordon, canonical):** Jim pushes the wheelchair. This is the only entrance where Jim has to push. Nobody mentions it. The door closes. Doug is still waving.
 
-**Gordon's entrance design note (canonical):** Jim pushes Gordon's wheelchair through the door. Doug assists from behind. This is the only entrance where Jim has to push. Nobody mentions it. The door closes. Doug is still waving.
+**Rod's general examples:** "Good luck Bear", "you'll be fine......right?", "you got this", "Whoooop, go Bear", "Give em hell kid"
 
-**Outstanding Three Amigos:** Do send-offs appear before entering (on door click confirmation) or after (on the room page)? One send-off or two? Static list or LLM-generated (protagonist-aware)? Should Jim's line be protagonist-aware too, or always cosmic/generic?
+**Outstanding Three Amigos:** Send-offs before entering (door click) or after (room page)? Static per-protagonist list or LLM-generated protagonist-aware? Jim's line: cosmic/generic or protagonist-aware too?
 
 **CD3:** C=3 D=3 D=2 → **CD3=18**
 **Status:** OPEN — raised 2026-03-28.
