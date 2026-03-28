@@ -130,6 +130,36 @@ Feature: Bear Fact-Checker
     And the attenborough_verdict is a non-empty string
 ```
 
+**Scenario Outline rule — apply at Gherkin gate, before approval:**
+
+After writing scenarios, ask: *"Does any scenario repeat the same logic with different inputs?"*
+If yes → convert to Scenario Outline with an Examples table. This is not optional.
+
+Parametric variations written as separate scenarios are missed coverage — the table makes
+the full input space explicit and the gap obvious.
+
+```gherkin
+  Scenario Outline: Disposition shifts under sustained panel pressure
+    Given dispositionState has <char>: <from>
+    And panel_tension type is <tension>
+    When the worker computes disposition shifts
+    Then dispositionState has <char>: <to>
+
+    Examples:
+      | char  | from             | tension   | to                  |
+      | cox   | EXCITABLE_NOVICE | callout   | CONFIDENT_IGNORAMUS |
+      | faldo | CONTEMPTUOUS_EXPERT | callout | RELUCTANT_CONSCRIPT |
+```
+
+Use Scenario Outline when:
+- Same When/Then logic runs across multiple characters, modes, or input states
+- A state machine has defined transitions to test (dispositions, composure tiers, cascade steps)
+- A validation rule applies to a list of values (valid charIds, valid disposition names)
+
+Do NOT use Scenario Outline when:
+- Scenarios have meaningfully different Given context (different setup, not just different data)
+- The table would have only one row
+
 ---
 
 ### Ward Cunningham — Technical Debt

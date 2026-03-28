@@ -68,6 +68,12 @@ Phrases: "MVP done", "ready to move on", "expanding to"
 Phrases: "let's build", "start on", "implement"
 → Confirm Gherkin acceptance criteria exist. Confirm pipeline is green. Then build.
 
+**At Gherkin gate — Scenario Outline check (mandatory before approval):**
+After writing scenarios, ask: "Does any scenario repeat the same logic with different inputs?"
+If yes → convert to Scenario Outline with Examples table before presenting for approval.
+State machine transitions, per-character rules, and validation ranges always warrant an Outline.
+Full guidance: docs/testing-standards.md → Scenario Outline rule.
+
 ### Trigger: Session running long
 Phrases: "we're nearly out of time", "quick before we finish"
 → Flag: run session-closedown.md sequence before stopping. Don't lose decisions.

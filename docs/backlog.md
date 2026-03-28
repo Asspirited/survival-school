@@ -67,6 +67,7 @@
 | 18 | SS-095 — New character: Jeremy Wade — Freshwater Biologist, River Monsters, protagonist + panel rotation, notebook/translator/tuning out/Cowabunga mechanics | DONE 2026-03-28 | BDD |
 | 12 | SS-096 — Wade predicament chips: River Monsters scenarios, freshwater predator experiences, Congo/Mekong incidents, candiru, witchcraft accusation | Open | BDD |
 | 18 | SS-097 — New character: Eric Bristow — darts legend, survival commentary + darts panel crossover (Cusslab) | Open | DDD |
+| 27 | SS-098 — Fish Disposition Engine: arrival mode for fish-out-of-water characters (EXCITABLE_NOVICE, CORRECTOR, CHECKED_OUT, CONTEMPTUOUS, CONVERT) — dependency of SS-087, SS-090, SS-091 | Open | DDD |
 | 18 | SS-090 — Fish-out-of-water pair: Cox + Faldo both in panel — vehement mutual agreement on something both are completely wrong about, experts looking on in horror | Open | BDD |
 | 18 | SS-091 — Fish-out-of-water pair: Cox + Faldo argue with each other when neither knows anything — escalating confident wrongness, no expert present to correct them | Open | BDD |
 | 18 | SS-059 — Character interaction dynamics: wounds, lies, calling each other out | DONE (SOCIAL DYNAMICS ENGINE live, panel_tension in all modes, ADR-002 2026-03-28) | DDD |
@@ -2363,4 +2364,54 @@ anchors both products. Character file: docs/characters/eric-bristow.md to be wri
 **Rod's memory:** [CAPTURE ROD'S MEMORY — not yet recorded verbatim]
 
 **CD3:** C=3 D=2 D=3 → **CD3=18**
+**Status:** OPEN — raised 2026-03-28.
+
+---
+
+### SS-098 — Fish Disposition Engine
+
+**Status:** Open
+**Loop:** DDD
+**Epic:** Fish-out-of-water
+**Dependency of:** SS-087, SS-090, SS-091
+
+**What it is:** A shared primitive that assigns an **arrival disposition** to any fish-out-of-water character when they are drawn into the panel. The disposition defines their relationship to being in the room — independent of their expertise domain (Cox is always physics, Faldo is always golf). Disposition varies per session, injected into the system prompt alongside composure tier, held client-side in the same state blob.
+
+**The five dispositions:**
+
+| ID | Name | Behaviour |
+|----|------|-----------|
+| `EXCITABLE_NOVICE` | Thrilled to be here | Asks questions. Gets things slightly wrong with full commitment. Ray is patient. Fox is not. |
+| `CONFIDENT_IGNORAMUS` | Knows nothing, knows it all | When corrected by an expert, absorbs it and re-emits it as their own conclusion one beat too late. "Yes — the, ah, the friction of the — yes. That's what I —" Panel sees it. Nobody says anything. Next thing they say is also wrong. |
+| `RELUCTANT_CONSCRIPT` | Unhappy to be here | Makes this known. Repeatedly. Has other things to do. Panel treats reluctance as atmospheric data, not actionable content. "Whether or not you wish to be here, the situation you are in will very likely result in certain death." The reluctance is noted. It will not help them. |
+| `CONTEMPTUOUS_EXPERT` | Wrong domain, total confidence | Applies their actual expertise with conviction. "I've navigated Augusta in a playoff. This is not dissimilar." It is completely dissimilar. Bear may engage sincerely — he sees the credential. This makes it worse. |
+| `CONVERT` | Became a believer — then became an expert | Phase 1: started skeptical, now fully in. Enthusiastic. Absorbing. Phase 2: takes domain knowledge + new "survival understanding," combines into confident false conclusions delivered as expert synthesis. The experts — who have been ignoring the fish until now — have to intervene. Fish being wrong and ignored is one thing. Fish being wrong, confident, and requiring active correction mid-crisis is structurally different and funnier. |
+| `TOTAL_DENIAL` | Cheerfully refuses to see any danger | "I think this is fine." It is not fine. Panel knows. Protagonist does not. Panel's death warnings slide off. "...will very likely result in certain death." "No, I think it'll be fine." Pause. Panel continues. |
+
+**Mechanics:**
+
+- **Draw at panel-assembly time** — disposition rolled alongside the character draw. Worker receives it in the request body alongside composureState.
+- **System prompt injection** — buildFishDispositionInjection(dispositionMap, panelCharIds) appends per-character disposition instructions to system prompt. Same pattern as buildComposureInjection.
+- **Composure interaction** — disposition can shift under panel pressure. EXCITABLE_NOVICE under sustained pressure → CORRECTOR (embarrassment triggers save-face reflex). CONTEMPTUOUS under pressure → CHECKED_OUT (retreat to disengagement). Shifts are one-way per session.
+- **Two fish in the room** — when both Cox and Faldo are drawn, dispositions are independent. EXCITABLE_NOVICE Cox + CONTEMPTUOUS Faldo is a different room from CORRECTOR Cox + CORRECTOR Faldo (both claiming each other's correct answers simultaneously).
+
+**Per-character canon base dispositions (default + user override):**
+- Cox: EXCITABLE_NOVICE (default) — blissfully unaware, genuinely thinks he's helping
+- Faldo: CONTEMPTUOUS_EXPERT (default) — wrong domain, total conviction, golf methodology
+- Jim Carrey: EXCITABLE_NOVICE (fixed — cannot be anything else)
+- Jeremy Wade: RELUCTANT_CONSCRIPT shading to TOTAL_DENIAL (fish is the foreground; this is not fish)
+- Hawking (SS-087): CONFIDENT_IGNORAMUS or CONVERT — his actual knowledge would convert him fast
+- Bruce Lee (SS-087): CONTEMPTUOUS_EXPERT — wrong domain, has a plan, plan doesn't need the panel
+- Politician (SS-087): RELUCTANT_CONSCRIPT (default) / CONFIDENT_IGNORAMUS (when on form)
+
+**Implementation:**
+1. `FISH_DISPOSITIONS` constant — five entries, name + system prompt text per disposition
+2. `drawDisposition(charId)` — weighted random draw using per-character canon weights
+3. `buildFishDispositionInjection(dispositionState, panelCharIds)` — builds system prompt appendix for fish chars present
+4. Client: `dispositionState` blob alongside `composureState`, same lifecycle
+5. Worker: accept `dispositionState` in request body, inject, return updated `dispositionState`
+
+**Removes:** The "never both in the same panel" restriction on Cox+Faldo. Both can appear through normal rotation. The disposition engine handles the dynamic when they land together.
+
+**CD3:** C=3 D=3 D=3 → **CD3=27**
 **Status:** OPEN — raised 2026-03-28.
