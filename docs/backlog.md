@@ -33,6 +33,8 @@
 | 8 | SS-043 — Cascading input redesign: Location → Event → Context | DONE (cascade live 2026-03-27) | BDD |
 | 8 | SS-042 — Location chip library: full sub-categorised expansion | DONE (scenarios.js 2026-03-27) | DDD |
 | 8 | SS-032 — Archetypal scenarios | DONE (10 chips live, generic categories removed 2026-03-27) | Feature |
+| 18 | SS-063 — Panel archetypes: design who goes together and why | Open | DDD |
+| 18 | SS-064 — Cross-product fish-out-of-water characters: Cox, Faldo, others | Open | DDD |
 | 18 | SS-058 — Per-character colored card backgrounds (Cusslab pattern) | Open | BDD |
 | 18 | SS-059 — Character interaction dynamics: wounds, lies, calling each other out | Open | DDD |
 | 8 | SS-005 — Telephone Game mechanic | Open | DDD |
@@ -1446,3 +1448,82 @@ Feature: Panel triage order across all SS features
     Given a new panel feature is added to SS
     Then buildSystemPrompt() for that feature applies IMMEDIATE → COMEDY → CLOSER ordering
 ```
+
+---
+
+### SS-063 — Panel archetypes: design who goes together and why
+
+**Status:** Open
+**Priority:** High — unblocks panel pool, Darwin, cross-product characters, The Rooms casting
+**CD3:** 18 (Confidence 3 × Desirability 3 × Deliverability 2)
+**Loop:** DDD
+**Raised:** 2026-03-28
+**Epic:** Panel Design
+
+**The task:** Design 4–6 named panel archetypes. Each archetype is a curated group of characters with a rationale — why these people in a room together produce the best comedy. The archetype name and its casting logic become the panel selection system.
+
+**Design principles:**
+- Chemistry over completeness — a panel of 4 well-chosen characters beats 7 randomly assigned ones
+- Archetypes are about contrast, not consensus — the tension between character types is the engine
+- Each archetype has a flavour: some are heavier on expertise, some on comedy, some on disagreement
+- Fish-out-of-water characters (see SS-064) slot into specific archetypes, not all of them
+
+**Candidate archetype directions (to be designed, not decided):**
+- The Core Four: Ray, Fox, Bear, Attenborough — expertise anchor, tactical, chaos, close
+- The Contradictors: characters chosen for maximum factual disagreement (Ray correcting Bear, Cody noting the obvious thing nobody else saw)
+- The Authority Room: Billy, Fox, Stroud — minimal words, maximum judgment, nobody is enthusiastic
+- The Enthusiasts: Bear, Cody, Hales, Cox (fish-out-of-water guest) — high energy, high wrongness
+- The Darwin Round: Darwin + any two survivors — deceased expert meets living field operators. What does he make of modern kit?
+- The Pub Panel: characters who would actually end up in a pub after — looser, more comedy-forward
+
+**Output:** A design doc (`docs/panel-archetypes.md`) with:
+- 4–6 named archetypes
+- Casting per archetype (character IDs)
+- One-line rationale per archetype
+- Which archetype each new character (Darwin, Cox, Faldo etc.) naturally belongs in
+- Which archetypes support fish-out-of-water casting
+
+**Three Amigos needed before writing the doc:** How many archetypes? Can the user choose, or is it panel-of-the-day? Does The Rooms (BL-166) share archetypes with SS or maintain its own casting?
+
+---
+
+### SS-064 — Cross-product fish-out-of-water characters: Cox, Faldo, and others
+
+**Status:** Open
+**Priority:** High — new comedy register, significant product differentiation
+**CD3:** 18 (Confidence 3 × Desirability 3 × Deliverability 2)
+**Loop:** DDD
+**Raised:** 2026-03-28
+**Epic:** Panel Design
+
+**The idea:** Bring characters from Cusslab (and beyond) into SS panels as fish-out-of-water guests. These characters are brilliant in their own domain, completely wrong in the survival context, and entirely sincere about it. The comedy is structural — their expertise is real, their application of it is catastrophically off.
+
+**Character archetypes available (four modes, not one):**
+
+1. **Enthusiastic amateur** — genuinely excited, gets it mostly wrong, no self-awareness
+   - Prof Brian Cox: explains the thermodynamics of fire with full accuracy while you freeze to death
+   - Coyote Peterson (already in SS, but this mode suits him): clinically excited about the danger
+
+2. **Know-it-all, also wrong** — confident, dismissive of nuance, wrong in a specific way
+   - Sir Nick Faldo: the survival equivalent of hitting out of the rough — he has a method, it's wrong
+   - Candidates from Cusslab Boardroom: Harold, Roy — standards applied to wrong domain
+
+3. **Dismissive** — doesn't think this constitutes a real emergency, compares unfavourably to their world
+   - Keane: this is nothing compared to selection, stop complaining
+   - Candidates: any character whose world has genuine extremity that makes survival seem trivial
+
+4. **Lateral** — offers something true and specific but from a completely different angle
+   - Attenborough already does this (he's the closer)
+   - Darwin: genuine expertise, different century, wrong tools
+   - Cox: the physics is correct, the application is irrelevant
+
+**Characters confirmed by Rod:** Prof Brian Cox, Sir Nick Faldo. Others TBD at Three Amigos.
+
+**What each character needs:**
+- Character file (`docs/characters/[name].md`) with voice, wounds, and fish-out-of-water mode
+- Which archetype mode they inhabit (enthusiastic/know-it-all/dismissive/lateral)
+- death_flash eligibility (deceased only — Cox and Faldo alive, Darwin deceased)
+- Which panel archetypes (SS-063) they slot into
+- Whether they cross-exist in Cusslab panels too (Cox and Faldo already do)
+
+**Three Amigos needed:** How many fish-out-of-water per panel? One guest maximum, or can you have two? Does the guest know they're out of their depth, or are they entirely confident?
