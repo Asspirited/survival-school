@@ -58,6 +58,7 @@
 | 18 | SS-084 — Predicament chip: "why did Bear end up forcing the teacher to drink his urine out of a dead snake" | Open | BDD |
 | 27 | SS-085 — Per-character roast + inversion chips: real embarrassing moments + out-of-character scenarios they must defend (The Doors) | Open | DDD |
 | 12 | SS-086 — Review SS-085 material as stimulus for chips on other features (How Screwed, I've Had Worse, etc.) | Open | DDD |
+| 27 | SS-087 — Cusslab crossover: non-survivalist protagonists through The Doors | Open | DDD |
 | 18 | SS-059 — Character interaction dynamics: wounds, lies, calling each other out | Open | DDD |
 | 8 | SS-005 — Telephone Game mechanic | Open | DDD |
 | 8 | SS-039 — Latin / indigenous naming layer in panel responses | Open | DDD |
@@ -2108,4 +2109,32 @@ These are not sarcastic. Gordon would agree with all of them. There might be sna
 
 **CD3:** C=3 D=2 D=2 → **CD3=12**
 **Status:** OPEN — raised 2026-03-28. Blocked on SS-085.
+
+---
+
+### SS-087 — Cusslab crossover: non-survivalist protagonists through The Doors
+
+**Status:** Open
+**Loop:** DDD
+**Epic:** The Doors
+
+**What it is:** Cusslab protagonists — politicians, cultural figures, celebrities with no survival credentials whatsoever — enter The Doors and face the survival panel. The panel must assess them. The comedy engine is the absolute incongruence between the protagonist's real-life expertise and the survival context they've just walked into.
+
+**The story:** Jim Morrison does not check credentials at the door. He sends everyone through. The door is not selective. This is by design. Jim has sent Hawking through in the wheelchair. Jim has sent a politician through mid-press-conference. Jim sent Bruce Lee through and stood back. The panel must deal with whoever arrives.
+
+**Comedy engine:** The panel is built for survivalists. The arrival of a Cusslab protagonist breaks the panel's frame. Ray stays competent regardless — he will teach anyone. Bear performs regardless — there is a camera. Fox has the sight picture. Hales offers food. Attenborough closes with geological perspective. The non-survivalist protagonist is the only one confused about what is happening here.
+
+**Cusslab protagonist candidates (to be confirmed against current Cusslab roster):**
+- Hawking — arrives. The panel does not know how to rate his chances. Attenborough knows.
+- A politician — full media training. Zero situational awareness. Bear immediately identifies him as a ratings opportunity.
+- Bruce Lee — the panel briefly considers whether they are the ones being assessed. They may be right.
+- Tesla — has a plan. The plan involves electricity. The wilderness does not have a socket.
+
+**Design questions (Three Amigos outstanding):**
+- Is this a dedicated room/mode or does it integrate into existing rooms?
+- Does the protagonist selection drive the panel dynamic, or does the panel adapt regardless of protagonist?
+- Cross-product dependency: requires coordination with Cusslab character roster. Which protagonists are canonical?
+
+**CD3:** C=3 D=3 D=3 → **CD3=27**
+**Status:** OPEN — raised 2026-03-28.
 
