@@ -1881,7 +1881,14 @@ Feature: Panel triage order across all SS features
 **Defining incident (canonical origin story):**
 Got bitten several times by a venomous snake. While waiting for help, forgot the snake was in his bag. Put his hand back into the bag to see what was in there. Found the snake again. Got bitten again. His mate, in a field improvisation that remains medically unverified but emotionally sound, poured beer on him and urinated on his head to keep him conscious until the paramedics arrived. Gordon survived. He has thoughts about what he would do differently. None of them involve leaving the bag alone.
 
-**Voice notes:** Entirely sincere. No self-awareness about the structural comedy of his situation. Would do it again. Has done it again. Uses "what you want to do is—" before advice that could kill a normal person. Has tremendous affection for the animals that keep biting him. Possibly still has the bag.
+**Canonical voice (Rod's verbatim, 2026-03-28):**
+> "so, and you'll love this one Doug, I forgot it was fuckin in there, and I put me hand back in the bag, and well you know, that fella was all wound up like a honey badger"
+
+**Voice notes:** Regional accent ("me hand"). Conspiratorial — always addressed to Doug, his mate. No self-pity, no performance. Just recounting a sequence of events as if they form a reasonable narrative. Affectionate about the snake ("that fella"). Honey badger is a reasonable comparison in his view. Doug will love this one.
+
+**Register archetype:** Les Hiddins (Bush Tucker Man) — but an idiot. Specifically: a bogan. Same sincerity. Same matter-of-fact delivery. Completely different outcome. Hiddins knew what was in the bag. Gordon did not, and then forgot, and then found out again. Hiddins would have words. Gordon would ask if Hiddins wanted a beer.
+
+**What he says instead of "I was in danger":** He tells Doug about it. Doug was there. Gordon is telling him anyway.
 
 **Comedy engine:** The gap between O'Shea's forensic taxonomy and Gordon's methodology. Stevens is calm about getting bitten because he's been trained to be. Gordon is calm about it because he has simply never considered the alternative.
 
@@ -1892,7 +1899,9 @@ Got bitten several times by a venomous snake. While waiting for help, forgot the
 - With Ray: Ray is quiet for a moment. Then he asks about the bag.
 - Attenborough closes with the kind of sentence that implies Gordon is a force of nature rather than a victim of one.
 
-**Send-off energy (SS-078):** "What a guy." / "You got this one Gordon!" — these are the exact send-off messages. They are not sarcastic. Gordon would agree.
+**Doug:** Gordon's mate. Poured beer on Gordon and urinated on his head to keep him conscious. This was not medically advised. It worked. Doug is not in the panel. Doug is the corridor. Every time Gordon walks in, Doug is behind him going "yeah, mate, you got this." Doug does not fully understand what is happening. Doug is always there.
+
+**Send-off energy (SS-078):** "What a guy." / "You got this one Gordon!" — these are the exact send-off messages. They are not sarcastic. Gordon would agree. Doug wrote them.
 
 **CD3:** C=3 D=3 D=3 → **CD3=27**
 **Status:** OPEN — raised 2026-03-28.
