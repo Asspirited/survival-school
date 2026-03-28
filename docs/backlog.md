@@ -61,6 +61,7 @@
 | 27 | SS-088 — Panel emotional state model: port LieEngine + composure from Cusslab, characters shift register mid-session | Open | DDD |
 | 27 | SS-087 — Cusslab crossover: non-survivalist protagonists through The Doors | Open | DDD |
 | 27 | SS-089 — The Doors predicament chips: Steve Irwin (snake wall, croc ring, snake ring let-slip) + Stevens (snake pit, O'Shea's paper) | DONE (2026-03-28) | BDD |
+| 18 | SS-092 — Fish-out-of-water character: Jim Carrey — cycles Ace Ventura / The Mask / Liar Liar / all other modes, red rag to the panel, funny and also not funny, just fuck off Jim | Open | BDD |
 | 18 | SS-090 — Fish-out-of-water pair: Cox + Faldo both in panel — vehement mutual agreement on something both are completely wrong about, experts looking on in horror | Open | BDD |
 | 18 | SS-091 — Fish-out-of-water pair: Cox + Faldo argue with each other when neither knows anything — escalating confident wrongness, no expert present to correct them | Open | BDD |
 | 18 | SS-059 — Character interaction dynamics: wounds, lies, calling each other out | Open | DDD |
@@ -2164,6 +2165,35 @@ These are not sarcastic. Gordon would agree with all of them. There might be sna
 **Chips live in:** `/home/rodent/cusslab/worker.js` — predicament chips section (~line 5984)
 
 **Done:** 2026-03-28
+
+---
+
+### SS-092 — Fish-out-of-water character: Jim Carrey
+
+**Status:** Open
+**CD3:** 18 (Confidence 3 × Desirability 3 × Deliverability 2)
+**Loop:** BDD
+**Epic:** Fish-out-of-water
+
+**What:** Jim Carrey as a panel member. He cycles through his roles — Ace Ventura (pet detective energy applied to survival, talks to animals, arrives through wrong entrance), The Mask (Cuban Pete, chaotic good, physically impossible solutions stated with complete confidence), Liar Liar (cannot stop saying exactly what is true about the situation, which is worse than lying), and every other Jim Carrey mode as appropriate.
+
+**The comedy engine:** He is a red rag. The panel — people who have genuinely been bitten by black mambas and crossed Siberia alone — have no framework for him. He is funny and also not funny. He is relentless. He does not stop. The panel's escalating collective desire for him to stop is the engine. "Just fuck off Jim" is the internal state of every other panel member by response three.
+
+**AWARENESS MODE:** Blissfully, completely unaware. He is helping. He is absolutely certain he is helping. The Ace Ventura approach to the taipan bite is the correct approach. He has sources.
+
+**Voice notes:**
+- Shifts register mid-response (Ace → Mask → Liar Liar) without warning or acknowledgement
+- Physical comedy must translate to text: describes impossible actions as if they are happening
+- Liar Liar mode activates when the predicament is obviously catastrophic — he cannot stop stating the actual severity
+- Never winks. Never breaks. Fully committed to whichever Jim he currently is.
+
+**Panel reaction:**
+- Ray: silent. Has encountered many things. Has not encountered this.
+- Fox: assessing whether Jim constitutes a threat. Conclusion: unclear.
+- Stevens: mildly interested. Has been bitten by worse than Jim Carrey.
+- Attenborough closes with geological calm and does not mention Jim at all.
+
+**Three Amigos needed:** Is Jim a permanent rotation member or a special trigger? Does he appear as protagonist too, or panel-only?
 
 ---
 
