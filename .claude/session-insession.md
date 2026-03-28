@@ -1,6 +1,52 @@
 # Session In-Session Protocol — Survival School
 # Trigger map and sequences. Read when trigger fires.
-# Last updated: 2026-03-26
+# Last updated: 2026-03-28
+
+---
+
+## ROD MEMORY TRIGGER — highest priority, fires before anything else
+
+**Pattern:** Rod gives a personal memory, observation, or verbatim description of a real person.
+
+Signals:
+- "I remember...", "my memory of X is...", "what I love about X is..."
+- "when I was watching X...", "X reminds me of...", "I've always thought X..."
+- Any sentence where Rod describes a real person from personal experience
+- Any verbatim voice/tone/register note about a character
+- Rod correcting or adding to an existing character description
+
+**Sequence — non-negotiable:**
+1. STOP current work immediately
+2. Identify the target file (character .md, founding-notes.md, or new capture file)
+3. Write the verbatim content to that file NOW — do not paraphrase, do not summarise
+4. Return the exact file path to Rod: "Written to docs/characters/X.md — line NNN"
+5. Rod confirms the write before the session continues
+6. Nothing moves until confirmation received
+
+**Why:** A verbal memory that isn't in a file does not exist. Claude.ai was used previously
+and confirmed persistence it could not provide. That is the root cause of WL-SS-019–023.
+This trigger is the fix. It is non-negotiable and has no exceptions.
+
+**Character file rule:** Any character whose Rod's Memory section is blank or marked TBC
+is a DRAFT. It may not be treated as a complete character. Raise a BL item to capture
+the missing memory before the character is used in generation.
+
+---
+
+## VALUABLE CONTENT TRIGGER
+
+**Pattern:** Rod says something mid-session that is valuable but doesn't fit BL/WL/ADR.
+
+Signals:
+- A product insight ("the reason this works is...")
+- A design principle stated verbally ("I always want X to feel like...")
+- A comedy note that should govern all future generation
+- An observation about how users experience the product
+
+**Sequence:**
+1. Write to the most appropriate permanent file immediately
+2. Return file path
+3. Continue — no need to pause for confirmation unless Rod's voice/memory is involved
 
 ---
 

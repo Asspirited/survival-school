@@ -8,7 +8,7 @@
 
 ---
 
-### 0. PRE-FLIGHT — prime Downloads for Claude.ai (run first, no exceptions)
+### 0. PRE-FLIGHT — build full project context snapshot (run first, no exceptions)
 
 ```bash
 cd /home/rodent/survival-school && cat \
@@ -21,13 +21,18 @@ cd /home/rodent/survival-school && cat \
   docs/founding-notes.md \
   docs/testing-standards.md \
   docs/panel-integrity-spectrum.md \
+  docs/the-rooms-design-brief.md \
   $(find docs/domains/ -name "*.md" 2>/dev/null | sort) \
   $(find docs/characters/ -name "*.md" 2>/dev/null | sort) \
   > /mnt/c/Users/roden/Downloads/session-ref.md && echo "session-ref.md ready"
 ```
 
-This creates `/mnt/c/Users/roden/Downloads/session-ref.md` — one file Claude.ai uploads to get
-full context (startup, shared state from last session, project brief, backlog, waste log).
+This creates `/mnt/c/Users/roden/Downloads/session-ref.md` — full project context in one file.
+Claude Code reads the source files directly. session-ref.md is a convenience snapshot only.
+
+NOTE: Claude.ai is no longer used in this workflow. Claude Code (this terminal) runs the same
+model and has file access. All session work happens here. session-ref.md is kept for reference
+and as a recoverable snapshot, not for uploading to a separate tool.
 
 ### Pre-close check (run before any commit at session end)
 

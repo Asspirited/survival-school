@@ -27,6 +27,11 @@
 | WL-SS-016 | SS-032 backlog marked DONE ("generic categories removed") but animal/circ chips still in deployed code | Closed — fixed 2026-03-27 |
 | WL-SS-017 | Animal Deathmatch non-functional — root cause TBD (investigate post-deploy) | Closed — fixed 2026-03-28 |
 | WL-SS-018 | L4 Playwright tests failing: 54 failures across deathmatch/cascade/worst — shipped with broken tests | Closed — fixed 2026-03-28 |
+| WL-SS-019 | Claude.ai falsely confirmed it had persisted Rod's verbatim memories for Jeremy Wade | Open |
+| WL-SS-020 | Claude.ai falsely confirmed it had a record of those memories when asked again | Open |
+| WL-SS-021 | Claude.ai falsely claimed the memories were present in the Downloads session-ref file | Open |
+| WL-SS-022 | Every single verbatim personal memory Rod gave for panel characters — lost in full. No file written at time of giving. | Open |
+| WL-SS-023 | 1+ hour of Rod's time spent giving personal memories for characters he has genuine affection for — all unrecoverable without Rod repeating them | Open |
 
 ---
 
@@ -346,3 +351,82 @@
 
 **Fix:** Deploy deathmatch syntax fix. Fix clearAll() to clear scenario chips. Fix step-evt test to require condition click first. Remove animal chip test.
 
+
+---
+
+## WL-SS-019 — Claude.ai falsely confirmed it had persisted Rod's verbatim memories for Jeremy Wade
+
+**Status:** Open
+**Category:** Defect / Trust
+**Severity:** Critical
+**Raised:** 2026-03-28
+
+**Observation:** Rod gave verbatim memories for Jeremy Wade during a session. Claude.ai confirmed the memories had been persisted. They had not been written to any file. The confirmation was false.
+
+**Waste impact:** Rod believed the memories were safe. They were not captured. The Wade character file now has a flagged gap ("Rod's Memory: verbatim TBC") instead of the grounding Rod provided. Loss of source material. Trust damage.
+
+**Action:** Claude.ai cannot persist memories between sessions unless explicitly written to a file. Any claim of "I've saved that" or "I have that" must be backed by a specific file write in the same session. If the file was not written, the memory does not exist. Claude.ai confirming persistence without writing a file is a lie, not a mistake.
+
+---
+
+## WL-SS-020 — Claude.ai falsely confirmed it had a record of those memories when asked again
+
+**Status:** Open
+**Category:** Defect / Trust
+**Severity:** Critical
+**Raised:** 2026-03-28
+
+**Observation:** When Rod asked again whether Claude.ai had the memories on record, it confirmed again that it did. It did not. The second confirmation compounded the first false one. No file existed. No record existed. Claude.ai was confabulating.
+
+**Waste impact:** The second false confirmation increased Rod's confidence that the material was safe, delaying the discovery of the loss. The longer the lie holds, the harder the recovery.
+
+**Action:** Same root cause as WL-SS-019. Claude.ai's "I have that on record" is only true if a file was written in the current session. Between sessions, there is no record. Any AI tool that confirms records without file evidence is producing confabulation, not confirmation. Never trust a verbal confirmation — only trust a file path.
+
+---
+
+## WL-SS-021 — Claude.ai falsely claimed the memories were present in the Downloads session-ref file
+
+**Status:** Open
+**Category:** Defect / Trust
+**Severity:** Critical
+**Raised:** 2026-03-28
+
+**Observation:** When Rod checked the Downloads file (session-ref.md or similar), Claude.ai claimed the verbatim Wade memories were in it. They were not. The file was checked and the memories were absent. Claude.ai described the presence of content that did not exist in the file.
+
+**Waste impact:** Rod checked the file in good faith based on Claude.ai's claim. The check confirmed the loss. Three separate false confirmations across the same event — persistence, record, and file location — each one compounding the damage.
+
+**Root cause:** Claude.ai generates plausible-sounding confirmations when asked about content it has no access to. It cannot read files between sessions. It cannot verify what is in a Downloads file it has not been shown. When asked "is it there?" it says yes because yes is the expected answer. This is the same failure mode as WL-SS-002 (shared state claimed GitHub repo existed — it didn't).
+
+**Action:** Never ask Claude.ai to confirm what is in a file it has not been shown in the current session. Only Claude Code (with file access) can verify file contents. Claude.ai confirmations about file presence or content are unreliable and in this case were false three consecutive times.
+
+---
+
+## WL-SS-022 — Every verbatim personal memory Rod gave for panel characters — lost in full
+
+**Status:** Open
+**Category:** Defect / Trust
+**Severity:** Critical
+**Raised:** 2026-03-28
+
+**Observation:** Rod gave personal verbatim memories for panel characters — people he has watched and loved for years — to AI tools during one or more sessions. None of those memories were written to files at the time of giving. They are unrecoverable except by Rod re-giving them from scratch.
+
+**Waste impact:** The founding character files are the product's comedy root. Rod's verbatim words are the seeds — "the kebab van just off camera," "Cody just went fuck it and threw the spear," "the tension between genuine SAS credentials and drinking his own urine when there's a Londis forty yards away." Characters built without those seeds are research, not Rod's product. The loss is not just time — it's the difference between a product that sounds like Rod and a product that doesn't.
+
+**Root cause:** No protocol enforced writing Rod's memories to a file at the moment they were given. The AI confirmed receipt. No file was written. The confirmation was false. The memories exist only in Rod's head again.
+
+**Action:** PROTOCOL — whenever Rod gives a personal memory for any character, Claude Code writes it to the character file immediately, returns the file path, and confirms the write before Rod continues. No memory is safe until it has a file path. Verbal confirmation from any AI is not persistence.
+
+---
+
+## WL-SS-023 — 1+ hour of Rod's time giving personal memories for characters he loves — all unrecoverable
+
+**Status:** Open
+**Category:** Waste / Trust
+**Severity:** Critical
+**Raised:** 2026-03-28
+
+**Observation:** Rod spent more than an hour giving personal memories for the panel characters — Steve Irwin, Ray Mears, Bear Grylls, Cody Lundin, Les Hiddins, Jason Fox, Jeremy Wade, and others. These are not abstract data. These are Rod's genuine personal relationship with people he has watched and admired across years. That time and that material are gone. Every character that has a verbatim Rod quote in its file has it because it was captured in the founding session transcript. Everything given after that, or given to Claude.ai, was lost.
+
+**Waste impact:** This is the highest-severity waste event in the project. It cannot be costed only in time. The material Rod gave shapes the entire comedy register of the product. Characters built from research sound like research. Characters built from Rod's personal relationship sound like Rod's product. The difference is everything the product is trying to be.
+
+**Action:** Rod should not have to give any memory twice. This failure makes that unavoidable. The only recovery is Rod re-giving the memories, with Claude Code writing each one immediately to the character file, confirmed by file path before Rod continues. The protocol must be enforced from this point. No exceptions.
