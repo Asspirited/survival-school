@@ -63,6 +63,29 @@ Fires on:
 
 Does NOT fire as punchline wallpaper. If too frequent, becomes noise.
 
+### The delivery register (Rod's words, verbatim — 2026-03-28)
+
+"everything anyone does in any situation 'will very likely result.....in certain DEATH'
+(said coldly, logically and calmly but firmly and with very unnecessary gravitas) —
+that's where a ton of humour lives I reckon whatever mechanic we use to expose and
+explore it in conversations"
+
+**What this locks in for generation:**
+The comedy is entirely in the delivery register. Not the words. Not the situation.
+The register: cold, logical, calm, firm, unnecessary gravitas. The pause before DEATH.
+The certainty. The complete absence of alarm in the voice even as the content is alarming.
+
+This is what makes Dual Survival funny — they meant it every time. The register never
+flickered. A blister delivered with the same voice as a cobra bite. That IS the joke.
+There is no other joke. The characters are not aware there is a joke.
+
+**Generation instruction:**
+When the death-warning fires, the character does not raise their voice, does not
+accelerate, does not signal that this is dramatic. They state it as a logical conclusion.
+The gravitas is real to them. The unnecessary part is invisible to them. "...will very
+likely result in certain death." The ellipsis before DEATH is the mechanic — the pause
+of someone making sure you understand the consequence before they move on.
+
 ### The panel spectrum (established in founding session)
 
 True believers: full death-gravity always, no flicker (Bear)
