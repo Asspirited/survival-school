@@ -81,13 +81,40 @@ If file doesn't exist: note it and continue.
 
 ### 4. BACKLOG + WASTE LOG REVIEW
 
-Read `docs/backlog.md` — report top 3 open items by CD3 score.
-Read `docs/waste-log.md` — report all open WL items.
+Read `docs/backlog.md` and `docs/waste-log.md`.
 
-Identify:
-- Any items marked Critical or SHIP TODAY
-- Any items In Progress from last session
-- Top 3 open items by priority
+**Step 1 — Full CD3 table:** List ALL open backlog items sorted by CD3 descending.
+Flag any items marked Critical, SHIP TODAY, or In Progress.
+Report all open WL items.
+
+**Step 2 — Parallel session work packages:** Read `.claude/parallel-sessions.md` for the
+partition rules, then split the open items into two non-overlapping work packages:
+
+| Session A (Design + Docs + Domain) | Session B (Build + Wire + Test) |
+|-------------------------------------|----------------------------------|
+| Owns: docs/, js/characters.js, js/scenarios.js, js/animals.js, domain tests | Owns: worker.js, HTML pages, acceptance tests, UI tests |
+
+For each item, assign to A or B based on which files it touches.
+Items that span both partitions: flag as "FULL-STACK — one session only, do not split."
+Items blocked by a dependency: flag as "BLOCKED by SS-NNN".
+
+Present as two tables, CD3 descending within each:
+
+```
+SESSION A (Design + Docs + Domain)
+| CD3 | Item | Notes |
+|-----|------|-------|
+
+SESSION B (Build + Wire + Test)
+| CD3 | Item | Notes |
+|-----|------|-------|
+
+FULL-STACK (assign to one session only)
+| CD3 | Item | Notes |
+|-----|------|-------|
+```
+
+Rod confirms the split before work begins. Sessions must not touch each other's files.
 
 ---
 

@@ -126,6 +126,13 @@ Rod says continue → proceed. Rod says stop → closedown.
 
 ---
 
+## CD3 ORDER — default work sequence
+
+Always work backlog items in CD3 score order (highest first) unless Rod explicitly says otherwise.
+Do not ask "what should I start with?" — the backlog has priorities. Just go.
+
+---
+
 ## Claude Behaviour Rules
 
 ### Rule: Asking Rod to find something

@@ -515,3 +515,52 @@ describe('Feature: Panel composure engine — How Screwed Am I (SS-088)', () => 
     assert.ok(typeof data.composureState === 'object' && data.composureState !== null, 'response must contain updated composureState');
   });
 });
+
+// ── Feature: Jim Morrison mid-session interruption (SS-083) ──
+describe('Feature: Morrison interruption — I\\\'ve Had Worse schema (SS-083)', () => {
+  const POST_TIMEOUT = 25000;
+
+  // Scenario: When morrison_interruption is present, it has the correct schema
+  test('Given a user submits to ive-had-worse with morrison_present hint, When the worker responds with a morrison_interruption, Then the schema is valid', async () => {
+    // We send morrison_present: true to signal Morrison is already in the room,
+    // which should guarantee a morrison_interruption in the response.
+    const response = await fetch(`${BASE}/survival-school/ive-had-worse`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        system: `You are the Survival School panel running the "I've Had Worse" mechanic.
+
+=== THE MECHANIC ===
+The user has submitted a predicament. Each panel member must claim to have survived something worse.
+
+=== JIM MORRISON INTERRUPTION (SS-083) ===
+Morrison is in the room this round (morrison_present was true in the request).
+He MUST appear in the morrison_interruption field.
+He says something — cryptic, banal, or accidentally offensive.
+The panel reacts: WARM (they enjoy him), AMUSED, ENGAGED, or HOSTILE (he crossed a line and they attack).
+If the topic interests him or a panellist engages him, set morrison_present to true so he stays next round.
+If not, set morrison_present to false — he drifts off.
+
+=== CHARACTER VOICES ===
+RAY MEARS — Bushcraft. Measured, specific.
+BEAR GRYLLS — Former SAS. Always abroad.
+
+VALID charIds: ray, bear, fox, hales, cody, stroud, stevens, cox, faldo, jim, jeremy
+
+OUTPUT — valid JSON only, no markdown:
+{"attenborough_opening":"<one sentence>","panel":[{"charId":"ray|bear|fox|hales|cody|stroud|stevens|cox|faldo|jim|jeremy","text":"<1-2 sentences>"}],"attenborough_terminal":"<one sentence>","panel_tension":{"type":"wound_reference|lie|callout|wolf_pack|none","subject":"","by":[],"note":""},"morrison_interruption":{"quote":"<what Morrison says>","panel_reaction":"<how the panel reacts>","tone":"WARM|AMUSED|ENGAGED|HOSTILE","morrison_present":<bool>}}`,
+        predicament: 'I have a paper cut',
+        protagonist: 'bear',
+        morrison_present: true,
+      }),
+      signal: AbortSignal.timeout(POST_TIMEOUT),
+    });
+    assert.strictEqual(response.status, 200);
+    const data = await response.json();
+    assert.ok(data.morrison_interruption, 'response must contain morrison_interruption when morrison_present was true');
+    assert.ok(typeof data.morrison_interruption.quote === 'string' && data.morrison_interruption.quote.length > 0, 'morrison_interruption.quote must be a non-empty string');
+    assert.ok(typeof data.morrison_interruption.panel_reaction === 'string' && data.morrison_interruption.panel_reaction.length > 0, 'morrison_interruption.panel_reaction must be a non-empty string');
+    assert.ok(['WARM', 'AMUSED', 'ENGAGED', 'HOSTILE'].includes(data.morrison_interruption.tone), `morrison_interruption.tone must be WARM|AMUSED|ENGAGED|HOSTILE, got: ${data.morrison_interruption.tone}`);
+    assert.ok(typeof data.morrison_interruption.morrison_present === 'boolean', 'morrison_interruption.morrison_present must be a boolean');
+  });
+});

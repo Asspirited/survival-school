@@ -61,7 +61,9 @@
 | 27 | SS-093 — New door: "In My Defence" (Room 14) — Roast/Inversion mode, protagonist chips expand per-person incidents, aggressive interrogation panel | DONE (live 2026-03-28) | BDD |
 | 18 | SS-094 — Fix I've Had Worse: remove roast chips, fix panel interaction (SOCIAL_DYNAMICS_ENGINE, panel_tension, random order, escalation) | DONE (2026-03-28) | BDD |
 | 27 | SS-088 — Panel emotional state model: port LieEngine + composure from Cusslab, characters shift register mid-session | DONE (2026-03-28) | BDD |
-| 27 | SS-087 — Cusslab crossover: non-survivalist protagonists through The Doors | Open | DDD |
+| 27 | SS-087 — Cusslab crossover: Hawking + Bruce Lee as fish-out-of-water characters (same pattern as Cox/Faldo) | IN PROGRESS | DDD |
+| 27 | SS-100 — Port composure engine to SS characters.js (COMPOSURE_PROFILES, init, compute deltas, tier, injection) | Open | DDD |
+| 18 | SS-101 — Wire composure engine into SS worker.js (accept composureState, inject, return updated state) | Open | BDD |
 | 27 | SS-089 — The Doors predicament chips: Steve Irwin (snake wall, croc ring, snake ring let-slip) + Stevens (snake pit, O'Shea's paper) | DONE (2026-03-28) | BDD |
 | 18 | SS-092 — Fish-out-of-water character: Jim Carrey — cycles Ace Ventura / The Mask / Liar Liar / all other modes, red rag to the panel, funny and also not funny, just fuck off Jim | DONE 2026-03-28 | BDD |
 | 18 | SS-095 — New character: Jeremy Wade — Freshwater Biologist, River Monsters, protagonist + panel rotation, notebook/translator/tuning out/Cowabunga mechanics | DONE 2026-03-28 | BDD |
@@ -2124,31 +2126,56 @@ These are not sarcastic. Gordon would agree with all of them. There might be sna
 
 ---
 
-### SS-087 — Cusslab crossover: non-survivalist protagonists through The Doors
+### SS-087 — Cusslab crossover: Hawking + Bruce Lee as fish-out-of-water characters
 
-**Status:** Open
+**Status:** IN PROGRESS
 **Loop:** DDD
 **Epic:** The Doors
 
-**What it is:** Cusslab protagonists — politicians, cultural figures, celebrities with no survival credentials whatsoever — enter The Doors and face the survival panel. The panel must assess them. The comedy engine is the absolute incongruence between the protagonist's real-life expertise and the survival context they've just walked into.
+**What it is:** Add Stephen Hawking and Bruce Lee to characters.js as fish-out-of-water characters. Same pattern as Cox and Faldo — full voice profile, integrity, fish disposition tags, CHAR_COLOURS, domain tests. They join the panel pool and are available as protagonists on any existing room. No dedicated crossover room needed.
 
-**The story:** Jim Morrison does not check credentials at the door. He sends everyone through. The door is not selective. This is by design. Jim has sent Hawking through in the wheelchair. Jim has sent a politician through mid-press-conference. Jim sent Bruce Lee through and stood back. The panel must deal with whoever arrives.
+**Three Amigos resolved 2026-03-28:**
+- No dedicated room — they enter existing rooms like any other fish character
+- Panel adapts regardless of protagonist (existing mechanic)
+- Hawking and Bruce Lee confirmed as the two crossover characters this round
 
-**Comedy engine:** The panel is built for survivalists. The arrival of a Cusslab protagonist breaks the panel's frame. Ray stays competent regardless — he will teach anyone. Bear performs regardless — there is a camera. Fox has the sight picture. Hales offers food. Attenborough closes with geological perspective. The non-survivalist protagonist is the only one confused about what is happening here.
-
-**Cusslab protagonist candidates (to be confirmed against current Cusslab roster):**
-- Hawking — arrives. The panel does not know how to rate his chances. Attenborough knows.
-- A politician — full media training. Zero situational awareness. Bear immediately identifies him as a ratings opportunity.
-- Bruce Lee — the panel briefly considers whether they are the ones being assessed. They may be right.
-- Tesla — has a plan. The plan involves electricity. The wilderness does not have a socket.
-
-**Design questions (Three Amigos outstanding):**
-- Is this a dedicated room/mode or does it integrate into existing rooms?
-- Does the protagonist selection drive the panel dynamic, or does the panel adapt regardless of protagonist?
-- Cross-product dependency: requires coordination with Cusslab character roster. Which protagonists are canonical?
+**Characters:**
+- **Hawking** — theoretical physics applied to survival. The wheelchair is in the room. The panel must deal with the wheelchair. Attenborough is the only one who knows what to do. Fish disposition: CONVERT (default) — his actual knowledge converts him fast, then he's confidently wrong about survival applications of physics.
+- **Bruce Lee** — the panel considers whether they are being assessed. Fish disposition: CONTEMPTUOUS_EXPERT (default) — wrong domain, has a plan, plan doesn't need the panel. Water metaphor applied to everything. The panel cannot teach him because he is already teaching them.
 
 **CD3:** C=3 D=3 D=3 → **CD3=27**
-**Status:** OPEN — raised 2026-03-28.
+**Raised:** 2026-03-28.
+
+---
+
+### SS-100 — Port composure engine to SS characters.js
+
+**Status:** Open
+**Loop:** DDD
+**Epic:** Mechanics port
+
+**What it is:** Port COMPOSURE_PROFILES, initComposureState(), computeComposureDeltas(), composureTier(), buildComposureInjection() from Cusslab worker.js to SS characters.js. Add composure profiles for all SS characters (including fish-out-of-water). Add domain tests. SS-088 wrote the Gherkin and the design but the functions only exist in Cusslab's worker — this ports them to SS's own codebase.
+
+**Session A work:** characters.js + domain tests only. Worker wiring is SS-101.
+
+**CD3:** C=3 D=3 D=3 → **CD3=27**
+**Raised:** 2026-03-28.
+
+---
+
+### SS-101 — Wire composure engine into SS worker.js
+
+**Status:** Open
+**Loop:** BDD
+**Epic:** Mechanics port
+**Depends on:** SS-100
+
+**What it is:** Accept composureState in POST request body, inject into system prompt via buildComposureInjection(), compute deltas from panel_tension, return updated composureState in response. Client-side: init composureState on first call, persist across rounds, send with each request. Same pattern as Cusslab worker.js lines 7664-7688.
+
+**Session B work:** worker.js + acceptance/UI tests.
+
+**CD3:** C=3 D=2 D=3 → **CD3=18**
+**Raised:** 2026-03-28.
 
 
 ---
