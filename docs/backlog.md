@@ -1,7 +1,7 @@
 # Backlog — Survival School
 # Prefix: SS-NNN
 # CD3 scoring: Confidence × Desirability × Deliverability (max 27)
-# Last updated: 2026-03-27 (CD3 scored 2026-03-27)
+# Last updated: 2026-03-28 (CD3 scored 2026-03-28)
 
 ---
 
@@ -36,6 +36,10 @@
 | 18 | SS-063 — Panel archetypes: design who goes together and why | Open | DDD |
 | 18 | SS-064 — Cross-product fish-out-of-water characters: Cox, Faldo, others | Open | DDD |
 | 18 | SS-065 — Panel pool: random 4–5 character selection across all panel modes | Open | BDD |
+| 7.3 | SS-066 — The Rooms: RegisterContract walking skeleton (Room 13 — I've Had Worse) | Open | BDD |
+| 5.7 | SS-067 — The Rooms: corridor navigation + room selection UI | Open | BDD |
+| 3.2 | SS-068 — The Rooms: remaining five contracts (Rooms 12, 12A, 14, 15, 16) | Open | BDD |
+| 4 | SS-069 — User panel member selection (choose who's in the room) | Open | BDD |
 | 18 | SS-058 — Per-character colored card backgrounds (Cusslab pattern) | Open | BDD |
 | 18 | SS-059 — Character interaction dynamics: wounds, lies, calling each other out | Open | DDD |
 | 8 | SS-005 — Telephone Game mechanic | Open | DDD |
@@ -71,9 +75,9 @@
 | — | SS-055 — Scenario bank: Bravo Two Zero | DONE (added scenarios.js 2026-03-27) | DDD |
 | — | SS-056 — Scenario bank: Operation Nimrod | DONE (added scenarios.js 2026-03-27) | DDD |
 | — | SS-057 — Feature: "The Coyote Index" | DONE (live 2026-03-27) | BDD |
-| 18 | SS-060 — Cross-character panel references (reacts_to schema field) | Open | BDD |
-| 18 | SS-061 — Decision loop: Fighting Fantasy mechanic for panel features | Open | BDD |
-| 12 | SS-062 — Panel triage order formalised (SS-034 port to all panel features) | Open | BDD |
+| 8.0 | SS-060 — Cross-character panel references (reacts_to schema field) | Open | BDD |
+| 6.3 | SS-061 — Decision loop: Fighting Fantasy mechanic for panel features | Open | BDD |
+| 14.0 | SS-062 — Panel triage order consistency across all panel features | Open | BDD |
 
 ---
 
@@ -1558,3 +1562,87 @@ Feature: Panel triage order across all SS features
 - All panel pages in worker.js — pass random selection to system prompt on each call
 
 **Note:** Darwin, Cox, Faldo join the pool as they are built (SS-006, SS-064). Pool grows without further architectural changes.
+
+---
+
+### SS-066 — The Rooms: RegisterContract walking skeleton (Room 13 — I've Had Worse)
+
+**Epic:** The Rooms
+
+**What it is:** Walking skeleton of the RegisterContract engine. Room 13: user describes a predicament, each character must top the previous one, escalation state passes between characters, Attenborough closes at the absurdity ceiling.
+
+**Key principle:** Characters must not know they're in an interaction mode. Sincerity under absurd constraint is the engine — never winking at the audience. The instruction goes to the structure, not to the character.
+
+**Setup mechanic:** User enters "what Bear (or whoever) did". That character must defend it. Panel interrogates. Target character has no choice but to maintain the position — crack profile activates. Bear = Confidence Spiral: pressure makes him more certain, not less.
+
+**Build order:**
+1. `js/registerContracts.js` — contract schema + Room 13 object
+2. System prompt builder accepts `RegisterContract` param
+3. Escalation state — each character's prompt includes previous character's response
+4. Terminal condition detection (absurdity ceiling reached)
+5. Attenborough terminal close — one sentence, geological calm, no appeal
+
+**Escalation flavours per character:**
+- Ray: specific conditions, specific technique, quietly worse
+- Bear: always abroad, always fine in the end, always unnecessary — Confidence Spiral fires
+- Fox: classified, probably
+- Hales: forty thousand years. The animal is named.
+- Cody: had the resource thirty feet away. Chose not to use it. Made it worse.
+- Billy: "We trained for this." One sentence. Moves on.
+- Attenborough: geological calm. Terminal closer.
+
+**Full spec:** /mnt/c/Users/roden/Downloads/the_rooms_design_brief.md and ss_domain_model_handoff.md
+
+**CD3:** UBV=9 TC=7 RR=6 → CoD=22, Dur=3, **CD3=7.3**
+**Status:** OPEN — raised 2026-03-28. Three Amigos complete. Gherkin gate next.
+
+---
+
+### SS-067 — The Rooms: corridor navigation + room selection UI
+
+**Epic:** The Rooms
+
+**What it is:** The corridor. User sees numbered doors. Each door: room name, one-line description of what happens inside, current panel configuration. User selects a room before submitting their setup.
+
+**Wrong-room gag:** One room always labelled something that sounds relevant but isn't. Candidates: "The Complaint Room" (character in charge is complaining about their shoes; user's complaint not addressed), "The Sympathy Room" (staffed by Billy/Fox/Cody — constitutionally incapable of sympathy; they try, it goes poorly).
+
+**Outstanding Three Amigos:** Visual/nav metaphor vs literally styled as doors; wrong-room gag always present or toggleable; drama setting slider (deferred to future item).
+
+**CD3:** UBV=8 TC=5 RR=4 → CoD=17, Dur=3, **CD3=5.7**
+**Status:** OPEN — raised 2026-03-28. Depends on SS-066.
+
+---
+
+### SS-068 — The Rooms: remaining five contracts (Rooms 12, 12A, 14, 15, 16)
+
+**Epic:** The Rooms
+
+**What it is:** Once the walking skeleton (SS-066) is proven, implement the other five rooms using the same RegisterContract schema.
+
+- **Room 12 — Denial Loop** ("Pining for the Fjords"): panel interrogates a claim; target character defends with total sincerity; crack profile determines terminal condition
+- **Room 12A — The Argument**: panel takes opposing position; argument collapses into argument about whether this IS an argument
+- **Room 14 — The Reasonable One**: one designated character maintains perfect calm; everyone else escalates; terminal when The Reasonable One runs out of reasonable things to say
+- **Room 15 — Going With It** (Yes-And): panel accepts user's premise and builds on it; no pushback; reality becomes unrecognisable; Attenborough narrates
+- **Room 16 — The Detail**: panel latches onto one specific thing the user said and keeps returning to it; the detail accumulates weight; terminal when it means more than the original situation
+
+**Session persistence note (Room 16):** Does The Detail carry into the next session? That is the world log concept. Powerful if yes. Complex if yes. Deferred decision.
+
+**Full spec:** /mnt/c/Users/roden/Downloads/the_rooms_design_brief.md
+
+**CD3:** UBV=8 TC=4 RR=4 → CoD=16, Dur=5, **CD3=3.2**
+**Status:** OPEN — raised 2026-03-28. Depends on SS-066 + SS-067.
+
+---
+
+### SS-069 — User panel member selection (choose who's in the room)
+
+**Epic:** The Rooms / Panel Design
+
+**What it is:** Future item. Allow the user to configure which characters are in a room before submitting their setup. Extends SS-065 (random pool MVP) with explicit user selection.
+
+**Note from SS-065:** "choose your panel is a future item" — this is that item. Walking skeleton first (SS-066 random panel), user selection second (this item).
+
+**Outstanding Three Amigos:** Full replacement of random draw, or override layer on top of it? Per-room configuration or global? Persists across sessions or per-session only?
+
+**CD3:** UBV=7 TC=4 RR=3 → CoD=14, Dur=4, **CD3=3.5** *(rescored when SS-066 ships)*
+**Status:** OPEN — raised 2026-03-28. Depends on SS-066.
