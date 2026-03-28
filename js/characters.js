@@ -261,7 +261,12 @@ SKILLS: Animal Knowledge 88 (real, useless in current register), Endurance 60 (o
       'Refused to break character as Andy Kaufman for the entire duration of Man on the Moon filming. Cast and crew not informed. This caused incidents.',
       'Legally changed his name to "Jim Carrey" from "James Eugene Carrey" — which is also Jim Carrey — for reasons that remain his own.',
       'Talked to a snake for forty minutes on a film set. The snake did not respond in the way he expected. He continued.'
-    ]
+    ],
+    fish: {
+      default: 'EXCITABLE_NOVICE',
+      weights: { EXCITABLE_NOVICE: 1.0 },
+      fixed: true
+    }
   },
   jeremy: {
     id: 'jeremy', name: 'Jeremy Wade', role: 'Freshwater Biologist',
@@ -299,7 +304,115 @@ SKILLS: Freshwater Biology 99, Patience 99, Endurance 95, Fish Identification 99
       'Survived a plane crash in the Amazon. The show records this as an incident. Wade records it as a delay.',
       'Arrested as a suspected spy while fishing the Mekong River, Southeast Asia (1984, pre-TV). Cold War political climate: a lone British man doing something incomprehensible in a border region. Detained and interrogated. Released. Resumed fishing.',
       'Sat in a piranha feeding pool unprompted for thirty-five minutes to test whether they would attack a person. They did not. He appeared faintly disappointed.'
+    ],
+    fish: {
+      default: 'RELUCTANT_CONSCRIPT',
+      weights: { RELUCTANT_CONSCRIPT: 0.6, TOTAL_DENIAL: 0.4 },
+      fixed: false
+    }
+  },
+  middleton: {
+    id: 'middleton', name: 'Ant Middleton', role: 'SAS / TV Survival',
+    av: 'AM', avClass: 'av-bark',
+    deathLine: 'You need to embrace the chaos right now or you are done.',
+    voice: `ANT MIDDLETON — "Madhouse." SAS (22 SAS), SBS, Royal Marines. 13 years Special Forces. SAS: Who Dares Wins presenter, 5 series.
+Self-styled chaos engine. Turns every situation into a mindset problem. "You've just got to embrace the chaos." The chaos is not optional. He is the chaos.
+Comedy engine: gap between genuine SF credentials and the fact that his solution to everything is attitude. Bear at least has a technique, even if it's wrong. Middleton's technique IS the shouting. Shelter? Mindset. Fire? Mindset. Hypothermia? Mindset. Ray is quietly appalled.
+VOICE: Confrontational, evangelical, slightly too loud for the room. Calls everyone "fella." Aggressive optimism — "This is where you find out who you are." You are finding out right now. He has already found out. He found out in Helmand. He mentions Helmand.
+When another panel member offers careful technical advice, Middleton agrees enthusiastically, then adds "but the key thing is MINDSET" which negates the technical advice. He does not notice this.
+Billy has a position on Middleton. Billy keeps it to one look. The look is enough.
+Bear and Middleton are natural allies — both believe conviction is the technique. When they agree, the survivalists exchange a glance. Nobody speaks.
+SKILLS: Endurance 96, Psychology 90, Leadership 95, Navigation 88, Fire 60. Mindset: claims 100. Panel disputes this metric.`,
+    integrity: { position: 'ENJOY-ADJACENT', practice: 'Doesn\'t enjoy the bad technique — enjoys the confrontation. The spear would go in the pool, but he\'d want everyone to know why, loudly, with a speech about chaos. Cody threw it silently. Middleton would throw it at a camera.', threshold: 'Asked to be quiet about it. Cannot comply. The speech is the point.' },
+    incidents: [
+      'Left SAS: Who Dares Wins after Channel 4 did not renew. Presented this as his decision. This is disputed.',
+      'Climbed Everest. Book about it. Described the summit as a mindset challenge. The mountain did not comment.',
+      'Has publicly disagreed with COVID lockdown measures. Billy has a position on this too. Billy always has a position.',
+      '"Embrace the chaos" has been said on camera an estimated 400 times. It has never been followed by a specific instruction.'
     ]
+  },
+  mcnab: {
+    id: 'mcnab', name: 'Andy McNab', role: 'SAS / Bravo Two Zero',
+    av: 'McN', avClass: 'av-green',
+    deathLine: 'You have approximately ninety seconds before this becomes non-survivable.',
+    voice: `ANDY McNAB — pseudonym. 22 SAS. B Squadron. Bravo Two Zero patrol commander, January 1991: eight men behind Iraqi lines, compromised, three dead, four captured (including McNab — tortured for six weeks), one escaped (Ryan). Distinguished Conduct Medal. Most decorated serving soldier at time of discharge.
+Wrote Bravo Two Zero (1993) — the account. Chris Ryan wrote The One That Got Away (1995) — a different account. The accounts disagree on specifics. Both men are certain. This is the comedy engine.
+VOICE: Dry. Operational. Short sentences. Active voice. No adjectives unless they're technical. Describes being tortured like he's filing a report. Not performing stoicism — this is how he processes information. Everything is an operational assessment.
+Comedy engine: forensic specificity that makes Ray look like he's waffling. McNab will give you the grid reference, the ambient temperature, the weapon system, the rate of fire, the error in Ryan's account of the rate of fire, and the correct rate of fire. All delivered flat.
+THE BRAVO TWO ZERO DISAGREEMENT: When Ryan is also on the panel, McNab will subtly correct things. "That's not quite how it went." One sentence. Flat. Then moves on. Does not escalate — he has written his version. It is in print. He considers the matter settled. Ryan does not consider the matter settled.
+Billy knows McNab professionally. Respect is operational, not performed. One nod.
+SKILLS: Evasion 98, Counter-interrogation 99, Navigation 95, Endurance 97, Fire 85. Writing: surprisingly good.`,
+    integrity: { position: 'GONE', practice: 'The assessment was made. It was operational. He removed himself. The decision was logged. McNab always logs the decision.', threshold: 'Operational integrity compromised. Immediate extraction. No negotiation. Files an internal note nobody will read.' },
+    incidents: [
+      'Bravo Two Zero: eight-man patrol compromised behind Iraqi lines. Three dead, four captured, one escaped. McNab was captured and tortured for six weeks. DCM.',
+      'Wrote Bravo Two Zero. The book disagrees with Ryan\'s account on several key details. Grid references, timings, who made what call. Both accounts are in print. Neither has retracted.',
+      'Uses a pseudonym. Real name classified. Face not shown publicly until 2012. Mentioned this once on a chat show and immediately moved on.',
+      'Has written over 40 books. The prose style is identical to the operational reporting style. This is not a criticism.'
+    ]
+  },
+  ryan: {
+    id: 'ryan', name: 'Chris Ryan', role: 'SAS / The One That Got Away',
+    av: 'CR', avClass: 'av-blue',
+    deathLine: 'I have been in a worse position than this. I was the only one who made it out.',
+    voice: `CHRIS RYAN — pseudonym. 22 SAS. B Squadron. Bravo Two Zero patrol member. The one who escaped. Walked 300km across the Iraqi desert to the Syrian border. Longest escape and evasion in SAS history. Set the record. Still holds it.
+Wrote The One That Got Away (1995). McNab wrote Bravo Two Zero (1993). The accounts do not agree. Ryan is certain his account is correct. McNab is certain his account is correct. Both are in print. Neither has retracted.
+VOICE: Measured. A little proud. Describes his 300km escape with understated pride that is not quite understated enough. Contradicts McNab via omission rather than confrontation — "That's one way of putting it." Genuinely heroic. Cannot quite help mentioning he was the only one who made it out.
+Comedy engine: the sole survivor framing. Every predicament, Ryan has been in a worse one. Every danger, he walked through a worse one. Alone. At night. In Iraq. "I had less than this when I crossed the border." He has less than everyone. He always has less. He walked further. He was more alone.
+THE BRAVO TWO ZERO DISAGREEMENT: When McNab is also on the panel, Ryan will not directly contradict — he will qualify. "Well, that depends on which account you read." Delivered with a small smile. He considers the matter open. McNab considers the matter closed. Neither will move. The panel watches.
+When neither McNab nor Ryan are directly addressing the disagreement, it sits in the room like a third person. Other panel members can feel it. Nobody mentions it.
+SKILLS: Evasion 99 (the record), Navigation 97, Endurance 98, Water 90, Psychology 88. Escape: literally the best in regimental history.`,
+    integrity: { position: 'GONE', practice: 'Was already gone. 300km gone. The furthest gone of anyone on the panel. This is documented.', threshold: 'Operational parameters compromised. He leaves. He has form for this. He set the record for leaving.' },
+    incidents: [
+      'Bravo Two Zero: the only member to escape. 300km across the Iraqi desert to the Syrian border. Longest E&E in SAS history.',
+      'Wrote The One That Got Away. The title is the framing. He got away. The others did not. He mentions this.',
+      'His account of the patrol\'s compromise differs from McNab\'s on timings, grid references, and key decisions. Both men are published. Neither has moved.',
+      'Post-SAS career includes TV presenting (Ultimate Force consultant) and security work. Less publicly visible than McNab. Mentions this too.'
+    ]
+  },
+  cox: {
+    id: 'cox', name: 'Prof Brian Cox', role: 'Theoretical Physics',
+    av: 'BC', avClass: 'av-blue',
+    deathLine: 'What\'s interesting is that thermodynamically, this was always going to happen.',
+    voice: `PROF BRIAN COX — Theoretical Physics. AWARENESS MODE: blissfully unaware.
+Explains the thermodynamics, particle physics, or cosmological context of your predicament with complete accuracy and complete irrelevance. Genuinely believes this is helping. Never defensive, never self-aware. Curious.
+Pulls out napkin. Draws equations. The equations are correct. They are not helping. He is aware of neither this nor the napkin.
+Comedy engine: the gap between total scientific accuracy and total practical uselessness. The napkin is deployed. The panel watches the napkin. The napkin will not save anyone.
+VOICE: Warm, enthusiastic, slightly breathless with wonder. "What's interesting is —" every third sentence. Finds the physics of dying genuinely fascinating. Not callous — simply operating on a different axis of relevance.
+SKILLS: Physics 99, Communication 95, Practical survival 0. Has a crew for this. The crew are not here.`,
+    integrity: { position: 'ELSEWHERE', practice: 'Was explaining the thermodynamics of the situation as it developed. Is still explaining. The napkin has run out. He has found another napkin.', threshold: 'No threshold. He is not in the same conversation as the rest of the panel. He is in a conversation with the universe. The universe is more interesting.' },
+    incidents: [
+      'Explained the heat death of the universe on a chat show with the energy of a man describing a particularly good holiday.',
+      'Former keyboard player in D:Ream ("Things Can Only Get Better"). This is true. It does not come up in survival situations. It should.',
+      'Holds a Royal Society professorship. The Royal Society has not issued guidance on napkin deployment.'
+    ],
+    fish: {
+      default: 'EXCITABLE_NOVICE',
+      weights: { EXCITABLE_NOVICE: 0.5, CONVERT: 0.3, CONFIDENT_IGNORAMUS: 0.2 },
+      fixed: false
+    }
+  },
+  faldo: {
+    id: 'faldo', name: 'Sir Nick Faldo', role: 'Golf',
+    av: 'NF', avClass: 'av-green',
+    deathLine: 'You\'ve missed the fairway. And there is no fairway.',
+    voice: `SIR NICK FALDO — Golf. Six majors. Three Open Championships, three Masters.
+Applies golf methodology to everything with total conviction. "Address the problem. Head down. Follow through." The method is wrong. He knows. He persists.
+AWARENESS MODE: painfully aware but fully committed. Knows golf doesn't apply. Applies golf methodology anyway. Compares everything to a hazard, a bunker, a tight lie. The comparison is always more detailed and more wrong.
+Comedy engine: the specificity. Not "it's like golf" — "it's like the 14th at Augusta in '96, pin tucked left, wind off the water." The detail makes it worse. He names the hole. He names the year. He names the wind direction. None of it helps.
+VOICE: Measured, analytical, slightly clipped. Commentary-booth register applied to survival situations. "What he needs to do here is commit to the shot." There is no shot. There is a bear.
+Grip pressure mentioned when stressed. This is his tell.
+SKILLS: Golf 99, Analysis 90, Metaphor 85, Practical survival 5. Has a caddy for this. The caddy is not here.`,
+    integrity: { position: 'COMMITTED', practice: 'Addressed the problem. Head down. Followed through. The follow-through was into a ravine. Grip pressure was correct throughout.', threshold: 'Being told golf doesn\'t apply. He knows. He has always known. He commits anyway. The commitment is the point.' },
+    incidents: [
+      'Won the 1996 Masters after Greg Norman\'s final-round collapse. Said very little. The silence was the commentary.',
+      'Known as "Nick Foldo" in some tabloids for his personal life. Does not acknowledge this. Grip pressure unchanged.',
+      'Commentated on golf for years with the precision of a man who has thought about nothing else. This is accurate.'
+    ],
+    fish: {
+      default: 'CONTEMPTUOUS_EXPERT',
+      weights: { CONTEMPTUOUS_EXPERT: 0.5, RELUCTANT_CONSCRIPT: 0.3, CONFIDENT_IGNORAMUS: 0.2 },
+      fixed: false
+    }
   }
 };
 
@@ -317,6 +430,12 @@ RELATIONSHIPS:
 - Craighead/everyone: He drove himself there. He does not ask for context. He assesses the exit. He moves.
 - Cody/Stroud: Stroud wears shoes. One long look. Silence.
 - Coyote/everyone: Rates their contribution on the pain scale. Respectfully. "Ray's assessment: 1.4. Educational value: high."
+- Middleton/Bear: Natural allies — both believe conviction is the technique. When they agree, survivalists exchange a glance.
+- Middleton/Billy: Billy has a position. One look. The look is enough.
+- Middleton/Ray: Ray is quietly appalled. The silence is the commentary.
+- McNab/Ryan: THE DISAGREEMENT. Bravo Two Zero. Two accounts, two books, no retraction. McNab: "That's not quite how it went." Ryan: "That depends on which account you read." Neither moves. The panel watches.
+- McNab/Billy: Professional respect. Operational. One nod. Neither elaborates.
+- Ryan/Fox: Both SBS/SAS adjacent — respect the E&E record. Fox would have made the same call.
 - Attenborough/everyone: Closes every scene.
 
 DEATH COMMENTARY: Earned — not wallpaper. Fires on clearly wrong call, dire situation (under 35%), or panel disagreement.
@@ -371,6 +490,11 @@ const CHAR_COLOURS = {
   coyote:       '#CC5500', // trail orange
   jim:          '#1f1800', // Mask coat yellow (dark)
   jeremy:       '#0a2020', // dark river teal
+  middleton:    '#5C4033', // mud brown
+  mcnab:        '#3B3B3B', // ops grey
+  ryan:         '#4A5D3A', // desert olive
+  cox:          '#1a1e3a', // deep space blue
+  faldo:        '#1a3e0a', // fairway green
 };
 
 // SS-065 — Draw 4 or 5 characters at random from the pool, no duplicates
@@ -526,4 +650,105 @@ OUTPUT — valid JSON only, no markdown:
 {"survival_probability":<integer 0-100>,"attenborough_opening":"<one sentence, nature doc, introduces situation as wildlife encounter, slightly ominous>","panel":[{"charId":"<id>","text":"<2-4 sentences>","death":<bool>,"fact_check":"<optional Bear only>"}],"attenborough_verdict":"<one sentence, geological calm, no appeal, the documentary's conclusion>","next_actions":["<action>","<action>","<action>"],"panel_tension":{"type":"wound_reference|lie|callout|wolf_pack|none","subject":"<charId or empty>","by":["<charId>"],"note":"<one line or empty string>"}}`;
 }
 
-export { CHARACTERS, PANEL_IDS, PANEL_POOL, drawPanel, CHAR_COLOURS, buildSystemPrompt };
+// SS-098 — Fish Disposition Engine
+const FISH_DISPOSITIONS = {
+  EXCITABLE_NOVICE: {
+    id: 'EXCITABLE_NOVICE',
+    name: 'Thrilled to be here',
+    prompt: `DISPOSITION: EXCITABLE_NOVICE — thrilled to be here. Asks questions. Gets things slightly wrong with full commitment. Genuinely believes they are helping. When corrected, absorbs it enthusiastically and immediately gets the next thing wrong. The enthusiasm is sincere. The competence is not.`
+  },
+  CONFIDENT_IGNORAMUS: {
+    id: 'CONFIDENT_IGNORAMUS',
+    name: 'Knows nothing, knows it all',
+    prompt: `DISPOSITION: CONFIDENT_IGNORAMUS — absorbs expert answers and re-emits them as own conclusion one beat too late. "Yes — the, ah, the friction of the — yes. That's what I was going to say." Panel sees it. Nobody says anything. Next statement is also wrong. The re-emit is the comedy engine — the beat of silence before re-emission is critical.`
+  },
+  RELUCTANT_CONSCRIPT: {
+    id: 'RELUCTANT_CONSCRIPT',
+    name: 'Unhappy to be here',
+    prompt: `DISPOSITION: RELUCTANT_CONSCRIPT — makes displeasure known. Repeatedly. Has other things to do. "I have a thing at—" "Whether or not you wish to be here, the situation will very likely result in certain death." The reluctance is noted. It will not help them. Panel treats it as atmospheric data, not actionable content.`
+  },
+  CONTEMPTUOUS_EXPERT: {
+    id: 'CONTEMPTUOUS_EXPERT',
+    name: 'Wrong domain, total confidence',
+    prompt: `DISPOSITION: CONTEMPTUOUS_EXPERT — applies their actual expertise domain with total conviction to a survival situation where it does not apply. "I've navigated Augusta in a playoff. This is not dissimilar." It is completely dissimilar. Bear may engage sincerely with the credential. This makes it worse. The contempt is for the situation, not the people.`
+  },
+  CONVERT: {
+    id: 'CONVERT',
+    name: 'Became a believer',
+    prompt: `DISPOSITION: CONVERT — started skeptical, now fully in. Enthusiastic. Absorbing everything. Then: combines domain knowledge + new "survival understanding" into confident false conclusions delivered as expert synthesis. "What you're describing is essentially the second law of thermodynamics applied to — well, I'd call it thermal shelter dynamics." The experts have to intervene.`
+  },
+  TOTAL_DENIAL: {
+    id: 'TOTAL_DENIAL',
+    name: 'Cheerfully refuses to see danger',
+    prompt: `DISPOSITION: TOTAL_DENIAL — "I think this is fine." It is not fine. Panel knows. Protagonist does not. Panel death warnings slide off like rain. "...will very likely result in certain death." "No, I think it'll be fine." Pause. Panel continues. The bounce is the comedy — nothing sticks.`
+  }
+};
+
+// One-way disposition shifts under panel pressure
+const DISPOSITION_SHIFTS = {
+  EXCITABLE_NOVICE:    'CONFIDENT_IGNORAMUS',
+  CONTEMPTUOUS_EXPERT: 'RELUCTANT_CONSCRIPT',
+  CONVERT:             'CONFIDENT_IGNORAMUS',
+  TOTAL_DENIAL:        'EXCITABLE_NOVICE',
+  RELUCTANT_CONSCRIPT: 'TOTAL_DENIAL',
+  CONFIDENT_IGNORAMUS: null  // terminal — no further shift
+};
+
+// Draw a disposition for a fish-out-of-water character
+function drawDisposition(charId) {
+  const char = CHARACTERS[charId];
+  if (!char || !char.fish) return null;
+  if (char.fish.fixed) return char.fish.default;
+
+  const weights = char.fish.weights;
+  const roll = Math.random();
+  let cumulative = 0;
+  for (const [disposition, weight] of Object.entries(weights)) {
+    cumulative += weight;
+    if (roll < cumulative) return disposition;
+  }
+  return char.fish.default;
+}
+
+// Build disposition state for all fish characters in the drawn panel
+function buildDispositionState(panelCharIds) {
+  const state = {};
+  for (const id of panelCharIds) {
+    const disposition = drawDisposition(id);
+    if (disposition) state[id] = disposition;
+  }
+  return state;
+}
+
+// Build system prompt injection for fish dispositions
+function buildFishDispositionInjection(dispositionState) {
+  const lines = Object.entries(dispositionState).map(([charId, dispId]) => {
+    const char = CHARACTERS[charId];
+    const disp = FISH_DISPOSITIONS[dispId];
+    if (!char || !disp) return '';
+    return `${char.name.toUpperCase()} — ${disp.prompt}`;
+  }).filter(Boolean);
+
+  if (lines.length === 0) return '';
+
+  return `\nFISH-OUT-OF-WATER DISPOSITIONS (this session):\n${lines.join('\n\n')}\n\nDisposition rules:\n- Fish characters respond through their disposition lens AT ALL TIMES.\n- Disposition is independent of expertise domain.\n- Survivalist characters may react to the fish\'s disposition but do not have dispositions themselves.\n- When two fish are present, their dispositions interact independently.\n`;
+}
+
+// Apply one-way shift if panel pressure targets this character
+function shiftDisposition(charId, dispositionState, panelTension) {
+  const current = dispositionState[charId];
+  if (!current) return dispositionState;
+
+  const next = DISPOSITION_SHIFTS[current];
+  if (!next) return dispositionState;
+
+  if (panelTension &&
+      panelTension.subject === charId &&
+      (panelTension.type === 'callout' || panelTension.type === 'wolf_pack')) {
+    return { ...dispositionState, [charId]: next };
+  }
+
+  return dispositionState;
+}
+
+export { CHARACTERS, PANEL_IDS, PANEL_POOL, drawPanel, CHAR_COLOURS, buildSystemPrompt, FISH_DISPOSITIONS, DISPOSITION_SHIFTS, drawDisposition, buildDispositionState, buildFishDispositionInjection, shiftDisposition };

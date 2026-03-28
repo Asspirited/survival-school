@@ -40,9 +40,9 @@
 | 5.7 | SS-067 — The Rooms corridor: door tiles, comedic name + domain sub-header | DONE (live 2026-03-28 as /survival-school/rooms) | BDD |
 | 3.2 | SS-068 — The Rooms: Dead Parrot Survival / Barney Rubble / Special Air Counsellors / Yes But Then What? / The 4th Wall | Open | BDD |
 | 4 | SS-069 — User panel member selection (choose who's in the room) | Open | BDD |
-| 18 | SS-070 — Character: Ant Middleton ("Madhouse") — former SAS, TV survival host, full voice profile | Open | DDD |
-| 18 | SS-071 — Character: Andy McNab — Bravo Two Zero author, former SAS, drily factual, operational | Open | DDD |
-| 18 | SS-072 — Character: Chris Ryan — Bravo Two Zero survivor, contradicts McNab, selective memory | Open | DDD |
+| 18 | SS-070 — Character: Ant Middleton ("Madhouse") — former SAS, TV survival host, full voice profile | DONE (characters.js + domain tests 2026-03-28) | DDD |
+| 18 | SS-071 — Character: Andy McNab — Bravo Two Zero author, former SAS, drily factual, operational | DONE (characters.js + domain tests 2026-03-28) | DDD |
+| 18 | SS-072 — Character: Chris Ryan — Bravo Two Zero survivor, contradicts McNab, selective memory | DONE (characters.js + domain tests 2026-03-28) | DDD |
 | 12 | SS-073 — Jim Morrison corridor guide: sends characters through The Doors with sage/doom advice | DONE (per-door quotes + 25 rotating corridor quotes live 2026-03-28) | BDD |
 | 16 | SS-074 — Expert Over-Reach mechanic: characters one-up expertise claims, escalate into making things up | DONE (system prompt mechanic live 2026-03-28) | BDD |
 | 18 | SS-083 — Jim Morrison mid-session interruption: wanders in, helps or hinders, panel doesn't know what to do with him | Open | BDD |
@@ -65,9 +65,10 @@
 | 27 | SS-089 — The Doors predicament chips: Steve Irwin (snake wall, croc ring, snake ring let-slip) + Stevens (snake pit, O'Shea's paper) | DONE (2026-03-28) | BDD |
 | 18 | SS-092 — Fish-out-of-water character: Jim Carrey — cycles Ace Ventura / The Mask / Liar Liar / all other modes, red rag to the panel, funny and also not funny, just fuck off Jim | DONE 2026-03-28 | BDD |
 | 18 | SS-095 — New character: Jeremy Wade — Freshwater Biologist, River Monsters, protagonist + panel rotation, notebook/translator/tuning out/Cowabunga mechanics | DONE 2026-03-28 | BDD |
-| 12 | SS-096 — Wade predicament chips: River Monsters scenarios, freshwater predator experiences, Congo/Mekong incidents, candiru, witchcraft accusation | Open | BDD |
+| 12 | SS-096 — Wade predicament chips: River Monsters scenarios, freshwater predator experiences, Congo/Mekong incidents, candiru, witchcraft accusation | DONE (5 chips in worker.js 2026-03-28) | BDD |
+| 6 | SS-099 — Morrison contextual trigger: Morrison interrupts when panel conversation touches something he'd respond to (doors, poetry, snakes, death, the end) | Open | BDD |
 | 18 | SS-097 — New character: Eric Bristow — darts legend, survival commentary + darts panel crossover (Cusslab) | Open | DDD |
-| 27 | SS-098 — Fish Disposition Engine: arrival mode for fish-out-of-water characters (EXCITABLE_NOVICE, CORRECTOR, CHECKED_OUT, CONTEMPTUOUS, CONVERT) — dependency of SS-087, SS-090, SS-091 | Open | DDD |
+| 27 | SS-098 — Fish Disposition Engine: arrival mode for fish-out-of-water characters (EXCITABLE_NOVICE, CORRECTOR, CHECKED_OUT, CONTEMPTUOUS, CONVERT) — dependency of SS-087, SS-090, SS-091 | DONE (design doc + characters.js + domain tests 2026-03-28) | DDD |
 | 18 | SS-090 — Fish-out-of-water pair: Cox + Faldo both in panel — vehement mutual agreement on something both are completely wrong about, experts looking on in horror | Open | BDD |
 | 18 | SS-091 — Fish-out-of-water pair: Cox + Faldo argue with each other when neither knows anything — escalating confident wrongness, no expert present to correct them | Open | BDD |
 | 18 | SS-059 — Character interaction dynamics: wounds, lies, calling each other out | DONE (SOCIAL DYNAMICS ENGINE live, panel_tension in all modes, ADR-002 2026-03-28) | DDD |
@@ -2329,6 +2330,24 @@ Wade's chip set draws from his documented history — all sourced from real even
 - "I reached into the river without looking to feel for the fish before the line came up."
 
 **CD3:** C=2 D=2 D=2 → **CD3=12**
+**Status:** DONE — 5 chips added to IHW_CHIPS.jeremy in worker.js 2026-03-28. candiru (the waggle), Congo witchcraft accusation, Mekong spy arrest, terrible recreation (bite angle), Cowabunga (the widow).
+**Closed:** 2026-03-28
+
+---
+
+### SS-099 — Morrison contextual trigger
+
+**Status:** Open
+**Loop:** BDD
+**Epic:** The Doors
+
+**What it is:** In addition to random-probability Morrison interruptions (SS-083), Morrison also triggers when the panel conversation touches something contextually relevant to him — doors, poetry, snakes, death, endings, the desert, "the end." The worker parses panel output for trigger words/phrases and injects a Morrison interjection into the next round.
+
+**Why it matters:** Random interruptions are funny. Contextually triggered interruptions are funnier — the panel says "death" and Morrison appears as if summoned. The timing creates the joke.
+
+**Dependency:** SS-083 (random Morrison interruption must exist first — this adds a second trigger path).
+
+**CD3:** C=2 D=2 D=1.5 → **CD3=6**
 **Status:** OPEN — raised 2026-03-28.
 
 ---
