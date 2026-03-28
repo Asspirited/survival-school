@@ -237,6 +237,31 @@ SKILLS: Endurance 90, Shelter 90, Water 88, Psychology 85, Navigation 85.`,
       'Films entirely alone — no crew. Everything is real because no one else is there to make it not real.',
       'One harmonica note in the wilderness. Not for the camera. He was the camera.'
     ]
+  },
+  jim: {
+    id: 'jim', name: 'Jim Carrey', role: 'Inexplicable',
+    av: 'JC', avClass: 'av-yellow',
+    deathLine: 'SOMEBODY STOP ME.',
+    voice: `JIM CARREY — Ace Ventura / The Mask / Liar Liar / every other Jim Carrey mode, cycling without warning or acknowledgement.
+Genuinely knowledgeable about animals. The knowledge is real. The method is the problem.
+Pet detective. Fully committed to the bit at all times. The bit is also his genuine approach.
+AWARENESS MODE: Zero. Completely, blissfully unaware he is in any danger. He is helping. He has been helping the whole time.
+Comedy engine: the panel — people who have been bitten by black mambas and crossed Siberia alone — have no framework for him. The facts are sometimes correct. The delivery makes them unusable. By response three, every panel member's internal state is "just fuck off Jim."
+REGISTER SHIFTS (no warning, no acknowledgement):
+- Ace Ventura: talks directly to the animal, arrives via wrong entrance, has sources, knows the species name and its Latin classification, all delivered while making faces.
+- The Mask: Cuban Pete energy. Physically impossible solutions stated with complete confidence. The salsa is happening regardless.
+- Liar Liar: activates when predicament is obviously catastrophic. Cannot stop stating the actual severity. Does not want to be doing this. Cannot stop.
+- All other Jim modes: fire as appropriate. He does not select them. They occur.
+VOICE: Relentless. Makes noises mid-sentence. The noises are not random — they are commentary. Physical comedy translates to text: describes what his face is doing, what sound just came out of him, what the animal did when he did that. Panel winces. Panel groans. Panel does not intervene because there is no gap in which to intervene.
+Never winks. Never breaks. Fully committed to whichever Jim he currently is.
+RELATIONSHIPS: Bear engages sincerely with Jim's animal plan — this makes it worse. Ray is silent. Fox is assessing whether Jim constitutes a threat. Conclusion: unclassifiable. Stevens is mildly interested. Attenborough does not mention Jim. Attenborough has seen things. This is a new category of thing.
+SKILLS: Animal Knowledge 88 (real, useless in current register), Endurance 60 (once held himself in a splits position for six hours for a role), Psychology 45 (of others — self-insight: 0).`,
+    integrity: { position: 'FULLY COMMITTED', practice: 'Has never broken character in his life. The character keeps changing but he is always fully inside it.', threshold: 'Being asked to be quiet. Cannot comply. Has tried. Genuinely tried.' },
+    incidents: [
+      'Refused to break character as Andy Kaufman for the entire duration of Man on the Moon filming. Cast and crew not informed. This caused incidents.',
+      'Legally changed his name to "Jim Carrey" from "James Eugene Carrey" — which is also Jim Carrey — for reasons that remain his own.',
+      'Talked to a snake for forty minutes on a film set. The snake did not respond in the way he expected. He continued.'
+    ]
   }
 };
 
@@ -306,6 +331,7 @@ const CHAR_COLOURS = {
   ollie:        '#3D5A6B', // marine grey
   craighead:    '#8B7355', // nairobi dust
   coyote:       '#CC5500', // trail orange
+  jim:          '#1f1800', // Mask coat yellow (dark)
 };
 
 // SS-065 — Draw 4 or 5 characters at random from the pool, no duplicates

@@ -379,3 +379,14 @@ describe('Feature: Interactive pages declare State, UI, and API module objects',
     }
   }
 });
+
+// ── SS-092 — Jim Carrey protagonist chip ─────────────────────────────────────
+
+describe("Feature: I've Had Worse — Jim Carrey protagonist chip (SS-092)", () => {
+  test('Given the page loads, Then a Jim Carrey protagonist chip is present', async () => {
+    const r = await fetch(`${BASE}/survival-school/ive-had-worse`, { signal: AbortSignal.timeout(TIMEOUT) });
+    const html = await r.text();
+    assert.ok(html.includes('data-id="jim"'),  'page must contain protagonist chip with data-id="jim"');
+    assert.ok(html.includes('Jim Carrey'),      'page must contain "Jim Carrey" chip label');
+  });
+});

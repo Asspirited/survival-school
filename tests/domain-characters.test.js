@@ -328,3 +328,39 @@ describe("buildSystemPrompt('qa') — Panel Q&A mode", () => {
       "qa prompt schema must reference 'note' field for contradiction description");
   });
 });
+
+// ── SS-092 — Jim Carrey character ────────────────────────────────────────────
+
+describe('Jim Carrey — SS-092', () => {
+  test('"jim" is present in CHARACTERS', () => {
+    assert.ok(Object.prototype.hasOwnProperty.call(CHARACTERS, 'jim'),
+      '"jim" must be a key in CHARACTERS');
+  });
+
+  test('"jim" is in PANEL_POOL', () => {
+    assert.ok(PANEL_POOL.includes('jim'),
+      '"jim" must be in PANEL_POOL — auto-included via CHARACTERS filter');
+  });
+
+  test('"jim" has required character fields: name, role, av, avClass, voice', () => {
+    const jim = CHARACTERS.jim;
+    assert.ok(jim.name,    '"jim" must have a name');
+    assert.ok(jim.role,    '"jim" must have a role');
+    assert.ok(jim.av,      '"jim" must have av initials');
+    assert.ok(jim.avClass, '"jim" must have avClass');
+    assert.ok(jim.voice,   '"jim" must have a voice description');
+  });
+
+  test('"jim" av initials are "JC"', () => {
+    assert.strictEqual(CHARACTERS.jim.av, 'JC', '"jim" av must be "JC"');
+  });
+
+  test('"jim" avClass is "av-yellow"', () => {
+    assert.strictEqual(CHARACTERS.jim.avClass, 'av-yellow', '"jim" avClass must be "av-yellow"');
+  });
+
+  test('"jim" is in CHAR_COLOURS', () => {
+    assert.ok(Object.prototype.hasOwnProperty.call(CHAR_COLOURS, 'jim'),
+      '"jim" must have an entry in CHAR_COLOURS');
+  });
+});
