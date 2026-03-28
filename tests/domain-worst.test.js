@@ -14,7 +14,34 @@ import {
   setStatus, buildSituation, reset
 } from '../js/state-worst.js';
 
+import { CHARACTERS_WORST, buildWorstSystemPrompt } from '../js/characters-worst.js';
+
 beforeEach(() => { reset(); });
+
+// ── SS-082 — Gordon Lyons on the How Bad Is This panel ────────────────────────
+
+describe('CHARACTERS_WORST — SS-082 Gordon Lyons', () => {
+  test('gordon is in CHARACTERS_WORST', () => {
+    assert.ok(Object.prototype.hasOwnProperty.call(CHARACTERS_WORST, 'gordon'),
+      "CHARACTERS_WORST must include 'gordon'");
+  });
+
+  test('gordon has id, name, role, voice, deathLine', () => {
+    const g = CHARACTERS_WORST.gordon;
+    assert.ok(g, 'gordon entry must exist');
+    assert.strictEqual(g.id, 'gordon');
+    assert.ok(g.name, 'gordon: missing name');
+    assert.ok(g.role, 'gordon: missing role');
+    assert.ok(g.voice, 'gordon: missing voice');
+    assert.ok('deathLine' in g, 'gordon: missing deathLine');
+  });
+
+  test('buildWorstSystemPrompt includes gordon in output schema', () => {
+    const prompt = buildWorstSystemPrompt();
+    assert.ok(prompt.includes('gordon'),
+      "worst system prompt must reference charId 'gordon'");
+  });
+});
 
 // ─────────────────────────────────────────────
 // getState
