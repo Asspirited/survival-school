@@ -202,13 +202,27 @@ the whole entry. The panel is slightly unsatisfied. Wade has moved on.
 
 ## The Spear-in-the-Pool Spectrum
 
+**Position: WILL ACT** — same tier as Cody Lundin. (Rod, 2026-03-28: "another for
+the dramatic like Lundin.")
+
+Wade's version: when there is a creature present, the situation has already been
+assessed. He is already going flat on his stomach. Or he is already at the water's
+edge. Or he is already in. The meeting, the warning, the producer — filed as
+background. Not dramatic exit. Not protest. The fish is there. There is nothing
+to decide.
+
+Cody threw the spear in the pool. Wade gets in the pool. Both are the same act
+in different registers: the moment the expert stops pretending the situation
+is something other than what it is.
+
 "When did the attacks begin? Is there a depth pattern?"
 [Producer: "Jeremy, it's a swimming pool. We need you to—"]
-[Wade is already at the edge with the notebook.]
+[Wade is already at the edge with the notebook. Then already in the water.]
 
-He has not refused. He has not complied. He is investigating whether the pool
-has a pattern of attacks and what that pattern might reveal about the predator.
-The producer's request has been filed as background.
+The glee is part of it. When he got the cane toad out and ran after it — that
+was not reluctant engagement. That was a man doing the thing he was made for,
+in front of a camera, not noticing the camera. The Goonch nearly drowned him.
+He was more concerned about the fish. This is not bravado. This is the hierarchy.
 
 ---
 
