@@ -6,92 +6,73 @@
 
 ## What shipped this session
 
-### SS-065 — PANEL_POOL + drawPanel (DONE)
-PANEL_POOL and drawPanel() added to js/characters.js. Pool = all characters except Attenborough. Draw = 4 or 5 at random. Tested in L1 (85 pass). domain-characters.test.js added to pipeline L1.
+### Predicament chips (cusslab/worker.js)
+- SS-089: Irwin snake wall, croc fighting ring, snake ring let-slip
+- SS-089: Irwin croc leather on-camera, O'Shea snake jacket self-ID'd on-air, Stevens snakeskin boots (RSPCA report)
+- SS-085 (roast): Bear hotel, Bear pool, Bear wetsuit disclosure, Cody Dual Survival exit
+- SS-085 (inversion): Bear Mayfair spa, Stroud all-inclusive cruise, Ray Deliveroo, Cody shoes at the Ritz, Hales Las Vegas minibar, Fox corporate paintball
+- SS-076 additions: O'Shea grandmother's urn, Stay Safe talk (live rounds + abseil entry)
 
-### SS-082 — Gordon Lyons on I've Been Bit panel (DONE)
-Character doc: docs/characters/gordon-lyons.md. Added to CHARACTERS_WORST. Panel order now: Ray, Fox, O'Shea, Stevens, Bear, Gordon, Hales, Cody. L1 tests added to domain-worst.test.js.
+### Panel mechanics (I've Had Worse — system prompt)
+- SS-081: Austin Stevens added as protagonist + panel member (Snakemaster, indifferent to severity)
+- SS-064: Cox (blissfully unaware) + Faldo (painfully aware, committed to wrong tool) as permanent panel rotation
+- SS-074: Expert Over-Reach in system prompt
+- SS-005: Telephone Game in system prompt
+- SS-085: Roast/Inversion mechanic — panel questions the rationalisation, protagonist doubles down
 
-### SS-084 — Bear/teacher/dead snake chip (DONE)
-Chip added to #chips-scenario in whats-the-worst.html. Data-only.
+### UI (I've Had Worse)
+- SS-078: Corridor send-offs per protagonist (Bear/crowd/producer, Ray/one man 2009, Fox/empty corridor, Hales/1985 soldiers, Cody/barefoot student, Stroud/own camera, Stevens/holding a snake)
+- SS-029: SHARE button — Web Share API (mobile) + clipboard copy (desktop), 2s COPIED feedback
 
-### SS-080 + SS-081 — O'Shea and Stevens on main panel (DONE)
-Both added to CHARACTERS in js/characters.js. Auto-included in PANEL_POOL. Eligible for random draw on all main panel modes.
+### Backlog (other session)
+- SS-059: Character interaction dynamics — DONE
+- SS-062: Panel triage order consistency — DONE
+- SS-058: Per-character card colours — DONE
 
-### SS-058 — Per-character coloured card backgrounds (DONE)
-CHAR_COLOURS map exported from js/characters.js. char-${charId} class applied in ui.js and ui-worst.js. CSS (rgba tints) added to all 3 panel sections in cusslab/worker.js. Both repos pushed.
-
----
-
-## Backlog items DONE this session
-SS-065, SS-082, SS-084, SS-080, SS-081, SS-058
-
-## New items raised this session
-SS-084 (done), SS-085 (The Doors roast+inversion research), SS-086 (chip stimulus review, blocked on SS-085), SS-087 (Cusslab crossover protagonists), SS-088 (panel emotional state model — LieEngine port)
+### Raised this session
+- SS-090, SS-091: Fish-out-of-water pair interaction modes
+- SS-092: Jim Carrey — cycles all roles, red rag, just fuck off Jim
 
 ---
 
 ## Pipeline state
-GREEN — L0, L1 (85), L2 (14), L3 (49), L4 (240), L5 SKIP.
-
----
-
-## Open backlog (top items by CD3)
-
-| CD3 | Item |
-|-----|------|
-| 27 | SS-029 — Shareability / screenshot |
-| 27 | SS-085 — Roast + inversion (The Doors) |
-| 27 | SS-087 — Cusslab crossover protagonists |
-| 27 | SS-088 — Panel emotional state model |
-| 18 | SS-078 — Corridor send-offs (parallel session) |
-| 18 | SS-012 — Irwin Memorial Encounter |
-| 18 | SS-006 — Temporal Lens mechanic |
+ALL GREEN — L0 auth canary, L1 unit (95), L2 contract (14), L3 acceptance (49), L4 UI (240). L5 SKIP.
+Note: L3 showed 1 flaky failure on first run, passed clean on rerun. Monitor.
 
 ---
 
 ## Open WL items
-WL-SS-011, WL-SS-012, WL-SS-002, WL-SS-003, WL-SS-006, WL-SS-013
+- WL-SS-011: SSH auth declared broken without checking
+- WL-SS-012: Claude "fixed permanently" apology loop
+- WL-SS-002: Shared state claimed GitHub repo existed — it didn't
+- WL-SS-003: wrangler.jsonc at /home/rodent/ routes to wrong worker
+- WL-SS-006: Session startup skipped repeatedly
+- WL-SS-013: Deploy treated as auth event
 
 ---
 
 ## HDD status
 HDD-001: "Panel comedy and survival expertise together create content people share with specific people in mind."
-Status: OPEN / Advancing. Panel now richer (Gordon, O'Shea, Stevens in pool). Characters have colour identity.
-Next: SS-029 shareability.
-
----
-
-## Architecture notes for Claude.ai
-
-- PANEL_POOL is canonical for panel-eligible characters (js/characters.js). PANEL_IDS kept for compat.
-- characters-worst.js has its own fixed panel — Gordon is there. O'Shea + Stevens were already there.
-- characters.js main panel — oshea and stevens now in PANEL_POOL.
-- worker.js is in /home/rodent/cusslab/ — all SS HTML inlined there. SS source files are dev source of truth.
-- SS-088: Cusslab primitives identified: lie-engine.js, temperament-service.js, ff-engine.js. None ported yet.
-- SS-078/085/087 were in a parallel session. Check that session's state too.
+Status: OPEN / Advancing.
+Evidence: Roast/inversion chips (Deliveroo, shoes at the Ritz) have the "send to a specific person" quality.
+SHARE button now live — observe whether anyone actually uses it.
+Next: SS-092 (Jim Carrey) is next high-conviction chip set. SS-088 (LieEngine) is the structural unlock.
 
 ---
 
 ## Decisions made this session
-
-DECISION 2026-03-28: SS-065 pool before character adds — avoids hardcoded panel debt.
-DECISION 2026-03-28: SS-088 deferred — LieEngine port needs dedicated session.
-DECISION 2026-03-28: Card colours use rgba tints (12-20% opacity) — survival aesthetic.
+DECISION 2026-03-28: Cox + Faldo permanent panel rotation. One at a time, never both.
+DECISION 2026-03-28: Fish-out-of-water awareness modes: blissfully unaware / painfully aware but committed / eager-expert / indifferent-anti — per character.
+DECISION 2026-03-28: SS-029 delivered on I've Had Worse first. Extension to other features separate.
 
 ---
 
 ## Top 3 for next session
+1. SS-088 — LieEngine port: characters react to each other. The structural unlock.
+2. SS-092 — Jim Carrey character.
+3. SS-087 — Cusslab crossover: non-survivalist protagonists through The Doors.
 
-1. SS-029 — Shareability: screenshot + share link. Direct HDD evidence.
-2. SS-085 — Roast + inversion research (The Doors). No code — character research.
-3. SS-088 — Panel emotional state model design session.
-
----
-
-## Session goal for next session
-
-Get a share mechanic live (SS-029). Let someone share something and observe the response.
+Session goal: get characters reacting to each other (SS-088). Turns the product from a party trick into something people return to.
 
 ---
 
@@ -101,15 +82,24 @@ Get a share mechanic live (SS-029). Let someone share something and observe the 
 |---------|-----|--------|
 | Homepage | /survival-school | Live |
 | How Screwed Am I? | /survival-school/app | Live |
-| I've Been Bit, Guys | /survival-school/worst | Live — Gordon now on panel |
+| I've Been Bit, Guys | /survival-school/worst | Live |
 | Mundane Mode | /survival-school/mundane | Live |
 | Will You Eat It? | /survival-school/eat | Live |
 | Animal Deathmatch | /survival-school/deathmatch | Live |
 | Bear Fact-Checker | /survival-school/fact-checker | Live |
 | The Coyote Index | /survival-school/coyote | Live |
 | Panel Q&A | /survival-school/panel-qa | Live |
-| I've Had Worse | /survival-school/ive-had-worse | Live |
-| The Rooms | /survival-school/rooms | Live |
+| The Doors (corridor) | /survival-school/rooms | Live |
+| I've Had Worse (Room 13) | /survival-school/ive-had-worse | Live — share button added |
 
 Worker: cusslab-api.leanspirited.workers.dev
-Deploy: source /home/rodent/.cf-deploy-token && CLOUDFLARE_ACCOUNT_ID="ce5ebfc99d1b37a7537a039d0b09d0b6" CLOUDFLARE_API_TOKEN="${CLOUDFLARE_API_TOKEN}" npx wrangler deploy --config /home/rodent/cusslab/wrangler.toml
+Deploy: source /home/rodent/.cf-deploy-token && CLOUDFLARE_API_TOKEN="${CLOUDFLARE_API_TOKEN}" CLOUDFLARE_ACCOUNT_ID="ce5ebfc99d1b37a7537a039d0b09d0b6" npx wrangler deploy --config /home/rodent/cusslab/wrangler.toml
+
+---
+
+## Notes for Claude.ai
+- cusslab/worker.js is the source file for ALL Survival School features. Not survival-school repo HTML files.
+- SHARE button live on I've Had Worse. Watch for actual sharing behaviour.
+- Jim Carrey (SS-092) fully designed in backlog. High priority, high confidence funny.
+- Roast chips (Bear hotel/pool/wetsuit) are most shareable content currently live.
+- L3 had one flaky test this session — watch for recurrence.
