@@ -1799,9 +1799,17 @@ Feature: Panel triage order across all SS features
 
 **Rod's examples:** "Good luck Bear", "you'll be fine......right?", "you got this", "Whoooop, go Bear", "Give em hell kid"
 
-**Design note:** The gap between Morrison and the send-offs IS the joke. Morrison must be played straight. The send-offs must be played straight too — nobody is winking.
+**Gordon-specific send-offs (canonical, Rod 2026-03-28):**
+- "What a guy."
+- "You got this one Gordon!"
+- "hope there's no fucking snakes in there Gordo!"
+- Doug, from the corridor, waving, tin of VB: "shout if you need me to come in"
 
-**Outstanding Three Amigos:** Do send-offs appear before entering (on door click confirmation) or after (on the room page)? One send-off or two? Static list or LLM-generated? Should the protagonist's name appear in the send-off?
+**Design note:** The gap between Morrison and the send-offs IS the joke. Morrison must be played straight. The send-offs must be played straight too — nobody is winking. Gordon's send-offs establish the pattern: character-specific messages are funnier than generic ones. The protagonist's name in the send-off is essential — it personalises the clumsy affection.
+
+**Gordon's entrance design note (canonical):** Jim pushes Gordon's wheelchair through the door. Doug assists from behind. This is the only entrance where Jim has to push. Nobody mentions it. The door closes. Doug is still waving.
+
+**Outstanding Three Amigos:** Do send-offs appear before entering (on door click confirmation) or after (on the room page)? One send-off or two? Static list or LLM-generated (protagonist-aware)? Should Jim's line be protagonist-aware too, or always cosmic/generic?
 
 **CD3:** C=3 D=3 D=2 → **CD3=18**
 **Status:** OPEN — raised 2026-03-28.
@@ -1901,7 +1909,18 @@ Got bitten several times by a venomous snake. While waiting for help, forgot the
 
 **Doug:** Gordon's mate. Poured beer on Gordon and urinated on his head to keep him conscious. This was not medically advised. It worked. Doug is not in the panel. Doug is the corridor. Every time Gordon walks in, Doug is behind him going "yeah, mate, you got this." Doug does not fully understand what is happening. Doug is always there.
 
-**Send-off energy (SS-078):** "What a guy." / "You got this one Gordon!" — these are the exact send-off messages. They are not sarcastic. Gordon would agree. Doug wrote them.
+**Gordon's entrance (canonical, Rod 2026-03-28):**
+Jim Morrison pushes Gordon through the door in his wheelchair. Doug helps from behind, waving, tin of VB in hand: *"shout if you need me to come in."* Jim says nothing about the wheelchair. He has seen things. Gordon thanks Jim. Doug is already opening another tin.
+
+This is the only entrance in The Doors where Jim has to push. Everyone else walks. Gordon is wheeled. The comedy is that nobody mentions this. Jim pushes him through with the same cosmic gravity he applies to everyone. The door closes. Doug is still waving.
+
+**Send-off energy (SS-078):**
+- "What a guy."
+- "You got this one Gordon!"
+- "hope there's no fucking snakes in there Gordo!" — Doug, from the corridor
+- "shout if you need me to come in" — Doug, still waving, tin of VB
+
+These are not sarcastic. Gordon would agree with all of them. There might be snakes. Gordon is fine with that.
 
 **CD3:** C=3 D=3 D=3 → **CD3=27**
 **Status:** OPEN — raised 2026-03-28.
