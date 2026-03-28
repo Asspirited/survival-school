@@ -9,7 +9,59 @@
 import { test, describe, before } from 'node:test';
 import assert from 'node:assert/strict';
 
-import { buildSystemPrompt, CHARACTERS, PANEL_IDS } from '../js/characters.js';
+import { buildSystemPrompt, CHARACTERS, PANEL_IDS, PANEL_POOL, drawPanel } from '../js/characters.js';
+
+// ── SS-065 — Panel pool + drawPanel ──────────────────────────────────────────
+
+describe('PANEL_POOL — SS-065', () => {
+  test('PANEL_POOL is defined and non-empty', () => {
+    assert.ok(Array.isArray(PANEL_POOL), 'PANEL_POOL must be an array');
+    assert.ok(PANEL_POOL.length > 0, 'PANEL_POOL must have at least one entry');
+  });
+
+  test('attenborough is not in PANEL_POOL', () => {
+    assert.ok(!PANEL_POOL.includes('attenborough'),
+      'attenborough must not be in PANEL_POOL — he bookends only');
+  });
+
+  test('every pool member has a CHARACTERS entry', () => {
+    for (const id of PANEL_POOL) {
+      assert.ok(Object.prototype.hasOwnProperty.call(CHARACTERS, id),
+        `PANEL_POOL includes '${id}' but CHARACTERS has no entry`);
+    }
+  });
+});
+
+describe('drawPanel — SS-065', () => {
+  test('draws 4 or 5 characters', () => {
+    for (let i = 0; i < 20; i++) {
+      const drawn = drawPanel();
+      assert.ok(drawn.length >= 4 && drawn.length <= 5,
+        `drawPanel must return 4–5 characters, got ${drawn.length}`);
+    }
+  });
+
+  test('drawn characters are all in PANEL_POOL', () => {
+    const drawn = drawPanel();
+    for (const id of drawn) {
+      assert.ok(PANEL_POOL.includes(id),
+        `drawn character '${id}' is not in PANEL_POOL`);
+    }
+  });
+
+  test('no duplicates in drawn panel', () => {
+    const drawn = drawPanel();
+    const unique = new Set(drawn);
+    assert.strictEqual(unique.size, drawn.length, 'drawPanel must not return duplicate characters');
+  });
+
+  test('attenborough is never drawn', () => {
+    for (let i = 0; i < 20; i++) {
+      const drawn = drawPanel();
+      assert.ok(!drawn.includes('attenborough'), 'attenborough must never be drawn');
+    }
+  });
+});
 
 // ── CHARACTERS ───────────────────────────────────────────────────────────────
 

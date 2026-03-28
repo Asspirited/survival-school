@@ -190,6 +190,21 @@ FOUNDING PHILOSOPHY: Real knowledge. Genuine consequence. No performance. Comedy
 // Panel characters (excludes Attenborough — he does bookends, not panel cards)
 const PANEL_IDS = ['ray', 'bear', 'cody', 'hales', 'fox', 'stroud'];
 
+// SS-065 — Full pool of all panel-eligible characters (not Attenborough)
+const PANEL_POOL = Object.keys(CHARACTERS).filter(id => id !== 'attenborough');
+
+// SS-065 — Draw 4 or 5 characters at random from the pool, no duplicates
+function drawPanel() {
+  const size = Math.random() < 0.5 ? 4 : 5;
+  const pool = [...PANEL_POOL];
+  const drawn = [];
+  while (drawn.length < size && pool.length > 0) {
+    const idx = Math.floor(Math.random() * pool.length);
+    drawn.push(pool.splice(idx, 1)[0]);
+  }
+  return drawn;
+}
+
 function buildSystemPrompt(mode = 'assessment') {
   const chars = Object.values(CHARACTERS)
     .map(c => `=== ${c.name.toUpperCase()} ===\n${c.voice}`)
@@ -308,4 +323,4 @@ OUTPUT — valid JSON only, no markdown:
 {"survival_probability":<integer 0-100>,"attenborough_opening":"<one sentence, nature doc, introduces situation as wildlife encounter, slightly ominous>","panel":[{"charId":"<id>","text":"<2-4 sentences>","death":<bool>,"fact_check":"<optional Bear only>"}],"attenborough_verdict":"<one sentence, geological calm, no appeal, the documentary's conclusion>","next_actions":["<action>","<action>","<action>"]}`;
 }
 
-export { CHARACTERS, PANEL_IDS, buildSystemPrompt };
+export { CHARACTERS, PANEL_IDS, PANEL_POOL, drawPanel, buildSystemPrompt };
