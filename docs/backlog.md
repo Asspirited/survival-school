@@ -60,11 +60,13 @@
 | 12 | SS-086 — Review SS-085 material as stimulus for chips on other features (How Screwed, I've Had Worse, etc.) | Open | DDD |
 | 27 | SS-093 — New door: "In My Defence" (Room 14) — Roast/Inversion mode, protagonist chips expand per-person incidents, aggressive interrogation panel | DONE (live 2026-03-28) | BDD |
 | 18 | SS-094 — Fix I've Had Worse: remove roast chips, fix panel interaction (SOCIAL_DYNAMICS_ENGINE, panel_tension, random order, escalation) | DONE (2026-03-28) | BDD |
-| 27 | SS-088 — Panel emotional state model: port LieEngine + composure from Cusslab, characters shift register mid-session | Open | DDD |
+| 27 | SS-088 — Panel emotional state model: port LieEngine + composure from Cusslab, characters shift register mid-session | DONE (2026-03-28) | BDD |
 | 27 | SS-087 — Cusslab crossover: non-survivalist protagonists through The Doors | Open | DDD |
 | 27 | SS-089 — The Doors predicament chips: Steve Irwin (snake wall, croc ring, snake ring let-slip) + Stevens (snake pit, O'Shea's paper) | DONE (2026-03-28) | BDD |
 | 18 | SS-092 — Fish-out-of-water character: Jim Carrey — cycles Ace Ventura / The Mask / Liar Liar / all other modes, red rag to the panel, funny and also not funny, just fuck off Jim | DONE 2026-03-28 | BDD |
 | 18 | SS-095 — New character: Jeremy Wade — Freshwater Biologist, River Monsters, protagonist + panel rotation, notebook/translator/tuning out/Cowabunga mechanics | DONE 2026-03-28 | BDD |
+| 12 | SS-096 — Wade predicament chips: River Monsters scenarios, freshwater predator experiences, Congo/Mekong incidents, candiru, witchcraft accusation | Open | BDD |
+| 18 | SS-097 — New character: Eric Bristow — darts legend, survival commentary + darts panel crossover (Cusslab) | Open | DDD |
 | 18 | SS-090 — Fish-out-of-water pair: Cox + Faldo both in panel — vehement mutual agreement on something both are completely wrong about, experts looking on in horror | Open | BDD |
 | 18 | SS-091 — Fish-out-of-water pair: Cox + Faldo argue with each other when neither knows anything — escalating confident wrongness, no expert present to correct them | Open | BDD |
 | 18 | SS-059 — Character interaction dynamics: wounds, lies, calling each other out | DONE (SOCIAL DYNAMICS ENGINE live, panel_tension in all modes, ADR-002 2026-03-28) | DDD |
@@ -2228,7 +2230,7 @@ These are not sarcastic. Gordon would agree with all of them. There might be sna
 
 ### SS-088 — Panel emotional state model
 
-**Status:** Open
+**Status:** DONE (2026-03-28)
 **Loop:** DDD
 **Epic:** Panel Interaction Model
 
@@ -2295,6 +2297,70 @@ These are not sarcastic. Gordon would agree with all of them. There might be sna
 6. Tighten escalation instruction: each entry more specific + more implausible + more sincere; protagonist entry must be structurally alarming
 
 **Root cause:** SOCIAL_DYNAMICS_ENGINE never injected into this mode. Fixed speaking order. Roast chips polluting the chip list.
+
+**CD3:** C=3 D=2 D=3 → **CD3=18**
+**Status:** OPEN — raised 2026-03-28.
+
+---
+
+### SS-096 — Wade predicament chips
+
+**Status:** Open
+**Loop:** BDD
+
+**What it is:** Predicament chips for Jeremy Wade across the features that support chips.
+Wade's chip set draws from his documented history — all sourced from real events.
+
+**Chip candidates:**
+
+*I've Had Worse (protagonist chips):*
+- "I was arrested as a spy on the Mekong. I had a fishing rod. I explained the rod. They did not accept the explanation."
+- "I was accused of witchcraft in the Congo. A man had disappeared from the village. I was fishing. He came back that night. I resumed fishing."
+- "I found a man the candiru had visited. I took him to the science faculty. I showed him the specimen. He did not want to touch it."
+
+*The Doors predicament chips (for Wade as protagonist entering a door):*
+- "I held the candiru specimen in front of the man who had already had the candiru experience. I may have waggled it. I was trying to help."
+- "I told the traumatised man 'Cowabunga.' I meant it well. I had moved on before he responded."
+- "I wrote 'Robson Green would not last one afternoon here' in the notebook. The notebook was open on the table. The translator saw it. The translator did not translate it."
+
+*General pool chips (any protagonist):*
+- "I nodded at what the local elder was saying for forty minutes. I wrote 'I have no clue what this lady is saying' in the notebook. The notebook was on the table."
+- "I reached into the river without looking to feel for the fish before the line came up."
+
+**CD3:** C=2 D=2 D=2 → **CD3=12**
+**Status:** OPEN — raised 2026-03-28.
+
+---
+
+### SS-097 — New character: Eric Bristow
+
+**Status:** Open
+**Loop:** DDD
+
+**What it is:** Eric Bristow as a panel character for Survival School. Darts legend.
+Five-time World Darts Champion. Brash, Cockney, absolutely certain, completely wrong
+domain. The comedy: Bristow applies darts logic to survival with total conviction.
+Throw, trajectory, checkout — everything is a checkout.
+
+Also shared with the Cusslab darts panel (BL to be raised separately as BL-166).
+
+**Comedy engine (initial hypothesis):**
+Darts is the framework for everything. A bear attack is a checkout. The target is the
+bear's weak point. You need to hit double top under pressure. Has advice on grip, stance,
+follow-through for every survival situation. The survival experts look on in silence.
+
+**Register:**
+Bristow was famous for being brash, confident, dismissive, gloriously un-self-aware
+about the gap between darts expertise and any other domain. "Five times World Champion,
+son." This applies to the survival situation. The situation is not a darts board.
+Bristow has not noticed this.
+
+**Fish-out-of-water awareness mode:** Blissfully unaware. Same mode as Cox.
+
+**Shared with Cusslab darts panel:** Raise BL-166 to build the darts panel. Bristow
+anchors both products. Character file: docs/characters/eric-bristow.md to be written.
+
+**Rod's memory:** [CAPTURE ROD'S MEMORY — not yet recorded verbatim]
 
 **CD3:** C=3 D=2 D=3 → **CD3=18**
 **Status:** OPEN — raised 2026-03-28.

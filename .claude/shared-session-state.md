@@ -6,38 +6,26 @@
 
 ## What shipped this session
 
-### Predicament chips (cusslab/worker.js)
-- SS-089: Irwin snake wall, croc fighting ring, snake ring let-slip
-- SS-089: Irwin croc leather on-camera, O'Shea snake jacket self-ID'd on-air, Stevens snakeskin boots (RSPCA report)
-- SS-085 (roast): Bear hotel, Bear pool, Bear wetsuit disclosure, Cody Dual Survival exit
-- SS-085 (inversion): Bear Mayfair spa, Stroud all-inclusive cruise, Ray Deliveroo, Cody shoes at the Ritz, Hales Las Vegas minibar, Fox corporate paintball
-- SS-076 additions: O'Shea grandmother's urn, Stay Safe talk (live rounds + abseil entry)
+### SS-088 — Composure engine (DONE)
 
-### Panel mechanics (I've Had Worse — system prompt)
-- SS-081: Austin Stevens added as protagonist + panel member (Snakemaster, indifferent to severity)
-- SS-064: Cox (blissfully unaware) + Faldo (painfully aware, committed to wrong tool) as permanent panel rotation
-- SS-074: Expert Over-Reach in system prompt
-- SS-005: Telephone Game in system prompt
-- SS-085: Roast/Inversion mechanic — panel questions the rationalisation, protagonist doubles down
+**cusslab/worker.js**
+- COMPOSURE_PROFILES: per-character composure profiles with baseline, pressure, tell (ray:8, fox:9, bear:7, hales:8, cody:6, stroud:7, stevens:9, cox:5, faldo:6, jim:3, jeremy:8)
+- `initComposureState()` — returns baseline composure map from profiles
+- `computeComposureDeltas(current, panelTension)` — callout=-2, wolf_pack=-3, lie=-1, wound_reference=-1; untargeted chars +0.5 capped at baseline
+- `composureTier(val)` — HIGH(7-10), STEADY(4-6), RATTLED(2-3), GONE(0-1)
+- `buildComposureInjection(composureState, panelCharIds)` — builds system prompt appendix: speaking order (lowest composure first), per-char tier labels with pressure/tell behaviour for shifted chars
+- `/survival-school/assess` POST handler: accepts `composureState` + `panelCharIds` from client, injects composure into system prompt, parses response, computes deltas, returns `composureState` in response
+- How Screwed Am I client: `DEFAULT_STATE.composureState: null`, `setComposureState(cs)`, `assess()` + `react()` both pass `composureState` + `panelCharIds: HSA_PANEL_CHARS` and store returned `composureState`
 
-### UI (I've Had Worse)
-- SS-078: Corridor send-offs per protagonist (Bear/crowd/producer, Ray/one man 2009, Fox/empty corridor, Hales/1985 soldiers, Cody/barefoot student, Stroud/own camera, Stevens/holding a snake)
-- SS-029: SHARE button — Web Share API (mobile) + clipboard copy (desktop), 2s COPIED feedback
-
-### Backlog (other session)
-- SS-059: Character interaction dynamics — DONE
-- SS-062: Panel triage order consistency — DONE
-- SS-058: Per-character card colours — DONE
-
-### Raised this session
-- SS-090, SS-091: Fish-out-of-water pair interaction modes
-- SS-092: Jim Carrey — cycles all roles, red rag, just fuck off Jim
+**survival-school tests**
+- `features/composure-engine.feature` — Gherkin for SS-088 (5 scenarios)
+- `tests/acceptance/acceptance.test.js` — 2 new SS-088 tests (first-round returns composureState, second-round with composureState returns updated)
+- `tests/contracts/ss-browser-ss-worker.pact.json` — added `composureState` to assessment mode required fields
 
 ---
 
 ## Pipeline state
-ALL GREEN — L0 auth canary, L1 unit (95), L2 contract (14), L3 acceptance (49), L4 UI (240). L5 SKIP.
-Note: L3 showed 1 flaky failure on first run, passed clean on rerun. Monitor.
+ALL GREEN — L0 auth canary, L1 unit (118), L2 contract (14), L3 acceptance (59), L4 UI (276). L5 SKIP.
 
 ---
 
@@ -54,25 +42,30 @@ Note: L3 showed 1 flaky failure on first run, passed clean on rerun. Monitor.
 ## HDD status
 HDD-001: "Panel comedy and survival expertise together create content people share with specific people in mind."
 Status: OPEN / Advancing.
-Evidence: Roast/inversion chips (Deliveroo, shoes at the Ritz) have the "send to a specific person" quality.
-SHARE button now live — observe whether anyone actually uses it.
-Next: SS-092 (Jim Carrey) is next high-conviction chip set. SS-088 (LieEngine) is the structural unlock.
+Evidence: Composure engine now live — characters shift register under pressure. First structural unlock: panel now reacts dynamically to what happened before.
+Next: Observe whether composure-shifted responses are funnier/sharper. SS-092 (Jim Carrey) is next high-conviction chip.
 
 ---
 
 ## Decisions made this session
-DECISION 2026-03-28: Cox + Faldo permanent panel rotation. One at a time, never both.
-DECISION 2026-03-28: Fish-out-of-water awareness modes: blissfully unaware / painfully aware but committed / eager-expert / indifferent-anti — per character.
-DECISION 2026-03-28: SS-029 delivered on I've Had Worse first. Extension to other features separate.
+DECISION 2026-03-28: Composure engine architecture — worker stateless, client holds composureState blob, worker owns profiles and computes deltas. No new infrastructure.
+DECISION 2026-03-28: How Screwed Am I panel chars are HSA_PANEL_CHARS = ['ray','fox','bear','hales','cody','stroud'].
+
+---
+
+## SS-088 implementation notes
+- composureState is a flat object: { ray: 7.5, fox: 9, bear: 6.5, ... }
+- First round: client sends no composureState → worker calls initComposureState() → returns initial state
+- Subsequent rounds: client sends last returned composureState → worker injects tier/order into system prompt → computes deltas from panel_tension → returns updated composureState
+- buildComposureInjection only injects if characters have shifted from HIGH tier (performance optimization — no noise when everything is fine)
+- The speaking order override only fires when some chars are below HIGH
 
 ---
 
 ## Top 3 for next session
-1. SS-088 — LieEngine port: characters react to each other. The structural unlock.
-2. SS-092 — Jim Carrey character.
-3. SS-087 — Cusslab crossover: non-survivalist protagonists through The Doors.
-
-Session goal: get characters reacting to each other (SS-088). Turns the product from a party trick into something people return to.
+1. SS-092 — Jim Carrey character (CD3: 27, fully designed in backlog)
+2. SS-087 — Cusslab crossover: non-survivalist protagonists through The Doors (Rod's call: stripped-down vs full cascade)
+3. SS-090/SS-091 — Cox+Faldo pair interaction modes
 
 ---
 
@@ -81,7 +74,7 @@ Session goal: get characters reacting to each other (SS-088). Turns the product 
 | Feature | URL | Status |
 |---------|-----|--------|
 | Homepage | /survival-school | Live |
-| How Screwed Am I? | /survival-school/app | Live |
+| How Screwed Am I? | /survival-school/app | Live — composure engine active |
 | I've Been Bit, Guys | /survival-school/worst | Live |
 | Mundane Mode | /survival-school/mundane | Live |
 | Will You Eat It? | /survival-school/eat | Live |
@@ -90,7 +83,8 @@ Session goal: get characters reacting to each other (SS-088). Turns the product 
 | The Coyote Index | /survival-school/coyote | Live |
 | Panel Q&A | /survival-school/panel-qa | Live |
 | The Doors (corridor) | /survival-school/rooms | Live |
-| I've Had Worse (Room 13) | /survival-school/ive-had-worse | Live — share button added |
+| I've Had Worse (Room 13) | /survival-school/ive-had-worse | Live |
+| In My Defence (Room 14) | /survival-school/in-my-defence | Live |
 
 Worker: cusslab-api.leanspirited.workers.dev
 Deploy: source /home/rodent/.cf-deploy-token && CLOUDFLARE_API_TOKEN="${CLOUDFLARE_API_TOKEN}" CLOUDFLARE_ACCOUNT_ID="ce5ebfc99d1b37a7537a039d0b09d0b6" npx wrangler deploy --config /home/rodent/cusslab/wrangler.toml
@@ -99,7 +93,7 @@ Deploy: source /home/rodent/.cf-deploy-token && CLOUDFLARE_API_TOKEN="${CLOUDFLA
 
 ## Notes for Claude.ai
 - cusslab/worker.js is the source file for ALL Survival School features. Not survival-school repo HTML files.
-- SHARE button live on I've Had Worse. Watch for actual sharing behaviour.
-- Jim Carrey (SS-092) fully designed in backlog. High priority, high confidence funny.
-- Roast chips (Bear hotel/pool/wetsuit) are most shareable content currently live.
-- L3 had one flaky test this session — watch for recurrence.
+- Composure engine is live. How Screwed Am I now returns composureState each round.
+- Client-side State holds composureState between rounds and passes it back with each request.
+- L3 has 59 tests (was 57 before SS-088 acceptance tests added).
+- SS-088 DONE. Backlog updated.
