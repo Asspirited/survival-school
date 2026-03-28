@@ -14,7 +14,7 @@
 | 27 | SS-029 — Shareability / screenshot | Open | BDD |
 | 18 | SS-021 — Panel integrity spectrum | DONE (design doc + all 13 character files 2026-03-27) | DDD |
 | 18 | SS-023 — Logo integration into app | DONE (bowie knife SVG live 2026-03-27) | BDD |
-| 18 | SS-009 — Mode A: Panel Q&A | Open | BDD |
+| 18 | SS-009 — Mode A: Panel Q&A | DONE (panel-qa live 2026-03-28, Contradiction Engine) | BDD |
 | 18 | SS-006 — Temporal Lens mechanic | Open | DDD |
 | 18 | SS-016 — Domain Knowledge Files | DONE (animal-encounters.md 2026-03-27 — first domain) | DDD |
 | 18 | SS-018 — Remaining character files | DONE (temporal lens, stingray rule, telephone game 2026-03-27) | DDD |
