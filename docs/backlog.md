@@ -45,6 +45,7 @@
 | 18 | SS-072 — Character: Chris Ryan — Bravo Two Zero survivor, contradicts McNab, selective memory | Open | DDD |
 | 12 | SS-073 — Jim Morrison corridor guide: sends characters through The Doors with sage/doom advice | DONE (per-door quotes + 25 rotating corridor quotes live 2026-03-28) | BDD |
 | 16 | SS-074 — Expert Over-Reach mechanic: characters one-up expertise claims, escalate into making things up | Open | BDD |
+| 18 | SS-083 — Jim Morrison mid-session interruption: wanders in, helps or hinders, panel doesn't know what to do with him | Open | BDD |
 | 8 | SS-075 — Corrupted door quotes: rotating list of Morrison + corrupted motivational banalities | DONE (25 quotes live 2026-03-28) | BDD |
 | 10 | SS-076 — Scenario predicament chips: airplane aisle, shandy, badger, pigeon, tortoise | DONE (5 chips live 2026-03-28) | BDD |
 | 12 | SS-077 — Room-specific guiding copy: freetext prompt hints congruent with each room's mechanic | Open | BDD |
@@ -1977,5 +1978,37 @@ These are not sarcastic. Gordon would agree with all of them. There might be sna
 **Note on "Bruce":** Doug calls Gordon "Bruce" first. Corrects himself to "Gordo." Apologises by calling him a fucking twat. This is affection. Gordon knows this.
 
 **CD3:** C=3 D=3 D=3 → **CD3=27**
+**Status:** OPEN — raised 2026-03-28.
+
+
+---
+
+### SS-083 — Jim Morrison mid-session interruption
+
+**Status:** Open
+**Loop:** BDD
+**Epic:** The Doors
+
+**What it is:** Jim Morrison wanders into the session mid-panel. Not announced. Not invited. He either helps the celebrity or makes things considerably worse — and not necessarily on purpose. He is following his own logic. The panel does not know what to do with him.
+
+**Trigger:** Random, or at a specific structural moment (e.g. after the third panel card, when the protagonist's position is weakest). The celebrity does not control when Jim appears.
+
+**Jim's modes:**
+- *Helps (accidentally or deliberately):* Offers a cryptic observation that somehow reframes the celebrity's position. The panel is briefly confused. The celebrity doesn't understand it either but benefits from the pause.
+- *Hinders:* Validates the panel's position in terms so cosmic they sound like support for the celebrity. The panel agrees with Jim. The celebrity is worse off.
+- *Neutral chaos:* Says something that has nothing to do with the situation. Everyone stops. Nobody knows what to do. Attenborough eventually closes it.
+
+**Panel reactions:**
+- Ray: does not acknowledge Jim. Continues.
+- Bear: briefly excited. Tries to agree with Jim. Jim does not notice.
+- Fox: still has the sight picture. On Jim now.
+- Cody: nods. He has been expecting this.
+- Hales: offers Jim something to eat. Jim declines. Three words.
+- Stroud: had a similar experience, alone, in Manitoba. Jim wasn't there but it felt like he was.
+- Attenborough: acknowledges Jim with one sentence. The sentence is perfect. Jim doesn't hear it — he's already leaving.
+
+**Outstanding Three Amigos:** Random trigger or structural? Does Jim speak to the celebrity directly or to the room? Can he appear more than once? Does the celebrity get to invoke Jim deliberately (at a cost)?
+
+**CD3:** C=3 D=3 D=2 → **CD3=18**
 **Status:** OPEN — raised 2026-03-28.
 
