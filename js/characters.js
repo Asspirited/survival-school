@@ -219,6 +219,24 @@ const PANEL_IDS = ['ray', 'bear', 'cody', 'hales', 'fox', 'stroud'];
 // SS-065 — Full pool of all panel-eligible characters (not Attenborough)
 const PANEL_POOL = Object.keys(CHARACTERS).filter(id => id !== 'attenborough');
 
+// SS-058 — Per-character card background colours (survival palette)
+const CHAR_COLOURS = {
+  bear:         '#78866B', // camo green
+  ray:          '#556B2F', // dark olive
+  fox:          '#4A4A4A', // gunmetal
+  hales:        '#C8860A', // ochre
+  cody:         '#8B7355', // burlywood
+  stroud:       '#2F4F4F', // dark slate
+  attenborough: '#1B3A2D', // deep forest
+  oshea:        '#8B4513', // amber-rust
+  stevens:      '#7A5C1E', // deep ochre
+  gordon:       '#C9962A', // VB gold
+  billy:        '#6B2737', // regiment red
+  ollie:        '#3D5A6B', // marine grey
+  craighead:    '#8B7355', // nairobi dust
+  coyote:       '#CC5500', // trail orange
+};
+
 // SS-065 — Draw 4 or 5 characters at random from the pool, no duplicates
 function drawPanel() {
   const size = Math.random() < 0.5 ? 4 : 5;
@@ -349,4 +367,4 @@ OUTPUT — valid JSON only, no markdown:
 {"survival_probability":<integer 0-100>,"attenborough_opening":"<one sentence, nature doc, introduces situation as wildlife encounter, slightly ominous>","panel":[{"charId":"<id>","text":"<2-4 sentences>","death":<bool>,"fact_check":"<optional Bear only>"}],"attenborough_verdict":"<one sentence, geological calm, no appeal, the documentary's conclusion>","next_actions":["<action>","<action>","<action>"]}`;
 }
 
-export { CHARACTERS, PANEL_IDS, PANEL_POOL, drawPanel, buildSystemPrompt };
+export { CHARACTERS, PANEL_IDS, PANEL_POOL, drawPanel, CHAR_COLOURS, buildSystemPrompt };

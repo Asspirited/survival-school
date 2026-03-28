@@ -9,7 +9,7 @@
 import { test, describe, before } from 'node:test';
 import assert from 'node:assert/strict';
 
-import { buildSystemPrompt, CHARACTERS, PANEL_IDS, PANEL_POOL, drawPanel } from '../js/characters.js';
+import { buildSystemPrompt, CHARACTERS, PANEL_IDS, PANEL_POOL, drawPanel, CHAR_COLOURS } from '../js/characters.js';
 
 // ── SS-065 — Panel pool + drawPanel ──────────────────────────────────────────
 
@@ -59,6 +59,33 @@ describe('drawPanel — SS-065', () => {
     for (let i = 0; i < 20; i++) {
       const drawn = drawPanel();
       assert.ok(!drawn.includes('attenborough'), 'attenborough must never be drawn');
+    }
+  });
+});
+
+// ── SS-058 — Per-character colour map ────────────────────────────────────────
+
+describe('CHAR_COLOURS — SS-058', () => {
+  test('CHAR_COLOURS is defined and is an object', () => {
+    assert.ok(CHAR_COLOURS && typeof CHAR_COLOURS === 'object', 'CHAR_COLOURS must be exported');
+  });
+
+  test('every PANEL_POOL member has a colour entry', () => {
+    for (const id of PANEL_POOL) {
+      assert.ok(Object.prototype.hasOwnProperty.call(CHAR_COLOURS, id),
+        `CHAR_COLOURS missing entry for pool member '${id}'`);
+    }
+  });
+
+  test('attenborough has a colour entry', () => {
+    assert.ok(Object.prototype.hasOwnProperty.call(CHAR_COLOURS, 'attenborough'),
+      "CHAR_COLOURS must include 'attenborough'");
+  });
+
+  test('all colour values are valid 6-digit hex strings', () => {
+    for (const [id, hex] of Object.entries(CHAR_COLOURS)) {
+      assert.match(hex, /^#[0-9A-Fa-f]{6}$/,
+        `CHAR_COLOURS['${id}'] must be a valid 6-digit hex colour, got '${hex}'`);
     }
   });
 });

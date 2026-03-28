@@ -71,7 +71,8 @@ function renderResults(data) {
     const card = document.createElement('div');
     card.className = 'char-card' +
       (r.death ? ' death-card' : '') +
-      (isCody ? ' cody-card' : '');
+      (isCody ? ' cody-card' : '') +
+      (r.charId ? ` char-${r.charId}` : '');
     card.style.opacity = '0';
     card.style.transform = 'translateY(7px)';
     card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
