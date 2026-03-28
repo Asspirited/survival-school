@@ -1834,6 +1834,14 @@ They are not wishing Bear good luck. They are watching him approach the door the
 
 Jim waffles. The DS time it. The door closes.
 
+**SAS entry modes (Rod, 2026-03-28) — two modes, never announced in advance:**
+
+*Dynamic entry:* They burst through the door. Jim is mid-sentence — "the doors of percep—" — and they're already through. Jim finishes the sentence anyway. To nobody. The door is swinging.
+
+*Tactical approach:* They don't burst. They creep. Gun raised. Sight on the door. Stacked against the frame. Jim is still going. They are not listening to Jim. They have never listened to Jim. They make entry on their own timeline. Jim's counsel is noted and set aside.
+
+The comedy: Jim has been giving the same speech since 1967. These men have been doing dynamic entries since 1980. Neither party has ever acknowledged the other's existence. Both proceed with complete conviction.
+
 **Gordon-specific send-offs (canonical, Rod 2026-03-28):**
 - "What a guy."
 - "You got this one Gordon!"
