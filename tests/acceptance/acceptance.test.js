@@ -564,3 +564,33 @@ OUTPUT — valid JSON only, no markdown:
     assert.ok(typeof data.morrison_interruption.morrison_present === 'boolean', 'morrison_interruption.morrison_present must be a boolean');
   });
 });
+
+// ── Feature: Cox and Faldo mutual agreement mechanic (SS-090) ──
+describe('Feature: Cox and Faldo mutual agreement mechanic', () => {
+
+  test("Given a panel draw includes both cox and faldo on I've Had Worse, Then the system prompt includes MUTUAL AGREEMENT", async () => {
+    const r = await fetch(`${BASE}/survival-school/ive-had-worse`, { signal: AbortSignal.timeout(TIMEOUT) });
+    assert.strictEqual(r.status, 200);
+    const html = await r.text();
+    assert.ok(html.includes('MUTUAL AGREEMENT'), "IHW page must contain MUTUAL AGREEMENT mechanic in system prompt builder");
+    assert.ok(html.includes('both are completely wrong'), "IHW page must instruct Cox and Faldo to agree on something wrong");
+  });
+
+  test("Given a panel draw includes both cox and faldo on In My Defence, Then the system prompt includes MUTUAL AGREEMENT", async () => {
+    const r = await fetch(`${BASE}/survival-school/in-my-defence`, { signal: AbortSignal.timeout(TIMEOUT) });
+    assert.strictEqual(r.status, 200);
+    const html = await r.text();
+    assert.ok(html.includes('MUTUAL AGREEMENT'), "IMD page must contain MUTUAL AGREEMENT mechanic in system prompt builder");
+    assert.ok(html.includes('both are completely wrong'), "IMD page must instruct Cox and Faldo to agree on something wrong");
+  });
+
+  test("Given only one fish-out-of-water character, Then MUTUAL AGREEMENT should not fire unconditionally", async () => {
+    const r = await fetch(`${BASE}/survival-school/ive-had-worse`, { signal: AbortSignal.timeout(TIMEOUT) });
+    const html = await r.text();
+    // The mechanic must be conditional — check it references both cox AND faldo as a pair
+    assert.ok(html.includes('cox') && html.includes('faldo'), "MUTUAL AGREEMENT mechanic must reference both cox and faldo");
+    // Ensure the "never both" exclusion rule has been removed
+    assert.ok(!html.includes('never both in the same panel'), "Old exclusion rule 'never both in the same panel' must be removed");
+    assert.ok(!html.includes('never both'), "Old exclusion rule 'never both' must be removed from IHW");
+  });
+});
