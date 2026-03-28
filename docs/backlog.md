@@ -37,14 +37,19 @@
 | 18 | SS-064 — Cross-product fish-out-of-water characters: Cox, Faldo, others | Open | DDD |
 | 18 | SS-065 — Panel pool: random 4–5 character selection across all panel modes | Open | BDD |
 | 7.3 | SS-066 — "I've Had Worse": walking skeleton, protagonist selection, escalating panel | DONE (live 2026-03-28) | BDD |
-| 5.7 | SS-067 — The Rooms corridor: door tiles, comedic name + domain sub-header | Open | BDD |
+| 5.7 | SS-067 — The Rooms corridor: door tiles, comedic name + domain sub-header | DONE (live 2026-03-28 as /survival-school/rooms) | BDD |
 | 3.2 | SS-068 — The Rooms: Dead Parrot Survival / Barney Rubble / Special Air Counsellors / Yes But Then What? / The 4th Wall | Open | BDD |
 | 4 | SS-069 — User panel member selection (choose who's in the room) | Open | BDD |
 | 18 | SS-070 — Character: Ant Middleton ("Madhouse") — former SAS, TV survival host, full voice profile | Open | DDD |
 | 18 | SS-071 — Character: Andy McNab — Bravo Two Zero author, former SAS, drily factual, operational | Open | DDD |
 | 18 | SS-072 — Character: Chris Ryan — Bravo Two Zero survivor, contradicts McNab, selective memory | Open | DDD |
-| 12 | SS-073 — Jim Morrison corridor guide: sends characters through The Doors with sage/doom advice | Open | BDD |
+| 12 | SS-073 — Jim Morrison corridor guide: sends characters through The Doors with sage/doom advice | DONE (per-door quotes + 25 rotating corridor quotes live 2026-03-28) | BDD |
 | 16 | SS-074 — Expert Over-Reach mechanic: characters one-up expertise claims, escalate into making things up | Open | BDD |
+| 8 | SS-075 — Corrupted door quotes: rotating list of Morrison + corrupted motivational banalities | DONE (25 quotes live 2026-03-28) | BDD |
+| 10 | SS-076 — Scenario predicament chips: airplane aisle, shandy, badger, pigeon, tortoise | DONE (5 chips live 2026-03-28) | BDD |
+| 12 | SS-077 — Room-specific guiding copy: freetext prompt hints congruent with each room's mechanic | Open | BDD |
+| 14 | SS-078 — Corridor send-off messages: banal good-luck wishes alongside Morrison's prophecy | Open | BDD |
+| 8 | SS-079 — Roy Keane character: dismissive survival mode, "this is nothing compared to selection" | Open | DDD |
 | 18 | SS-058 — Per-character colored card backgrounds (Cusslab pattern) | Open | BDD |
 | 18 | SS-059 — Character interaction dynamics: wounds, lies, calling each other out | Open | DDD |
 | 8 | SS-005 — Telephone Game mechanic | Open | DDD |
@@ -1753,5 +1758,67 @@ Feature: Panel triage order across all SS features
 **Outstanding Three Amigos:** Mode-specific trigger or works in any mode? Fixed two-character pair, or can involve three? Does Attenborough notice?
 
 **CD3:** TBD pending Three Amigos.
+**Status:** OPEN — raised 2026-03-28.
+
+
+---
+
+### SS-077 — Room-specific guiding copy
+
+**Status:** Open
+**Loop:** BDD
+**Epic:** The Doors
+
+**What it is:** Each room's input prompt includes guiding copy that helps the user construct a statement congruent with that room's mechanic. For Room 13 (I've Had Worse), the user needs a trivial predicament — the current placeholder copy hints at this. For Room 12 (Denial Loop), they'd need a claim the protagonist will defend. For Room 12A (The Argument), they'd need a topic to argue about.
+
+**Why it matters:** Without guidance, users under-use the mechanic. The right prompt copy conspires with the user against the protagonist from the first moment they type.
+
+**Outstanding Three Amigos:** Per-room static copy (fast) or dynamic copy that updates based on protagonist selected (richer)? Should the copy reference the protagonist by name ("Bear needs to defend something")?
+
+**CD3:** C=3 D=2 D=2 → **CD3=12**
+**Status:** OPEN — raised 2026-03-28. Depends on SS-068.
+
+---
+
+### SS-078 — Corridor send-off messages
+
+**Status:** Open
+**Loop:** BDD
+**Epic:** The Doors
+
+**What it is:** When the user enters a room, they receive a send-off from Jim Morrison AND one or two banal good-luck messages from other sources. The comedy is the contrast: Morrison's cosmic-poetic prophecy alongside "You got this!", "Go Bear!", "Give 'em hell kid" — completely out of register, clumsy, cheerful, utterly useless as preparation for what's behind the door.
+
+**Sources for send-off messages:**
+- The user themselves (enthusiastic, clumsy)
+- Other panel members (Bear: "This is nothing. I once— actually. Good luck.")
+- Generic motivational banality
+- A made-up character (Corridor Attendant, vending machine)
+
+**Rod's examples:** "Good luck Bear", "you'll be fine......right?", "you got this", "Whoooop, go Bear", "Give em hell kid"
+
+**Design note:** The gap between Morrison and the send-offs IS the joke. Morrison must be played straight. The send-offs must be played straight too — nobody is winking.
+
+**Outstanding Three Amigos:** Do send-offs appear before entering (on door click confirmation) or after (on the room page)? One send-off or two? Static list or LLM-generated? Should the protagonist's name appear in the send-off?
+
+**CD3:** C=3 D=3 D=2 → **CD3=18**
+**Status:** OPEN — raised 2026-03-28.
+
+---
+
+### SS-079 — Character: Roy Keane
+
+**Status:** Open
+**Loop:** DDD
+**Epic:** Character Expansion / Fish-out-of-water
+
+**What it is:** Roy Keane in the Dismissive archetype (SS-064). Survival scenarios are nothing compared to what he's been through. He does not complain. He does not celebrate. He assesses your performance and finds it wanting.
+
+**Voice notes:** The panel describes your situation. Keane says one sentence. It contains the word "not good enough." Or it doesn't — but it still means that. He has no interest in your predicament. He has seen actual adversity. You have not.
+
+"I've been in Old Trafford at 3-0 down with ten men and a manager who's lost the dressing room. I don't know what you call this."
+
+**Comedy engine:** The dismissive juxtaposition — real emotional intensity applied to a trivial predicament. Bear is wrong; Keane thinks Bear is soft. Nobody has a good time.
+
+**CD3:** C=3 D=3 D=2 → **CD3=18**
 **Status:** OPEN — raised 2026-03-28.
 
