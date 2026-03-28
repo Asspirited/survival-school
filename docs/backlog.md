@@ -50,6 +50,8 @@
 | 12 | SS-077 — Room-specific guiding copy: freetext prompt hints congruent with each room's mechanic | Open | BDD |
 | 14 | SS-078 — Corridor send-off messages: banal good-luck wishes alongside Morrison's prophecy | Open | BDD |
 | 8 | SS-079 — Roy Keane character: dismissive survival mode, "this is nothing compared to selection" | Open | DDD |
+| 18 | SS-080 — Character: Mark O'Shea — herpetologist, taxonomically forensic, urn incident origin | Open | DDD |
+| 18 | SS-081 — Character: Austin Stevens — Snakemaster, casualness about injury, "I've Been Bit Guys" origin | Open | DDD |
 | 18 | SS-058 — Per-character colored card backgrounds (Cusslab pattern) | Open | BDD |
 | 18 | SS-059 — Character interaction dynamics: wounds, lies, calling each other out | Open | DDD |
 | 8 | SS-005 — Telephone Game mechanic | Open | DDD |
@@ -1818,6 +1820,48 @@ Feature: Panel triage order across all SS features
 "I've been in Old Trafford at 3-0 down with ten men and a manager who's lost the dressing room. I don't know what you call this."
 
 **Comedy engine:** The dismissive juxtaposition — real emotional intensity applied to a trivial predicament. Bear is wrong; Keane thinks Bear is soft. Nobody has a good time.
+
+**CD3:** C=3 D=3 D=2 → **CD3=18**
+**Status:** OPEN — raised 2026-03-28.
+
+
+---
+
+### SS-080 — Character: Mark O'Shea
+
+**Status:** Open
+**Loop:** DDD
+**Epic:** Character Expansion
+
+**What it is:** Mark O'Shea — British herpetologist, TV presenter (O'Shea's Big Adventure), serious snake and reptile expert. Where Coyote Peterson performs the danger, O'Shea documents it clinically. He is not performing. He is genuinely interested in the animal that is currently killing him.
+
+**Voice notes:** Measured British delivery. Taxonomically correct. Will name the species, subspecies, and geographic variant before addressing the threat. Finds Coyote Peterson's approach "enthusiastic." Has opinions about misidentification. The grandmother's urn incident needs explaining. He can explain it. He will explain it with full sincerity and some reference to hydration requirements in the field.
+
+**Comedy engine:** Forensic calm applied to escalating absurdity. The urge to classify the situation before addressing it. His "worse" in I've Had Worse involves a reptile, taxonomy, and a deeply undignified outcome he presents as a field observation.
+
+**Predicament of origin:** He was a protagonist for the grandmother's urn incident (2026-03-28 session). The panel was not surprised. Attenborough closed with geological calm.
+
+**CD3:** C=3 D=3 D=2 → **CD3=18**
+**Status:** OPEN — raised 2026-03-28.
+
+
+---
+
+### SS-081 — Character: Austin Stevens
+
+**Status:** Open
+**Loop:** DDD
+**Epic:** Character Expansion
+
+**What it is:** Austin Stevens — South African herpetologist, photographer, TV presenter (Austin Stevens: Snakemaster). The inspiration for "I've Been Bit, Guys." Gets bitten. Keeps going. The comedy engine is his absolute casualness about injury severity. He was bitten by a black mamba once and filed it under "interesting."
+
+**Voice notes:** South African accent (written register: direct, slightly theatrical). Uses indigenous regional names when known. Adds a slight spiritual register — he respects the animal even as it is killing him. Will not say "this was bad." Will say "this was a significant encounter." He is always fine, eventually.
+
+**Design notes:** O'Shea and Stevens as a pair in the same panel would be interesting — taxonomically correct meets regionally indigenous. Neither thinks the other is wrong. They don't quite overlap but neither defers to the other.
+
+**Triage position:** Medical tier alongside O'Shea. These two read the situation for actual threat assessment before the comedy tier (Bear, Cody, Hales) arrive.
+
+**"I've Had Worse" energy:** He has been bitten by a black mamba, a gaboon viper, a king cobra, and a reticulated python in the same month. Your predicament is a paper cut. He does not say this with sarcasm. He says it with genuine curiosity about what qualifies as worse.
 
 **CD3:** C=3 D=3 D=2 → **CD3=18**
 **Status:** OPEN — raised 2026-03-28.
