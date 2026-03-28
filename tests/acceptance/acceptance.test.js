@@ -186,6 +186,96 @@ describe('Feature: Panel Q&A page contains expected elements', () => {
   });
 });
 
+// ── Feature: I've Had Worse (SS-066) ──
+
+describe("Feature: I've Had Worse page loads", () => {
+
+  // Scenario: Page loads and contains setup elements
+  test("Given a user navigates to /survival-school/ive-had-worse, Then the page returns 200", async () => {
+    const r = await fetch(`${BASE}/survival-school/ive-had-worse`, { signal: AbortSignal.timeout(TIMEOUT) });
+    assert.strictEqual(r.status, 200);
+    const ct = r.headers.get('content-type') || '';
+    assert.ok(ct.includes('text/html'), `expected text/html, got ${ct}`);
+  });
+});
+
+describe("Feature: I've Had Worse page contains setup elements", () => {
+
+  test("Given the page loads, Then it contains protagonist chip selector, predicament input, and submit button", async () => {
+    const r = await fetch(`${BASE}/survival-school/ive-had-worse`, { signal: AbortSignal.timeout(TIMEOUT) });
+    const html = await r.text();
+    assert.ok(html.includes('protagonist'),        'page must contain protagonist selector');
+    assert.ok(html.includes('predicament-input'),  'page must contain predicament-input element');
+    assert.ok(html.includes('btn-submit'),         'page must contain btn-submit button');
+  });
+
+  test("Given the page loads, Then the default prompt invites the user to describe their predicament", async () => {
+    const r = await fetch(`${BASE}/survival-school/ive-had-worse`, { signal: AbortSignal.timeout(TIMEOUT) });
+    const html = await r.text();
+    assert.ok(html.includes('predicament') || html.includes('ordeal'), 'page must contain predicament/ordeal prompt copy');
+  });
+
+  test("Given the page loads, Then it contains trivial predicament chips", async () => {
+    const r = await fetch(`${BASE}/survival-school/ive-had-worse`, { signal: AbortSignal.timeout(TIMEOUT) });
+    const html = await r.text();
+    const trivialChips = ['paper cut', 'stubbed', 'damp', 'lukewarm'];
+    const found = trivialChips.filter(chip => html.toLowerCase().includes(chip));
+    assert.ok(found.length >= 2, `page must contain at least 2 trivial predicament chips, found: ${found.join(', ')}`);
+  });
+
+  test('Page declares State, UI, and API module objects', async () => {
+    const r = await fetch(`${BASE}/survival-school/ive-had-worse`, { signal: AbortSignal.timeout(TIMEOUT) });
+    const html = await r.text();
+    assert.ok(html.includes('const State = {'), 'page must declare State object');
+    assert.ok(html.includes('const UI = {'),    'page must declare UI object');
+    assert.ok(html.includes('const API = {'),   'page must declare API object');
+  });
+});
+
+describe("Feature: I've Had Worse escalating panel response (SS-066)", () => {
+
+  // Scenario Outline: Predicament with protagonist triggers escalating panel
+  const SCENARIOS = [
+    { predicament: 'I have a paper cut',  protagonist: 'bear', desc: 'paper cut / Bear' },
+    { predicament: 'Slightly damp',       protagonist: 'ray',  desc: 'slightly damp / Ray' },
+    { predicament: 'Stubbed my toe',      protagonist: 'fox',  desc: 'stubbed toe / Fox'  },
+  ];
+
+  const POST_TIMEOUT = 25000;
+  const SYSTEM_PROMPT = `You are the Survival School panel running the I've Had Worse mechanic. Respond ONLY with valid JSON matching exactly: {"attenborough_opening":"<string>","panel":[{"charId":"<string>","text":"<string>"}],"attenborough_terminal":"<string>"}. No markdown. No prose. JSON only.`;
+
+  for (const { predicament, protagonist, desc } of SCENARIOS) {
+    test(`Given user submits predicament "${desc}", When panel responds, Then response has panel array and attenborough_terminal`, async () => {
+      const response = await fetch(`${BASE}/survival-school/ive-had-worse`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ system: SYSTEM_PROMPT, predicament, protagonist }),
+        signal: AbortSignal.timeout(POST_TIMEOUT)
+      });
+
+      assert.strictEqual(response.status, 200, 'expected HTTP 200');
+      const data = await response.json();
+
+      assert.ok(typeof data.attenborough_opening === 'string' && data.attenborough_opening.length > 0,
+        'attenborough_opening must be non-empty');
+      assert.ok(Array.isArray(data.panel) && data.panel.length >= 3,
+        'panel must be an array with at least 3 characters');
+
+      for (const card of data.panel) {
+        assert.ok(typeof card.charId === 'string' && card.charId.length > 0, 'charId must be non-empty');
+        assert.ok(typeof card.text === 'string' && card.text.length > 0,     'text must be non-empty');
+      }
+
+      const charIds = data.panel.map(c => c.charId);
+      assert.ok(charIds.includes(protagonist),
+        `protagonist "${protagonist}" must be present in panel, got: ${charIds.join(', ')}`);
+
+      assert.ok(typeof data.attenborough_terminal === 'string' && data.attenborough_terminal.length > 0,
+        'attenborough_terminal must be a non-empty string');
+    });
+  }
+});
+
 // ── Feature: The Coyote Index (SS-057) ──
 describe('Feature: The Coyote Index page contains expected content', () => {
 

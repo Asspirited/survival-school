@@ -769,3 +769,39 @@ test.describe('Mobile layout — key elements visible and not clipped', () => {
   });
 
 });
+
+// ─────────────────────────────────────────────────────────────────────────────
+// I'VE HAD WORSE (SS-066) — protagonist chip + dynamic copy
+// ─────────────────────────────────────────────────────────────────────────────
+
+test.describe("I've Had Worse — protagonist selection and dynamic copy", () => {
+
+  // Scenario: Page loads with protagonist chips and predicament input
+  test("page loads with protagonist chips and predicament input visible", async ({ page }) => {
+    await page.goto(`${BASE}/survival-school/ive-had-worse`);
+    await expect(page.locator('#predicament-input')).toBeVisible();
+    await expect(page.locator('#btn-submit')).toBeVisible();
+    // At least one protagonist chip present
+    const chips = page.locator('.chip-protagonist');
+    await expect(chips.first()).toBeVisible();
+  });
+
+  // Scenario: Protagonist selection changes the prompt copy
+  test("selecting Bear as protagonist updates prompt copy to reference Bear Grylls", async ({ page }) => {
+    await page.goto(`${BASE}/survival-school/ive-had-worse`);
+    // Click the Bear protagonist chip
+    await page.locator('.chip-protagonist[data-id="bear"]').click();
+    // Prompt copy should now reference Bear by name
+    const promptText = await page.locator('#protagonist-prompt').textContent();
+    expect(promptText).toMatch(/bear/i);
+  });
+
+  // Protagonist chip adds .sel and submit becomes enabled
+  test("selecting a protagonist chip marks it selected and enables submit", async ({ page }) => {
+    await page.goto(`${BASE}/survival-school/ive-had-worse`);
+    const chip = page.locator('.chip-protagonist[data-id="bear"]');
+    await chip.click();
+    await expect(chip).toHaveClass(/sel/);
+  });
+
+});
