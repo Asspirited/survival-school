@@ -33,6 +33,8 @@
 | 8 | SS-043 — Cascading input redesign: Location → Event → Context | DONE (cascade live 2026-03-27) | BDD |
 | 8 | SS-042 — Location chip library: full sub-categorised expansion | DONE (scenarios.js 2026-03-27) | DDD |
 | 8 | SS-032 — Archetypal scenarios | DONE (10 chips live, generic categories removed 2026-03-27) | Feature |
+| 18 | SS-058 — Per-character colored card backgrounds (Cusslab pattern) | Open | BDD |
+| 18 | SS-059 — Character interaction dynamics: wounds, lies, calling each other out | Open | DDD |
 | 8 | SS-005 — Telephone Game mechanic | Open | DDD |
 | 8 | SS-039 — Latin / indigenous naming layer in panel responses | Open | DDD |
 | 2 | SS-022 — Clay animal visuals | Open | DDD |
@@ -66,6 +68,9 @@
 | — | SS-055 — Scenario bank: Bravo Two Zero | DONE (added scenarios.js 2026-03-27) | DDD |
 | — | SS-056 — Scenario bank: Operation Nimrod | DONE (added scenarios.js 2026-03-27) | DDD |
 | — | SS-057 — Feature: "The Coyote Index" | DONE (live 2026-03-27) | BDD |
+| 18 | SS-060 — Cross-character panel references (reacts_to schema field) | Open | BDD |
+| 18 | SS-061 — Decision loop: Fighting Fantasy mechanic for panel features | Open | BDD |
+| 12 | SS-062 — Panel triage order formalised (SS-034 port to all panel features) | Open | BDD |
 
 ---
 
@@ -1259,3 +1264,185 @@ Feature: The Coyote Index
 2. **Tak on the rope** — Fijian Staff Sergeant tangled in his abseil rope, burning, cannot get free, continues the operation. The man on fire who finished the job. EXFIL scenario: tangled, burning, being hunted. Panel assesses options.
 
 3. **Live on BBC television** — Bank Holiday Monday. The SAS went from classified to national icons in 17 minutes. Margaret Thatcher visited the regiment afterwards and was moved to tears. Bear has opinions about the media coverage. Billy does not watch television.
+
+---
+
+### SS-060 — Cross-character panel references (reacts_to schema field)
+
+**Status:** Open
+**Priority:** High
+**CD3:** 18 (Confidence 3 × Desirability 3 × Deliverability 2)
+**Loop:** BDD
+**Raised:** 2026-03-28
+**Epic:** Panel Interaction Model
+
+**The problem:** Panel characters respond to the user's situation independently. They do not
+acknowledge, contradict, or build on what another panellist said. The relationship matrix
+(Bear/Ray silence, Billy/Ollie exchange, Fox/Hales endorsement) exists in SHARED_CONTEXT
+but has no schema slot to express it in panel output.
+
+**The fix:** Add an optional `reacts_to` field to each panel card in the JSON response schema.
+
+```json
+{
+  "charId": "fox",
+  "text": "Technically correct. I'd add — what are the exit options.",
+  "reacts_to": {
+    "charId": "ray",
+    "register": "endorsement"
+  }
+}
+```
+
+**Register options:** endorsement | quiet_disagreement | silence_noted | deflation | builds_on
+
+**Rendering:** When `reacts_to` is present, the card gets a subtle visual treatment —
+a thin left-border accent in the referenced character's colour, or a small "↳ re: Ray" tag.
+Not a quote. Not a speech bubble. A thread indicator. Quiet.
+
+**Prompt instruction to add to buildSystemPrompt():**
+"Where a character has a strong established relationship with another panellist who has already
+spoken, they may reference that panellist directly — once, briefly, in their natural register.
+Bear never directly contradicts Ray; silence and contrast do the work. Fox endorses Hales with
+one word. Billy's reference to Bear's TA service fires once per session maximum.
+The relationship does not need to be explained."
+
+**Applies to:** How Screwed Am I (assessment + reaction), How Bad Is This, Mundane Mode,
+The Coyote Index, Panel Q&A (SS-009). All panel features.
+
+**Backwards compatible:** `reacts_to` is optional. Existing renders ignore it gracefully.
+No schema migration needed.
+
+**Cusslab port:** BL-163 is the equivalent item for Cusslab panels.
+
+**Acceptance Criteria:**
+```gherkin
+Feature: Cross-character panel references
+
+  Scenario: Fox endorses Ray in character
+    Given the panel has responded to a bushcraft-relevant situation
+    When Fox's card includes a reacts_to field referencing Ray
+    Then the UI renders a visual thread indicator on Fox's card
+    And the indicator references Ray's name
+    And Fox's text is consistent with his one-word endorsement register
+
+  Scenario: Billy references Bear's TA service at most once per session
+    Given Billy and Bear are both on the panel
+    When Billy's reacts_to references Bear
+    Then the text is brief and stays in Billy's flat authoritative register
+    And if the panel is called again in the same session
+    Then Billy's reacts_to for Bear does not fire again
+
+  Scenario: reacts_to is absent on most cards
+    Given any panel response
+    Then fewer than half the panel cards contain a reacts_to field
+    And Attenborough never has a reacts_to field
+
+  Scenario: Missing reacts_to renders without error
+    Given a panel card with no reacts_to field
+    Then the card renders identically to current behaviour
+    And no visual thread indicator is shown
+```
+
+---
+
+### SS-061 — Decision loop: Fighting Fantasy mechanic for panel features
+
+**Status:** Open
+**Priority:** High
+**CD3:** 18 (Confidence 3 × Desirability 3 × Deliverability 2)
+**Loop:** BDD
+**Raised:** 2026-03-28
+**Epic:** Panel Interaction Model
+
+**Context:** SS already has this mechanic in How Screwed Am I (state object, decision loop,
+next_actions, probability shifts). This item formalises the pattern for all SS panel features
+so the mechanic is consistent and the code is not duplicated.
+
+**State object (already live in How Screwed Am I):**
+```javascript
+{
+  situation: null,
+  turnCount: 0,
+  history: [],
+  pressureAccumulation: {}
+}
+```
+
+**Cusslab port:** BL-164 is the equivalent item to bring this mechanic to Cusslab panels.
+Once both ship, the two products share the same interaction model.
+
+**Acceptance Criteria:**
+```gherkin
+Feature: Panel decision loop across SS panel features
+
+  Scenario: Panel generates next_actions after assessment response
+    Given I have submitted a situation to How Screwed Am I
+    When the panel responds
+    Then three next_action options are shown below the panel cards
+    And a freetext field is available for a custom action
+    And the state persists across subsequent turns
+
+  Scenario: Choosing an action triggers a reaction round
+    Given the panel has responded and shown three next_actions
+    When I select one of the offered actions
+    And I press Confirm
+    Then the panel reacts specifically to that action
+    And the reaction builds on the prior exchange
+    And survival_probability shifts accordingly
+
+  Scenario: State accumulates correctly across turns
+    Given I have made three action choices
+    Then the history array contains three entries
+    And survival_probability reflects cumulative decisions
+
+  Scenario: Terminal state fires Attenborough Eulogy
+    Given my decisions have driven survival_probability to zero
+    Then is_terminal is set to true
+    And the Attenborough Eulogy renders
+    And no further actions are offered
+```
+
+---
+
+### SS-062 — Panel triage order formalised (SS-034 port to all panel features)
+
+**Status:** Open
+**Priority:** Medium
+**CD3:** 12 (Confidence 3 × Desirability 2 × Deliverability 2)
+**Loop:** BDD
+**Raised:** 2026-03-28
+**Epic:** Panel Interaction Model
+
+**Context:** SS-034 baked triage order (IMMEDIATE first, COMEDY second) into the reaction
+mode buildSystemPrompt(). This item ensures the pattern is applied consistently to all
+panel features — including any new ones added after SS-034.
+
+**Triage structure for SS panels:**
+1. IMMEDIATE (Ray, Fox) — direct survival relevance, establish stakes
+2. COMEDY (Bear, Hales, Cody, Stroud) — human cost, deflation, absurdity
+3. CLOSER (Attenborough) — always last, geological calm
+
+**Note:** SS-034 already ships the core of this. This item tracks audit + consistency across
+all panel features (CASEVAC, EXFIL, Coyote Index, etc.) as the feature set grows.
+
+**Cusslab port:** BL-165 is the equivalent triage order formalisation for Cusslab panels.
+
+**Acceptance Criteria:**
+```gherkin
+Feature: Panel triage order across all SS features
+
+  Scenario: IMMEDIATE tier responds before COMEDY tier
+    Given any SS panel feature is invoked
+    When the panel responds
+    Then Ray and Fox cards appear before Bear and Hales cards
+
+  Scenario: Attenborough always closes
+    Given any SS panel response
+    Then Attenborough's card is always the final card rendered
+    And his register is distinct from all preceding cards
+
+  Scenario: New panel features inherit triage order
+    Given a new panel feature is added to SS
+    Then buildSystemPrompt() for that feature applies IMMEDIATE → COMEDY → CLOSER ordering
+```
