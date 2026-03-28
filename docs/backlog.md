@@ -45,7 +45,7 @@
 | 18 | SS-072 — Character: Chris Ryan — Bravo Two Zero survivor, contradicts McNab, selective memory | DONE (characters.js + domain tests 2026-03-28) | DDD |
 | 12 | SS-073 — Jim Morrison corridor guide: sends characters through The Doors with sage/doom advice | DONE (per-door quotes + 25 rotating corridor quotes live 2026-03-28) | BDD |
 | 16 | SS-074 — Expert Over-Reach mechanic: characters one-up expertise claims, escalate into making things up | DONE (system prompt mechanic live 2026-03-28) | BDD |
-| 18 | SS-083 — Jim Morrison mid-session interruption: wanders in, helps or hinders, panel doesn't know what to do with him | Open | BDD |
+| 18 | SS-083 — Jim Morrison mid-session interruption: wanders in, helps or hinders, panel doesn't know what to do with him | DONE (IHW + IMD, ~20% random, warm→hostile flip, morrison_present state 2026-03-28) | BDD |
 | 8 | SS-075 — Corrupted door quotes: rotating list of Morrison + corrupted motivational banalities | DONE (25 quotes live 2026-03-28) | BDD |
 | 10 | SS-076 — Scenario predicament chips: airplane aisle, shandy, badger, pigeon, tortoise | DONE (5 chips live 2026-03-28) | BDD |
 | 12 | SS-077 — Room-specific guiding copy: freetext prompt hints congruent with each room's mechanic | Open | BDD |
@@ -61,7 +61,7 @@
 | 27 | SS-093 — New door: "In My Defence" (Room 14) — Roast/Inversion mode, protagonist chips expand per-person incidents, aggressive interrogation panel | DONE (live 2026-03-28) | BDD |
 | 18 | SS-094 — Fix I've Had Worse: remove roast chips, fix panel interaction (SOCIAL_DYNAMICS_ENGINE, panel_tension, random order, escalation) | DONE (2026-03-28) | BDD |
 | 27 | SS-088 — Panel emotional state model: port LieEngine + composure from Cusslab, characters shift register mid-session | DONE (2026-03-28) | BDD |
-| 27 | SS-087 — Cusslab crossover: Hawking + Bruce Lee as fish-out-of-water characters (same pattern as Cox/Faldo) | IN PROGRESS | DDD |
+| 27 | SS-087 — Cusslab crossover: Hawking + Bruce Lee as fish-out-of-water characters (same pattern as Cox/Faldo) | DONE (characters.js + domain tests 2026-03-28) | DDD |
 | 27 | SS-100 — Port composure engine to SS characters.js (COMPOSURE_PROFILES, init, compute deltas, tier, injection) | Open | DDD |
 | 18 | SS-101 — Wire composure engine into SS worker.js (accept composureState, inject, return updated state) | Open | BDD |
 | 27 | SS-089 — The Doors predicament chips: Steve Irwin (snake wall, croc ring, snake ring let-slip) + Stevens (snake pit, O'Shea's paper) | DONE (2026-03-28) | BDD |
@@ -2028,7 +2028,10 @@ These are not sarcastic. Gordon would agree with all of them. There might be sna
 **Outstanding Three Amigos:** Random trigger or structural? Does Jim speak to the celebrity directly or to the room? Can he appear more than once? Does the celebrity get to invoke Jim deliberately (at a cost)?
 
 **CD3:** C=3 D=3 D=2 → **CD3=18**
-**Status:** OPEN — raised 2026-03-28.
+**Status:** DONE — deployed 2026-03-28.
+**Closed:** 2026-03-28
+
+**Implementation:** Random ~20% probability per round. morrison_interruption object in response JSON (quote, panel_reaction, tone, morrison_present). morrison_present boolean carries across rounds — Morrison stays if topic interests him or panel engages, drifts off otherwise. Panel baseline is warm (WARM/AMUSED/ENGAGED). Flips to HOSTILE when he crosses a line — at least two panellists attack, Morrison doesn't understand. Gold card (warm) / red card (hostile) rendering. Live on IHW (Room 13) and In My Defence (Room 14). Gherkin: features/morrison-interruption.feature. Acceptance test: tests/acceptance/acceptance.test.js.
 
 ---
 
@@ -2128,7 +2131,7 @@ These are not sarcastic. Gordon would agree with all of them. There might be sna
 
 ### SS-087 — Cusslab crossover: Hawking + Bruce Lee as fish-out-of-water characters
 
-**Status:** IN PROGRESS
+**Status:** DONE (characters.js + domain tests 2026-03-28)
 **Loop:** DDD
 **Epic:** The Doors
 

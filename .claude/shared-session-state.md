@@ -1,118 +1,78 @@
 # Shared Session State — Survival School
-# Written: 2026-03-28 (Claude Code session close — Fish Disposition Engine + 3 characters)
-# Supersedes: Jim Carrey + Jeremy Wade session state
+# Written: 2026-03-28 (Claude Code Session B close — Wade chips + Morrison interruption)
+# Supersedes: Fish Disposition Engine + 3 characters session state (Session A, same date)
 
 ---
 
-## What shipped this session
+## What shipped this session (Session B)
 
-### SS-098 — Fish Disposition Engine (DONE)
-- `docs/domains/fish-disposition.md`: full design doc — 6 dispositions, shift mechanic, per-character canon
-- `js/characters.js`: FISH_DISPOSITIONS constant, DISPOSITION_SHIFTS, drawDisposition(), buildDispositionState(), buildFishDispositionInjection(), shiftDisposition() — all exported
-- Cox tagged fish: default EXCITABLE_NOVICE, weights 50/30/20
-- Faldo tagged fish: default CONTEMPTUOUS_EXPERT, weights 50/30/20
-- Jim tagged fish: fixed EXCITABLE_NOVICE
-- Jeremy tagged fish: default RELUCTANT_CONSCRIPT, weights 60/40 with TOTAL_DENIAL
-- 42 new domain tests — all passing
+### SS-096 — Wade predicament chips (DONE)
+- 5 new chips in `IHW_CHIPS.jeremy` in worker.js:
+  candiru (the waggle), Congo witchcraft accusation, Mekong spy arrest,
+  terrible recreation (bite angle), Cowabunga (the widow)
 
-### SS-070 — Ant Middleton (DONE)
-- `js/characters.js`: full voice profile, "Madhouse" chaos engine, aggressive optimism
-- av=AM, avClass=av-bark, CHAR_COLOURS=#5C4033
-- Integrity: ENJOY-ADJACENT (would throw the spear but needs everyone to know why)
-- Relationships: Bear ally, Billy has a position, Ray quietly appalled
-- Domain tests added
+### SS-083 — Jim Morrison mid-session interruption (DONE)
+- ~20% random probability per round on IHW + In My Defence
+- `morrison_interruption` object: quote, panel_reaction, tone (WARM/AMUSED/ENGAGED/HOSTILE), morrison_present
+- `morrison_present` carries across rounds — stays if engaged, drifts off if not
+- Warm baseline → hostile flip when Morrison crosses a line
+- Gold/red card rendering
+- Gherkin: features/morrison-interruption.feature
+- Acceptance test passing
 
-### SS-071 — Andy McNab (DONE)
-- `js/characters.js`: full voice profile, Bravo Two Zero patrol commander
-- av=McN, avClass=av-green, CHAR_COLOURS=#3B3B3B
-- Integrity: GONE (operational extraction)
-- Comedy engine: forensic specificity, grid references, corrects Ryan's account flat
-- THE DISAGREEMENT mechanic with Ryan: "That's not quite how it went."
-- Domain tests added
+### SS-099 — Morrison contextual trigger (RAISED, CD3=6)
+- Deferred: Morrison also triggers on contextually relevant topics
 
-### SS-072 — Chris Ryan (DONE)
-- `js/characters.js`: full voice profile, sole survivor framing
-- av=CR, avClass=av-blue, CHAR_COLOURS=#4A5D3A
-- Integrity: GONE (300km gone — the furthest gone of anyone on the panel)
-- Comedy engine: every predicament, he's been in a worse one. Alone. At night. In Iraq.
-- Counter-McNab: "That depends on which account you read." Small smile. Matter open.
-- Domain tests added
+### Session protocol updates
+- session-startup Step 4: parallel A/B work packages
+- session-insession: CD3 order default
+- Pre-flight: features/ directory added
 
-### Cox + Faldo added to characters.js (previously worker-only)
-- Full voice profiles, av/avClass, CHAR_COLOURS, fish properties
-- Cox: napkin deployment, thermodynamic irrelevance, D:Ream keyboard player
-- Faldo: golf methodology, "address the problem, head down, follow through", grip pressure tell
+---
 
-### Parallel session protocol
-- `.claude/parallel-sessions.md`: instructions for running two Claude Code sessions without collision
-- Split by layer: Session A owns characters.js/docs/domain tests, Session B owns worker.js/HTML/UI tests
+## What shipped earlier today (Session A — same date)
+- SS-098: Fish Disposition Engine design doc + characters.js dispositions
+- SS-070: Ant Middleton character
+- SS-071: Andy McNab character
+- SS-072: Chris Ryan character
+(Check Session A's commit for details — characters.js was Session A's file.)
 
 ---
 
 ## Worker state
-- Last deployed hash: 1d3527c1 (unchanged — this session was domain-only)
+- Last deployed hash: e90469c (Wade chips + Morrison interruption)
 - Worker: cusslab-api.leanspirited.workers.dev
-- Valid charIds in worker: ray, bear, fox, hales, cody, stroud, stevens, cox, faldo, jim, jeremy
-- New charIds in characters.js NOT yet in worker: middleton, mcnab, ryan
+- Valid charIds: ray, bear, fox, hales, cody, stroud, stevens, cox, faldo, jim, jeremy
 - Deploy: source /home/rodent/.cf-deploy-token && CLOUDFLARE_API_TOKEN="${CLOUDFLARE_API_TOKEN}" CLOUDFLARE_ACCOUNT_ID="ce5ebfc99d1b37a7537a039d0b09d0b6" npx wrangler deploy --config /home/rodent/cusslab/wrangler.toml
 
 ---
 
 ## Pipeline state
-L1 domain: 180 tests, 0 failures. L2-L4 not run this session (Session A partition — domain only).
-Full pipeline was GREEN at session start (467 tests).
+L1: 37 unit, L2: 14 contract, L3: 60 acceptance (incl. Morrison), L4: 276 UI. GREEN at close.
 
 ---
 
-## WL items — no new items this session
-Open: WL-SS-002, 003, 006, 011, 012, 013, 019–023 (unchanged)
+## Open WL items (unchanged)
+WL-SS-002, WL-SS-003, WL-SS-006, WL-SS-011, WL-SS-012, WL-SS-013, WL-SS-019–023
 
 ---
 
 ## HDD status
-HDD-001: "Panel comedy and survival expertise together create content people share with specific people in mind."
-Status: OPEN / Advancing.
-Evidence: McNab/Ryan disagreement mechanic + Fish Disposition Engine = richer shareable dynamics.
-Next action: Get a real person to share a panel output with someone specific in mind.
-
----
-
-## Decisions made this session
-- DECISION 2026-03-28: Parallel session protocol — split by layer, not feature
-- DECISION 2026-03-28: Cox + Faldo added to characters.js (previously worker-only)
-- DECISION 2026-03-28: TOTAL_DENIAL added as 6th disposition (backlog listed 5)
+HDD-001: OPEN / Partial advancement. Morrison flip + Wade real-incident chips are shareable moment types. Not confirmed in the wild yet.
+Next action: Get a real person to share a panel output.
 
 ---
 
 ## Top 3 for next session
-1. SS-087 — Cusslab crossover: non-survivalists through The Doors (CD3=27, now unblocked)
-2. SS-090 — Cox + Faldo vehement mutual agreement (CD3=18, now unblocked)
-3. SS-097 — Eric Bristow character (CD3=18)
+1. SS-087 (CD3=27) — Cusslab crossover through The Doors (blocked by SS-098 — check if Session A landed it)
+2. SS-098 (CD3=27) — Fish Disposition Engine (Session A may have completed this)
+3. SS-054 (CD3=12) — One Man In (needs Three Amigos)
 
 ---
 
-## Carry-forward notes
-- Jeremy Wade: still missing Rod's verbatim quote for "Rod's Memory" section
-- Jim character doc: docs/characters/jim.md not yet created
-- Middleton, McNab, Ryan: in characters.js but NOT in worker.js — Session B needs to wire them
-- Fish Disposition Engine: characters.js functions ready, worker.js integration pending (dispositionState in request/response)
-- L2 contract test: known occasional Haiku flake (non-JSON first call, passes on rerun)
-- Cox + Faldo: now in both characters.js AND worker.js (worker had them already for IHW)
-
----
-
-## Live features
-| Feature | URL | Status |
-|---------|-----|--------|
-| Homepage | /survival-school | Live |
-| How Screwed Am I? | /survival-school/app | Live — composure engine active |
-| I've Been Bit, Guys | /survival-school/worst | Live |
-| Mundane Mode | /survival-school/mundane | Live |
-| Will You Eat It? | /survival-school/eat | Live |
-| Animal Deathmatch | /survival-school/deathmatch | Live |
-| Bear Fact-Checker | /survival-school/fact-checker | Live |
-| The Coyote Index | /survival-school/coyote | Live |
-| Panel Q&A | /survival-school/panel-qa | Live |
-| The Doors (corridor) | /survival-school/rooms | Live |
-| I've Had Worse (Room 13) | /survival-school/ive-had-worse | Live |
-| In My Defence (Room 14) | /survival-school/in-my-defence | Live |
+## Carry-forward
+- Jeremy Wade verbatim Rod quote: STILL MISSING
+- Jim character doc (`docs/characters/jim.md`): not yet created
+- Morrison mechanic live on IHW + IMD only — Gherkin covers all 10 modes but implementation is two rooms
+- Session A may have landed characters.js changes — pull before next Session B work
+- `parallel-sessions.md` in `.claude/` governs file ownership between sessions

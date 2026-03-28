@@ -24,6 +24,7 @@ cd /home/rodent/survival-school && cat \
   docs/the-rooms-design-brief.md \
   $(find docs/domains/ -name "*.md" 2>/dev/null | sort) \
   $(find docs/characters/ -name "*.md" 2>/dev/null | sort) \
+  $(find features/ -name "*.feature" 2>/dev/null | sort) \
   > /mnt/c/Users/roden/Downloads/session-ref.md && echo "session-ref.md ready"
 ```
 
