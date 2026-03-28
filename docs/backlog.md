@@ -36,9 +36,9 @@
 | 18 | SS-063 — Panel archetypes: design who goes together and why | Open | DDD |
 | 18 | SS-064 — Cross-product fish-out-of-water characters: Cox, Faldo, others | Open | DDD |
 | 18 | SS-065 — Panel pool: random 4–5 character selection across all panel modes | Open | BDD |
-| 7.3 | SS-066 — The Rooms: RegisterContract walking skeleton (Room 13 — I've Had Worse) | Open | BDD |
-| 5.7 | SS-067 — The Rooms: corridor navigation + room selection UI | Open | BDD |
-| 3.2 | SS-068 — The Rooms: remaining five contracts (Rooms 12, 12A, 14, 15, 16) | Open | BDD |
+| 7.3 | SS-066 — "I've Had Worse": walking skeleton, protagonist selection, escalating panel | Open | BDD |
+| 5.7 | SS-067 — The Rooms corridor: door tiles, comedic name + domain sub-header | Open | BDD |
+| 3.2 | SS-068 — The Rooms: Dead Parrot Survival / Barney Rubble / Special Air Counsellors / Yes But Then What? / The 4th Wall | Open | BDD |
 | 4 | SS-069 — User panel member selection (choose who's in the room) | Open | BDD |
 | 18 | SS-058 — Per-character colored card backgrounds (Cusslab pattern) | Open | BDD |
 | 18 | SS-059 — Character interaction dynamics: wounds, lies, calling each other out | Open | DDD |
@@ -1565,48 +1565,59 @@ Feature: Panel triage order across all SS features
 
 ---
 
-### SS-066 — The Rooms: RegisterContract walking skeleton (Room 13 — I've Had Worse)
+### SS-066 — "I've Had Worse" (The Rooms, walking skeleton)
 
 **Epic:** The Rooms
+**Room number:** 13 (decorative — not in URL)
+**URL:** `/survival-school/ive-had-worse`
+**Comedic name:** I've Had Worse
+**Domain concept:** I've Had Worse (name IS the concept — the British shrug)
 
-**What it is:** Walking skeleton of the RegisterContract engine. Room 13: user describes a predicament, each character must top the previous one, escalation state passes between characters, Attenborough closes at the absurdity ceiling.
+**What it is:** Walking skeleton of the RegisterContract engine. User describes a predicament and selects a protagonist character. The panel escalates — each character must top the previous one. Protagonist's escalation is the centrepiece. Attenborough closes at the absurdity ceiling.
 
-**Key principle:** Characters must not know they're in an interaction mode. Sincerity under absurd constraint is the engine — never winking at the audience. The instruction goes to the structure, not to the character.
+**Key principle:** Characters must not know they're in an interaction mode. Sincerity under absurd constraint is the engine — never winking at the audience.
 
-**Setup mechanic:** User enters "what Bear (or whoever) did". That character must defend it. Panel interrogates. Target character has no choice but to maintain the position — crack profile activates. Bear = Confidence Spiral: pressure makes him more certain, not less.
-
-**Build order:**
-1. `js/registerContracts.js` — contract schema + Room 13 object
-2. System prompt builder accepts `RegisterContract` param
-3. Escalation state — each character's prompt includes previous character's response
-4. Terminal condition detection (absurdity ceiling reached)
-5. Attenborough terminal close — one sentence, geological calm, no appeal
+**Setup mechanic:**
+- User enters predicament (freetext + chips)
+- User selects protagonist character (chip selector — all panel members available)
+- Random panel drawn around the protagonist
+- Protagonist's escalation is the most extreme
 
 **Escalation flavours per character:**
 - Ray: specific conditions, specific technique, quietly worse
-- Bear: always abroad, always fine in the end, always unnecessary — Confidence Spiral fires
+- Bear: always abroad, always fine in the end, always unnecessary
 - Fox: classified, probably
 - Hales: forty thousand years. The animal is named.
 - Cody: had the resource thirty feet away. Chose not to use it. Made it worse.
 - Billy: "We trained for this." One sentence. Moves on.
 - Attenborough: geological calm. Terminal closer.
 
+**ADR:** docs/decisions/20260328-001-the-rooms-corridor-design.md
 **Full spec:** /mnt/c/Users/roden/Downloads/the_rooms_design_brief.md and ss_domain_model_handoff.md
 
 **CD3:** UBV=9 TC=7 RR=6 → CoD=22, Dur=3, **CD3=7.3**
-**Status:** OPEN — raised 2026-03-28. Three Amigos complete. Gherkin gate next.
+**Status:** OPEN — raised 2026-03-28. Three Amigos complete. Gherkin approved. Tests next.
 
 ---
 
 ### SS-067 — The Rooms: corridor navigation + room selection UI
 
 **Epic:** The Rooms
+**URL:** `/survival-school/rooms` (the corridor)
 
-**What it is:** The corridor. User sees numbered doors. Each door: room name, one-line description of what happens inside, current panel configuration. User selects a room before submitting their setup.
+**What it is:** One homepage tile ("The Rooms") links to the corridor. The corridor page shows all six door tiles. Each door tile: comedic name (header), domain concept (sub-header), one-line description. User picks a door and enters that room. Individual rooms are not directly linked from the homepage — only via the corridor.
+
+**Door tile structure (per ADR-001):**
+```
+[Comedic Name]           ← door sign / header
+[Domain Concept]         ← sub-header
+[One-line description]   ← what happens inside
+[Room number]            ← decorative, not structural
+```
 
 **Wrong-room gag:** One room always labelled something that sounds relevant but isn't. Candidates: "The Complaint Room" (character in charge is complaining about their shoes; user's complaint not addressed), "The Sympathy Room" (staffed by Billy/Fox/Cody — constitutionally incapable of sympathy; they try, it goes poorly).
 
-**Outstanding Three Amigos:** Visual/nav metaphor vs literally styled as doors; wrong-room gag always present or toggleable; drama setting slider (deferred to future item).
+**Outstanding Three Amigos:** Wrong-room gag always present or toggleable; drama setting slider (deferred).
 
 **CD3:** UBV=8 TC=5 RR=4 → CoD=17, Dur=3, **CD3=5.7**
 **Status:** OPEN — raised 2026-03-28. Depends on SS-066.

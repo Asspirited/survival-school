@@ -2,7 +2,7 @@
 
 | ADR | Title | Status | Date |
 |-----|-------|--------|------|
-| — | No ADRs yet | — | — |
+| ADR-001 | The Rooms — Corridor Design and Room Naming Convention | Decided | 2026-03-28 |
 
 ---
 
