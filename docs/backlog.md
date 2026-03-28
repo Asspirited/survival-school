@@ -35,7 +35,7 @@
 | 8 | SS-032 — Archetypal scenarios | DONE (10 chips live, generic categories removed 2026-03-27) | Feature |
 | 18 | SS-063 — Panel archetypes: design who goes together and why | Open | DDD |
 | 18 | SS-064 — Cross-product fish-out-of-water characters: Cox, Faldo, others | Open | DDD |
-| 18 | SS-065 — Panel pool: random 4–5 character selection across all panel modes | Open | BDD |
+| 18 | SS-065 — Panel pool: random 4–5 character selection across all panel modes | DONE (PANEL_POOL + drawPanel live 2026-03-28) | BDD |
 | 7.3 | SS-066 — "I've Had Worse": walking skeleton, protagonist selection, escalating panel | DONE (live 2026-03-28) | BDD |
 | 5.7 | SS-067 — The Rooms corridor: door tiles, comedic name + domain sub-header | DONE (live 2026-03-28 as /survival-school/rooms) | BDD |
 | 3.2 | SS-068 — The Rooms: Dead Parrot Survival / Barney Rubble / Special Air Counsellors / Yes But Then What? / The 4th Wall | Open | BDD |
@@ -51,16 +51,18 @@
 | 12 | SS-077 — Room-specific guiding copy: freetext prompt hints congruent with each room's mechanic | Open | BDD |
 | 14 | SS-078 — Corridor send-off messages: banal good-luck wishes alongside Morrison's prophecy | Open | BDD |
 | 8 | SS-079 — Roy Keane character: dismissive survival mode, "this is nothing compared to selection" | Open | DDD |
-| 18 | SS-080 — Character: Mark O'Shea — herpetologist, taxonomically forensic, urn incident origin | Open | DDD |
-| 18 | SS-081 — Character: Austin Stevens — Snakemaster, casualness about injury, "I've Been Bit Guys" origin | Open | DDD |
-| 27 | SS-082 — Character: Gordon Lyons — amateur herpetologist, bitten twice by same snake, friend poured beer and urinated on his head as first aid | Open | DDD |
-| 18 | SS-058 — Per-character colored card backgrounds (Cusslab pattern, survival palette) | Open | BDD |
-| 18 | SS-084 — Predicament chip: "why did Bear end up forcing the teacher to drink his urine out of a dead snake" | Open | BDD |
+| 18 | SS-080 — Character: Mark O'Shea — herpetologist, taxonomically forensic, urn incident origin | DONE (in PANEL_POOL 2026-03-28) | DDD |
+| 18 | SS-081 — Character: Austin Stevens — Snakemaster, casualness about injury, "I've Been Bit Guys" origin | DONE (in PANEL_POOL 2026-03-28) | DDD |
+| 27 | SS-082 — Character: Gordon Lyons — amateur herpetologist, bitten twice by same snake, friend poured beer and urinated on his head as first aid | DONE (on I've Been Bit panel 2026-03-28) | DDD |
+| 18 | SS-058 — Per-character colored card backgrounds (Cusslab pattern, survival palette) | DONE (CHAR_COLOURS + char-{id} CSS live 2026-03-28) | BDD |
+| 18 | SS-084 — Predicament chip: "why did Bear end up forcing the teacher to drink his urine out of a dead snake" | DONE (chip live on worst page 2026-03-28) | BDD |
 | 27 | SS-085 — Per-character roast + inversion chips: real embarrassing moments + out-of-character scenarios they must defend (The Doors) | Open | DDD |
 | 12 | SS-086 — Review SS-085 material as stimulus for chips on other features (How Screwed, I've Had Worse, etc.) | Open | DDD |
 | 27 | SS-088 — Panel emotional state model: port LieEngine + composure from Cusslab, characters shift register mid-session | Open | DDD |
 | 27 | SS-087 — Cusslab crossover: non-survivalist protagonists through The Doors | Open | DDD |
 | 27 | SS-089 — The Doors predicament chips: Steve Irwin (snake wall, croc ring, snake ring let-slip) + Stevens (snake pit, O'Shea's paper) | DONE (2026-03-28) | BDD |
+| 18 | SS-090 — Fish-out-of-water pair: Cox + Faldo both in panel — vehement mutual agreement on something both are completely wrong about, experts looking on in horror | Open | BDD |
+| 18 | SS-091 — Fish-out-of-water pair: Cox + Faldo argue with each other when neither knows anything — escalating confident wrongness, no expert present to correct them | Open | BDD |
 | 18 | SS-059 — Character interaction dynamics: wounds, lies, calling each other out | Open | DDD |
 | 8 | SS-005 — Telephone Game mechanic | Open | DDD |
 | 8 | SS-039 — Latin / indigenous naming layer in panel responses | Open | DDD |
@@ -2162,6 +2164,32 @@ These are not sarcastic. Gordon would agree with all of them. There might be sna
 **Chips live in:** `/home/rodent/cusslab/worker.js` — predicament chips section (~line 5984)
 
 **Done:** 2026-03-28
+
+---
+
+### SS-090 — Fish-out-of-water pair: mutual vehement agreement on something both are completely wrong about
+
+**Status:** Open
+**CD3:** 18 (Confidence 3 × Desirability 3 × Deliverability 2)
+**Loop:** BDD
+**Epic:** Fish-out-of-water
+
+**What:** Cox and Faldo are both in the panel. They find a point of apparent overlap and agree with each other with complete conviction about something both are entirely wrong about. The actual experts (Ray, Stevens, Fox) watch in silence. Nobody intervenes. The comedy is the gap between their mutual confidence and their total incorrectness — and the experts' decision not to say anything.
+
+**Three Amigos needed:** What is the mechanism for triggering "both in panel"? Random chance, or user-selectable? Do the experts visually react, or is it purely in text?
+
+---
+
+### SS-091 — Fish-out-of-water pair: Cox vs Faldo — escalating confident wrongness with no expert to correct them
+
+**Status:** Open
+**CD3:** 18 (Confidence 3 × Desirability 3 × Deliverability 2)
+**Loop:** BDD
+**Epic:** Fish-out-of-water
+
+**What:** Cox and Faldo are both in the panel and they disagree. Each escalates their confident wrongness. Neither has any relevant expertise. Neither knows this. The argument is polite, sincere, detailed, and completely fabricated. No expert is present or available to resolve it. The panel is just these two, plus Attenborough bookending, who chooses not to get involved.
+
+**Three Amigos needed:** Same as SS-090 — trigger mechanism and expert-presence rules.
 
 ---
 
