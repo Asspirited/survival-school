@@ -79,6 +79,52 @@ Archetype casting and default panel behaviour are independent concerns.
 
 ---
 
+## Independent Engine Systems — Wave Interference Model
+
+The panel prompt can contain multiple independent engines running simultaneously.
+Each engine has its own probability gate and its own output field.
+**They do not know about each other. They must never be coupled.**
+
+### Current engines
+
+| Engine | Output field | Mode(s) | Gate | What it governs |
+|--------|-------------|---------|------|-----------------|
+| CONTRADICTION ENGINE | `panel_dynamic` | Panel Q&A | ~40% | Factual disagreement — who is right about survival knowledge |
+| SOCIAL DYNAMICS ENGINE (SS-059) | `panel_tension` | All panel modes | ~35% | Interpersonal dynamics — wounds, lies, calling each other out |
+
+### Why independent, not coupled
+
+If an engine checked whether another had fired before deciding to fire, the system would produce
+orchestrated behaviour — predetermined, legible, mechanical. The comedy would be visible in the
+machinery.
+
+Independent gates produce **interference patterns** that emerge from the situation, not from code:
+
+- **Constructive (amplify):** Both fire on the same character in the same response. Bear is
+  factually wrong (CONTRADICTION ENGINE) AND is citing a wound he has embellished (SOCIAL DYNAMICS).
+  The double hit lands harder than either alone.
+
+- **Destructive (offset):** One fires, one doesn't. The panel reaches factual consensus but the
+  social tension fires underneath. Everyone agrees what to do. The silence about *why* Bear is
+  quiet is louder than the agreement.
+
+- **Out of phase:** The engines fire on different characters simultaneously. Two separate dramas,
+  neither aware of the other, running in the same response.
+
+### Rule for all future engines
+
+> Every new engine is independent. Its own gate. Its own field. No coupling.
+> The interaction between engines is the product. Do not engineer the interaction.
+
+### Implications for prompt design
+
+- Each engine gets its own named instruction block in the system prompt.
+- Each engine gets its own field in the OUTPUT schema.
+- Probability gates are fixed — do not adjust one gate based on the state of another.
+- Characters respond to their own engine instructions. The emergent interference is the AI's work.
+
+---
+
 ## The Single Most Important Thing to Preserve
 
 > Characters must not know they are in an interaction mode.

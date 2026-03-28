@@ -300,19 +300,23 @@ ${SHARED_CONTEXT}
 
 MUNDANE MODE: The situation is not a survival emergency. The panel doesn't know this.
 They assess with the same weight they would give a man trapped on Dartmoor in October.
-Ray identifies three immediate risks. Fox assesses lines of sight. Cody notes what was available nearby. Bear has done something similar abroad.
 
 ATTENBOROUGH BOOKEND STRUCTURE — Attenborough does NOT appear in the panel array. He bookends:
 - attenborough_opening: one sentence, introduces the mundane situation as if it's a wildlife encounter. "And here, in the fluorescent ecology of the Wetherspoons, a specimen faces a challenge that, while modest in geological terms, carries its own quiet urgency."
 - attenborough_verdict: one sentence, geological calm. Final verdict. He always knew.
 
-Panel characters (no Attenborough): Ray, Bear, Cody, Hales, Fox, Stroud.
-- Ray: identifies real risks in the mundane situation. Genuinely concerned.
-- Bear: has done something similar, abroad, fine in the end.
-- Cody: points out the better option that was right there. "The bus stop. Fifty yards away."
-- Hales: three words. Maximum.
-- Fox: tactical assessment of the mundane. Exit routes from the post office queue.
-- Stroud: quiet, measured verdict. Slightly melancholy.
+PANEL TRIAGE ORDER (SS-034) — responses must follow this sequence:
+1. IMMEDIATE (Ray, Fox): Stakes first. Ray identifies the real risks in the mundane situation. Fox assesses exit routes and lines of sight. Both are genuinely concerned.
+2. COMEDY/OBSERVATION (Bear, Hales, Cody, Stroud): Once the immediate has landed. Bear has done something similar abroad, fine in the end. Hales: three words maximum. Cody: better option that was right there. Stroud: quiet verdict.
+The comedy only works after the immediate layer has established that the situation is being taken seriously.
+
+Panel characters (no Attenborough): Ray, Fox, Bear, Hales, Cody, Stroud.
+- Ray: IMMEDIATE — identifies the real risks in the mundane. Genuinely concerned. Goes first.
+- Fox: IMMEDIATE — tactical assessment. Exit routes from the post office queue. Lines of sight. Goes second.
+- Bear: COMEDY — has done something similar, abroad, fine in the end.
+- Hales: COMEDY — three words. Maximum.
+- Cody: OBSERVATION — points out the better option that was right there. "The bus stop. Fifty yards away."
+- Stroud: VERDICT — quiet, measured. Slightly melancholy.
 
 Survival probability: 0-100. For mundane scenarios this is usually 40-85% — they're not great situations, but survivable with the right mindset. A truly catastrophic mundane scenario (printer has run out of ink, presentation in 10 minutes) may drop lower.
 
@@ -359,7 +363,18 @@ ATTENBOROUGH BOOKEND STRUCTURE — Attenborough does NOT appear in the panel arr
 - attenborough_opening: one sentence, nature documentary register, introduces the situation as if it's a wildlife encounter. Sets the stakes. Slightly ominous.
 - attenborough_verdict: one sentence, geological calm, no appeal. The documentary's conclusion. He already knew.
 
-Panel characters (no Attenborough): Ray, Bear, Cody, Hales, Fox, Stroud.
+PANEL TRIAGE ORDER (SS-034) — responses must follow this sequence:
+1. IMMEDIATE (Ray, Fox): What to do RIGHT NOW. Clinical, no drama. Ray: craft-based action, technically correct. Fox: threat still active? lines of sight, exit options.
+2. COMEDY/OBSERVATION (Bear, Hales, Cody, Stroud): Once the immediate has landed. Bear: anecdote, somewhere exotic, fine in the end, hydration unprompted. Hales: three words. Cody: better option that was right there. Stroud: quiet verdict.
+The comedy only works if the immediate layer has set the stakes first. Do not mix the order.
+
+Panel characters (no Attenborough): Ray, Fox, Bear, Hales, Cody, Stroud.
+- Ray: IMMEDIATE — is it technically correct? Craft judgement. Brief. Goes first.
+- Fox: IMMEDIATE — threat still active? lines of sight, exit options, what's available. Goes second.
+- Bear: COMEDY — anecdote, somewhere exotic, fine in the end, hydration unprompted.
+- Hales: COMEDY — three words. Maximum. Understated. Educational.
+- Cody: OBSERVATION — was there a better option right there? "Cattails. Thirty feet away."
+- Stroud: VERDICT — quiet, measured. Slight melancholy.
 
 Generate initial assessment. Also produce 3 specific suggested first actions.
 

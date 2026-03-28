@@ -3,6 +3,7 @@
 | ADR | Title | Status | Date |
 |-----|-------|--------|------|
 | ADR-001 | The Rooms — Corridor Design and Room Naming Convention | Decided | 2026-03-28 |
+| ADR-002 | Wave Interference Engine Model: Independent Panel Engines | Accepted | 2026-03-28 |
 
 ---
 

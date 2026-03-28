@@ -130,6 +130,75 @@ describe('buildSystemPrompt — all modes return a string', () => {
   }
 });
 
+// ── SS-062 — Panel triage order in ALL panel modes ────────────────────────────
+// Fails until PANEL TRIAGE ORDER block is added to assessment mode
+// and OUTPUT schema order is corrected to ray → fox → bear.
+
+describe('buildSystemPrompt — SS-062 triage order across all panel modes', () => {
+
+  for (const mode of ['assessment', 'reaction', 'mundane', 'qa']) {
+    test(`mode '${mode}' contains PANEL TRIAGE ORDER instruction`, () => {
+      const prompt = buildSystemPrompt(mode);
+      assert.ok(
+        prompt.includes('PANEL TRIAGE ORDER') || prompt.includes('triage order'),
+        `mode '${mode}' must contain a PANEL TRIAGE ORDER instruction`
+      );
+    });
+
+    test(`mode '${mode}' IMMEDIATE tier precedes COMEDY tier in triage section`, () => {
+      const prompt = buildSystemPrompt(mode);
+      // Scope to the triage section — 'comedy' appears earlier in character voice descriptions
+      const triageStart = prompt.indexOf('PANEL TRIAGE ORDER');
+      const triageFallback = prompt.toLowerCase().indexOf('triage order');
+      const sectionStart = triageStart !== -1 ? triageStart : triageFallback;
+      assert.ok(sectionStart !== -1,
+        `mode '${mode}' must contain a triage order section before checking IMMEDIATE/COMEDY order`);
+      const section = prompt.slice(sectionStart);
+      const immediateIdx = section.toUpperCase().indexOf('IMMEDIATE');
+      const comedyIdx = section.toUpperCase().indexOf('COMEDY');
+      assert.ok(immediateIdx !== -1, `mode '${mode}' triage section must name IMMEDIATE tier`);
+      assert.ok(comedyIdx !== -1, `mode '${mode}' triage section must name COMEDY tier`);
+      assert.ok(immediateIdx < comedyIdx,
+        `mode '${mode}': IMMEDIATE tier must appear before COMEDY tier in triage section`);
+    });
+  }
+
+  test("assessment mode per-character instructions: Fox (IMMEDIATE) listed before Bear (COMEDY)", () => {
+    const prompt = buildSystemPrompt('assessment');
+    // After the triage section is added, Fox's IMMEDIATE role must be stated before Bear's COMEDY role
+    const upper = prompt.toUpperCase();
+    // Find the first mention of FOX with IMMEDIATE tier context and BEAR with COMEDY tier context
+    // We check the first occurrence of each in the character instruction block
+    const foxImmediateIdx = upper.indexOf('FOX');
+    const bearComedyIdx = upper.indexOf('BEAR');
+    assert.ok(foxImmediateIdx !== -1, "assessment prompt must reference Fox");
+    assert.ok(bearComedyIdx !== -1, "assessment prompt must reference Bear");
+    // In triage section: Fox (IMMEDIATE, goes second) should be described before Bear (COMEDY)
+    // Find the triage instruction block specifically
+    const triageIdx = upper.indexOf('PANEL TRIAGE ORDER');
+    assert.ok(triageIdx !== -1, "assessment prompt must have PANEL TRIAGE ORDER section");
+    const triageSection = upper.slice(triageIdx);
+    const foxInTriage = triageSection.indexOf('FOX');
+    const bearInTriage = triageSection.indexOf('BEAR');
+    assert.ok(foxInTriage !== -1, "triage section must reference Fox");
+    assert.ok(bearInTriage !== -1, "triage section must reference Bear");
+    assert.ok(foxInTriage < bearInTriage,
+      "triage section: Fox (IMMEDIATE) must appear before Bear (COMEDY)");
+  });
+
+  test("reaction mode per-character instructions: Fox (IMMEDIATE) listed before Bear (COMEDY) in triage section", () => {
+    const prompt = buildSystemPrompt('reaction');
+    const upper = prompt.toUpperCase();
+    const triageIdx = upper.indexOf('PANEL TRIAGE ORDER');
+    assert.ok(triageIdx !== -1, "reaction prompt must have PANEL TRIAGE ORDER section");
+    const triageSection = upper.slice(triageIdx);
+    const foxInTriage = triageSection.indexOf('FOX');
+    const bearInTriage = triageSection.indexOf('BEAR');
+    assert.ok(foxInTriage < bearInTriage,
+      "reaction triage section: Fox must appear before Bear");
+  });
+});
+
 // ── buildSystemPrompt('qa') — Panel Q&A mode ─────────────────────────────────
 
 describe("buildSystemPrompt('qa') — Panel Q&A mode", () => {
