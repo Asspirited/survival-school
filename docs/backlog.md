@@ -36,10 +36,15 @@
 | 18 | SS-063 — Panel archetypes: design who goes together and why | Open | DDD |
 | 18 | SS-064 — Cross-product fish-out-of-water characters: Cox, Faldo, others | Open | DDD |
 | 18 | SS-065 — Panel pool: random 4–5 character selection across all panel modes | Open | BDD |
-| 7.3 | SS-066 — "I've Had Worse": walking skeleton, protagonist selection, escalating panel | Open | BDD |
+| 7.3 | SS-066 — "I've Had Worse": walking skeleton, protagonist selection, escalating panel | DONE (live 2026-03-28) | BDD |
 | 5.7 | SS-067 — The Rooms corridor: door tiles, comedic name + domain sub-header | Open | BDD |
 | 3.2 | SS-068 — The Rooms: Dead Parrot Survival / Barney Rubble / Special Air Counsellors / Yes But Then What? / The 4th Wall | Open | BDD |
 | 4 | SS-069 — User panel member selection (choose who's in the room) | Open | BDD |
+| 18 | SS-070 — Character: Ant Middleton ("Madhouse") — former SAS, TV survival host, full voice profile | Open | DDD |
+| 18 | SS-071 — Character: Andy McNab — Bravo Two Zero author, former SAS, drily factual, operational | Open | DDD |
+| 18 | SS-072 — Character: Chris Ryan — Bravo Two Zero survivor, contradicts McNab, selective memory | Open | DDD |
+| 12 | SS-073 — Jim Morrison corridor guide: sends characters through The Doors with sage/doom advice | Open | BDD |
+| 16 | SS-074 — Expert Over-Reach mechanic: characters one-up expertise claims, escalate into making things up | Open | BDD |
 | 18 | SS-058 — Per-character colored card backgrounds (Cusslab pattern) | Open | BDD |
 | 18 | SS-059 — Character interaction dynamics: wounds, lies, calling each other out | Open | DDD |
 | 8 | SS-005 — Telephone Game mechanic | Open | DDD |
@@ -1657,3 +1662,96 @@ Feature: Panel triage order across all SS features
 
 **CD3:** UBV=7 TC=4 RR=3 → CoD=14, Dur=4, **CD3=3.5** *(rescored when SS-066 ships)*
 **Status:** OPEN — raised 2026-03-28. Depends on SS-066.
+
+---
+
+### SS-070 — Character: Ant Middleton
+
+**Status:** Open
+**Loop:** DDD
+**Epic:** Character Expansion
+
+**What it is:** Full voice profile and character file for Ant Middleton. Former SAS soldier, TV survival host (SAS: Who Dares Wins). Self-styled "Madhouse" — extreme, confrontational, turns every situation into a mental battle. Probably disagrees with Ray, probably agrees with Bear while secretly thinking he could do it better.
+
+**Voice notes:** Aggressive optimism. Everything is a mindset problem. "You've just got to embrace the chaos." Likely to call others out for being soft while delivering genuinely bad advice with total conviction.
+
+**What to build:** docs/characters/ant-middleton.md following the existing character template. Add to characters.js CHARACTERS object once voice is locked. Add to PANEL_IDS when UI integration is ready.
+
+**CD3:** TBD pending Three Amigos.
+**Status:** OPEN — raised 2026-03-28.
+
+---
+
+### SS-071 — Character: Andy McNab
+
+**Status:** Open
+**Loop:** DDD
+**Epic:** Character Expansion
+
+**What it is:** Full voice profile for Andy McNab. Former SAS, Bravo Two Zero author. Dry, operational, forensically specific about things that went wrong. Probably disagrees with Chris Ryan about exactly what happened on that patrol. Never dramatises — doesn't need to.
+
+**Voice notes:** Short sentences. Active voice. Technical detail that makes Ray look like he's waffling. Will reference Bravo Two Zero as context for almost anything. May subtly correct things Chris Ryan says.
+
+**What to build:** docs/characters/andy-mcnab.md. Add to characters.js and PANEL_IDS when voice is locked.
+
+**CD3:** TBD pending Three Amigos.
+**Status:** OPEN — raised 2026-03-28.
+
+---
+
+### SS-072 — Character: Chris Ryan
+
+**Status:** Open
+**Loop:** DDD
+**Epic:** Character Expansion
+
+**What it is:** Full voice profile for Chris Ryan. Bravo Two Zero survivor, only one to escape. Sole survivor framing. Selective memory. His version of events differs from McNab's on the key details — this is the comedy engine. Will be slightly defensive when McNab is also in the panel.
+
+**Voice notes:** Measured, a little proud. Describes his escape with understated pride. Contradicts McNab via omission rather than confrontation — "That's one way of putting it." Genuinely heroic but cannot quite help mentioning he was the only one who made it out.
+
+**What to build:** docs/characters/chris-ryan.md. Add to characters.js and PANEL_IDS when voice is locked. Note: when both McNab and Ryan are in a panel, the Bravo Two Zero disagreement mechanic should activate.
+
+**CD3:** TBD pending Three Amigos.
+**Status:** OPEN — raised 2026-03-28.
+
+---
+
+### SS-073 — Jim Morrison corridor guide
+
+**Status:** Open
+**Loop:** BDD
+**Epic:** The Doors
+
+**What it is:** Jim Morrison as the guide who sends characters through their door. Not a panel member. His role is the corridor — he greets you, assesses your protagonist, and sends them through the door with a piece of sage-but-foreboding advice. Particularly funny because he's sending hardened survival experts to their fates with the gravity of a rock prophet who has never spent a night outdoors.
+
+**Comedy engine:** The gap between Morrison's cosmic-doorway-of-destiny register and the banality of what he's sending Bear into. "You're about to find out something about yourself." (Bear is about to explain to a paper cut panel why he once ate a goat.)
+
+**What it sounds like:**
+- "The doors of perception open for those who stop asking if they're ready."
+- "Bear. You're up. And for what it's worth — I'd have made the same choice. The goat looked at me the same way."
+- "The panel's waiting, Jason. They already know how this ends."
+
+**Outstanding Three Amigos:** Is Morrison a pre-submit framing only, or does he also close the room? Does his commentary adapt to the protagonist chosen, or is it universal?
+
+**CD3:** TBD pending Three Amigos.
+**Status:** OPEN — raised 2026-03-28.
+
+---
+
+### SS-074 — Expert Over-Reach mechanic
+
+**Status:** Open
+**Loop:** BDD
+**Epic:** Panel Interaction Model
+
+**What it is:** Characters competitively over-reach into each other's areas of expertise. One names a plant (valid knowledge). Another, not wanting to be outdone, names a better plant — possibly real, possibly not. Back and forth escalates: polite one-upmanship, then passive-aggressive correction, then inventing increasingly confident nonsense. The other doubles down on the invented thing, agrees enthusiastically, adds a fabricated detail. Nobody calls it. The comedy is the collapse of expertise under social pressure.
+
+**The structure (Rod's words):** "One names a plant, the other names a better plant, they go back and forth passive aggressively, make shit up, the other agrees and says they actually know more about the imaginary thing, doubling down on bullshit — a magical comedy structure."
+
+**Design notes:** Sincere characters. They do not know they are bullshitting. This is a panel interaction pattern, not a standalone mechanic — it activates when two characters with overlapping domains are both in the panel. Strong candidates: Ray Mears vs Cody Lundin (both bushcraft/plants), Bear vs Ant Middleton (survival fitness overlap), McNab vs Ryan (operational memory disagreement).
+
+**Outstanding Three Amigos:** Mode-specific trigger or works in any mode? Fixed two-character pair, or can involve three? Does Attenborough notice?
+
+**CD3:** TBD pending Three Amigos.
+**Status:** OPEN — raised 2026-03-28.
+
