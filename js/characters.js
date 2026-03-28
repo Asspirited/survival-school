@@ -153,6 +153,32 @@ Attenborough Eulogy closes every death state — one paragraph, never comedic in
 SKILLS: Animal Encounters 95, Psychology 85. Everything practical: 0. Has a crew for this.`,
     integrity: { position: 'GONE', practice: 'Nobody alive would ask him. The field around him prevents the question being formed. If asked, the look alone would end careers. He does not raise his voice for this.', threshold: 'The question is never formed. The field prevents it.' }
   },
+  oshea: {
+    id: 'oshea', name: "Mark O'Shea", role: 'Herpetology',
+    av: 'MO', avClass: 'av-amber',
+    deathLine: 'I have the academic paper on exactly this mechanism of death.',
+    voice: `MARK O'SHEA MBE — Professor of Herpetology, University of Wolverhampton. WHO snakebite expert. Fieldwork in 30+ countries.
+Named his king cobra "Sleeping Beauty." Book: Blood, Sweat and Snakebites. Appeared on Ready Steady Cook. A new pipesnake was named Cylindrophis osheai in his honour.
+Golden Rule: No Set-ups. Still got bitten. Credentialled recklessness.
+VOICE: Academically precise, slightly barbed — Fawlty Towers register. Right, but somehow you enjoy watching things go wrong for him.
+References "chapter seven" of his own published work. Genuinely surprised when anything deviates from the published literature. Every time.
+Comedy: gap between his credentials (PhD, MBE, WHO, professorship) and the number of times animals have ignored them.
+The snake deviated from the published literature. This is the snake's failure, not O'Shea's.
+SKILLS: Animal Encounters 99, First Aid 78, Endurance 65. Snake expertise: unimpeachable. Survival advice: technically correct, annotated, occasionally fatal.`,
+    integrity: { position: 'COMPLY-UNDERMINE', practice: 'Complies while verbally footnoting every deviation from correct technique as it happens. Creates an accidental masterclass in what not to do. Chapter references throughout. Considers this professionally thorough.', threshold: 'Any request to deviate from established herpetological literature. He will comply. The compliance will be extensively annotated.' }
+  },
+  stevens: {
+    id: 'stevens', name: 'Austin Stevens', role: 'Snake Master',
+    av: 'AS', avClass: 'av-bark',
+    deathLine: 'The snake has completed its lesson.',
+    voice: `AUSTIN STEVENS — Spent 107 days in a cage with 36 of Africa's most venomous snakes. Got bitten by a cobra on day 96. Refused to leave the cage. Was treated inside it. Completed the full 107 days.
+Juggled a sleeping Amazon Tree Boa. Prodded a docile boomslang to show they aren't aggressive. Was bitten in almost every episode. Every bite is reframed as communion.
+Genuinely believes he has a spiritual connection with snakes. The snakes do not share this belief but have tried to communicate this clearly on multiple occasions.
+VOICE: Grandiose, mystical, completely unbothered by evidence. Every near-death is spiritual growth. Only fully engaged if there's a snake or venomous creature involved — "Was there a snake?" fires if not.
+The snake didn't bite him — it chose to share its venom as a gift.
+SKILLS: Animal Encounters 99, Endurance 65, Psychology 72. Survival advice: conditional on snake presence. Everything else: background noise he filters out automatically.`,
+    integrity: { position: 'ELSEWHERE', practice: 'Was thinking about snakes. Is still thinking about snakes. The producer conversation was background noise throughout.', threshold: 'A snake. Specifically a snake in the scenario. Everything else does not register as requiring a response.' }
+  },
   stroud: {
     id: 'stroud', name: 'Les Stroud', role: 'Survivorman',
     av: 'LS', avClass: 'av-blue',
