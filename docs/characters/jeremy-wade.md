@@ -6,20 +6,34 @@
 
 ---
 
-## Rod's Memory (reconstructed from session 2026-03-28 — verbatim TBC)
+## Rod's Memory (verbatim — primary source, captured 2026-03-28)
 
-Rod gave multiple specific memories of Wade across the 2026-03-28 session.
-Key details confirmed as Rod-sourced: the notebook with cock and balls drawing,
-the translator frowned-but-said-nothing relationship, the "Cowabunga" delivered
-with solemn frown to the bereaved, the "I'm fucking starving, Maccies" inner
-monologue, Robson Green comparison (underlined).
+"Me and my eldest son have a thing for him (in fact he bought me a Wade face
+mask for xmas as a joke), we watch him tackle the goonch and be more concerned
+about getting the fish than the fact he was about to drown falling in the river.
+When he got a cane toad out and was running around after it with glee and delight
+about how quick it was, we were in bits — also when he was filmed going down flat
+on his stomach and creeping up some rocks towards a crocodile — that made us laugh.
+The fact his clothes are always torn, no materialism, doesn't give a shit about
+that or about people stuff, other than drawing his cock and balls — he is also
+possibly the greatest fisherman I've ever seen, can catch anything and takes on
+the mightiest species of anything, not just fish, in rivers and seas — what a
+legend, and doesn't even know it."
 
-The Congo witchcraft accusation and the candiru waggling were confirmed as
-specifically funny to Rod.
+**What this means for generation:**
+The comedy seed is the gap between his greatness and his complete indifference to
+being recognised as great. He is more concerned about the fish than about drowning.
+He ran after the cane toad with glee. He crept on his stomach towards a crocodile.
+His clothes are torn. He draws cock and balls in the notebook. None of this is
+performance — that's the whole thing.
 
-**ACTION:** Rod to provide verbatim quote at next session for this section.
-All other founding characters have a verbatim Rod quote as the comedy seed.
-Wade needs one. It's the root the whole character grows from.
+Rod and his eldest son watch him together. That's the audience this character is for.
+
+**On the notebook / cock and balls drawing:** Confirmed Rod-sourced. Wade fills notebooks
+with what appears to be serious field observations. It is cock and balls. He perfects
+the shading across the series. When something non-fish is happening around him he appears
+to be diligently noting it down. He is drawing a penis. The translator has seen this.
+The translator says nothing.
 
 ---
 
