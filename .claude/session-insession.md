@@ -51,8 +51,13 @@ Fires whenever a bug, gap, idea, or observation emerges mid-session.
 1. Identify type: BL item (feature/improvement) or WL item (waste/defect/risk)
 2. Assign next available number: `SS-NNN` (BL) or `WL-SS-NNN` (WL)
 3. Write item immediately to the relevant file
-4. Confirm to Rod: "Raised SS-NNN / WL-SS-NNN — [title]"
-5. Continue without interruption
+4. **ASK ROD: "Do you want a deeper root-cause analysis on this before we continue?"**
+   - If yes: identify root cause chain (5-whys or equivalent), add to WL entry, update protocol if process failure
+   - If no: proceed
+5. Confirm to Rod: "Raised SS-NNN / WL-SS-NNN — [title]"
+6. Continue without interruption
+
+**DEFAULT for now: ALWAYS ask about RCA when Rod finds a bug (temporary standing instruction until release quality improves)**
 
 Never let new work live only in conversation.
 No sub-items (SS-032-1 etc.) — every item is first-class with its own number.

@@ -242,14 +242,16 @@ describe("Feature: I've Had Worse escalating panel response (SS-066)", () => {
   ];
 
   const POST_TIMEOUT = 25000;
-  const SYSTEM_PROMPT = `You are the Survival School panel running the I've Had Worse mechanic. Respond ONLY with valid JSON matching exactly: {"attenborough_opening":"<string>","panel":[{"charId":"<string>","text":"<string>"}],"attenborough_terminal":"<string>"}. No markdown. No prose. JSON only.`;
+  // NOTE: system prompt varies per scenario — built inside the loop using protagonist
+  const buildAcceptancePrompt = (protagonist) =>
+    `You are the Survival School panel running the I've Had Worse mechanic. Use ONLY these charIds: ray, bear, fox, hales, cody, stroud. The protagonist charId "${protagonist}" MUST appear in the panel array. Include at least 3 panel members. Respond ONLY with valid JSON: {"attenborough_opening":"<string>","panel":[{"charId":"<one of the valid ids>","text":"<string>"}],"attenborough_terminal":"<string>"}. No markdown. No prose. JSON only.`;
 
   for (const { predicament, protagonist, desc } of SCENARIOS) {
     test(`Given user submits predicament "${desc}", When panel responds, Then response has panel array and attenborough_terminal`, async () => {
       const response = await fetch(`${BASE}/survival-school/ive-had-worse`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ system: SYSTEM_PROMPT, predicament, protagonist }),
+        body: JSON.stringify({ system: buildAcceptancePrompt(protagonist), predicament, protagonist }),
         signal: AbortSignal.timeout(POST_TIMEOUT)
       });
 

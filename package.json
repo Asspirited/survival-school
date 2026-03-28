@@ -8,11 +8,15 @@
     "test:contract": "node --test tests/contract.verify.test.js",
     "test:acceptance": "node --test tests/acceptance/acceptance.test.js",
     "test:all": "node --test tests/domain.test.js tests/domain-worst.test.js tests/contract.verify.test.js tests/acceptance/acceptance.test.js",
+    "test:ui": "npx playwright test",
     "pipeline": "bash scripts/pipeline-report.sh"
   },
   "engines": {
     "node": ">=20.0.0"
   },
   "author": "LeanSpirited (Rod)",
-  "license": "UNLICENSED"
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "@playwright/test": "^1.58.2"
+  }
 }

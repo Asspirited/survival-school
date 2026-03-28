@@ -113,11 +113,28 @@ echo "L3: $L3_RESULT — passed: $L3_PASS | failed: $L3_FAIL (${L3_TIME}ms)"
 # ── L4: UI tests (Playwright) ──
 separator
 echo "L4 — UI TESTS (Playwright)"
-if command -v npx &>/dev/null && npx playwright --version &>/dev/null 2>&1; then
-  echo "L4: SKIP — Playwright UI tests not yet authored (SS-040 follow-on)"
-  L4_RESULT="SKIP"
+L4_START=$(date +%s%3N)
+L4_PASS=0; L4_FAIL=0
+if [ -f "tests/ui/ui.test.js" ] && [ -d "node_modules/@playwright/test" ]; then
+  L4_OUT=$(npx playwright test --config playwright.config.js --reporter=list 2>&1)
+  L4_EXIT=$?
+  L4_END=$(date +%s%3N)
+  L4_TIME=$(( (L4_END - L4_START) ))
+  # Parse playwright output: "X passed" and "X failed"
+  L4_PASS=$(echo "$L4_OUT" | grep -oP '\d+(?= passed)' | tail -1 || echo "0")
+  L4_FAIL=$(echo "$L4_OUT" | grep -oP '\d+(?= failed)' | tail -1 || echo "0")
+  [ -z "$L4_PASS" ] && L4_PASS=0
+  [ -z "$L4_FAIL" ] && L4_FAIL=0
+  echo "$L4_OUT" | grep -E "(PASS|FAIL|passed|failed|✓|✗|×)" | head -30
+  if [ $L4_EXIT -eq 0 ] && [ "$L4_FAIL" = "0" ]; then
+    L4_RESULT="GREEN"
+  else
+    L4_RESULT="RED"
+    ERRORS=$((ERRORS+1))
+  fi
+  echo "L4: $L4_RESULT — passed: $L4_PASS | failed: $L4_FAIL (${L4_TIME}ms)"
 else
-  echo "L4: SKIP — Playwright not installed"
+  echo "L4: SKIP — run 'npm install' to enable Playwright UI tests"
   L4_RESULT="SKIP"
 fi
 
@@ -142,7 +159,7 @@ printf "  %-6s  %-12s  %s\n" "L0" "$L0_RESULT" "Auth canary (${L0_TIME}ms)"
 printf "  %-6s  %-12s  %s\n" "L1" "$L1_RESULT" "Unit — pass:$L1_PASS fail:$L1_FAIL (${L1_TIME}ms)"
 printf "  %-6s  %-12s  %s\n" "L2" "$L2_RESULT" "Contract — pass:$L2_PASS fail:$L2_FAIL (${L2_TIME}ms)"
 printf "  %-6s  %-12s  %s\n" "L3" "$L3_RESULT" "Acceptance — pass:$L3_PASS fail:$L3_FAIL (${L3_TIME}ms)"
-printf "  %-6s  %-12s  %s\n" "L4" "$L4_RESULT" "UI/Playwright"
+printf "  %-6s  %-12s  %s\n" "L4" "$L4_RESULT" "UI/Playwright — pass:$L4_PASS fail:$L4_FAIL (${L4_TIME}ms)"
 printf "  %-6s  %-12s  %s\n" "L5" "$L5_RESULT" "OAT"
 echo ""
 
