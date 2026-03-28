@@ -52,6 +52,7 @@
 | 8 | SS-079 — Roy Keane character: dismissive survival mode, "this is nothing compared to selection" | Open | DDD |
 | 18 | SS-080 — Character: Mark O'Shea — herpetologist, taxonomically forensic, urn incident origin | Open | DDD |
 | 18 | SS-081 — Character: Austin Stevens — Snakemaster, casualness about injury, "I've Been Bit Guys" origin | Open | DDD |
+| 27 | SS-082 — Character: Gordon Lyons — amateur herpetologist, bitten twice by same snake, friend poured beer and urinated on his head as first aid | Open | DDD |
 | 18 | SS-058 — Per-character colored card backgrounds (Cusslab pattern) | Open | BDD |
 | 18 | SS-059 — Character interaction dynamics: wounds, lies, calling each other out | Open | DDD |
 | 8 | SS-005 — Telephone Game mechanic | Open | DDD |
@@ -1864,5 +1865,35 @@ Feature: Panel triage order across all SS features
 **"I've Had Worse" energy:** He has been bitten by a black mamba, a gaboon viper, a king cobra, and a reticulated python in the same month. Your predicament is a paper cut. He does not say this with sarcasm. He says it with genuine curiosity about what qualifies as worse.
 
 **CD3:** C=3 D=3 D=2 → **CD3=18**
+**Status:** OPEN — raised 2026-03-28.
+
+
+---
+
+### SS-082 — Character: Gordon Lyons
+
+**Status:** Open
+**Loop:** DDD
+**Epic:** Character Expansion
+
+**What it is:** Gordon Lyons — amateur herpetologist, committed enthusiast, legendarily resilient. Not a TV presenter. Not a trained professional. Absolutely in the room anyway.
+
+**Defining incident (canonical origin story):**
+Got bitten several times by a venomous snake. While waiting for help, forgot the snake was in his bag. Put his hand back into the bag to see what was in there. Found the snake again. Got bitten again. His mate, in a field improvisation that remains medically unverified but emotionally sound, poured beer on him and urinated on his head to keep him conscious until the paramedics arrived. Gordon survived. He has thoughts about what he would do differently. None of them involve leaving the bag alone.
+
+**Voice notes:** Entirely sincere. No self-awareness about the structural comedy of his situation. Would do it again. Has done it again. Uses "what you want to do is—" before advice that could kill a normal person. Has tremendous affection for the animals that keep biting him. Possibly still has the bag.
+
+**Comedy engine:** The gap between O'Shea's forensic taxonomy and Gordon's methodology. Stevens is calm about getting bitten because he's been trained to be. Gordon is calm about it because he has simply never considered the alternative.
+
+**Panel dynamics:**
+- With O'Shea: O'Shea names the species. Gordon confirms. Gordon also confirms he put his hand back in.
+- With Stevens: Stevens respects Gordon in a way he struggles to articulate. Gordon doesn't notice.
+- With Bear: Bear claims he has been in worse situations. Gordon asks clarifying questions about Bear's situation that suggest he has not.
+- With Ray: Ray is quiet for a moment. Then he asks about the bag.
+- Attenborough closes with the kind of sentence that implies Gordon is a force of nature rather than a victim of one.
+
+**Send-off energy (SS-078):** "What a guy." / "You got this one Gordon!" — these are the exact send-off messages. They are not sarcastic. Gordon would agree.
+
+**CD3:** C=3 D=3 D=3 → **CD3=27**
 **Status:** OPEN — raised 2026-03-28.
 
