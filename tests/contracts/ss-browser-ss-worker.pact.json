@@ -129,6 +129,11 @@
       }
     },
     {
+      "description": "GET /survival-school/rooms returns HTML",
+      "request": { "method": "GET", "path": "/survival-school/rooms" },
+      "response": { "status": 200, "headers": { "Content-Type": "text/html; charset=utf-8" } }
+    },
+    {
       "description": "GET /survival-school/ive-had-worse returns HTML",
       "request": { "method": "GET", "path": "/survival-school/ive-had-worse" },
       "response": { "status": 200, "headers": { "Content-Type": "text/html; charset=utf-8" } }

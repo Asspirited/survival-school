@@ -199,6 +199,12 @@ Feature: Bear Fact-Checker
 **Viewports:** Mobile 390×844, Tablet 768×1024, Laptop 1440×900.
 **When:** After L3. Slowest layer — headless Chromium.
 **Pass criterion:** Key interactions work at all three sizes. Panel cards render. Fact-checker form submits.
+
+**Playwright rules:**
+- Never use `page.waitForTimeout()` or `sleep`. These are timing-dependent and create flaky tests.
+- Block or poll for the actual thing: `await expect(locator).toBeVisible()`, `await expect(locator).toHaveText(...)`, `page.waitForSelector()`, `page.waitForFunction()`.
+- If a state change is driven by JS, assert the changed state directly — Playwright's auto-retry handles the wait.
+- `hover()` for testing JS interaction is valid but fragile; prefer asserting data attributes or resulting DOM state.
 **Priority scenarios for first implementation:**
 1. How Screwed Am I — guided mode assessment renders panel cards
 2. Animal Deathmatch — FIGHT button triggers loading state

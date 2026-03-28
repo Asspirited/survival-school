@@ -44,7 +44,7 @@ test.describe('Homepage — tile grid and navigation', () => {
     expect(count).toBeGreaterThanOrEqual(1);
   });
 
-  test('all 8 live feature tiles have correct hrefs', async ({ page }) => {
+  test('all 9 live feature tiles have correct hrefs', async ({ page }) => {
     await page.goto('/survival-school');
     const LIVE_TILES = [
       '/survival-school/app',
@@ -55,6 +55,7 @@ test.describe('Homepage — tile grid and navigation', () => {
       '/survival-school/fact-checker',
       '/survival-school/coyote',
       '/survival-school/panel-qa',
+      '/survival-school/rooms',
     ];
     for (const href of LIVE_TILES) {
       await expect(page.locator(`a[href="${href}"]`)).toBeVisible();
@@ -802,6 +803,37 @@ test.describe("I've Had Worse — protagonist selection and dynamic copy", () =>
     const chip = page.locator('.chip-protagonist[data-id="bear"]');
     await chip.click();
     await expect(chip).toHaveClass(/sel/);
+  });
+
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// THE DOORS CORRIDOR (SS-067) — six doors, Morrison quote, Door 13 live
+// ─────────────────────────────────────────────────────────────────────────────
+
+test.describe('The Doors corridor — door grid and Morrison guide', () => {
+
+  test('corridor page loads with six doors and Morrison quote element', async ({ page }) => {
+    await page.goto(`${BASE}/survival-school/rooms`);
+    await expect(page.locator('#morrison-quote')).toBeVisible();
+    await expect(page.locator('.door')).toHaveCount(6);
+  });
+
+  test('Door 13 is the only live door and links to ive-had-worse', async ({ page }) => {
+    await page.goto(`${BASE}/survival-school/rooms`);
+    await expect(page.locator('.door.live')).toHaveCount(1);
+    await expect(page.locator('.door.live')).toHaveAttribute('href', '/survival-school/ive-had-worse');
+  });
+
+  test('each door has a Morrison quote wired in data-morrison attribute', async ({ page }) => {
+    await page.goto(`${BASE}/survival-school/rooms`);
+    const doors = page.locator('.door[data-morrison]');
+    await expect(doors).toHaveCount(6);
+    // Door 13's Morrison quote references the room
+    const door13 = page.locator('.door.live[data-morrison]');
+    const quote = await door13.getAttribute('data-morrison');
+    expect(quote).toBeTruthy();
+    expect(quote.length).toBeGreaterThan(10);
   });
 
 });

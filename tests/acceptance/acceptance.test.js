@@ -186,6 +186,34 @@ describe('Feature: Panel Q&A page contains expected elements', () => {
   });
 });
 
+// ── Feature: The Doors corridor (SS-067) ──
+
+describe('Feature: The Doors corridor page loads', () => {
+
+  test('Given a user navigates to /survival-school/rooms, Then the page returns 200', async () => {
+    const r = await fetch(`${BASE}/survival-school/rooms`, { signal: AbortSignal.timeout(TIMEOUT) });
+    assert.strictEqual(r.status, 200);
+    const ct = r.headers.get('content-type') || '';
+    assert.ok(ct.includes('text/html'), `expected text/html, got ${ct}`);
+  });
+});
+
+describe('Feature: The Doors corridor page contains door elements', () => {
+
+  test('Given the corridor page loads, Then it contains six door tiles and a Morrison quote', async () => {
+    const r = await fetch(`${BASE}/survival-school/rooms`, { signal: AbortSignal.timeout(TIMEOUT) });
+    const html = await r.text();
+    assert.ok(html.includes('morrison-quote'), 'page must contain morrison-quote element');
+    assert.ok(html.includes('THE DOORS'),      'page must contain THE DOORS title');
+    // Six doors: 12, 12A, 13, 14, 15, 16
+    assert.ok(html.includes('>12<'), 'page must contain Door 12');
+    assert.ok(html.includes('>13<'), 'page must contain Door 13');
+    assert.ok(html.includes('>16<'), 'page must contain Door 16');
+    // Door 13 is the live link
+    assert.ok(html.includes('/survival-school/ive-had-worse'), 'Door 13 must link to ive-had-worse');
+  });
+});
+
 // ── Feature: I've Had Worse (SS-066) ──
 
 describe("Feature: I've Had Worse page loads", () => {
