@@ -34,7 +34,7 @@
 | 8 | SS-042 — Location chip library: full sub-categorised expansion | DONE (scenarios.js 2026-03-27) | DDD |
 | 8 | SS-032 — Archetypal scenarios | DONE (10 chips live, generic categories removed 2026-03-27) | Feature |
 | 18 | SS-063 — Panel archetypes: design who goes together and why | Open | DDD |
-| 18 | SS-064 — Cross-product fish-out-of-water characters: Cox, Faldo, others | Open | DDD |
+| 18 | SS-064 — Cross-product fish-out-of-water characters: Cox, Faldo, others | DONE (Cox + Faldo in I've Had Worse panel rotation 2026-03-28) | DDD |
 | 18 | SS-065 — Panel pool: random 4–5 character selection across all panel modes | DONE (PANEL_POOL + drawPanel live 2026-03-28) | BDD |
 | 7.3 | SS-066 — "I've Had Worse": walking skeleton, protagonist selection, escalating panel | DONE (live 2026-03-28) | BDD |
 | 5.7 | SS-067 — The Rooms corridor: door tiles, comedic name + domain sub-header | DONE (live 2026-03-28 as /survival-school/rooms) | BDD |
@@ -44,12 +44,12 @@
 | 18 | SS-071 — Character: Andy McNab — Bravo Two Zero author, former SAS, drily factual, operational | Open | DDD |
 | 18 | SS-072 — Character: Chris Ryan — Bravo Two Zero survivor, contradicts McNab, selective memory | Open | DDD |
 | 12 | SS-073 — Jim Morrison corridor guide: sends characters through The Doors with sage/doom advice | DONE (per-door quotes + 25 rotating corridor quotes live 2026-03-28) | BDD |
-| 16 | SS-074 — Expert Over-Reach mechanic: characters one-up expertise claims, escalate into making things up | Open | BDD |
+| 16 | SS-074 — Expert Over-Reach mechanic: characters one-up expertise claims, escalate into making things up | DONE (system prompt mechanic live 2026-03-28) | BDD |
 | 18 | SS-083 — Jim Morrison mid-session interruption: wanders in, helps or hinders, panel doesn't know what to do with him | Open | BDD |
 | 8 | SS-075 — Corrupted door quotes: rotating list of Morrison + corrupted motivational banalities | DONE (25 quotes live 2026-03-28) | BDD |
 | 10 | SS-076 — Scenario predicament chips: airplane aisle, shandy, badger, pigeon, tortoise | DONE (5 chips live 2026-03-28) | BDD |
 | 12 | SS-077 — Room-specific guiding copy: freetext prompt hints congruent with each room's mechanic | Open | BDD |
-| 14 | SS-078 — Corridor send-off messages: banal good-luck wishes alongside Morrison's prophecy | Open | BDD |
+| 14 | SS-078 — Corridor send-off messages: banal good-luck wishes alongside Morrison's prophecy | DONE (per-protagonist send-offs live 2026-03-28) | BDD |
 | 8 | SS-079 — Roy Keane character: dismissive survival mode, "this is nothing compared to selection" | Open | DDD |
 | 18 | SS-080 — Character: Mark O'Shea — herpetologist, taxonomically forensic, urn incident origin | DONE (in PANEL_POOL 2026-03-28) | DDD |
 | 18 | SS-081 — Character: Austin Stevens — Snakemaster, casualness about injury, "I've Been Bit Guys" origin | DONE (in PANEL_POOL 2026-03-28) | DDD |
@@ -64,7 +64,7 @@
 | 18 | SS-090 — Fish-out-of-water pair: Cox + Faldo both in panel — vehement mutual agreement on something both are completely wrong about, experts looking on in horror | Open | BDD |
 | 18 | SS-091 — Fish-out-of-water pair: Cox + Faldo argue with each other when neither knows anything — escalating confident wrongness, no expert present to correct them | Open | BDD |
 | 18 | SS-059 — Character interaction dynamics: wounds, lies, calling each other out | Open | DDD |
-| 8 | SS-005 — Telephone Game mechanic | Open | DDD |
+| 8 | SS-005 — Telephone Game mechanic | DONE (system prompt mechanic live 2026-03-28) | DDD |
 | 8 | SS-039 — Latin / indigenous naming layer in panel responses | Open | DDD |
 | 2 | SS-022 — Clay animal visuals | Open | DDD |
 | 2 | SS-038 — session-ref.md served as Cloudflare static URL | Open | DDD |
