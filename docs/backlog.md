@@ -1799,12 +1799,39 @@ The send-off SOURCE reveals the character. Not generic well-wishes — protagoni
 | Protagonist | Send-off source | Notes |
 |---|---|---|
 | Gordon | Doug | Wheelchair. VB. Calls him Bruce first. Still waving. |
-| Bear | Baying crowd of fans + TV producer | "Rolling... and action, Bear!" Bear waves back. Bear always waves back. |
+| Bear | Baying crowd of fans + TV producer + Boy Scouts + SAS mates | Layered. See below. |
 | Ray | One man who did a 2009 weekend bushcraft course | Quiet. Has been wanting to say thank you ever since. That's enough. |
 | Fox | Nobody. Jim nods once. | The corridor is empty. This is correct. |
 | Hales | Group of Australian soldiers from 1985 | They never left the corridor. "Beauty, Les." No further explanation. |
 | Cody | Barefoot student offering to come in too | Also barefoot. Also inadvisable. Cody doesn't discourage him. |
 | Stroud | His own camera on a tripod | He set it up before he went in. Nobody else is there. The camera is rolling. |
+
+**Bear-specific send-offs (locked 2026-03-28):**
+
+Bear has multiple send-off sources. All present simultaneously. This is correct — Bear always has an audience.
+
+*The fans (baying):*
+- "YOU GOT THIS BEAR" / "WHOOOOOP" / "WE LOVE YOU BEAR"
+- The TV producer, somewhere behind them, counting him in: "Rolling... and action, Bear!" Bear waves at the crowd. Bear always waves at the crowd.
+
+*The Boy Scouts (earnest, wholesome, neckerchiefs, absolutely no idea what's behind the door):*
+- "We believe in you, Akela Bear!"
+- A row of small faces giving the scout salute with complete sincerity
+- One of them has made a card. It has a drawing of a bear on it. It is not a good drawing.
+
+*The SAS mates (two modes — pick one per appearance):*
+
+Mode A — manful support (the kind that is also a test):
+- "You've got this, mate." *[silence]* *[nod]*
+- Nothing else. That's it. That's the support.
+
+Mode B — the rinse (affection expressed entirely as ridicule):
+- "Mate. You're gonna get absolutely destroyed in there."
+- "We've seen your prep. We're not worried. *[long pause]* We're a little bit worried."
+- "Good luck. You won't need it. *[whispered to the person next to them]* He's gonna need it."
+- "Remember that thing you did in Selection? This is gonna be worse than that. Probably."
+
+**Design note:** The SAS mates know exactly how bad it is behind every door. They've already been briefed. They say nothing specific. This is the professionalism.
 
 **Gordon-specific send-offs (canonical, Rod 2026-03-28):**
 - "What a guy."
