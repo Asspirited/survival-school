@@ -1842,6 +1842,13 @@ Jim waffles. The DS time it. The door closes.
 
 The comedy: Jim has been giving the same speech since 1967. These men have been doing dynamic entries since 1980. Neither party has ever acknowledged the other's existence. Both proceed with complete conviction.
 
+**The same instinct, different venue (I've Had Worse predicament chips, live 2026-03-28):**
+The SAS dynamic entry mode is not contextual. It is the only mode. This is why Fox and Billy are now explaining to the headmaster of St Cuthbert's:
+- Why they used live rounds in the Year 10 Stay Safe talk ("it added authenticity")
+- Why they made entry by abseiling through the window and briefly incapacitating the teacher ("controlled restraint hold")
+
+The children appeared engaged. The teacher has questions that cannot be answered. The headmaster has also been informed that Jim Morrison was in the corridor. Nobody knows what Jim was doing there.
+
 **Gordon-specific send-offs (canonical, Rod 2026-03-28):**
 - "What a guy."
 - "You got this one Gordon!"
