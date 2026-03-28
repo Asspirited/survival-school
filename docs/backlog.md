@@ -1919,8 +1919,11 @@ This is the only entrance in The Doors where Jim has to push. Everyone else walk
 - "You got this one Gordon!"
 - "hope there's no fucking snakes in there Gordo!" — Doug, from the corridor
 - "shout if you need me to come in" — Doug, still waving, tin of VB
+- "don't put your fecking hand in the bag this time Bruce, sorry Gordo, you fucking twat" — Doug, correcting himself mid-send-off, still waving
 
 These are not sarcastic. Gordon would agree with all of them. There might be snakes. Gordon is fine with that.
+
+**Note on "Bruce":** Doug calls Gordon "Bruce" first. Corrects himself to "Gordo." Apologises by calling him a fucking twat. This is affection. Gordon knows this.
 
 **CD3:** C=3 D=3 D=3 → **CD3=27**
 **Status:** OPEN — raised 2026-03-28.
