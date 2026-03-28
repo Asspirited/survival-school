@@ -11,7 +11,7 @@
 |-----|------|--------|------|
 | 27 | SS-040 — Build full test pipeline (L0–L5, YGW pattern) | IN PROGRESS | TDD |
 | 27 | SS-015 — Survival Skills Taxonomy | DONE (docs/domains/index.md 2026-03-27) | DDD |
-| 27 | SS-029 — Shareability / screenshot | Open | BDD |
+| 27 | SS-029 — Shareability / screenshot | DONE (SHARE button + Web Share API + clipboard fallback on ive-had-worse 2026-03-28) | BDD |
 | 18 | SS-021 — Panel integrity spectrum | DONE (design doc + all 13 character files 2026-03-27) | DDD |
 | 18 | SS-023 — Logo integration into app | DONE (bowie knife SVG live 2026-03-27) | BDD |
 | 18 | SS-009 — Mode A: Panel Q&A | DONE (panel-qa live 2026-03-28, Contradiction Engine) | BDD |
@@ -56,7 +56,7 @@
 | 27 | SS-082 — Character: Gordon Lyons — amateur herpetologist, bitten twice by same snake, friend poured beer and urinated on his head as first aid | DONE (on I've Been Bit panel 2026-03-28) | DDD |
 | 18 | SS-058 — Per-character colored card backgrounds (Cusslab pattern, survival palette) | DONE (CHAR_COLOURS + char-{id} CSS live 2026-03-28) | BDD |
 | 18 | SS-084 — Predicament chip: "why did Bear end up forcing the teacher to drink his urine out of a dead snake" | DONE (chip live on worst page 2026-03-28) | BDD |
-| 27 | SS-085 — Per-character roast + inversion chips: real embarrassing moments + out-of-character scenarios they must defend (The Doors) | Open | DDD |
+| 27 | SS-085 — Per-character roast + inversion chips: real embarrassing moments + out-of-character scenarios they must defend (The Doors) | DONE (10 chips + ConspireEngine system prompt 2026-03-28) | DDD |
 | 12 | SS-086 — Review SS-085 material as stimulus for chips on other features (How Screwed, I've Had Worse, etc.) | Open | DDD |
 | 27 | SS-088 — Panel emotional state model: port LieEngine + composure from Cusslab, characters shift register mid-session | Open | DDD |
 | 27 | SS-087 — Cusslab crossover: non-survivalist protagonists through The Doors | Open | DDD |
