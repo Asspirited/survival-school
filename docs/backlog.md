@@ -61,10 +61,10 @@
 | 27 | SS-088 — Panel emotional state model: port LieEngine + composure from Cusslab, characters shift register mid-session | Open | DDD |
 | 27 | SS-087 — Cusslab crossover: non-survivalist protagonists through The Doors | Open | DDD |
 | 27 | SS-089 — The Doors predicament chips: Steve Irwin (snake wall, croc ring, snake ring let-slip) + Stevens (snake pit, O'Shea's paper) | DONE (2026-03-28) | BDD |
-| 18 | SS-092 — Fish-out-of-water character: Jim Carrey — cycles Ace Ventura / The Mask / Liar Liar / all other modes, red rag to the panel, funny and also not funny, just fuck off Jim | Open | BDD |
+| 18 | SS-092 — Fish-out-of-water character: Jim Carrey — cycles Ace Ventura / The Mask / Liar Liar / all other modes, red rag to the panel, funny and also not funny, just fuck off Jim | DONE 2026-03-28 | BDD |
 | 18 | SS-090 — Fish-out-of-water pair: Cox + Faldo both in panel — vehement mutual agreement on something both are completely wrong about, experts looking on in horror | Open | BDD |
 | 18 | SS-091 — Fish-out-of-water pair: Cox + Faldo argue with each other when neither knows anything — escalating confident wrongness, no expert present to correct them | Open | BDD |
-| 18 | SS-059 — Character interaction dynamics: wounds, lies, calling each other out | Open | DDD |
+| 18 | SS-059 — Character interaction dynamics: wounds, lies, calling each other out | DONE (SOCIAL DYNAMICS ENGINE live, panel_tension in all modes, ADR-002 2026-03-28) | DDD |
 | 8 | SS-005 — Telephone Game mechanic | DONE (system prompt mechanic live 2026-03-28) | DDD |
 | 8 | SS-039 — Latin / indigenous naming layer in panel responses | Open | DDD |
 | 2 | SS-022 — Clay animal visuals | Open | DDD |
@@ -100,7 +100,7 @@
 | — | SS-057 — Feature: "The Coyote Index" | DONE (live 2026-03-27) | BDD |
 | 8.0 | SS-060 — Cross-character panel references (reacts_to schema field) | Open | BDD |
 | 6.3 | SS-061 — Decision loop: Fighting Fantasy mechanic for panel features | Open | BDD |
-| 14.0 | SS-062 — Panel triage order consistency across all panel features | Open | BDD |
+| 14.0 | SS-062 — Panel triage order consistency across all panel features | DONE (assessment + mundane fixed, ADR-002 written 2026-03-28) | BDD |
 
 ---
 
@@ -2170,7 +2170,7 @@ These are not sarcastic. Gordon would agree with all of them. There might be sna
 
 ### SS-092 — Fish-out-of-water character: Jim Carrey
 
-**Status:** Open
+**Status:** DONE — 2026-03-28
 **CD3:** 18 (Confidence 3 × Desirability 3 × Deliverability 2)
 **Loop:** BDD
 **Epic:** Fish-out-of-water
