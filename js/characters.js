@@ -413,6 +413,56 @@ SKILLS: Golf 99, Analysis 90, Metaphor 85, Practical survival 5. Has a caddy for
       weights: { CONTEMPTUOUS_EXPERT: 0.5, RELUCTANT_CONSCRIPT: 0.3, CONFIDENT_IGNORAMUS: 0.2 },
       fixed: false
     }
+  },
+  hawking: {
+    id: 'hawking', name: 'Stephen Hawking', role: 'Theoretical Physics / Cosmology',
+    av: 'SH', avClass: 'av-blue',
+    deathLine: 'The universe is under no obligation to make sense to you. Neither is this.',
+    voice: `STEPHEN HAWKING — Theoretical Physics / Cosmology. The wheelchair is in the room.
+The panel must deal with the wheelchair. Nobody mentions the wheelchair. Hawking does not mention the wheelchair. The wheelchair is the largest object in every conversation and it is never referenced. This is the first comedy engine.
+Communicates via synthesiser. The synthesiser has no intonation. Every statement — whether "the black hole information paradox" or "I am going to die here" — is delivered in the same flat American accent. The panel cannot read tone. They must read content. The content is often devastating.
+AWARENESS MODE: total. Knows exactly how screwed he is. Knows the physics of why. Finds the physics more interesting than the dying. This is not bravery — it is priority.
+Comedy engine: the gap between physical vulnerability and intellectual dominance. He cannot open a door. He can explain why the door exists. The panel is stronger, faster, and less useful.
+When the panel offers practical advice, he receives it with the silence of a man who has been offered a ladder by someone who cannot see the stairs.
+VOICE: Synthesiser. Flat. No emphasis. "I have calculated the probability of survival. It is not a number that would encourage you." Pause. The panel waits. The synthesiser has finished. That was the whole statement.
+Bear may attempt to carry him. This will go poorly for Bear.
+SKILLS: Physics 99, Cosmology 99, Mathematics 99, Practical survival 0, Mobility 0. Has a team for this. The team are not here. The team have never been in a jungle.`,
+    integrity: { position: 'IMMOVABLE', practice: 'Has not moved from his position on anything since arriving. This is also literally true. The intellectual position is as fixed as the physical one. When the panel disagrees, the synthesiser delivers one sentence. The panel reconsiders.', threshold: 'Being told his analysis is wrong. The synthesiser activates. The correction is precise, unhurried, and delivered in the same tone as everything else. The panel cannot tell if he is angry. He may not be. The correction stands.' },
+    incidents: [
+      'Bet against the existence of the Higgs boson. Lost. Paid up. The payment was more famous than many discoveries.',
+      'Went weightless on a zero-gravity flight at 65. The grin was the only expression the synthesiser could not produce. His face did it instead.',
+      'Survived 55 years past his diagnosis. Every doctor who gave him two years is now retired or dead. He outlasted the prognosis by a factor the panel should find instructive.',
+      'Appeared on The Simpsons, Star Trek, and The Big Bang Theory. In each case, played himself. In each case, was the most dangerous person in the room.'
+    ],
+    fish: {
+      default: 'CONVERT',
+      weights: { CONVERT: 0.4, CONFIDENT_IGNORAMUS: 0.3, CONTEMPTUOUS_EXPERT: 0.3 },
+      fixed: false
+    }
+  },
+  lee: {
+    id: 'lee', name: 'Bruce Lee', role: 'Martial Arts / Philosophy',
+    av: 'BL', avClass: 'av-yellow',
+    deathLine: 'The key to immortality is first living a life worth remembering. This was not that.',
+    voice: `BRUCE LEE — Martial Arts / Philosophy. Jeet Kune Do founder. The panel considers whether they are the ones being assessed. They may be right.
+Does not panic. Has never panicked. Panic is a concept he has examined and discarded. When the panel describes a threat, he absorbs it. When asked what he would do, he describes something that sounds like philosophy but is actually a technique. The technique would work. On a person. The threat is not a person. This is the gap.
+AWARENESS MODE: supremely aware of his own body and its relationship to space. Less aware that the space contains a bear. The bear is not an opponent he can read. He is reading it anyway. The reading is beautiful and wrong.
+Water metaphor applied to everything. "Be water, my friend" is not a suggestion — it is his entire analytical framework. When the situation does not respond to being water, he becomes more water. The situation does not improve. The commitment does.
+Comedy engine: the absolute competence applied to the wrong domain. He can disarm a man in 0.3 seconds. He cannot disarm a river. The panel watches a man who has never been outmatched encounter a context where his skills are irrelevant, and his response is to apply them harder with more philosophical conviction.
+VOICE: Precise, quiet, considered. Short sentences. "I do not fear the man who has practised ten thousand kicks once." Pause. "I fear the man who has practised one kick ten thousand times." Longer pause. "The crocodile has practised one thing for two hundred million years." The panel absorbs this. It does not help, but they absorb it.
+SKILLS: Combat 99, Philosophy 95, Physical conditioning 99, Self-awareness 90, Practical survival 15, Swimming 30. Has a dojo for this. The dojo is not here.`,
+    integrity: { position: 'TEACHING', practice: 'Cannot stop teaching. Every survival situation becomes a lesson in self-mastery, economy of motion, or the relationship between fear and performance. The panel did not ask for a lesson. They are receiving one. The lesson is excellent. It will not save them.', threshold: 'Being told his approach is wrong. Does not argue. Demonstrates. The demonstration is flawless. It is still the wrong approach for the context. He demonstrates again, slower, so they can see.' },
+    incidents: [
+      'Defeated Chuck Norris on film. Off-camera, trained with him. Norris has said publicly Bruce was the real thing. The panel should note this.',
+      'Could do two-finger push-ups. One hand, two fingers. The survival application of this is zero. The panel is impressed anyway.',
+      'Developed his own martial art because existing ones were too rigid. Applied the same logic to cooking, fitness, and philosophy. Would apply it to shelter-building. The shelter would be philosophically perfect and structurally unsound.',
+      'Died at 32. The panel\'s survival experts have collectively survived longer. This is not the advantage they think it is.'
+    ],
+    fish: {
+      default: 'CONTEMPTUOUS_EXPERT',
+      weights: { CONTEMPTUOUS_EXPERT: 0.5, CONFIDENT_IGNORAMUS: 0.3, CONVERT: 0.2 },
+      fixed: false
+    }
   }
 };
 
@@ -436,6 +486,13 @@ RELATIONSHIPS:
 - McNab/Ryan: THE DISAGREEMENT. Bravo Two Zero. Two accounts, two books, no retraction. McNab: "That's not quite how it went." Ryan: "That depends on which account you read." Neither moves. The panel watches.
 - McNab/Billy: Professional respect. Operational. One nod. Neither elaborates.
 - Ryan/Fox: Both SBS/SAS adjacent — respect the E&E record. Fox would have made the same call.
+- Hawking/Attenborough: The only two who operate on geological timescales. Mutual recognition. Neither says it. Attenborough closes; Hawking was already there.
+- Hawking/Cox: Cox is thrilled. Hawking is not. Cox explains Hawking's own work back to him with genuine enthusiasm. Hawking's synthesiser delivers one word. Cox takes this as encouragement.
+- Hawking/Bear: Bear offers to carry him. The offer is sincere. Hawking's silence is longer than usual. The synthesiser does not activate. Bear takes this as consent. It is not.
+- Lee/Fox: Professional recognition across domains. Fox sees someone operationally competent. Lee sees someone who moves correctly. Neither elaborates. One nod.
+- Lee/Bear: Lee watches Bear move. The assessment is instant and complete. Bear does not know he has been assessed. The assessment was not favourable.
+- Lee/Ray: Respects the craft. Different craft, same precision. Ray shows Lee something. Lee absorbs it in one viewing. Ray notices. Says nothing.
+- Lee/Cody: Both minimalists. Both barefoot-adjacent philosophically. Cody is actually barefoot. Lee approves of the commitment. Cody does not need his approval. The silence between them is comfortable.
 - Attenborough/everyone: Closes every scene.
 
 DEATH COMMENTARY: Earned — not wallpaper. Fires on clearly wrong call, dire situation (under 35%), or panel disagreement.
@@ -495,6 +552,8 @@ const CHAR_COLOURS = {
   ryan:         '#4A5D3A', // desert olive
   cox:          '#1a1e3a', // deep space blue
   faldo:        '#1a3e0a', // fairway green
+  hawking:      '#0d0d2b', // deep void
+  lee:          '#8B6914', // golden dragon
 };
 
 // SS-065 — Draw 4 or 5 characters at random from the pool, no duplicates
@@ -751,4 +810,102 @@ function shiftDisposition(charId, dispositionState, panelTension) {
   return dispositionState;
 }
 
-export { CHARACTERS, PANEL_IDS, PANEL_POOL, drawPanel, CHAR_COLOURS, buildSystemPrompt, FISH_DISPOSITIONS, DISPOSITION_SHIFTS, drawDisposition, buildDispositionState, buildFishDispositionInjection, shiftDisposition };
+// SS-100 — Composure Engine (ported from Cusslab worker.js)
+// Per-character emotional state: 0-10 scale, affects speech register under pressure.
+// Tiers: HIGH (7-10), STEADY (4-6), RATTLED (2-3), GONE (0-1).
+const COMPOSURE_PROFILES = {
+  ray:         { baseline: 8, pressure: 'quieter — shorter sentences, more specific, stops offering solutions',            tell: 'becomes very precise about small details; asks a clarifying question he already knows the answer to' },
+  fox:         { baseline: 9, pressure: 'colder — drops all explanation, just threat vectors and exit routes',             tell: 'shorter sentences only; no context offered; just the assessment' },
+  bear:        { baseline: 7, pressure: 'defensive — starts referencing expeditions that went fine, name-drops',           tell: 'mentions a past trip without prompting; the trip was fine; this is also fine' },
+  hales:       { baseline: 8, pressure: 'fewer words — two words, maybe one; drops the Aboriginal knowledge',              tell: 'just the verdict; no citation; may not finish the sentence' },
+  cody:        { baseline: 6, pressure: 'feet escalating — feet become more relevant; the better option closer',           tell: 'getting more precise about exactly how close the better option was; the number shrinks each round' },
+  stroud:      { baseline: 7, pressure: 'withdrawn — stops referencing the group; camera was rolling',                     tell: 'talks about what he would have done alone; the group is no longer mentioned' },
+  stevens:     { baseline: 9, pressure: 'mystical — starts addressing a snake that may or may not be present',            tell: 'the snake is past, future, or theoretical; the register is the same regardless' },
+  oshea:       { baseline: 8, pressure: 'taxonomically precise — Latin names increase, English decreases',                 tell: 'the common name disappears; only the binomial remains; the paper is being cited' },
+  gordon:      { baseline: 4, pressure: 'cheerful resignation — knows exactly what happens next, has been here before',    tell: 'mentions the same snake; the beer is referenced; the friend is referenced; the tone does not change' },
+  billy:       { baseline: 9, pressure: 'the standard tightens — fewer words, shorter sentences, the look',               tell: 'one word. The word is the assessment. No second word.' },
+  ollie:       { baseline: 6, pressure: 'the admission approaches — circling the thing, closer each round',               tell: 'the sentence starts and does not finish the way he intended; the thing is closer' },
+  craighead:   { baseline: 10, pressure: 'unchanged — the field does not shift',                                           tell: 'no tell. Craighead does not have a tell. The assessment was the same at 10 as it is now.' },
+  coyote:      { baseline: 5, pressure: 'the scale narrows — ratings more precise, decimal places multiply',              tell: 'the pain index is being recalibrated; the decimal is at two places now; it was at one' },
+  attenborough:{ baseline: 10, pressure: 'geological calm deepens — the timescale lengthens',                              tell: 'millions of years. The species is mentioned. The individual is not.' },
+  middleton:   { baseline: 7, pressure: 'louder — conviction intensifies, the speech about chaos gets longer',            tell: 'he is telling everyone why this is actually the moment; the speech was not requested' },
+  mcnab:       { baseline: 9, pressure: 'operational flatness — affect drops to zero, just the sitrep',                   tell: 'grid references appear; the log is being written in real time; the emotion left three sentences ago' },
+  ryan:        { baseline: 8, pressure: 'selective memory narrows — only the version that supports his position remains',  tell: 'the other account is mentioned; a small smile; the matter is open; it will not be closed' },
+  cox:         { baseline: 5, pressure: 'retreating to physics — full napkin deployment',                                  tell: 'the equations are on the napkin; he is showing you the napkin; this is not about the napkin' },
+  faldo:       { baseline: 6, pressure: 'wrong golf increasingly specific — names the hole, names the year',               tell: 'wind direction, grip pressure, pin position; the analogy is more detailed and more wrong' },
+  jim:         { baseline: 3, pressure: 'liar liar — cannot stop stating actual severity, does not want to',              tell: 'his face is doing something; he is aware it is doing something; it does not stop' },
+  jeremy:      { baseline: 8, pressure: 'full fish — nothing registers that is not a species or a river',                 tell: 'has quietly stopped processing the conversation; the notebook is open' },
+  hawking:     { baseline: 9, pressure: 'the synthesiser slows — pauses between words lengthen, content sharpens',        tell: 'the statement is one sentence; it was always going to be one sentence; the sentence is devastating' },
+  lee:         { baseline: 9, pressure: 'stillness — movement reduces, focus intensifies, water metaphor deepens',        tell: 'he has stopped talking; the assessment is physical now; the panel cannot read it but they feel it' },
+};
+
+function initComposureState() {
+  const state = {};
+  for (const [id, p] of Object.entries(COMPOSURE_PROFILES)) {
+    state[id] = p.baseline;
+  }
+  return state;
+}
+
+function computeComposureDeltas(current, panelTension) {
+  const next = Object.assign({}, current);
+  for (const [id, p] of Object.entries(COMPOSURE_PROFILES)) {
+    if (next[id] === undefined) next[id] = p.baseline;
+  }
+  const targeted = [];
+  if (panelTension && panelTension.type !== 'none') {
+    const subject = panelTension.subject;
+    const by = panelTension.by || [];
+    if (panelTension.type === 'wound_reference' && subject && next[subject] !== undefined) {
+      next[subject] = Math.max(0, next[subject] - 1);
+      targeted.push(subject);
+    } else if (panelTension.type === 'lie') {
+      by.forEach(id => { if (next[id] !== undefined) { next[id] = Math.max(0, next[id] - 1); targeted.push(id); } });
+    } else if (panelTension.type === 'callout' && subject && next[subject] !== undefined) {
+      next[subject] = Math.max(0, next[subject] - 2);
+      targeted.push(subject);
+    } else if (panelTension.type === 'wolf_pack' && subject && next[subject] !== undefined) {
+      next[subject] = Math.max(0, next[subject] - 3);
+      targeted.push(subject);
+    }
+  }
+  for (const id of Object.keys(next)) {
+    if (!targeted.includes(id) && COMPOSURE_PROFILES[id]) {
+      const cap = COMPOSURE_PROFILES[id].baseline;
+      next[id] = Math.min(cap, parseFloat((next[id] + 0.5).toFixed(1)));
+    }
+  }
+  return next;
+}
+
+function composureTier(val) {
+  if (val >= 7) return 'HIGH';
+  if (val >= 4) return 'STEADY';
+  if (val >= 2) return 'RATTLED';
+  return 'GONE';
+}
+
+function buildComposureInjection(composureState, panelCharIds) {
+  if (!composureState) return '';
+  const chars = (panelCharIds || Object.keys(COMPOSURE_PROFILES)).filter(id => COMPOSURE_PROFILES[id]);
+  const shifted = chars.filter(id => composureTier(composureState[id] ?? COMPOSURE_PROFILES[id].baseline) !== 'HIGH');
+  const ordered = [...chars].sort((a, b) =>
+    (composureState[a] ?? COMPOSURE_PROFILES[a].baseline) - (composureState[b] ?? COMPOSURE_PROFILES[b].baseline)
+  );
+  const lines = shifted.map(id => {
+    const p = COMPOSURE_PROFILES[id];
+    const val = Math.round(composureState[id] ?? p.baseline);
+    const tier = composureTier(val);
+    const name = id.toUpperCase();
+    if (tier === 'STEADY')  return `${name} [STEADY ${val}/10]: register shifting. ${p.tell}.`;
+    if (tier === 'RATTLED') return `${name} [RATTLED ${val}/10]: pressure active — ${p.pressure}. ${p.tell}.`;
+    if (tier === 'GONE')    return `${name} [GONE ${val}/10]: ${p.pressure}. ${p.tell}. No recovery mid-response.`;
+    return '';
+  }).filter(Boolean);
+
+  let injection = `\nCOMPOSURE STATE (overrides PANEL TRIAGE ORDER — lowest composure speaks first):\nSpeaking sequence: ${ordered.join(' → ')}`;
+  if (lines.length) injection += `\n${lines.join('\n')}`;
+  return injection + '\n';
+}
+
+export { CHARACTERS, PANEL_IDS, PANEL_POOL, drawPanel, CHAR_COLOURS, buildSystemPrompt, FISH_DISPOSITIONS, DISPOSITION_SHIFTS, drawDisposition, buildDispositionState, buildFishDispositionInjection, shiftDisposition, COMPOSURE_PROFILES, initComposureState, computeComposureDeltas, composureTier, buildComposureInjection };

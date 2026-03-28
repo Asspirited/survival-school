@@ -9,7 +9,7 @@
 import { test, describe, before } from 'node:test';
 import assert from 'node:assert/strict';
 
-import { buildSystemPrompt, CHARACTERS, PANEL_IDS, PANEL_POOL, drawPanel, CHAR_COLOURS, FISH_DISPOSITIONS, DISPOSITION_SHIFTS, drawDisposition, buildDispositionState, buildFishDispositionInjection, shiftDisposition } from '../js/characters.js';
+import { buildSystemPrompt, CHARACTERS, PANEL_IDS, PANEL_POOL, drawPanel, CHAR_COLOURS, FISH_DISPOSITIONS, DISPOSITION_SHIFTS, drawDisposition, buildDispositionState, buildFishDispositionInjection, shiftDisposition, COMPOSURE_PROFILES, initComposureState, computeComposureDeltas, composureTier, buildComposureInjection } from '../js/characters.js';
 
 // ── SS-065 — Panel pool + drawPanel ──────────────────────────────────────────
 
@@ -847,5 +847,270 @@ describe('Fish property validation — SS-098', () => {
           `${id}: fixed fish weight key must match default`);
       }
     }
+  });
+});
+
+// ── SS-087 — Stephen Hawking character ──────────────────────────────────────
+
+describe('Stephen Hawking — SS-087', () => {
+  test('"hawking" is present in CHARACTERS', () => {
+    assert.ok(Object.prototype.hasOwnProperty.call(CHARACTERS, 'hawking'),
+      '"hawking" must be a key in CHARACTERS');
+  });
+
+  test('"hawking" is in PANEL_POOL', () => {
+    assert.ok(PANEL_POOL.includes('hawking'),
+      '"hawking" must be in PANEL_POOL');
+  });
+
+  test('"hawking" has required character fields', () => {
+    const h = CHARACTERS.hawking;
+    assert.ok(h.name,    '"hawking" must have a name');
+    assert.ok(h.role,    '"hawking" must have a role');
+    assert.ok(h.av,      '"hawking" must have av initials');
+    assert.ok(h.avClass, '"hawking" must have avClass');
+    assert.ok(h.voice,   '"hawking" must have a voice description');
+  });
+
+  test('"hawking" av initials are "SH"', () => {
+    assert.strictEqual(CHARACTERS.hawking.av, 'SH');
+  });
+
+  test('"hawking" is in CHAR_COLOURS', () => {
+    assert.ok(Object.prototype.hasOwnProperty.call(CHAR_COLOURS, 'hawking'),
+      '"hawking" must have an entry in CHAR_COLOURS');
+  });
+
+  test('"hawking" has integrity spectrum position', () => {
+    assert.ok(CHARACTERS.hawking.integrity,
+      '"hawking" must have an integrity object');
+    assert.ok(CHARACTERS.hawking.integrity.position,
+      '"hawking" must have an integrity position');
+  });
+
+  test('"hawking" has documented incidents', () => {
+    assert.ok(Array.isArray(CHARACTERS.hawking.incidents),
+      '"hawking" must have incidents array');
+    assert.ok(CHARACTERS.hawking.incidents.length > 0,
+      '"hawking" incidents must not be empty');
+  });
+
+  test('"hawking" is a fish-out-of-water character', () => {
+    assert.ok(CHARACTERS.hawking.fish,
+      '"hawking" must have a fish property');
+    assert.ok(CHARACTERS.hawking.fish.default,
+      '"hawking" must have a default disposition');
+    assert.strictEqual(CHARACTERS.hawking.fish.fixed, false,
+      '"hawking" must not be fixed disposition');
+  });
+
+  test('"hawking" default disposition is CONVERT', () => {
+    assert.strictEqual(CHARACTERS.hawking.fish.default, 'CONVERT');
+  });
+});
+
+// ── SS-087 — Bruce Lee character ────────────────────────────────────────────
+
+describe('Bruce Lee — SS-087', () => {
+  test('"lee" is present in CHARACTERS', () => {
+    assert.ok(Object.prototype.hasOwnProperty.call(CHARACTERS, 'lee'),
+      '"lee" must be a key in CHARACTERS');
+  });
+
+  test('"lee" is in PANEL_POOL', () => {
+    assert.ok(PANEL_POOL.includes('lee'),
+      '"lee" must be in PANEL_POOL');
+  });
+
+  test('"lee" has required character fields', () => {
+    const l = CHARACTERS.lee;
+    assert.ok(l.name,    '"lee" must have a name');
+    assert.ok(l.role,    '"lee" must have a role');
+    assert.ok(l.av,      '"lee" must have av initials');
+    assert.ok(l.avClass, '"lee" must have avClass');
+    assert.ok(l.voice,   '"lee" must have a voice description');
+  });
+
+  test('"lee" av initials are "BL"', () => {
+    assert.strictEqual(CHARACTERS.lee.av, 'BL');
+  });
+
+  test('"lee" is in CHAR_COLOURS', () => {
+    assert.ok(Object.prototype.hasOwnProperty.call(CHAR_COLOURS, 'lee'),
+      '"lee" must have an entry in CHAR_COLOURS');
+  });
+
+  test('"lee" has integrity spectrum position', () => {
+    assert.ok(CHARACTERS.lee.integrity,
+      '"lee" must have an integrity object');
+    assert.ok(CHARACTERS.lee.integrity.position,
+      '"lee" must have an integrity position');
+  });
+
+  test('"lee" has documented incidents', () => {
+    assert.ok(Array.isArray(CHARACTERS.lee.incidents),
+      '"lee" must have incidents array');
+    assert.ok(CHARACTERS.lee.incidents.length > 0,
+      '"lee" incidents must not be empty');
+  });
+
+  test('"lee" is a fish-out-of-water character', () => {
+    assert.ok(CHARACTERS.lee.fish,
+      '"lee" must have a fish property');
+    assert.ok(CHARACTERS.lee.fish.default,
+      '"lee" must have a default disposition');
+    assert.strictEqual(CHARACTERS.lee.fish.fixed, false,
+      '"lee" must not be fixed disposition');
+  });
+
+  test('"lee" default disposition is CONTEMPTUOUS_EXPERT', () => {
+    assert.strictEqual(CHARACTERS.lee.fish.default, 'CONTEMPTUOUS_EXPERT');
+  });
+});
+
+// ── SS-100 — Composure Engine ───────────────────────────────────────────────
+
+describe('COMPOSURE_PROFILES — SS-100', () => {
+  test('COMPOSURE_PROFILES is defined and is an object', () => {
+    assert.ok(COMPOSURE_PROFILES && typeof COMPOSURE_PROFILES === 'object');
+  });
+
+  test('every PANEL_POOL member has a composure profile', () => {
+    for (const id of PANEL_POOL) {
+      assert.ok(Object.prototype.hasOwnProperty.call(COMPOSURE_PROFILES, id),
+        `COMPOSURE_PROFILES missing entry for pool member '${id}'`);
+    }
+  });
+
+  test('attenborough has a composure profile', () => {
+    assert.ok(Object.prototype.hasOwnProperty.call(COMPOSURE_PROFILES, 'attenborough'),
+      'COMPOSURE_PROFILES must include attenborough');
+  });
+
+  test('each profile has baseline (number), pressure (string), tell (string)', () => {
+    for (const [id, p] of Object.entries(COMPOSURE_PROFILES)) {
+      assert.strictEqual(typeof p.baseline, 'number', `${id}: baseline must be a number`);
+      assert.ok(p.baseline >= 0 && p.baseline <= 10, `${id}: baseline must be 0-10`);
+      assert.strictEqual(typeof p.pressure, 'string', `${id}: pressure must be a string`);
+      assert.ok(p.pressure.length > 0, `${id}: pressure must not be empty`);
+      assert.strictEqual(typeof p.tell, 'string', `${id}: tell must be a string`);
+      assert.ok(p.tell.length > 0, `${id}: tell must not be empty`);
+    }
+  });
+});
+
+describe('initComposureState — SS-100', () => {
+  test('returns state with all profiled characters at baseline', () => {
+    const state = initComposureState();
+    for (const [id, p] of Object.entries(COMPOSURE_PROFILES)) {
+      assert.strictEqual(state[id], p.baseline,
+        `initComposureState must set ${id} to baseline ${p.baseline}`);
+    }
+  });
+});
+
+describe('composureTier — SS-100', () => {
+  test('returns HIGH for 7-10', () => {
+    assert.strictEqual(composureTier(7), 'HIGH');
+    assert.strictEqual(composureTier(10), 'HIGH');
+  });
+  test('returns STEADY for 4-6', () => {
+    assert.strictEqual(composureTier(4), 'STEADY');
+    assert.strictEqual(composureTier(6), 'STEADY');
+  });
+  test('returns RATTLED for 2-3', () => {
+    assert.strictEqual(composureTier(2), 'RATTLED');
+    assert.strictEqual(composureTier(3), 'RATTLED');
+  });
+  test('returns GONE for 0-1', () => {
+    assert.strictEqual(composureTier(0), 'GONE');
+    assert.strictEqual(composureTier(1), 'GONE');
+  });
+});
+
+describe('computeComposureDeltas — SS-100', () => {
+  test('wound_reference reduces subject by 1', () => {
+    const state = { ray: 8, bear: 7 };
+    const tension = { type: 'wound_reference', subject: 'ray', by: ['bear'] };
+    const next = computeComposureDeltas(state, tension);
+    assert.strictEqual(next.ray, 7);
+  });
+
+  test('callout reduces subject by 2', () => {
+    const state = { bear: 7 };
+    const tension = { type: 'callout', subject: 'bear', by: ['ray'] };
+    const next = computeComposureDeltas(state, tension);
+    assert.strictEqual(next.bear, 5);
+  });
+
+  test('wolf_pack reduces subject by 3', () => {
+    const state = { bear: 7 };
+    const tension = { type: 'wolf_pack', subject: 'bear', by: ['ray', 'fox'] };
+    const next = computeComposureDeltas(state, tension);
+    assert.strictEqual(next.bear, 4);
+  });
+
+  test('lie reduces "by" characters by 1 each', () => {
+    const state = { bear: 7, fox: 9 };
+    const tension = { type: 'lie', subject: '', by: ['bear'] };
+    const next = computeComposureDeltas(state, tension);
+    assert.strictEqual(next.bear, 6);
+  });
+
+  test('non-targeted characters recover +0.5 capped at baseline', () => {
+    const state = { ray: 7, bear: 7 };
+    const tension = { type: 'callout', subject: 'bear', by: ['ray'] };
+    const next = computeComposureDeltas(state, tension);
+    assert.strictEqual(next.ray, 7.5);
+  });
+
+  test('recovery does not exceed baseline', () => {
+    const state = { ray: 8 };
+    const tension = { type: 'none' };
+    const next = computeComposureDeltas(state, tension);
+    assert.strictEqual(next.ray, 8, 'ray at baseline should not exceed it');
+  });
+
+  test('composure never goes below 0', () => {
+    const state = { jim: 1 };
+    const tension = { type: 'wolf_pack', subject: 'jim', by: ['ray', 'fox'] };
+    const next = computeComposureDeltas(state, tension);
+    assert.strictEqual(next.jim, 0);
+  });
+});
+
+describe('buildComposureInjection — SS-100', () => {
+  test('returns empty string for null composureState', () => {
+    assert.strictEqual(buildComposureInjection(null), '');
+  });
+
+  test('returns injection string with COMPOSURE STATE header', () => {
+    const state = { ray: 4, bear: 2 };
+    const injection = buildComposureInjection(state, ['ray', 'bear']);
+    assert.ok(injection.includes('COMPOSURE STATE'),
+      'injection must contain COMPOSURE STATE header');
+  });
+
+  test('orders characters by composure (lowest first) in speaking sequence', () => {
+    const state = { ray: 4, bear: 2 };
+    const injection = buildComposureInjection(state, ['ray', 'bear']);
+    const seqMatch = injection.match(/Speaking sequence: (.+)/);
+    assert.ok(seqMatch, 'injection must contain Speaking sequence line');
+    assert.ok(seqMatch[1].indexOf('bear') < seqMatch[1].indexOf('ray'),
+      'bear (lower composure) must appear before ray in speaking sequence');
+  });
+
+  test('shifted characters include their tier label', () => {
+    const state = { bear: 2 };
+    const injection = buildComposureInjection(state, ['bear']);
+    assert.ok(injection.includes('RATTLED'), 'bear at 2 must show RATTLED tier');
+  });
+
+  test('GONE tier shows no recovery note', () => {
+    const state = { jim: 0 };
+    const injection = buildComposureInjection(state, ['jim']);
+    assert.ok(injection.includes('GONE'), 'jim at 0 must show GONE tier');
+    assert.ok(injection.includes('No recovery mid-response'),
+      'GONE tier must include no-recovery note');
   });
 });
