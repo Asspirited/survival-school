@@ -209,8 +209,10 @@ describe('Feature: The Doors corridor page contains door elements', () => {
     assert.ok(html.includes('>12<'), 'page must contain Door 12');
     assert.ok(html.includes('>13<'), 'page must contain Door 13');
     assert.ok(html.includes('>16<'), 'page must contain Door 16');
-    // Door 13 is the live link
+    // Door 13 live: I've Had Worse
     assert.ok(html.includes('/survival-school/ive-had-worse'), 'Door 13 must link to ive-had-worse');
+    // Door 14 live: In My Defence
+    assert.ok(html.includes('/survival-school/in-my-defence'), 'Door 14 must link to in-my-defence');
   });
 });
 
@@ -399,5 +401,76 @@ describe("Feature: I've Had Worse — Jeremy Wade protagonist chip", () => {
     const html = await r.text();
     assert.ok(html.includes('data-id="jeremy"'), 'page must contain protagonist chip with data-id="jeremy"');
     assert.ok(html.includes('Jeremy Wade'),       'page must contain "Jeremy Wade" chip label');
+  });
+});
+
+// ── Feature: In My Defence — Room 14 (SS-093) ────────────────────────────────
+
+describe('Feature: In My Defence page loads (SS-093)', () => {
+  test('Given a user navigates to /survival-school/in-my-defence, Then the page returns 200', async () => {
+    const r = await fetch(`${BASE}/survival-school/in-my-defence`, { signal: AbortSignal.timeout(TIMEOUT) });
+    assert.strictEqual(r.status, 200);
+    const ct = r.headers.get('content-type') || '';
+    assert.ok(ct.includes('text/html'), `expected text/html, got ${ct}`);
+  });
+});
+
+describe('Feature: In My Defence page contains required elements (SS-093)', () => {
+  test('Given the page loads, Then it contains protagonist chips, incident area, submit button, and general chips', async () => {
+    const r = await fetch(`${BASE}/survival-school/in-my-defence`, { signal: AbortSignal.timeout(TIMEOUT) });
+    const html = await r.text();
+    assert.ok(html.includes('chip-protagonist'),  'page must contain protagonist chips');
+    assert.ok(html.includes('incident-input'),    'page must contain incident-input element');
+    assert.ok(html.includes('btn-submit'),        'page must contain btn-submit button');
+    assert.ok(html.includes('general-chips'),     'page must contain general-chips pool');
+    assert.ok(html.includes('personal-chips'),    'page must contain personal-chips container');
+  });
+
+  test('Given the page loads, Then general pool contains Irwin and O\'Shea incidents', async () => {
+    const r = await fetch(`${BASE}/survival-school/in-my-defence`, { signal: AbortSignal.timeout(TIMEOUT) });
+    const html = await r.text();
+    assert.ok(html.includes('Irwin: snake wall') || html.includes('snake wall'), 'general pool must contain Irwin snake wall chip');
+    assert.ok(html.includes('croc fighting ring'),                                'general pool must contain croc fighting ring chip');
+  });
+
+  test('Given the page loads, Then roast chips are NOT in I\'ve Had Worse', async () => {
+    const r = await fetch(`${BASE}/survival-school/ive-had-worse`, { signal: AbortSignal.timeout(TIMEOUT) });
+    const html = await r.text();
+    assert.ok(!html.includes('the hotel'),         'ive-had-worse must NOT contain Bear hotel chip');
+    assert.ok(!html.includes('Deliveroo'),          'ive-had-worse must NOT contain Ray Deliveroo chip');
+    assert.ok(!html.includes('corporate paintball'),'ive-had-worse must NOT contain Fox paintball chip');
+  });
+
+  test('Page declares State, UI, and API module objects', async () => {
+    const r = await fetch(`${BASE}/survival-school/in-my-defence`, { signal: AbortSignal.timeout(TIMEOUT) });
+    const html = await r.text();
+    assert.ok(html.includes('const State = {'), 'page must declare State object');
+    assert.ok(html.includes('const UI = {'),    'page must declare UI object');
+    assert.ok(html.includes('const API = {'),   'page must declare API object');
+  });
+});
+
+describe('Feature: In My Defence panel response includes panel_tension (SS-093)', () => {
+  const POST_TIMEOUT = 25000;
+  const buildIMDPrompt = (protagonist) =>
+    `You are the Survival School In My Defence committee. Use ONLY these charIds: ray, bear, fox, hales, cody, stroud. The protagonist charId "${protagonist}" MUST appear in the panel array. Include at least 3 panel members. Respond ONLY with valid JSON: {"attenborough_opening":"<string>","panel":[{"charId":"<id>","text":"<string>"}],"attenborough_verdict":"<string>","panel_tension":{"type":"callout","subject":"","by":[],"note":""}}. No markdown. JSON only.`;
+
+  test('Given a user submits an incident, When panel responds, Then response has panel, attenborough_verdict, and panel_tension', async () => {
+    const response = await fetch(`${BASE}/survival-school/in-my-defence`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        system: buildIMDPrompt('bear'),
+        incident: 'I am Bear Grylls. I filmed in a hotel. I need the panel to help me explain this.',
+        protagonist: 'bear',
+      }),
+      signal: AbortSignal.timeout(POST_TIMEOUT),
+    });
+    assert.strictEqual(response.status, 200);
+    const data = await response.json();
+    assert.ok(typeof data.attenborough_opening === 'string' && data.attenborough_opening.length > 0, 'attenborough_opening must be non-empty');
+    assert.ok(Array.isArray(data.panel) && data.panel.length >= 3, 'panel must have at least 3 members');
+    assert.ok(typeof data.attenborough_verdict === 'string' && data.attenborough_verdict.length > 0, 'attenborough_verdict must be non-empty');
+    assert.ok(typeof data.panel_tension === 'object' && data.panel_tension !== null, 'panel_tension must be an object');
   });
 });

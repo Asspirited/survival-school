@@ -58,10 +58,13 @@
 | 18 | SS-084 — Predicament chip: "why did Bear end up forcing the teacher to drink his urine out of a dead snake" | DONE (chip live on worst page 2026-03-28) | BDD |
 | 27 | SS-085 — Per-character roast + inversion chips: real embarrassing moments + out-of-character scenarios they must defend (The Doors) | DONE (10 chips + ConspireEngine system prompt 2026-03-28) | DDD |
 | 12 | SS-086 — Review SS-085 material as stimulus for chips on other features (How Screwed, I've Had Worse, etc.) | Open | DDD |
+| 27 | SS-093 — New door: "In My Defence" (Room 14) — Roast/Inversion mode, protagonist chips expand per-person incidents, aggressive interrogation panel | Open | BDD |
+| 18 | SS-094 — Fix I've Had Worse: remove roast chips, fix panel interaction (SOCIAL_DYNAMICS_ENGINE, panel_tension, random order, escalation) | Open | BDD |
 | 27 | SS-088 — Panel emotional state model: port LieEngine + composure from Cusslab, characters shift register mid-session | Open | DDD |
 | 27 | SS-087 — Cusslab crossover: non-survivalist protagonists through The Doors | Open | DDD |
 | 27 | SS-089 — The Doors predicament chips: Steve Irwin (snake wall, croc ring, snake ring let-slip) + Stevens (snake pit, O'Shea's paper) | DONE (2026-03-28) | BDD |
 | 18 | SS-092 — Fish-out-of-water character: Jim Carrey — cycles Ace Ventura / The Mask / Liar Liar / all other modes, red rag to the panel, funny and also not funny, just fuck off Jim | DONE 2026-03-28 | BDD |
+| 18 | SS-095 — New character: Jeremy Wade — Freshwater Biologist, River Monsters, protagonist + panel rotation, notebook/translator/tuning out/Cowabunga mechanics | DONE 2026-03-28 | BDD |
 | 18 | SS-090 — Fish-out-of-water pair: Cox + Faldo both in panel — vehement mutual agreement on something both are completely wrong about, experts looking on in horror | Open | BDD |
 | 18 | SS-091 — Fish-out-of-water pair: Cox + Faldo argue with each other when neither knows anything — escalating confident wrongness, no expert present to correct them | Open | BDD |
 | 18 | SS-059 — Character interaction dynamics: wounds, lies, calling each other out | DONE (SOCIAL DYNAMICS ENGINE live, panel_tension in all modes, ADR-002 2026-03-28) | DDD |
@@ -2247,4 +2250,51 @@ These are not sarcastic. Gordon would agree with all of them. There might be sna
 **Dependency:** SS-065 (pool) must ship first — composure state is per-character in the drawn pool.
 
 **CD3:** C=3 D=3 D=3 → **CD3=27**
+**Status:** OPEN — raised 2026-03-28.
+
+---
+
+### SS-093 — New door: "In My Defence" (Room 14)
+
+**Status:** Open
+**Loop:** BDD
+**Epic:** The Doors
+
+**What it is:** Second live door in The Doors corridor. Roast/Inversion mechanic — protagonist walks in to defend an indefensible thing they did. The panel is an interrogating committee, not a support group.
+
+**Mechanic:** Select protagonist → their personal incidents appear (per-person chips) + general pool always visible. Pick incident → panel convenes. Panel digs in: specific questions, won't accept vague justifications, each member presses a different detail, nobody says "I can see why you thought that." SOCIAL_DYNAMICS_ENGINE live. panel_tension in output.
+
+**UX:** Protagonist tiles → click to reveal their incidents inline. General pool (Irwin, O'Shea, Stay Safe incidents) always visible regardless of protagonist.
+
+**Chip split from I've Had Worse:** All roast chips move here. Generic chips stay in I've Had Worse.
+
+**Three Amigos — agreed 2026-03-28:**
+- Option B: protagonist tiles → inline expand (consistent with I've Had Worse UX)
+- General pool: O'Shea/Irwin/Stay Safe chips — any protagonist can take them
+- Separate door, separate route, separate system prompt
+
+**CD3:** C=3 D=3 D=3 → **CD3=27**
+**Status:** OPEN — raised 2026-03-28.
+
+---
+
+### SS-094 — Fix I've Had Worse: chips + panel interaction
+
+**Status:** Open
+**Loop:** BDD
+**Epic:** The Doors
+
+**What it is:** Bug-fix + interaction upgrade for existing Room 13.
+
+**Changes:**
+1. Remove all roast chips (moved to SS-093 / In My Defence)
+2. Remaining generic chips always visible (paper cut, stubbed toe etc.) — no grouping needed
+3. Inject SOCIAL_DYNAMICS_ENGINE into system prompt
+4. Add panel_tension to output schema
+5. Remove fixed triage-order instruction — speaking order random, characters may reference/build on previous entry
+6. Tighten escalation instruction: each entry more specific + more implausible + more sincere; protagonist entry must be structurally alarming
+
+**Root cause:** SOCIAL_DYNAMICS_ENGINE never injected into this mode. Fixed speaking order. Roast chips polluting the chip list.
+
+**CD3:** C=3 D=2 D=3 → **CD3=18**
 **Status:** OPEN — raised 2026-03-28.

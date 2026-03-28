@@ -875,21 +875,88 @@ test.describe('The Doors corridor — door grid and Morrison guide', () => {
     await expect(page.locator('.door')).toHaveCount(6);
   });
 
-  test('Door 13 is the only live door and links to ive-had-worse', async ({ page }) => {
+  test('Door 13 and Door 14 are live; Door 13 links to ive-had-worse, Door 14 to in-my-defence', async ({ page }) => {
     await page.goto(`${BASE}/survival-school/rooms`);
-    await expect(page.locator('.door.live')).toHaveCount(1);
-    await expect(page.locator('.door.live')).toHaveAttribute('href', '/survival-school/ive-had-worse');
+    await expect(page.locator('.door.live')).toHaveCount(2);
+    await expect(page.locator('.door.live[href="/survival-school/ive-had-worse"]')).toHaveCount(1);
+    await expect(page.locator('.door.live[href="/survival-school/in-my-defence"]')).toHaveCount(1);
   });
 
   test('each door has a Morrison quote wired in data-morrison attribute', async ({ page }) => {
     await page.goto(`${BASE}/survival-school/rooms`);
     const doors = page.locator('.door[data-morrison]');
     await expect(doors).toHaveCount(6);
-    // Door 13's Morrison quote references the room
-    const door13 = page.locator('.door.live[data-morrison]');
-    const quote = await door13.getAttribute('data-morrison');
-    expect(quote).toBeTruthy();
-    expect(quote.length).toBeGreaterThan(10);
+    // Both live doors have non-empty Morrison quotes
+    const door13 = page.locator('.door.live[href="/survival-school/ive-had-worse"][data-morrison]');
+    const quote13 = await door13.getAttribute('data-morrison');
+    expect(quote13).toBeTruthy();
+    expect(quote13.length).toBeGreaterThan(10);
+    const door14 = page.locator('.door.live[href="/survival-school/in-my-defence"][data-morrison]');
+    const quote14 = await door14.getAttribute('data-morrison');
+    expect(quote14).toBeTruthy();
+    expect(quote14.length).toBeGreaterThan(10);
+  });
+
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// IN MY DEFENCE — Room 14 (SS-093)
+// ─────────────────────────────────────────────────────────────────────────────
+
+test.describe('In My Defence — page load and protagonist selection', () => {
+
+  test('page loads with protagonist chips, incident area hidden, submit disabled', async ({ page }) => {
+    await page.goto(`${BASE}/survival-school/in-my-defence`);
+    await expect(page.locator('#btn-submit')).toBeVisible();
+    await expect(page.locator('#btn-submit')).toBeDisabled();
+    const chips = page.locator('.chip-protagonist');
+    await expect(chips.first()).toBeVisible();
+    // incident section hidden before protagonist selected
+    await expect(page.locator('#incident-section')).not.toBeVisible();
+  });
+
+  test('selecting a protagonist reveals the incident section and personal chips', async ({ page }) => {
+    await page.goto(`${BASE}/survival-school/in-my-defence`);
+    await page.locator('.chip-protagonist[data-id="bear"]').click();
+    await expect(page.locator('#incident-section')).toBeVisible();
+    await expect(page.locator('#personal-chips')).toBeVisible();
+    // Bear should have at least one personal chip
+    const personalChips = page.locator('#personal-chips .chip');
+    await expect(personalChips.first()).toBeVisible();
+  });
+
+  test('general chips are always visible after protagonist selected', async ({ page }) => {
+    await page.goto(`${BASE}/survival-school/in-my-defence`);
+    await page.locator('.chip-protagonist[data-id="ray"]').click();
+    await expect(page.locator('#general-chips')).toBeVisible();
+    const generalChips = page.locator('#general-chips .chip');
+    await expect(generalChips.first()).toBeVisible();
+  });
+
+  test('selecting a personal incident chip enables submit', async ({ page }) => {
+    await page.goto(`${BASE}/survival-school/in-my-defence`);
+    await page.locator('.chip-protagonist[data-id="bear"]').click();
+    const chip = page.locator('#personal-chips .chip').first();
+    await chip.click();
+    await expect(page.locator('#btn-submit')).not.toBeDisabled();
+  });
+
+  test('selecting a general incident chip enables submit', async ({ page }) => {
+    await page.goto(`${BASE}/survival-school/in-my-defence`);
+    await page.locator('.chip-protagonist[data-id="fox"]').click();
+    const chip = page.locator('#general-chips .chip').first();
+    await chip.click();
+    await expect(page.locator('#btn-submit')).not.toBeDisabled();
+  });
+
+  test('changing protagonist updates personal chips', async ({ page }) => {
+    await page.goto(`${BASE}/survival-school/in-my-defence`);
+    await page.locator('.chip-protagonist[data-id="bear"]').click();
+    const bearChipCount = await page.locator('#personal-chips .chip').count();
+    await page.locator('.chip-protagonist[data-id="ray"]').click();
+    const rayChipCount = await page.locator('#personal-chips .chip').count();
+    // Ray has fewer incidents than Bear
+    expect(rayChipCount).toBeLessThan(bearChipCount);
   });
 
 });
