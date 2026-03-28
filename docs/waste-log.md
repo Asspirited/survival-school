@@ -22,6 +22,11 @@
 | WL-SS-009 | Missing State/UI/API object declarations in How Screwed and I've Been Bit — JS ReferenceError on all user actions | Closed |
 | WL-SS-010 | Acceptance tests checked page load and nav badges only — structural integrity and JS wiring invisible to pipeline | Closed |
 | WL-SS-013 | Deploy instruction treated as auth event — sent user to Cloudflare dashboard when token already in hand from same session | Open |
+| WL-SS-014 | charId schema unspecified in assessment/mundane/reaction OUTPUT — Haiku returns arbitrary IDs, panel cards never render | Closed — fixed 2026-03-27 |
+| WL-SS-015 | Mobile logo CSS: width 100% makes bowie knife SVG 108px tall on mobile | Closed — fixed 2026-03-27 |
+| WL-SS-016 | SS-032 backlog marked DONE ("generic categories removed") but animal/circ chips still in deployed code | Closed — fixed 2026-03-27 |
+| WL-SS-017 | Animal Deathmatch non-functional — root cause TBD (investigate post-deploy) | Closed — fixed 2026-03-28 |
+| WL-SS-018 | L4 Playwright tests failing: 54 failures across deathmatch/cascade/worst — shipped with broken tests | Closed — fixed 2026-03-28 |
 
 ---
 
@@ -251,3 +256,93 @@
 2. `Feature: Interactive pages declare State, UI, and API module objects` — checks each interactive page HTML for `const State = {`, `const UI = {`, `const API = {`. Catches missing module wiring immediately.
 
 **Next gap to close:** L4 Playwright tests that actually click a chip and verify the `sel` class is added, submit a form and verify loading state appears. These are the only tests that catch JavaScript execution failures in the browser context. Tracked as SS-040 (pipeline build, in progress).
+
+---
+
+## WL-SS-014 — charId schema unspecified in assessment/mundane/reaction OUTPUT
+
+**Status:** Closed — fixed 2026-03-27
+**Category:** Defect
+**Severity:** Critical
+**Raised:** 2026-03-27
+
+**Observation:** OUTPUT schema in buildSystemPrompt for assessment, reaction, and mundane modes specified `"charId":"<id>"` without naming the actual IDs. Haiku returned arbitrary formats (e.g., "Ray", "Les Stroud", "les_stroud"). CHARACTERS lookup `CHARACTERS[r.charId]` returned undefined, card was skipped with `if (!char) return`. All panel cards silently dropped — only Attenborough's bookend rendered.
+
+**Waste impact:** Every assessment/reaction/mundane call returned zero panel cards. Rod saw "only Attenborough." Feature was non-functional. Bug was invisible to pipeline (tests check page load and nav badges, not panel rendering).
+
+**Root cause chain:**
+1. WORST page (I've Been Bit) had explicit charIds in OUTPUT schema — worked fine
+2. APP (How Screwed Am I) and MUNDANE pages copied a different pattern without explicit IDs
+3. L4 Playwright tests don't exist — no test clicked ASSESS and verified panel cards rendered
+4. L3 acceptance tests only check page structure, not runtime rendering
+
+**Action:** Fixed — all three schemas now specify exact charIds (ray, fox, bear, hales, cody, stroud). L4 Playwright tests must assert panel cards render after ASSESS click.
+
+---
+
+## WL-SS-015 — Mobile logo CSS inflates bowie knife SVG
+
+**Status:** Closed — fixed 2026-03-27
+**Category:** Defect
+**Severity:** High
+**Raised:** 2026-03-27
+
+**Observation:** `@media (max-width: 480px) { .logo-mark { width: 100%; height: auto; } }` — bowie knife SVG (viewBox 80×24) rendered at 108px tall on 360px viewport. Text appeared below a giant knife. Fixed: `height: 18px; width: auto`.
+
+**Waste impact:** Homepage visually broken on all mobile phones. First impression of the product on mobile was broken header.
+
+---
+
+## WL-SS-016 — SS-032 backlog marked DONE but chips not removed
+
+**Status:** Closed — fixed 2026-03-27
+**Category:** Defect / Process
+**Severity:** Medium
+**Raised:** 2026-03-27
+
+**Observation:** Backlog entry SS-032 marked "DONE (10 chips live, generic categories removed 2026-03-27)". Animal and circumstances chip sections were still in SURVIVAL_SCHOOL_WORST template in worker.js. The deploy from that session may have included the scenario chips addition but not the chip removal. Backlog/code mismatch.
+
+**Waste impact:** Rod found confusing UI (select "cobra bite" scenario, still see "king cobra" chip). Had to re-raise bug this session.
+
+**Root cause:** Backlog was marked DONE before verifying the code matched the claim. No acceptance test for "animal chip section absent."
+
+---
+
+## WL-SS-017 — Animal Deathmatch non-functional — root cause TBD
+
+**Status:** Closed — fixed 2026-03-28
+**Category:** Defect
+**Severity:** High
+**Raised:** 2026-03-27
+**Closed:** 2026-03-28
+
+**Observation:** Rod reported Deathmatch "doesn't work at all" on mobile. Exact failure mode unknown — error message, spinner, or JS crash not confirmed. Code review shows no obvious JS bug. Possible causes: (a) JSON truncation if response exceeds 2500 tokens, (b) fetch error not surfaced, (c) deployed version different from local worker.js.
+
+**Waste impact:** Animal Deathmatch is listed as LIVE but is broken for users. WL-SS-010 root cause — no L4 tests.
+
+**Action:** Rod to confirm what they see when FIGHT is clicked (loading forever, error message, or partial render). Then diagnose and fix.
+
+**Root cause (found 2026-03-28):** `statLines.join('\n')` inside `SURVIVAL_SCHOOL_DEATHMATCH` template literal. The `\n` in a JS template literal is an escape sequence that produces a literal newline character. This newline appeared inside a single-quoted string in the browser's JS → `SyntaxError: Invalid or unexpected token`. Script crash before `buildChips()` — chips never rendered, fight never fired.
+
+**Fix:** `'\n'` → `'\\n'`. `\\` in a template literal produces `\`, so the browser receives `'\n'` (the correct JS escape). Deployed 2026-03-28.
+
+---
+
+## WL-SS-018 — L4 Playwright tests failing: 54 failures across deathmatch/cascade/worst
+
+**Status:** Closed — fixed 2026-03-28
+**Category:** Defect / Process
+**Severity:** High
+**Raised:** 2026-03-28
+**Closed:** 2026-03-28
+
+**Observation:** Session startup pipeline showed L4 RED: 54 failures across deathmatch (45 tests — chip rendering), cascade app (3 tests — step-evt), and worst page (6 tests — animal chips + CLEAR). Three root causes:
+1. Deathmatch: JS syntax error (WL-SS-017) — chips never rendered
+2. Cascade step-evt test: wrong assertion — test expected step-evt visible after location click. Actual: location click shows step-cond; condition click shows step-evt.
+3. Animal chip test: #chips-animal removed from worst page (SS-032). Test still expected the old chips.
+4. CLEAR test: clearAll() didn't clear #chips-scenario. Scenario chip .sel persisted after CLEAR.
+
+**Waste impact:** 54 false failures in L4. Pipeline RED at session start. Real deathmatch bug (WL-SS-017) was among them but harder to isolate.
+
+**Fix:** Deploy deathmatch syntax fix. Fix clearAll() to clear scenario chips. Fix step-evt test to require condition click first. Remove animal chip test.
+
