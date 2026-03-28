@@ -68,6 +68,11 @@ Phrases: "MVP done", "ready to move on", "expanding to"
 Phrases: "let's build", "start on", "implement"
 → Confirm Gherkin acceptance criteria exist. Confirm pipeline is green. Then build.
 
+### Trigger: OAT/NFT surface detected (soft trigger)
+Keywords in item scope: worker, deploy, error, route, performance, monitoring, security, rollback, recovery
+→ Remind: "This item has OAT surface. Check docs/oat-nft-principles.md — include operational acceptance criteria in the Gherkin."
+→ Does NOT fire for pure data additions, docs, CSS-only, or domain logic with no production surface.
+
 **At Gherkin gate — Scenario Outline check (mandatory before approval):**
 After writing scenarios, ask: "Does any scenario repeat the same logic with different inputs?"
 If yes → convert to Scenario Outline with Examples table before presenting for approval.

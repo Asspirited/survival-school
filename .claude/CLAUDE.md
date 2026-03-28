@@ -16,6 +16,9 @@
 ## Delivery Cycle (non-negotiable)
 
 1. **Three Amigos** — agree behaviour before any code
+   - **OAT/NFT gate:** Does this item touch production behaviour? (new/changed routes, error paths, API calls, deployment, user input)
+     If YES → read `docs/oat-nft-principles.md`, include operational acceptance criteria in the Gherkin.
+     If NO → move on. No overhead.
 2. **Gherkin gate** — write scenario, output full text, STOP and wait for Rod's approval
 3. **Outside-in design** — interface before implementation
 4. **Failing test** — write test, confirm red, STOP

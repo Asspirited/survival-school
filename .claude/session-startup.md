@@ -20,6 +20,7 @@ cd /home/rodent/survival-school && cat \
   docs/founding-docs-raw.md \
   docs/founding-notes.md \
   docs/testing-standards.md \
+  docs/oat-nft-principles.md \
   docs/panel-integrity-spectrum.md \
   docs/the-rooms-design-brief.md \
   $(find docs/domains/ -name "*.md" 2>/dev/null | sort) \

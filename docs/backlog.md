@@ -63,7 +63,7 @@
 | 27 | SS-088 — Panel emotional state model: port LieEngine + composure from Cusslab, characters shift register mid-session | DONE (2026-03-28) | BDD |
 | 27 | SS-087 — Cusslab crossover: Hawking + Bruce Lee as fish-out-of-water characters (same pattern as Cox/Faldo) | DONE (characters.js + domain tests 2026-03-28) | DDD |
 | 27 | SS-100 — Port composure engine to SS characters.js (COMPOSURE_PROFILES, init, compute deltas, tier, injection) | DONE (characters.js + 21 domain tests 2026-03-28) | DDD |
-| 18 | SS-101 — Wire composure engine into SS worker.js (accept composureState, inject, return updated state) | Open | BDD |
+| 18 | SS-101 — Wire composure engine into SS worker.js (accept composureState, inject, return updated state) | DONE (IHW + IMD routes + client, contract tests green 2026-03-28) | BDD |
 | 27 | SS-089 — The Doors predicament chips: Steve Irwin (snake wall, croc ring, snake ring let-slip) + Stevens (snake pit, O'Shea's paper) | DONE (2026-03-28) | BDD |
 | 18 | SS-092 — Fish-out-of-water character: Jim Carrey — cycles Ace Ventura / The Mask / Liar Liar / all other modes, red rag to the panel, funny and also not funny, just fuck off Jim | DONE 2026-03-28 | BDD |
 | 18 | SS-095 — New character: Jeremy Wade — Freshwater Biologist, River Monsters, protagonist + panel rotation, notebook/translator/tuning out/Cowabunga mechanics | DONE 2026-03-28 | BDD |
