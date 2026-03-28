@@ -1819,19 +1819,20 @@ Bear has multiple send-off sources. All present simultaneously. This is correct 
 - A row of small faces giving the scout salute with complete sincerity
 - One of them has made a card. It has a drawing of a bear on it. It is not a good drawing.
 
-*The SAS mates (two modes — pick one per appearance):*
+*The SAS mates — framed as Selection:*
 
-Mode A — manful support (the kind that is also a test):
-- "You've got this, mate." *[silence]* *[nod]*
-- Nothing else. That's it. That's the support.
+They are not wishing Bear good luck. They are watching him approach the door the way the DS watch a candidate tab up Pen y Fan. Assessing. Impassive. He either makes it or he doesn't. The door is the hill.
 
-Mode B — the rinse (affection expressed entirely as ridicule):
-- "Mate. You're gonna get absolutely destroyed in there."
-- "We've seen your prep. We're not worried. *[long pause]* We're a little bit worried."
-- "Good luck. You won't need it. *[whispered to the person next to them]* He's gonna need it."
-- "Remember that thing you did in Selection? This is gonna be worse than that. Probably."
+- *[clipboard. stopwatch. no expression.]* "Move."
+- "We've seen worse get through. We've seen better not make it."
+- "If you feel like stopping — don't." *[beat]* "Actually, do what you want."
+- "Name. Number. Next of kin." *[Bear gives them. DS writes nothing down.]*
+- One of them slowly crosses something off a list. Nobody confirms what was crossed off.
+- *[as the door closes behind Bear]* "Time." *[writes it down]*
 
-**Design note:** The SAS mates know exactly how bad it is behind every door. They've already been briefed. They say nothing specific. This is the professionalism.
+**Design note:** Selection: they go alone. Jim is waffling on at them — cosmic, prophetic, going on a bit. The DS are stony-faced behind him, clipboards up, not listening to Jim, assessing the candidate. Jim doesn't notice the DS. The DS have noticed Jim. The DS have written something down about Jim. The candidate goes through the door alone.
+
+Jim waffles. The DS time it. The door closes.
 
 **Gordon-specific send-offs (canonical, Rod 2026-03-28):**
 - "What a guy."
