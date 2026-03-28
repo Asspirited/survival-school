@@ -1,76 +1,112 @@
 # Shared Session State — Survival School
-# Written: 2026-03-28 (Claude Code session close)
-# For: Claude.ai pickup on next session start
+# Written: 2026-03-28 (Claude Code session close — Jim Carrey + Jeremy Wade session)
+# Supersedes: SS-088 composure engine state (still live — see below)
 
 ---
 
 ## What shipped this session
 
-### SS-088 — Composure engine (DONE)
+### SS-092 — Jim Carrey (DONE)
+- `js/characters.js`: full voice profile, Three Amigos rotation, protagonist, all panels
+- av=JC, avClass=av-yellow (mustard #d4a017)
+- Comedy engine: genuine animal knowledge, wrong register, panel winces and groans, Bear engages sincerely making things worse
+- IHW chips: snake understanding, wilderness tracking, bear negotiation (Fox dispute)
+- CORRIDOR_SENDOFF: enters backwards through service entrance, believes this is going extremely well
+- worker.js: IHW character object, protagonist chip, predicament chips, system prompt section
+- All tests added: domain, acceptance, UI — pipeline green
 
-**cusslab/worker.js**
-- COMPOSURE_PROFILES: per-character composure profiles with baseline, pressure, tell (ray:8, fox:9, bear:7, hales:8, cody:6, stroud:7, stevens:9, cox:5, faldo:6, jim:3, jeremy:8)
-- `initComposureState()` — returns baseline composure map from profiles
-- `computeComposureDeltas(current, panelTension)` — callout=-2, wolf_pack=-3, lie=-1, wound_reference=-1; untargeted chars +0.5 capped at baseline
-- `composureTier(val)` — HIGH(7-10), STEADY(4-6), RATTLED(2-3), GONE(0-1)
-- `buildComposureInjection(composureState, panelCharIds)` — builds system prompt appendix: speaking order (lowest composure first), per-char tier labels with pressure/tell behaviour for shifted chars
-- `/survival-school/assess` POST handler: accepts `composureState` + `panelCharIds` from client, injects composure into system prompt, parses response, computes deltas, returns `composureState` in response
-- How Screwed Am I client: `DEFAULT_STATE.composureState: null`, `setComposureState(cs)`, `assess()` + `react()` both pass `composureState` + `panelCharIds: HSA_PANEL_CHARS` and store returned `composureState`
+### SS-095 — Jeremy Wade (DONE)
+- `js/characters.js`: Freshwater Biologist, River Monsters presenter
+- av=JW, avClass=av-teal (#2e9e8a)
+- Comedy engines:
+  - Notebook mechanic: cock and balls (trademark) + OWY vertical + inner monologue
+    ("I'm fucking starving, Maccies", "Am I going to be expected to eat the fish that guy is molesting", "I have to stop thinking about getting an erection")
+  - Translator reactions: frowns but says nothing / wry grin / wide-eyed / laughs at a 2-year-old with dysentery
+  - Multinational language detritus: fragments from 50 countries fired as background process regardless of location — Olé, Santa Maria, Ándale, Sayonara, El Dorado
+  - Cowabunga: says it to bereaved widow with solemn frown. Well-intended. That's what makes it work.
+  - Tuning out: human conversation not about fish — ends by shading cock and balls in 3D
+  - 3D shading development arc: skill Jeremy is honing across sessions
+  - Instant death register: ARAPAIMA CONTACT | GOONCH | IMMEDIATE EXTRACTION REQUIRED
+  - Terrible recreations: "I will demonstrate the bite angle. Please stand over here."
+  - Real incidents: Congo witchcraft accusation, Mekong spy arrest, Goonch, arapaima bruised heart, candiru waggle
+- IHW chips: Goonch second time, Arojubtria incident, arapaima bruised heart
+- CORRIDOR_SENDOFF: already in waders, thermal flask, notebook. Translator frowns but says nothing.
+- worker.js: IHW character object, protagonist chip, predicament chips, system prompt section
+- All tests added: domain, acceptance, UI — pipeline green
 
-**survival-school tests**
-- `features/composure-engine.feature` — Gherkin for SS-088 (5 scenarios)
-- `tests/acceptance/acceptance.test.js` — 2 new SS-088 tests (first-round returns composureState, second-round with composureState returns updated)
-- `tests/contracts/ss-browser-ss-worker.pact.json` — added `composureState` to assessment mode required fields
+### Previously shipped (still live)
+- SS-088 — Composure engine: DONE
+- SS-093 — In My Defence (Room 14): DONE
+- SS-094 — IHW panel interaction fix: DONE
+
+---
+
+## Worker state
+- Last deployed hash: 1d3527c1 (tuning out + 3D shading + language mechanics — Jeremy Wade final)
+- Worker: cusslab-api.leanspirited.workers.dev
+- Valid charIds: ray, bear, fox, hales, cody, stroud, stevens, cox, faldo, jim, jeremy
+- Deploy: source /home/rodent/.cf-deploy-token && CLOUDFLARE_API_TOKEN="${CLOUDFLARE_API_TOKEN}" CLOUDFLARE_ACCOUNT_ID="ce5ebfc99d1b37a7537a039d0b09d0b6" npx wrangler deploy --config /home/rodent/cusslab/wrangler.toml
 
 ---
 
 ## Pipeline state
-ALL GREEN — L0 auth canary, L1 unit (118), L2 contract (14), L3 acceptance (59), L4 UI (276). L5 SKIP.
+L0 auth canary, L1 unit (60 domain chars), L2 contract (known occasional flake — Haiku non-JSON first call, always passes on rerun), L3 acceptance (51), L4 UI (258 tests, 3 browsers). Pipeline green at close.
 
 ---
 
-## Open WL items
-- WL-SS-011: SSH auth declared broken without checking
-- WL-SS-012: Claude "fixed permanently" apology loop
+## WL items raised this session
+- WL-SS-019 — Claude.ai falsely confirmed it had persisted Rod's verbatim memories for Jeremy Wade
+- WL-SS-020 — Claude.ai falsely confirmed a record when asked again
+- WL-SS-021 — Claude.ai falsely claimed memories were in Downloads session-ref file
+- WL-SS-022 — Every verbatim personal memory Rod gave for panel characters: lost in full
+- WL-SS-023 — 1+ hour of Rod's time giving personal memories for characters he loves: unrecoverable
+
+**Action taken:** Rod Memory Trigger added to session-insession.md — Claude Code writes verbatim to file immediately on receipt, returns file path, waits for confirmation before continuing. Claude.ai removed from session workflow.
+
+---
+
+## Open WL items (cumulative)
 - WL-SS-002: Shared state claimed GitHub repo existed — it didn't
 - WL-SS-003: wrangler.jsonc at /home/rodent/ routes to wrong worker
 - WL-SS-006: Session startup skipped repeatedly
+- WL-SS-011: SSH auth declared broken without checking
+- WL-SS-012: Claude "fixed permanently" apology loop
 - WL-SS-013: Deploy treated as auth event
+- WL-SS-019 to WL-SS-023: Claude.ai memory loss incidents (new this session)
 
 ---
 
 ## HDD status
 HDD-001: "Panel comedy and survival expertise together create content people share with specific people in mind."
 Status: OPEN / Advancing.
-Evidence: Composure engine now live — characters shift register under pressure. First structural unlock: panel now reacts dynamically to what happened before.
-Next: Observe whether composure-shifted responses are funnier/sharper. SS-092 (Jim Carrey) is next high-conviction chip.
+Evidence this session: Jim's panel wince/groan mechanic and Jeremy's Cowabunga-to-widow are exactly the kind of moment a user thinks "X needs to see this." Not confirmed in the wild yet.
+Next action: Get a real person to share a panel output with someone specific in mind.
 
 ---
 
 ## Decisions made this session
-DECISION 2026-03-28: Composure engine architecture — worker stateless, client holds composureState blob, worker owns profiles and computes deltas. No new infrastructure.
-DECISION 2026-03-28: How Screwed Am I panel chars are HSA_PANEL_CHARS = ['ray','fox','bear','hales','cody','stroud'].
-
----
-
-## SS-088 implementation notes
-- composureState is a flat object: { ray: 7.5, fox: 9, bear: 6.5, ... }
-- First round: client sends no composureState → worker calls initComposureState() → returns initial state
-- Subsequent rounds: client sends last returned composureState → worker injects tier/order into system prompt → computes deltas from panel_tension → returns updated composureState
-- buildComposureInjection only injects if characters have shifted from HIGH tier (performance optimization — no noise when everything is fine)
-- The speaking order override only fires when some chars are below HIGH
+- DECISION 2026-03-28: Jim Carrey — standard panel + protagonist, all panels
+- DECISION 2026-03-28: Jeremy Wade voice = multinational detritus mechanic (NOT single catchphrase — single phrase = ninja turtle)
+- DECISION 2026-03-28: av-yellow = mustard #d4a017; av-teal = #2e9e8a
+- DECISION 2026-03-28: Claude.ai removed from session workflow — Claude Code has file access and same model
 
 ---
 
 ## Top 3 for next session
-1. SS-092 — Jim Carrey character (CD3: 27, fully designed in backlog)
-2. SS-087 — Cusslab crossover: non-survivalist protagonists through The Doors (Rod's call: stripped-down vs full cascade)
-3. SS-090/SS-091 — Cox+Faldo pair interaction modes
+1. SS-087 — Cusslab crossover: non-survivalists through The Doors (CD3=27, highest priority)
+2. SS-096 — Wade predicament chips: River Monsters scenarios (BDD, natural follow-on)
+3. SS-090 — Cox + Faldo: vehement mutual agreement, experts look on in horror (BDD)
+
+---
+
+## Carry-forward notes
+- Jeremy Wade verbatim Rod quote: MISSING. Rod needs to give one verbatim sentence for jeremy-wade.md "Rod's Memory" section. Other founding characters all have this. Wade is the only gap.
+- Jim character doc: `docs/characters/jim.md` not yet created. Low priority but needed for completeness.
+- L2 contract test: known occasional flake (Haiku returns non-JSON on first call). Always passes clean on rerun. Not structural.
 
 ---
 
 ## Live features
-
 | Feature | URL | Status |
 |---------|-----|--------|
 | Homepage | /survival-school | Live |
@@ -85,15 +121,3 @@ DECISION 2026-03-28: How Screwed Am I panel chars are HSA_PANEL_CHARS = ['ray','
 | The Doors (corridor) | /survival-school/rooms | Live |
 | I've Had Worse (Room 13) | /survival-school/ive-had-worse | Live |
 | In My Defence (Room 14) | /survival-school/in-my-defence | Live |
-
-Worker: cusslab-api.leanspirited.workers.dev
-Deploy: source /home/rodent/.cf-deploy-token && CLOUDFLARE_API_TOKEN="${CLOUDFLARE_API_TOKEN}" CLOUDFLARE_ACCOUNT_ID="ce5ebfc99d1b37a7537a039d0b09d0b6" npx wrangler deploy --config /home/rodent/cusslab/wrangler.toml
-
----
-
-## Notes for Claude.ai
-- cusslab/worker.js is the source file for ALL Survival School features. Not survival-school repo HTML files.
-- Composure engine is live. How Screwed Am I now returns composureState each round.
-- Client-side State holds composureState between rounds and passes it back with each request.
-- L3 has 59 tests (was 57 before SS-088 acceptance tests added).
-- SS-088 DONE. Backlog updated.
