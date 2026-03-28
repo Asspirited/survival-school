@@ -35,6 +35,7 @@
 | 8 | SS-032 — Archetypal scenarios | DONE (10 chips live, generic categories removed 2026-03-27) | Feature |
 | 18 | SS-063 — Panel archetypes: design who goes together and why | Open | DDD |
 | 18 | SS-064 — Cross-product fish-out-of-water characters: Cox, Faldo, others | Open | DDD |
+| 18 | SS-065 — Panel pool: random 4–5 character selection across all panel modes | Open | BDD |
 | 18 | SS-058 — Per-character colored card backgrounds (Cusslab pattern) | Open | BDD |
 | 18 | SS-059 — Character interaction dynamics: wounds, lies, calling each other out | Open | DDD |
 | 8 | SS-005 — Telephone Game mechanic | Open | DDD |
@@ -1527,3 +1528,33 @@ Feature: Panel triage order across all SS features
 - Whether they cross-exist in Cusslab panels too (Cox and Faldo already do)
 
 **Three Amigos needed:** How many fish-out-of-water per panel? One guest maximum, or can you have two? Does the guest know they're out of their depth, or are they entirely confident?
+
+---
+
+### SS-065 — Panel pool: random 4–5 character selection across all panel modes
+
+**Status:** Open
+**Priority:** High — unblocks Darwin, Cox, Faldo and all future character additions
+**CD3:** 18 (Confidence 3 × Desirability 2 × Deliverability 3)
+**Loop:** BDD
+**Raised:** 2026-03-28
+**Epic:** Panel Design
+
+**The change:** Replace per-page hardcoded CHARACTERS objects with a single `PANEL_POOL` — all available characters. Each panel mode draws 4–5 at random per session. Attenborough is not in the pool — he is always the closer.
+
+**Applies to all SS panel modes:** Panel Q&A, How Screwed Am I (assessment + reaction), Mundane Mode, I've Been Bit Guys, The Coyote Index, Will You Eat It, Bear Fact-Checker. Any new mode added after this ships inherits the pool automatically.
+
+**Rules:**
+- Pool size: all characters except Attenborough
+- Draw size: 4–5 (randomly chosen between 4 and 5 each session, or fixed at 5 — Three Amigos)
+- Attenborough: always bookends, never in pool
+- Triage order (SS-034): IMMEDIATE characters (Ray, Fox) should be weighted to appear more often in crisis modes — pure random may underweight them. Three Amigos on whether to weight or purely random.
+
+**Depends on:** SS-063 (archetypes) for the longer-term curated version. This item is the random pool MVP — "choose your panel" is a future item.
+
+**Files to change:**
+- `js/characters.js` — add all characters to pool, expose `PANEL_POOL` export
+- Worker `buildSystemPrompt()` — accept `selectedChars` array, inject only those voices
+- All panel pages in worker.js — pass random selection to system prompt on each call
+
+**Note:** Darwin, Cox, Faldo join the pool as they are built (SS-006, SS-064). Pool grows without further architectural changes.
