@@ -56,6 +56,7 @@
 | 27 | SS-082 — Character: Gordon Lyons — amateur herpetologist, bitten twice by same snake, friend poured beer and urinated on his head as first aid | Open | DDD |
 | 18 | SS-058 — Per-character colored card backgrounds (Cusslab pattern, survival palette) | Open | BDD |
 | 18 | SS-084 — Predicament chip: "why did Bear end up forcing the teacher to drink his urine out of a dead snake" | Open | BDD |
+| 27 | SS-085 — Per-character roast + inversion chips: real embarrassing moments + out-of-character scenarios they must defend | Open | DDD |
 | 18 | SS-059 — Character interaction dynamics: wounds, lies, calling each other out | Open | DDD |
 | 8 | SS-005 — Telephone Game mechanic | Open | DDD |
 | 8 | SS-039 — Latin / indigenous naming layer in panel responses | Open | DDD |
@@ -2048,6 +2049,46 @@ These are not sarcastic. Gordon would agree with all of them. There might be sna
 **Panel dynamics:** Bear defends it. Cody has done something comparable but with a live snake. Ray is quiet. Fox still has the sight picture. Hales has questions about the snake species. Stroud was alone when this happened to him. Nobody had a teacher present.
 
 **Outstanding Three Amigos:** Which room/page — I've Had Worse (/worst), How Screwed (/app), or The Rooms? Data-only addition once confirmed — no new code paths.
+
+**CD3:** C=3 D=3 D=3 → **CD3=27**
+**Status:** OPEN — raised 2026-03-28.
+
+---
+
+### SS-085 — Per-character roast + inversion chips
+
+**Status:** Open
+**Loop:** DDD
+**Epic:** Character Expansion
+
+**What it is:** Two comedy chip engines using real character research, surfaced as per-character chips the user can select:
+
+**Engine 1 — Roast chips:** Chips that surface real, documented embarrassing or controversial moments from the character's actual life. The character must discuss it in front of the panel. The panel knows. The character knows the panel knows.
+
+*Examples:*
+- Bear: the time he was exposed drinking from a staged "river" that was actually a hotel pool
+- Bear: peed in his own wetsuit on camera and announced it was warming him up
+- Bear: the hotel incident — presented as roughing it, was not
+- Les: voluntarily spent months alone in the wilderness for TV but has expressed opinions about airports
+
+**Engine 2 — Inversion chips:** Chips that describe the character doing something completely incongruent with their identity. They must explain and rationalise it — in full survival-expert voice. The more earnest and thorough the rationalisation, the funnier it is.
+
+*Examples:*
+- "Bear, your review of a Mayfair spa weekend"
+- "Les Stroud, your thoughts on all-inclusive Caribbean resort buffets"
+- "Ray Mears, why you ordered a Deliveroo"
+- "Cody Lundin, footwear choices at the Ritz"
+- "Hales, your experience of a climate-controlled hotel room"
+
+**Comedy engine (ConspireEngine applied):** The characters are unreliable narrators of their own identity. They don't lie — they rationalise. Every Mayfair spa becomes a controlled field assessment of thermal regulation. Every Deliveroo order was a test of modern logistics infrastructure. The panel does not buy it. The panel calls it out. The character redoubles.
+
+**Design notes:**
+- Requires per-character research to surface real documented incidents (not invented ones)
+- Inversion chips are fictional scenarios but must be congruent with the character's real known positions and voice
+- Both chip types feed the ConspireEngine pattern (SS-059 sibling item)
+- Could live on existing How Screwed or I've Had Worse chip surfaces, or as a dedicated mechanic
+
+**Outstanding Three Amigos:** One chip surface or two (roast vs inversion separate)? Which pages? Does the panel see the chip text or just the character? Do other panel members pile on roast chips or is it one-on-one?
 
 **CD3:** C=3 D=3 D=3 → **CD3=27**
 **Status:** OPEN — raised 2026-03-28.
