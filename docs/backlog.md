@@ -107,6 +107,19 @@
 | — | SS-055 — Scenario bank: Bravo Two Zero | DONE (added scenarios.js 2026-03-27) | DDD |
 | — | SS-056 — Scenario bank: Operation Nimrod | DONE (added scenarios.js 2026-03-27) | DDD |
 | — | SS-057 — Feature: "The Coyote Index" | DONE (live 2026-03-27) | BDD |
+| 12 | SS-102 — Character doc: Billy Billingham — full schema (Rod's Memory, Facts, Comedy Engine, Register, Voice) | Open | DDD |
+| 12 | SS-103 — Character doc: Ollie Ollerton — full schema | Open | DDD |
+| 12 | SS-104 — Character doc: Coyote Peterson — full schema | Open | DDD |
+| 12 | SS-105 — Character doc: Chris Ryan — full schema | Open | DDD |
+| 12 | SS-106 — Character doc: Andy McNab — full schema | Open | DDD |
+| 12 | SS-107 — Character doc: Christian Craighead (Obi-Wan Nairobi) — full schema | Open | DDD |
+| 12 | SS-108 — Character doc: Ant Middleton — full schema | Open | DDD |
+| 12 | SS-109 — Character doc: Jim Carrey — full schema | Open | DDD |
+| 12 | SS-110 — Character doc: Stephen Hawking — full schema | Open | DDD |
+| 12 | SS-111 — Character doc: Bruce Lee — full schema | Open | DDD |
+| 12 | SS-112 — Character doc: Jim Morrison (corridor guide) — full schema | Open | DDD |
+| 12 | SS-113 — Character doc: Brian Cox — full schema | Open | DDD |
+| 12 | SS-114 — Character doc: Nick Faldo — full schema | Open | DDD |
 | 8.0 | SS-060 — Cross-character panel references (reacts_to schema field) | Open | BDD |
 | 6.3 | SS-061 — Decision loop: Fighting Fantasy mechanic for panel features | Open | BDD |
 | 14.0 | SS-062 — Panel triage order consistency across all panel features | DONE (assessment + mundane fixed, ADR-002 written 2026-03-28) | BDD |
