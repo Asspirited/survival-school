@@ -60,6 +60,7 @@
 | 12 | SS-086 — Review SS-085 material as stimulus for chips on other features (How Screwed, I've Had Worse, etc.) | Open | DDD |
 | 27 | SS-088 — Panel emotional state model: port LieEngine + composure from Cusslab, characters shift register mid-session | Open | DDD |
 | 27 | SS-087 — Cusslab crossover: non-survivalist protagonists through The Doors | Open | DDD |
+| 27 | SS-089 — The Doors predicament chips: Steve Irwin (snake wall, croc ring, snake ring let-slip) + Stevens (snake pit, O'Shea's paper) | DONE (2026-03-28) | BDD |
 | 18 | SS-059 — Character interaction dynamics: wounds, lies, calling each other out | Open | DDD |
 | 8 | SS-005 — Telephone Game mechanic | Open | DDD |
 | 8 | SS-039 — Latin / indigenous naming layer in panel responses | Open | DDD |
@@ -2139,6 +2140,28 @@ These are not sarcastic. Gordon would agree with all of them. There might be sna
 **CD3:** C=3 D=3 D=3 → **CD3=27**
 **Status:** OPEN — raised 2026-03-28.
 
+
+---
+
+### SS-089 — The Doors predicament chips: Steve Irwin (snake wall, croc fighting ring, snake fighting ring let-slip)
+
+**Status:** DONE (2026-03-28)
+**CD3:** 27 (Confidence 3 × Desirability 3 × Deliverability 3)
+**Loop:** BDD
+
+**What:** Three predicament chips where Steve Irwin must defend himself to the panel.
+
+1. **Snake wall** — smashed a highly agitated taipan repeatedly against a wall until it stopped. Maintains this was field improvisation, not the textbook definition of what happened.
+2. **Croc fighting ring** — Queensland Wildlife Services have found a reinforced pit, bleacher seating, and fourteen crocodiles with fight records. It's an educational facility. The betting slips were left by a previous tenant.
+3. **Snake fighting ring let-slip** — was explaining, passionately and in operational detail, how one fights a snake, and may have accidentally disclosed the existence of an underground snake fighting circuit he definitely does not run.
+4. **Austin Stevens: snake pit (O'Shea's paper)** — has been sleeping in snake pits for research since 1987. German documentary producer is concerned. O'Shea has written a paper about it. Stevens hasn't read it. Assumes it's mostly positive.
+5. **Irwin: croc leather on-camera** — several episodes of The Crocodile Hunter show him wearing a croc leather belt and wallet. He was not aware this was being filmed. The crocs noticed.
+6. **O'Shea: snake jacket (self-identified on-air)** — three BBC episodes show him wearing a jacket he later identified on screen, live, as king cobra skin. Did not stop filming.
+7. **Stevens: snakeskin boots (RSPCA report)** — seventeen episodes of Snakemaster show him in snakeskin boots. Adds gravitas. The snakes disagree. RSPCA report confirms this.
+
+**Chips live in:** `/home/rodent/cusslab/worker.js` — predicament chips section (~line 5984)
+
+**Done:** 2026-03-28
 
 ---
 
