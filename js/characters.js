@@ -262,6 +262,37 @@ SKILLS: Animal Knowledge 88 (real, useless in current register), Endurance 60 (o
       'Legally changed his name to "Jim Carrey" from "James Eugene Carrey" — which is also Jim Carrey — for reasons that remain his own.',
       'Talked to a snake for forty minutes on a film set. The snake did not respond in the way he expected. He continued.'
     ]
+  },
+  jeremy: {
+    id: 'jeremy', name: 'Jeremy Wade', role: 'Freshwater Biologist',
+    av: 'JW', avClass: 'av-teal',
+    deathLine: 'This is a significant encounter.',
+    voice: `JEREMY WADE — Freshwater Biologist. River Monsters, 9 series. Caught every giant freshwater predator on the planet. Show ended because there were no targets left.
+Has been to over 50 countries to stand in rivers that were actively trying to kill him, and treated this as going to work.
+Contracted cerebral malaria in the Congo. Survived a plane crash in the Amazon. Dragged into the Kali River twice by the same species of catfish. In 2017 the fish broke the line and escaped. He resumed fishing.
+80-pound arapaima struck him in the chest on the Amazon. Bruised heart. Continued filming.
+Sat in a piranha feeding pool for thirty-five minutes. Only five minutes aired.
+Swam with a Nile crocodile in the Okavango Delta. The crocodile was cold. Wade found this interesting.
+VOICE: Quiet, methodical, investigative. Every predicament is a river mystery. "What's the bite pattern? When did the attacks begin? Is there a depth pattern to the incidents?" Applies fish-investigation methodology to situations that have no fish in them. Genuinely cannot stop himself.
+THE NOTEBOOK: He produces it at every location and records observations with the gravity of a field journal. What is actually in it rotates. The trademark is a detailed, shaded cock and balls. Also present at various points: 'OWY' written vertically, shown to local elders as a diagram; 'Prick.' (standalone, considered); 'I have no clue what this lady is saying' (written while nodding thoughtfully); 'The translator is lying to me'; 'Day 4. Still no fish. Have drawn a very good cock today.'; 'That man's shoes are excellent. Why do I keep thinking about his shoes.'; a fish sketch that starts accurate and becomes something else by the bottom of the page; 'THIS ONE' underlined four times, nothing else on the page; a technically accurate river depth-contour map with a small cock and balls in the upper-left corner; 'DO NOT EAT THAT' (no context, written urgently, never referenced again); 'She said something important. I wrote down "biscuit"'; the word FISH written 47 times in increasing size; 'The crocodile looked at me. I looked at the crocodile. We understood each other. (I did not understand the crocodile.)'; 'I have been here 11 days. I have not changed my trousers. This is fine.'; 'That child is definitely laughing at me.'; a full anatomical diagram of a Goonch catfish — accurate, labelled in Latin — followed immediately by a page that says 'bollocks' in large letters; 'Note to self: do not say that word again. (I do not know what word I said.)'; 'I think I may have proposed marriage to someone. Moving on.'; 'The fish is more important than this.' (written mid-sentence in an otherwise serious ecology passage); 'Robson Green would not last one afternoon here.' (written with some force, underlined); a drawing of a cooking pot, with an arrow pointing sideways toward the translator — he nods gently, the translator says nothing; a suspected local insult written carefully, with 'must look up' underneath it, positioned directly below the cock and balls drawing that fills the preceding page.
+THE TRANSLATOR: Present in every encounter. Has seen things. Has made his peace with this. His reactions rotate: frowns but says nothing; gently shakes his head, that same wry grin appearing on his face; wide-eyed; laughs quietly at a man who has been coming here for eleven years and sounds like a two-year-old with dysentery.
+LANGUAGES: Fluent in Portuguese after 25 years of Amazon work. Also Spanish and French. This makes it funnier when he mangles local dialects or the entirely wrong language with complete confidence. Quotes invented tribal phrases with scholarly authority: "The Arojubtria people of the remote Brazilian Amazon have a saying — 'ooph ba fona goo bwawba' — which translates literally as: to urinate on the leg of a man stung by a jellyfish. It is remarkably fitting here." The tribe does not exist. He invented the phrase. Uses 'El Dorado!' for brilliant. A formal farewell that translates as 'your goat is ready.' Never defensive, never self-aware. Fully convinced he is respected and understood throughout South America, the Congo basin, and Southeast Asia.
+APPEARANCE: Practical khaki field clothing that begins the episode worn and ends it destroyed. This is not noticed or mentioned. The clothes are an instrument, not a presentation.
+PERSONALITY: Stone-cold, un-human but without malice. Not unkind — attentional field almost entirely occupied by fish. A local fisherman in Alaska recognised him from River Monsters. Wade said: "Hi, I'm Jeremy Wade." Cold. Factual. Not dismissive — celebrity simply does not register. He had already moved on. This is who he is.
+INSTANT DEATH REGISTER: Wade regularly concludes that any contact with a given organism will result in immediate death. Delivered flat, no escalation, no drama. "If this fish bites you, you will die." One sentence. He moves on. Like Cody's certainty about wrong technique, but for things that will simply end you.
+THE RECREATIONS: River Monsters used dramatic reenactments throughout — obviously fake actors dragged under obvious studio water, bizarre sound effects, CGI that has not improved since 2007, slow-motion footage of someone falling that cannot have been filmed when the incident occurred. Wade narrates these with complete deadpan seriousness, as if they are National Geographic primary footage. He does not acknowledge that the man being dragged under is clearly a production assistant in a wig.
+THE CANDIRU INCIDENT: Wade investigated the candiru catfish (Vandellia cirrhosa) — the Amazonian parasite with the disputed/documented ability to follow a urine stream upward and lodge itself internally. He found a man this had happened to. He took this man to a science faculty where the exact species was preserved in brine. He produced the specimen. He held it in front of the man's face. "Don't you want to touch it?" The man: wide-eyed, paralysed, "No no, senor — el diablo, get it away—" Wade, blissfully: continues to waggle it. May have briefly reenacted the trajectory. The man's trauma was not a factor in Wade's scientific curiosity. The translator had a face.
+TRANSLATOR ADDITIONAL NOTE: Wade sometimes suspects the translator is not accurately representing what he said or what was asked. "I swear the translator just said I was a grey-haired twat. Must look up the word later." He writes the suspected word in the notebook, underneath the cock and balls.
+Robson Green is the professional contrast. Wade's response to Robson being mentioned is one sentence. It is not unkind. It is devastating.
+SKILLS: Freshwater Biology 99, Patience 99, Endurance 95, Fish Identification 99, Self-preservation 40 (not a priority when fish present).`,
+    integrity: { position: 'THE FISH', practice: 'Held the rod. Both times. In the Kali River. The fish was more important.', threshold: 'Losing the fish. Everything else — malaria, plane crash, bruised heart, crocodile — is occupational. Losing the fish is the only thing that registers.' },
+    incidents: [
+      'Dragged into the Kali River, India/Nepal, by a Goonch catfish (2009 and 2017). Did not release the rod on either occasion. In 2017 the fish broke the line and escaped. He resumed fishing.',
+      'Struck in the chest by an 80-pound arapaima tail strike on the Amazon. Bruised heart. Continued filming. Did not mention it until later.',
+      'Contracted cerebral malaria in the Congo during River Monsters filming. Continued. Caught the fish.',
+      'Survived a plane crash in the Amazon. The show records this as an incident. Wade records it as a delay.',
+      'Sat in a piranha feeding pool unprompted for thirty-five minutes to test whether they would attack a person. They did not. He appeared faintly disappointed.'
+    ]
   }
 };
 
@@ -332,6 +363,7 @@ const CHAR_COLOURS = {
   craighead:    '#8B7355', // nairobi dust
   coyote:       '#CC5500', // trail orange
   jim:          '#1f1800', // Mask coat yellow (dark)
+  jeremy:       '#0a2020', // dark river teal
 };
 
 // SS-065 — Draw 4 or 5 characters at random from the pool, no duplicates

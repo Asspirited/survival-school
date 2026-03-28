@@ -836,6 +836,34 @@ test.describe("I've Had Worse — Jim Carrey protagonist (SS-092)", () => {
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
+// Jeremy Wade protagonist
+// ─────────────────────────────────────────────────────────────────────────────
+
+test.describe("I've Had Worse — Jeremy Wade protagonist", () => {
+
+  test('Jeremy Wade protagonist chip is visible on page load', async ({ page }) => {
+    await page.goto(`${BASE}/survival-school/ive-had-worse`);
+    await expect(page.locator('.chip-protagonist[data-id="jeremy"]')).toBeVisible();
+  });
+
+  test('selecting Jeremy Wade updates protagonist prompt to reference Jeremy', async ({ page }) => {
+    await page.goto(`${BASE}/survival-school/ive-had-worse`);
+    await page.locator('.chip-protagonist[data-id="jeremy"]').click();
+    const promptText = await page.locator('#protagonist-prompt').textContent();
+    expect(promptText).toMatch(/jeremy|wade/i);
+  });
+
+  test('selecting Jeremy Wade shows corridor send-off', async ({ page }) => {
+    await page.goto(`${BASE}/survival-school/ive-had-worse`);
+    await page.locator('.chip-protagonist[data-id="jeremy"]').click();
+    await expect(page.locator('#sendoff-block')).toBeVisible();
+    const sendoffText = await page.locator('#sendoff-block').textContent();
+    expect(sendoffText.length).toBeGreaterThan(10);
+  });
+
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
 // THE DOORS CORRIDOR (SS-067) — six doors, Morrison quote, Door 13 live
 // ─────────────────────────────────────────────────────────────────────────────
 

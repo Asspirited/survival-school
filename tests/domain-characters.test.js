@@ -364,3 +364,39 @@ describe('Jim Carrey — SS-092', () => {
       '"jim" must have an entry in CHAR_COLOURS');
   });
 });
+
+// ── Jeremy Wade character ─────────────────────────────────────────────────────
+
+describe('Jeremy Wade — new character', () => {
+  test('"jeremy" is present in CHARACTERS', () => {
+    assert.ok(Object.prototype.hasOwnProperty.call(CHARACTERS, 'jeremy'),
+      '"jeremy" must be a key in CHARACTERS');
+  });
+
+  test('"jeremy" is in PANEL_POOL', () => {
+    assert.ok(PANEL_POOL.includes('jeremy'),
+      '"jeremy" must be in PANEL_POOL — auto-included via CHARACTERS filter');
+  });
+
+  test('"jeremy" has required character fields: name, role, av, avClass, voice', () => {
+    const jeremy = CHARACTERS.jeremy;
+    assert.ok(jeremy.name,    '"jeremy" must have a name');
+    assert.ok(jeremy.role,    '"jeremy" must have a role');
+    assert.ok(jeremy.av,      '"jeremy" must have av initials');
+    assert.ok(jeremy.avClass, '"jeremy" must have avClass');
+    assert.ok(jeremy.voice,   '"jeremy" must have a voice description');
+  });
+
+  test('"jeremy" av initials are "JW"', () => {
+    assert.strictEqual(CHARACTERS.jeremy.av, 'JW', '"jeremy" av must be "JW"');
+  });
+
+  test('"jeremy" avClass is "av-teal"', () => {
+    assert.strictEqual(CHARACTERS.jeremy.avClass, 'av-teal', '"jeremy" avClass must be "av-teal"');
+  });
+
+  test('"jeremy" is in CHAR_COLOURS', () => {
+    assert.ok(Object.prototype.hasOwnProperty.call(CHAR_COLOURS, 'jeremy'),
+      '"jeremy" must have an entry in CHAR_COLOURS');
+  });
+});

@@ -390,3 +390,14 @@ describe("Feature: I've Had Worse — Jim Carrey protagonist chip (SS-092)", () 
     assert.ok(html.includes('Jim Carrey'),      'page must contain "Jim Carrey" chip label');
   });
 });
+
+// ── Jeremy Wade protagonist chip ──────────────────────────────────────────────
+
+describe("Feature: I've Had Worse — Jeremy Wade protagonist chip", () => {
+  test('Given the page loads, Then a Jeremy Wade protagonist chip is present', async () => {
+    const r = await fetch(`${BASE}/survival-school/ive-had-worse`, { signal: AbortSignal.timeout(TIMEOUT) });
+    const html = await r.text();
+    assert.ok(html.includes('data-id="jeremy"'), 'page must contain protagonist chip with data-id="jeremy"');
+    assert.ok(html.includes('Jeremy Wade'),       'page must contain "Jeremy Wade" chip label');
+  });
+});
