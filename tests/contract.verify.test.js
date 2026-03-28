@@ -204,5 +204,66 @@ describe("POST /survival-school/ive-had-worse — I've Had Worse mode", () => {
       typeof data.attenborough_terminal === 'string' && data.attenborough_terminal.length > 0,
       'attenborough_terminal must be a non-empty string'
     );
+
+    // SS-101: composureState returned
+    assert.ok(
+      typeof data.composureState === 'object' && data.composureState !== null,
+      'composureState must be an object'
+    );
+    for (const [id, val] of Object.entries(data.composureState)) {
+      assert.ok(typeof val === 'number' && val >= 0 && val <= 100,
+        `composureState.${id} must be a number 0–100, got ${val}`);
+    }
+  });
+});
+
+// ── POST /survival-school/in-my-defence — In My Defence schema (SS-093 + SS-101) ──
+describe("POST /survival-school/in-my-defence — In My Defence mode", () => {
+
+  test("returns 200 with structured JSON containing panel, attenborough_terminal, and composureState", async () => {
+    const interaction = contract.interactions.find(i =>
+      i.request.method === 'POST' && i.description.includes('in-my-defence')
+    );
+    assert.ok(interaction, "contract interaction for in-my-defence not found");
+
+    const response = await fetch(`${BASE_URL}${interaction.request.path}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(interaction.request.body),
+      signal: AbortSignal.timeout(CONTRACT_TIMEOUT_MS)
+    });
+
+    assert.strictEqual(response.status, 200, 'expected HTTP 200');
+
+    const data = await response.json();
+
+    assertSchemaFields(data, interaction.response.schema.required, "in-my-defence response");
+
+    assert.ok(Array.isArray(data.panel), 'panel must be an array');
+    assert.ok(
+      data.panel.length >= interaction.response.schema.panel_min_length,
+      `panel must have at least ${interaction.response.schema.panel_min_length} characters`
+    );
+
+    for (const card of data.panel) {
+      assertSchemaFields(card, interaction.response.schema.panel_required_fields, 'panel card');
+      assert.ok(typeof card.charId === 'string' && card.charId.length > 0, 'panel card charId must be non-empty');
+      assert.ok(typeof card.text === 'string' && card.text.length > 0, 'panel card text must be non-empty');
+    }
+
+    assert.ok(
+      typeof data.attenborough_terminal === 'string' && data.attenborough_terminal.length > 0,
+      'attenborough_terminal must be a non-empty string'
+    );
+
+    // SS-101: composureState returned
+    assert.ok(
+      typeof data.composureState === 'object' && data.composureState !== null,
+      'composureState must be an object'
+    );
+    for (const [id, val] of Object.entries(data.composureState)) {
+      assert.ok(typeof val === 'number' && val >= 0 && val <= 100,
+        `composureState.${id} must be a number 0–100, got ${val}`);
+    }
   });
 });

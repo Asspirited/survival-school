@@ -154,7 +154,34 @@
         "status": 200,
         "headers": { "Content-Type": "application/json" },
         "schema": {
-          "required": ["attenborough_opening", "panel", "attenborough_terminal"],
+          "required": ["attenborough_opening", "panel", "attenborough_terminal", "composureState"],
+          "panel_required_fields": ["charId", "text"],
+          "panel_min_length": 3
+        }
+      }
+    },
+    {
+      "description": "GET /survival-school/in-my-defence returns HTML",
+      "request": { "method": "GET", "path": "/survival-school/in-my-defence" },
+      "response": { "status": 200, "headers": { "Content-Type": "text/html; charset=utf-8" } }
+    },
+    {
+      "description": "POST /survival-school/in-my-defence returns structured JSON for In My Defence (SS-093)",
+      "request": {
+        "method": "POST",
+        "path": "/survival-school/in-my-defence",
+        "headers": { "Content-Type": "application/json" },
+        "body": {
+          "system": "You are the Survival School panel running the In My Defence mechanic. Respond ONLY with valid JSON matching exactly: {\"attenborough_opening\":\"<string>\",\"panel\":[{\"charId\":\"<string>\",\"text\":\"<string>\"}],\"attenborough_terminal\":\"<string>\"}. No markdown. No prose. JSON only.",
+          "incident": "Steve Irwin grabbed a taipan by the tail",
+          "protagonist": "bear"
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": { "Content-Type": "application/json" },
+        "schema": {
+          "required": ["attenborough_opening", "panel", "attenborough_terminal", "composureState"],
           "panel_required_fields": ["charId", "text"],
           "panel_min_length": 3
         }
