@@ -54,7 +54,8 @@
 | 18 | SS-080 — Character: Mark O'Shea — herpetologist, taxonomically forensic, urn incident origin | Open | DDD |
 | 18 | SS-081 — Character: Austin Stevens — Snakemaster, casualness about injury, "I've Been Bit Guys" origin | Open | DDD |
 | 27 | SS-082 — Character: Gordon Lyons — amateur herpetologist, bitten twice by same snake, friend poured beer and urinated on his head as first aid | Open | DDD |
-| 18 | SS-058 — Per-character colored card backgrounds (Cusslab pattern) | Open | BDD |
+| 18 | SS-058 — Per-character colored card backgrounds (Cusslab pattern, survival palette) | Open | BDD |
+| 18 | SS-084 — Predicament chip: "why did Bear end up forcing the teacher to drink his urine out of a dead snake" | Open | BDD |
 | 18 | SS-059 — Character interaction dynamics: wounds, lies, calling each other out | Open | DDD |
 | 8 | SS-005 — Telephone Game mechanic | Open | DDD |
 | 8 | SS-039 — Latin / indigenous naming layer in panel responses | Open | DDD |
@@ -2010,5 +2011,44 @@ These are not sarcastic. Gordon would agree with all of them. There might be sna
 **Outstanding Three Amigos:** Random trigger or structural? Does Jim speak to the celebrity directly or to the room? Can he appear more than once? Does the celebrity get to invoke Jim deliberately (at a cost)?
 
 **CD3:** C=3 D=3 D=2 → **CD3=18**
+**Status:** OPEN — raised 2026-03-28.
+
+---
+
+### SS-058 — Per-character colored card backgrounds (Cusslab pattern, survival palette)
+
+**Status:** Open
+**Loop:** BDD
+**Epic:** Panel Design
+
+**What it is:** Each character's panel card gets a distinct background colour — matching the pattern already used in Cusslab. Not generic; the palette should be congruent with survival/outdoors aesthetics (earthy, muted, natural tones — not the comedy brights of Cusslab).
+
+**Three Amigos (partially resolved 2026-03-28):**
+- Copy the Cusslab per-character CSS class pattern directly (charId → CSS class → background-color)
+- Use a survival palette: field greens, canvas khaki, bark brown, slate, sand, dusk orange — not primaries
+- One colour per character, consistent across all panel modes (assessment, mundane, reaction, worst, panel-qa)
+
+**Outstanding Three Amigos:** Exact colours per character? Confirm palette before Gherkin.
+
+**CD3:** C=3 D=3 D=2 → **CD3=18**
+**Status:** OPEN — raised 2026-03-28.
+
+---
+
+### SS-084 — Predicament chip: Bear / teacher / urine / dead snake
+
+**Status:** Open
+**Loop:** BDD
+**Epic:** The Doors
+
+**What it is:** A predicament chip for the I've Had Worse page (or equivalent predicament chip surface). The scenario: Bear, in a survival context, ended up requiring a teacher to drink his urine out of a dead snake. Chip title: *"why did Bear end up forcing the teacher to drink his urine out of a dead snake"*
+
+**Comedy engine:** Extends SS-076's established absurd predicament set (airplane aisle, shandy, badger, pigeon, tortoise). The panel must account for: (1) the dead snake, (2) the teacher's presence, (3) why this was Bear's idea, (4) whether it helped.
+
+**Panel dynamics:** Bear defends it. Cody has done something comparable but with a live snake. Ray is quiet. Fox still has the sight picture. Hales has questions about the snake species. Stroud was alone when this happened to him. Nobody had a teacher present.
+
+**Outstanding Three Amigos:** Which room/page — I've Had Worse (/worst), How Screwed (/app), or The Rooms? Data-only addition once confirmed — no new code paths.
+
+**CD3:** C=3 D=3 D=3 → **CD3=27**
 **Status:** OPEN — raised 2026-03-28.
 
