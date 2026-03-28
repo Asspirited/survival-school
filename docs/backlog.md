@@ -56,7 +56,8 @@
 | 27 | SS-082 — Character: Gordon Lyons — amateur herpetologist, bitten twice by same snake, friend poured beer and urinated on his head as first aid | Open | DDD |
 | 18 | SS-058 — Per-character colored card backgrounds (Cusslab pattern, survival palette) | Open | BDD |
 | 18 | SS-084 — Predicament chip: "why did Bear end up forcing the teacher to drink his urine out of a dead snake" | Open | BDD |
-| 27 | SS-085 — Per-character roast + inversion chips: real embarrassing moments + out-of-character scenarios they must defend | Open | DDD |
+| 27 | SS-085 — Per-character roast + inversion chips: real embarrassing moments + out-of-character scenarios they must defend (The Doors) | Open | DDD |
+| 12 | SS-086 — Review SS-085 material as stimulus for chips on other features (How Screwed, I've Had Worse, etc.) | Open | DDD |
 | 18 | SS-059 — Character interaction dynamics: wounds, lies, calling each other out | Open | DDD |
 | 8 | SS-005 — Telephone Game mechanic | Open | DDD |
 | 8 | SS-039 — Latin / indigenous naming layer in panel responses | Open | DDD |
@@ -2059,9 +2060,9 @@ These are not sarcastic. Gordon would agree with all of them. There might be sna
 
 **Status:** Open
 **Loop:** DDD
-**Epic:** Character Expansion
+**Epic:** The Doors
 
-**What it is:** Two comedy chip engines using real character research, surfaced as per-character chips the user can select:
+**What it is:** Two comedy engines using real character research, activated inside The Doors rooms. Not chips — this is what the characters bring through the door with them.
 
 **Engine 1 — Roast chips:** Chips that surface real, documented embarrassing or controversial moments from the character's actual life. The character must discuss it in front of the panel. The panel knows. The character knows the panel knows.
 
@@ -2084,12 +2085,27 @@ These are not sarcastic. Gordon would agree with all of them. There might be sna
 
 **Design notes:**
 - Requires per-character research to surface real documented incidents (not invented ones)
-- Inversion chips are fictional scenarios but must be congruent with the character's real known positions and voice
-- Both chip types feed the ConspireEngine pattern (SS-059 sibling item)
-- Could live on existing How Screwed or I've Had Worse chip surfaces, or as a dedicated mechanic
+- Inversion scenarios are fictional but must be congruent with the character's real known positions and voice
+- Both engines feed the ConspireEngine pattern (SS-059 sibling item)
+- How this material might feed chips on other features is a separate item: SS-086
 
-**Outstanding Three Amigos:** One chip surface or two (roast vs inversion separate)? Which pages? Does the panel see the chip text or just the character? Do other panel members pile on roast chips or is it one-on-one?
+**Outstanding Three Amigos:** Which rooms trigger which characters' material? Does the panel see the embarrassing incident text or does it emerge through the session? Do other panel members pile on or is it one-on-one scrutiny?
 
 **CD3:** C=3 D=3 D=3 → **CD3=27**
 **Status:** OPEN — raised 2026-03-28.
+
+---
+
+### SS-086 — Review SS-085 material as chip stimulus on other features
+
+**Status:** Open
+**Loop:** DDD
+**Epic:** Character Expansion
+
+**What it is:** Once SS-085 per-character roast + inversion material is researched and written up for The Doors, review whether any of it can serve as stimulus for chips on other feature surfaces (How Screwed Am I, I've Had Worse, predicament chip sets, etc.). Design review item — not a build item.
+
+**Dependency:** SS-085 must be researched first. This item fires once SS-085 material exists.
+
+**CD3:** C=3 D=2 D=2 → **CD3=12**
+**Status:** OPEN — raised 2026-03-28. Blocked on SS-085.
 
