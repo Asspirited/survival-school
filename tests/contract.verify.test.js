@@ -122,3 +122,46 @@ describe('POST /survival-school/assess — mundane mode', () => {
       `survival_probability must be ${min}–${max}, got ${prob}`);
   });
 });
+
+// ── POST /survival-school/panel-qa — Panel Q&A schema (SS-009) ──
+describe('POST /survival-school/panel-qa — Panel Q&A mode', () => {
+
+  test('returns 200 with structured JSON containing panel_dynamic', async () => {
+    const interaction = contract.interactions.find(i =>
+      i.request.method === 'POST' && i.description.includes('panel-qa')
+    );
+    assert.ok(interaction, 'contract interaction for panel-qa not found');
+
+    const response = await fetch(`${BASE_URL}${interaction.request.path}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(interaction.request.body),
+      signal: AbortSignal.timeout(CONTRACT_TIMEOUT_MS)
+    });
+
+    assert.strictEqual(response.status, 200, 'expected HTTP 200');
+
+    const data = await response.json();
+
+    assertSchemaFields(data, interaction.response.schema.required, 'panel-qa response');
+
+    assert.ok(Array.isArray(data.panel), 'panel must be an array');
+    assert.ok(data.panel.length > 0, 'panel must not be empty');
+
+    for (const card of data.panel) {
+      assertSchemaFields(card, interaction.response.schema.panel_required_fields, 'panel card');
+    }
+
+    assert.ok(
+      typeof data.panel_dynamic === 'object' && data.panel_dynamic !== null,
+      'panel_dynamic must be an object'
+    );
+    assertSchemaFields(data.panel_dynamic, interaction.response.schema.panel_dynamic_required_fields, 'panel_dynamic');
+
+    const validTypes = interaction.response.schema.panel_dynamic_type_values;
+    assert.ok(
+      validTypes.includes(data.panel_dynamic.type),
+      `panel_dynamic.type must be one of ${validTypes.join(', ')}, got '${data.panel_dynamic.type}'`
+    );
+  });
+});

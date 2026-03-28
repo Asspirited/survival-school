@@ -138,6 +138,54 @@ describe('Feature: Survival School home nav reflects feature status', () => {
   });
 });
 
+// ── Feature: Panel Q&A (SS-009) ──
+describe('Feature: Panel Q&A page loads', () => {
+
+  test('Given a user navigates to Panel Q&A, Then the page returns 200', async () => {
+    const r = await fetch(`${BASE}/survival-school/panel-qa`, { signal: AbortSignal.timeout(TIMEOUT) });
+    assert.strictEqual(r.status, 200);
+    const ct = r.headers.get('content-type') || '';
+    assert.ok(ct.includes('text/html'), `expected text/html, got ${ct}`);
+  });
+});
+
+describe('Feature: Panel Q&A page contains expected elements', () => {
+
+  test('Given the panel-qa page loads, Then it contains question input, chips, and submit button', async () => {
+    const r = await fetch(`${BASE}/survival-school/panel-qa`, { signal: AbortSignal.timeout(TIMEOUT) });
+    const html = await r.text();
+    assert.ok(html.includes('question-input'), 'page must contain question-input element');
+    assert.ok(html.includes('btn-ask'),        'page must contain btn-ask submit button');
+    assert.ok(html.includes('chip'),           'page must contain chip elements');
+  });
+
+  test('Chips cover all six environments', async () => {
+    const r = await fetch(`${BASE}/survival-school/panel-qa`, { signal: AbortSignal.timeout(TIMEOUT) });
+    const html = await r.text();
+    const environments = ['jungle', 'arctic', 'ocean', 'desert', 'urban', 'woodland'];
+    for (const env of environments) {
+      assert.ok(
+        html.toLowerCase().includes(env),
+        `panel-qa page must include a chip covering environment: ${env}`
+      );
+    }
+  });
+
+  test('Page displays David Attenborough full name, not abbreviation', async () => {
+    const r = await fetch(`${BASE}/survival-school/panel-qa`, { signal: AbortSignal.timeout(TIMEOUT) });
+    const html = await r.text();
+    assert.ok(html.includes('David Attenborough'), 'page must display full name: David Attenborough');
+  });
+
+  test('Page declares State, UI, and API module objects', async () => {
+    const r = await fetch(`${BASE}/survival-school/panel-qa`, { signal: AbortSignal.timeout(TIMEOUT) });
+    const html = await r.text();
+    assert.ok(html.includes('const State = {'), 'page must declare State object');
+    assert.ok(html.includes('const UI = {'),    'page must declare UI object');
+    assert.ok(html.includes('const API = {'),   'page must declare API object');
+  });
+});
+
 // ── Feature: The Coyote Index (SS-057) ──
 describe('Feature: The Coyote Index page contains expected content', () => {
 
@@ -172,6 +220,7 @@ describe('Feature: Live feature tiles are present in home page tile grid', () =>
     { name: 'Bear Fact-Checker', href: '/survival-school/fact-checker' },
     { name: 'The Coyote Index', href: '/survival-school/coyote' },
     { name: 'Will You Eat It', href: '/survival-school/eat' },
+    { name: 'Panel Q&A', href: '/survival-school/panel-qa' },
   ];
 
   for (const tile of LIVE_TILES) {
@@ -194,6 +243,7 @@ describe('Feature: Interactive pages declare State, UI, and API module objects',
     { name: 'How Screwed Am I', url: '/survival-school/app',   objects: ['const State = {', 'const UI = {', 'const API = {'] },
     { name: "I've Been Bit, Guys", url: '/survival-school/worst', objects: ['const State = {', 'const UI = {', 'const API = {'] },
     { name: 'The Coyote Index', url: '/survival-school/coyote', objects: ['const State = {', 'const UI = {', 'const API = {'] },
+    { name: 'Panel Q&A', url: '/survival-school/panel-qa', objects: ['const State = {', 'const UI = {', 'const API = {'] },
   ];
 
   for (const page of PAGES) {

@@ -44,7 +44,7 @@ test.describe('Homepage — tile grid and navigation', () => {
     expect(count).toBeGreaterThanOrEqual(1);
   });
 
-  test('all 7 live feature tiles have correct hrefs', async ({ page }) => {
+  test('all 8 live feature tiles have correct hrefs', async ({ page }) => {
     await page.goto('/survival-school');
     const LIVE_TILES = [
       '/survival-school/app',
@@ -54,6 +54,7 @@ test.describe('Homepage — tile grid and navigation', () => {
       '/survival-school/deathmatch',
       '/survival-school/fact-checker',
       '/survival-school/coyote',
+      '/survival-school/panel-qa',
     ];
     for (const href of LIVE_TILES) {
       await expect(page.locator(`a[href="${href}"]`)).toBeVisible();
@@ -70,6 +71,63 @@ test.describe('Homepage — tile grid and navigation', () => {
     await page.goto('/survival-school');
     await page.locator('a[href="/survival-school/deathmatch"]').first().click();
     await expect(page).toHaveURL(/\/survival-school\/deathmatch/);
+  });
+
+  test('clicking Panel Q&A tile navigates to /survival-school/panel-qa', async ({ page }) => {
+    await page.goto('/survival-school');
+    await page.locator('a[href="/survival-school/panel-qa"]').first().click();
+    await expect(page).toHaveURL(/\/survival-school\/panel-qa/);
+  });
+
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// PANEL Q&A — SS-009
+// ─────────────────────────────────────────────────────────────────────────────
+
+test.describe('Panel Q&A — SS-009', () => {
+
+  test('question input is visible on arrival, submit is disabled', async ({ page }) => {
+    await page.goto('/survival-school/panel-qa');
+    await expect(page.locator('#question-input')).toBeVisible();
+    await expect(page.locator('#btn-ask')).toBeDisabled();
+  });
+
+  test('chips are visible below the input', async ({ page }) => {
+    await page.goto('/survival-school/panel-qa');
+    const chips = page.locator('.chip');
+    await expect(chips.first()).toBeVisible();
+    const count = await chips.count();
+    expect(count).toBeGreaterThanOrEqual(6);
+  });
+
+  test('clicking a chip populates the question input and enables submit', async ({ page }) => {
+    await page.goto('/survival-school/panel-qa');
+    await page.locator('.chip').first().click();
+    const value = await page.locator('#question-input').inputValue();
+    expect(value.length).toBeGreaterThan(0);
+    await expect(page.locator('#btn-ask')).toBeEnabled();
+  });
+
+  test('typing in the question input enables submit', async ({ page }) => {
+    await page.goto('/survival-school/panel-qa');
+    await page.locator('#question-input').fill('What do you do with a rattlesnake?');
+    await expect(page.locator('#btn-ask')).toBeEnabled();
+  });
+
+  test('chips cover all six environments', async ({ page }) => {
+    await page.goto('/survival-school/panel-qa');
+    const pageText = await page.locator('body').textContent();
+    const environments = ['jungle', 'arctic', 'ocean', 'desert', 'urban', 'woodland'];
+    for (const env of environments) {
+      expect(pageText.toLowerCase()).toContain(env);
+    }
+  });
+
+  test('David Attenborough full name is displayed, not abbreviation', async ({ page }) => {
+    await page.goto('/survival-school/panel-qa');
+    const pageText = await page.locator('body').textContent();
+    expect(pageText).toContain('David Attenborough');
   });
 
 });

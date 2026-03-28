@@ -80,6 +80,33 @@
       "response": { "status": 200, "headers": { "Content-Type": "text/html; charset=utf-8" } }
     },
     {
+      "description": "GET /survival-school/panel-qa returns HTML",
+      "request": { "method": "GET", "path": "/survival-school/panel-qa" },
+      "response": { "status": 200, "headers": { "Content-Type": "text/html; charset=utf-8" } }
+    },
+    {
+      "description": "POST /survival-school/panel-qa returns structured JSON with panel_dynamic",
+      "request": {
+        "method": "POST",
+        "path": "/survival-school/panel-qa",
+        "headers": { "Content-Type": "application/json" },
+        "body": {
+          "system": "You are the Survival School panel Q&A engine. Respond ONLY with valid JSON matching exactly: {\"attenborough_opening\":\"<string>\",\"panel\":[{\"charId\":\"<string>\",\"text\":\"<string>\"}],\"attenborough_verdict\":\"<string>\",\"panel_dynamic\":{\"type\":\"consensus\",\"between\":[],\"note\":\"\"}}. No markdown. No prose. JSON only.",
+          "question": "What do you do when you encounter a brown bear in the Scottish Highlands?"
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": { "Content-Type": "application/json" },
+        "schema": {
+          "required": ["attenborough_opening", "panel", "attenborough_verdict", "panel_dynamic"],
+          "panel_required_fields": ["charId", "text"],
+          "panel_dynamic_required_fields": ["type"],
+          "panel_dynamic_type_values": ["one_wrong", "both_wrong", "both_right", "consensus"]
+        }
+      }
+    },
+    {
       "description": "POST /survival-school/coyote returns structured JSON with Coyote Index rating",
       "request": {
         "method": "POST",
