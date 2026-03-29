@@ -123,11 +123,11 @@
 | 12 | SS-112 — Character doc: Jim Morrison (corridor guide) — full schema | DONE (created from scratch 2026-03-29) | DDD |
 | 12 | SS-113 — Character doc: Brian Cox — full schema | DONE (full schema + Comedy Engine + WAC 2026-03-29) | DDD |
 | 12 | SS-114 — Character doc: Nick Faldo — full schema | DONE (full schema + Comedy Engine + WAC 2026-03-29) | DDD |
-| 8 | SS-115 — Rod's Memory: Billy Billingham — verbatim personal memories | Open | DDD |
-| 8 | SS-116 — Rod's Memory: Ollie Ollerton — verbatim personal memories | Open | DDD |
-| 8 | SS-117 — Rod's Memory: Coyote Peterson — verbatim personal memories | Open | DDD |
-| 8 | SS-118 — Rod's Memory: Chris Ryan — verbatim personal memories | Open | DDD |
-| 8 | SS-119 — Rod's Memory: Andy McNab — verbatim personal memories | Open | DDD |
+| 8 | SS-115 — Rod's Memory: Billy Billingham — verbatim personal memories | DONE (verbatim + research + Eastwood/Cruise/hostage stories 2026-03-29) | DDD |
+| 8 | SS-116 — Rod's Memory: Ollie Ollerton — verbatim personal memories | DONE (verbatim + research + Iraq/trafficking/break point 2026-03-29) | DDD |
+| 8 | SS-117 — Rod's Memory: Coyote Peterson — verbatim personal memories | DONE (verbatim + research + sting progression/hot dogs 2026-03-29) | DDD |
+| 8 | SS-118 — Rod's Memory: Chris Ryan — verbatim personal memories | DONE (verbatim + research + escape detail/300km 2026-03-29) | DDD |
+| 8 | SS-119 — Rod's Memory: Andy McNab — verbatim personal memories | DONE (verbatim + research + Harrods bag/torture/literacy 2026-03-29) | DDD |
 | 8 | SS-120 — Rod's Memory: Christian Craighead — verbatim personal memories | Open | DDD |
 | 8 | SS-121 — Rod's Memory: Ant Middleton — verbatim personal memories | Open | DDD |
 | 8 | SS-122 — Rod's Memory: Jim Carrey — verbatim personal memories | Open | DDD |
@@ -147,7 +147,13 @@
 | TBD | SS-136 — Room: Which Is Worse — panel compares two unrelated incidents, argues which is worse | Open | BDD |
 | TBD | SS-137 — Room: Who Would Die First — panel rates each other's survival chances in same situation | Open | BDD |
 | TBD | SS-138 — Doors corridor UI redesign: Jim as carnival barker, gold Crimson Text teasers, room names replace numbers | Open | BDD |
-| 12 | SS-139 — Steve Backshall: add voice profile to characters.js (character doc exists at docs/characters/steve-backshall.md, not in code) | Open — SESSION A | DDD |
+| 12 | SS-139 — Steve Backshall: add voice profile to characters.js (character doc exists at docs/characters/steve-backshall.md, not in code) | DONE (characters.js + COMPOSURE + NAMING + relationships + 12 domain tests 2026-03-29) | DDD |
+| 12 | SS-140 — Character parity audit: matrix of every character vs every attribute (voice, integrity, composure, fish disposition, temporal lens, Rod's Memory, character doc, CHAR_COLOUR). Identify and close gaps. | DONE (audit doc + billy/ollie/craighead incidents + Jim Carrey relationships 2026-03-29) | DDD |
+| 10 | SS-141 — Panel member categories: tag each character (Survivalist, Naturalist, Herpetologist, Armed Forces, Fish-Out-of-Water, Wildcard). Powers future selection UI (SS-069). | DONE (PANEL_CATEGORIES + getCharacterCategories + getCharactersByCategory + 9 domain tests 2026-03-29) | DDD |
+| 12 | SS-142 — Character: Bryan Grieg Fry — American venomologist at UQ, bitten 26+ times, Curse of Snake Island, naturally camp and funny, venom evolution specialist | DONE (full profile + composure + naming + relationships + category + 12 domain tests 2026-03-29) | DDD |
+| 18 | SS-143 — Common quotes attribute: add `quotes` array to all characters — concrete catchphrases/verbal tics the LLM anchors on (Wade's "Cowabunga", Stevens' "look at its hood", Billy's "you're a prat", etc.) | DONE (28 characters, 3–7 quotes each, 31 domain tests 2026-03-29) | DDD |
+| 12 | SS-144 — Invented catchphrases mechanic: characters confidently attribute quotes to themselves that don't exist. "As I always say..." — they have never said it. Other characters know. ConspireEngine gold. Rod's idea. | Open | DDD |
+| 14 | SS-145 — Armed forces distinction map: one handle per SF character to prevent voice blur (Assessor/Admitter/Tactician/Reporter/Competitor/Evangelist/Autonomous). Rod confirmed handles. | DONE (design doc 2026-03-29) | DDD |
 | 8.0 | SS-060 — Cross-character panel references (reacts_to schema field) | Open | BDD |
 | 6.3 | SS-061 — Decision loop: Fighting Fantasy mechanic for panel features | Open | BDD |
 | 14.0 | SS-062 — Panel triage order consistency across all panel features | DONE (assessment + mundane fixed, ADR-002 written 2026-03-28) | BDD |

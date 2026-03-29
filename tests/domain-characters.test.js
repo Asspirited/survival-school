@@ -9,7 +9,7 @@
 import { test, describe, before } from 'node:test';
 import assert from 'node:assert/strict';
 
-import { buildSystemPrompt, CHARACTERS, PANEL_IDS, PANEL_POOL, drawPanel, CHAR_COLOURS, FISH_DISPOSITIONS, DISPOSITION_SHIFTS, drawDisposition, buildDispositionState, buildFishDispositionInjection, shiftDisposition, COMPOSURE_PROFILES, initComposureState, computeComposureDeltas, composureTier, buildComposureInjection, TEMPORAL_LENS, TEMPORAL_STATES, hasTemporalLensCharacters, buildTemporalLensInjection, NAMING_CONVENTIONS, buildNamingConventionInjection } from '../js/characters.js';
+import { buildSystemPrompt, CHARACTERS, PANEL_IDS, PANEL_POOL, drawPanel, CHAR_COLOURS, FISH_DISPOSITIONS, DISPOSITION_SHIFTS, drawDisposition, buildDispositionState, buildFishDispositionInjection, shiftDisposition, COMPOSURE_PROFILES, initComposureState, computeComposureDeltas, composureTier, buildComposureInjection, TEMPORAL_LENS, TEMPORAL_STATES, hasTemporalLensCharacters, buildTemporalLensInjection, NAMING_CONVENTIONS, buildNamingConventionInjection, PANEL_CATEGORIES, getCharacterCategories, getCharactersByCategory } from '../js/characters.js';
 
 // ── SS-065 — Panel pool + drawPanel ──────────────────────────────────────────
 
@@ -676,6 +676,142 @@ describe('Chris Packham — SS-013', () => {
   test('"packham" does NOT have a fish property (he is an expert, not fish-out-of-water)', () => {
     assert.ok(!CHARACTERS.packham.fish,
       '"packham" must NOT have a fish property — he is a domain expert');
+  });
+});
+
+// ── SS-139 — Steve Backshall ────────────────────────────────────────────────
+
+describe('Steve Backshall — SS-139', () => {
+  test('"backshall" is present in CHARACTERS', () => {
+    assert.ok(Object.prototype.hasOwnProperty.call(CHARACTERS, 'backshall'),
+      '"backshall" must be a key in CHARACTERS');
+  });
+
+  test('"backshall" is in PANEL_POOL', () => {
+    assert.ok(PANEL_POOL.includes('backshall'),
+      '"backshall" must be in PANEL_POOL');
+  });
+
+  test('"backshall" has required character fields', () => {
+    const b = CHARACTERS.backshall;
+    assert.ok(b.name,    '"backshall" must have a name');
+    assert.ok(b.role,    '"backshall" must have a role');
+    assert.ok(b.av,      '"backshall" must have av initials');
+    assert.ok(b.avClass, '"backshall" must have avClass');
+    assert.ok(b.voice,   '"backshall" must have a voice description');
+  });
+
+  test('"backshall" av initials are "SB"', () => {
+    assert.strictEqual(CHARACTERS.backshall.av, 'SB');
+  });
+
+  test('"backshall" is in CHAR_COLOURS', () => {
+    assert.ok(Object.prototype.hasOwnProperty.call(CHAR_COLOURS, 'backshall'),
+      '"backshall" must have an entry in CHAR_COLOURS');
+  });
+
+  test('"backshall" has integrity with COMPLY-UNCOMFORTABLE position', () => {
+    assert.ok(CHARACTERS.backshall.integrity, '"backshall" must have integrity');
+    assert.strictEqual(CHARACTERS.backshall.integrity.position, 'COMPLY-UNCOMFORTABLE');
+  });
+
+  test('"backshall" has incidents array', () => {
+    assert.ok(Array.isArray(CHARACTERS.backshall.incidents), '"backshall" must have incidents array');
+    assert.ok(CHARACTERS.backshall.incidents.length >= 3, '"backshall" must have at least 3 incidents');
+  });
+
+  test('"backshall" has COMPOSURE_PROFILES entry', () => {
+    assert.ok(Object.prototype.hasOwnProperty.call(COMPOSURE_PROFILES, 'backshall'),
+      '"backshall" must have a COMPOSURE_PROFILES entry');
+    assert.strictEqual(COMPOSURE_PROFILES.backshall.baseline, 7);
+  });
+
+  test('"backshall" has NAMING_CONVENTIONS entry', () => {
+    assert.ok(Object.prototype.hasOwnProperty.call(NAMING_CONVENTIONS, 'backshall'),
+      '"backshall" must have a NAMING_CONVENTIONS entry');
+  });
+
+  test('"backshall" voice mentions Deadly 60', () => {
+    assert.ok(CHARACTERS.backshall.voice.includes('Deadly 60'),
+      '"backshall" voice must reference Deadly 60');
+  });
+
+  test('"backshall" voice mentions TELEPHONE GAME', () => {
+    assert.ok(CHARACTERS.backshall.voice.includes('TELEPHONE GAME'),
+      '"backshall" voice must describe the Telephone Game mechanic');
+  });
+
+  test('"backshall" does NOT have a fish property (he is a naturalist, not fish-out-of-water)', () => {
+    assert.ok(!CHARACTERS.backshall.fish,
+      '"backshall" must NOT have a fish property — he is a domain expert');
+  });
+});
+
+// ── SS-142 — Bryan Grieg Fry ────────────────────────────────────────────────
+
+describe('Bryan Grieg Fry — SS-142', () => {
+  test('"fry" is present in CHARACTERS', () => {
+    assert.ok(Object.prototype.hasOwnProperty.call(CHARACTERS, 'fry'),
+      '"fry" must be a key in CHARACTERS');
+  });
+
+  test('"fry" is in PANEL_POOL', () => {
+    assert.ok(PANEL_POOL.includes('fry'),
+      '"fry" must be in PANEL_POOL');
+  });
+
+  test('"fry" has required character fields', () => {
+    const f = CHARACTERS.fry;
+    assert.ok(f.name,    '"fry" must have a name');
+    assert.ok(f.role,    '"fry" must have a role');
+    assert.ok(f.av,      '"fry" must have av initials');
+    assert.ok(f.avClass, '"fry" must have avClass');
+    assert.ok(f.voice,   '"fry" must have a voice description');
+  });
+
+  test('"fry" av initials are "BF"', () => {
+    assert.strictEqual(CHARACTERS.fry.av, 'BF');
+  });
+
+  test('"fry" is in CHAR_COLOURS', () => {
+    assert.ok(Object.prototype.hasOwnProperty.call(CHAR_COLOURS, 'fry'),
+      '"fry" must have an entry in CHAR_COLOURS');
+  });
+
+  test('"fry" has integrity with COMPLY-LECTURE position', () => {
+    assert.ok(CHARACTERS.fry.integrity, '"fry" must have integrity');
+    assert.strictEqual(CHARACTERS.fry.integrity.position, 'COMPLY-LECTURE');
+  });
+
+  test('"fry" has incidents array', () => {
+    assert.ok(Array.isArray(CHARACTERS.fry.incidents), '"fry" must have incidents array');
+    assert.ok(CHARACTERS.fry.incidents.length >= 3, '"fry" must have at least 3 incidents');
+  });
+
+  test('"fry" has COMPOSURE_PROFILES entry', () => {
+    assert.ok(Object.prototype.hasOwnProperty.call(COMPOSURE_PROFILES, 'fry'),
+      '"fry" must have a COMPOSURE_PROFILES entry');
+    assert.strictEqual(COMPOSURE_PROFILES.fry.baseline, 6);
+  });
+
+  test('"fry" has NAMING_CONVENTIONS entry', () => {
+    assert.ok(Object.prototype.hasOwnProperty.call(NAMING_CONVENTIONS, 'fry'),
+      '"fry" must have a NAMING_CONVENTIONS entry');
+  });
+
+  test('"fry" voice mentions venom', () => {
+    assert.ok(CHARACTERS.fry.voice.toLowerCase().includes('venom'),
+      '"fry" voice must reference venom');
+  });
+
+  test('"fry" does NOT have a fish property (he is a herpetologist, not fish-out-of-water)', () => {
+    assert.ok(!CHARACTERS.fry.fish,
+      '"fry" must NOT have a fish property — he is a domain expert');
+  });
+
+  test('"fry" is in herpetologist category', () => {
+    assert.ok(PANEL_CATEGORIES.herpetologist.includes('fry'),
+      '"fry" must be in the herpetologist category');
   });
 });
 
@@ -1430,4 +1566,115 @@ describe('buildNamingConventionInjection — SS-039', () => {
     const result = buildNamingConventionInjection(['nonexistent_id']);
     assert.strictEqual(result, '', 'must return empty for unknown character IDs');
   });
+});
+
+// ── SS-141 — Panel Member Categories ──────────────────────────────────────────
+
+describe('PANEL_CATEGORIES — SS-141', () => {
+  const EXPECTED_CATEGORIES = ['survivalist', 'armed_forces', 'naturalist', 'herpetologist', 'fish_out_of_water', 'wildcard'];
+
+  test('PANEL_CATEGORIES has all expected category keys', () => {
+    for (const cat of EXPECTED_CATEGORIES) {
+      assert.ok(Object.prototype.hasOwnProperty.call(PANEL_CATEGORIES, cat),
+        `PANEL_CATEGORIES must include '${cat}'`);
+    }
+  });
+
+  test('every character ID in categories exists in CHARACTERS', () => {
+    for (const [cat, ids] of Object.entries(PANEL_CATEGORIES)) {
+      for (const id of ids) {
+        assert.ok(Object.prototype.hasOwnProperty.call(CHARACTERS, id),
+          `Category '${cat}' includes '${id}' but CHARACTERS has no entry`);
+      }
+    }
+  });
+
+  test('every PANEL_POOL member appears in at least one category', () => {
+    for (const id of PANEL_POOL) {
+      const cats = getCharacterCategories(id);
+      assert.ok(cats.length > 0,
+        `PANEL_POOL member '${id}' is not in any category`);
+    }
+  });
+
+  test('getCharacterCategories returns correct categories for ray', () => {
+    const cats = getCharacterCategories('ray');
+    assert.ok(cats.includes('survivalist'), 'ray must be a survivalist');
+    assert.ok(!cats.includes('fish_out_of_water'), 'ray must not be fish_out_of_water');
+  });
+
+  test('getCharacterCategories returns correct categories for cox', () => {
+    const cats = getCharacterCategories('cox');
+    assert.ok(cats.includes('fish_out_of_water'), 'cox must be fish_out_of_water');
+    assert.ok(!cats.includes('survivalist'), 'cox must not be a survivalist');
+  });
+
+  test('getCharactersByCategory returns correct characters for armed_forces', () => {
+    const chars = getCharactersByCategory('armed_forces');
+    assert.ok(chars.includes('fox'), 'armed_forces must include fox');
+    assert.ok(chars.includes('billy'), 'armed_forces must include billy');
+    assert.ok(!chars.includes('bear'), 'armed_forces must not include bear');
+  });
+
+  test('getCharactersByCategory returns empty array for unknown category', () => {
+    const chars = getCharactersByCategory('nonexistent');
+    assert.deepStrictEqual(chars, []);
+  });
+
+  test('survivalist category has at least 5 members', () => {
+    assert.ok(PANEL_CATEGORIES.survivalist.length >= 5);
+  });
+
+  test('armed_forces category has at least 5 members', () => {
+    assert.ok(PANEL_CATEGORIES.armed_forces.length >= 5);
+  });
+});
+
+// ── SS-143 — Common quotes attribute ────────────────────────────────────────
+
+const QUOTE_MINIMUMS = {
+  ray: 4, bear: 4, cody: 4, hales: 4, fox: 4, billy: 4,
+  ollie: 3, craighead: 3, coyote: 4, attenborough: 4,
+  oshea: 4, stevens: 4, stroud: 3, jim: 4, jeremy: 5,
+  middleton: 4, mcnab: 3, ryan: 3, cox: 4, faldo: 4,
+  hawking: 3, lee: 4, gordon: 4, bristow: 4, keane: 4,
+  packham: 4, backshall: 4, fry: 3
+};
+
+describe('SS-143 — Common quotes attribute', () => {
+
+  test('every character in CHARACTERS has a quotes array', () => {
+    const charIds = Object.keys(CHARACTERS);
+    for (const id of charIds) {
+      assert.ok(Array.isArray(CHARACTERS[id].quotes),
+        `${id} must have a quotes array`);
+      assert.ok(CHARACTERS[id].quotes.length >= 3,
+        `${id} must have at least 3 quotes, got ${CHARACTERS[id].quotes.length}`);
+    }
+  });
+
+  test('every quote is a non-empty string', () => {
+    for (const [id, char] of Object.entries(CHARACTERS)) {
+      for (const q of char.quotes) {
+        assert.strictEqual(typeof q, 'string', `${id} has a non-string quote`);
+        assert.ok(q.trim().length > 0, `${id} has an empty quote`);
+      }
+    }
+  });
+
+  test('no duplicate quotes within a character', () => {
+    for (const [id, char] of Object.entries(CHARACTERS)) {
+      const unique = new Set(char.quotes);
+      assert.strictEqual(unique.size, char.quotes.length,
+        `${id} has duplicate quotes`);
+    }
+  });
+
+  for (const [charId, min] of Object.entries(QUOTE_MINIMUMS)) {
+    test(`${charId} has at least ${min} quotes (variety requirement)`, () => {
+      assert.ok(CHARACTERS[charId], `${charId} must exist in CHARACTERS`);
+      assert.ok(CHARACTERS[charId].quotes.length >= min,
+        `${charId} needs at least ${min} quotes for variety, got ${CHARACTERS[charId].quotes.length}`);
+    });
+  }
 });

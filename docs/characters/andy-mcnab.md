@@ -4,17 +4,35 @@
 
 ---
 
-## Rod's Memory (verbatim — TBC)
+## Rod's Memory (verbatim — captured 2026-03-29)
 
-**NOT YET CAPTURED.** Rod's personal memories for Andy McNab have not been given verbatim. Protocol: Claude Code writes to this file immediately when Rod provides them.
+McNab is just funny coz I imagine he spends his life with black tape across his eyes so as not to reveal who he is. His personal book piqued my interest in SAS books and stories when he released it — extraordinary life, but very real, mundane or blue collar standard for UK maybe. Again in Bravo Two Zero — didn't go well. Hard as nails.
+
+The only thing with our armed forces folks is finding the distinctions that tease them apart and bring each to life — as they are very similar in many ways.
+
+**Rod's read:** McNab's life is extraordinary but the background is recognisably normal for working-class UK. That's part of the character — the gap between the mundane origin and what he became. The black tape across the eyes IS the comedy image. The pixelated face, the silhouette interviews, the classified memoir — he's the most famous anonymous man in Britain. Hard as nails, but the distinction from the other SF characters needs to be sharp or they all blur together.
 
 ---
 
 ## The Character
 
-Andy McNab. Pseudonym. 22 SAS. B Squadron. Bravo Two Zero patrol commander, January 1991: eight men behind Iraqi lines, compromised, three dead, four captured (including McNab — tortured for six weeks), one escaped (Ryan). Distinguished Conduct Medal. Most decorated serving soldier at time of discharge.
+Andy McNab. Real name reportedly Steven Billy Mitchell. Born 28 December 1959, Southwark, South London. Abandoned as a baby — left on the steps of Guy's Hospital in a Harrods carrier bag when he was a few days old. Adopted by a working-class family, grew up on a council estate in Peckham. Petty criminal as a teenager — burglary, stealing cars. Functionally illiterate when he joined the army. A juvenile court magistrate reportedly gave him the choice: army or young offenders' institution. Royal Green Jackets, 1977, age 16. The army taught him to read. Then he became a bestselling author.
 
-Wrote Bravo Two Zero (1993) — the account. Chris Ryan wrote The One That Got Away (1995) — a different account. The accounts disagree on specifics. Both men are certain. This is the comedy engine. Uses a pseudonym. Real name classified. Face not shown publicly until 2012. Mentioned this once on a chat show and immediately moved on.
+22 SAS, B Squadron. Bravo Two Zero patrol commander, January 1991: eight men behind Iraqi lines to find mobile Scud launchers and sever a fibre-optic cable. Compromised within 24 hours — a young Iraqi goatherd stumbled on their position. Couldn't kill a child. Radio comms failed. Weather brutal — sub-zero, snow, sleet, not equipped for it. Terrain flat and featureless, not the broken ground they'd been briefed.
+
+Three dead (Vince Phillips — hypothermia, Robert Consiglio — killed providing covering fire, "Legs" Lane — hypothermia). Four captured including McNab. One escaped (Ryan — 300km to Syria). McNab was a POW for approximately six weeks.
+
+**The torture:** Systematic beatings — fists, boots, rifle butts, rubber hoses. Teeth smashed out with a rifle butt. Burned with cigarettes and heated metal. Mock executions. Stress positions. Sensory deprivation. Ear drum perforated. Starvation. He describes all of this like filing a report. "They came in and started to work on me." No adjectives about pain. No emotional state. This happened, then this happened, then this happened.
+
+Distinguished Conduct Medal — second-highest gallantry award after the VC. Also holds the Military Medal for earlier action in Northern Ireland (counterterrorism, IRA). One of very few soldiers to hold both DCM and MM. Most decorated serving soldier at time of discharge.
+
+**The face:** Kept his identity hidden for years after publication. Pixelated author photos. Silhouette TV interviews. Black tape across the eyes. The most famous anonymous man in Britain. Eventually revealed his face publicly through the 2000s.
+
+**The books:** Bravo Two Zero (1993) — best-selling war book in British publishing history. Immediate Action (1995) — autobiography, MoD tried to block publication. Then the Nick Stone thriller series (~20 novels). Over 40 books total. Also wrote Quick Reads — short books for adult reluctant readers, directly connected to his own literacy experience. The Sean Bean TV film (1999) cemented him as the more famous half of the McNab/Ryan pair.
+
+**Tracing his birth mother:** Found her later in life. Not a warm sentimental reunion — described matter-of-factly, consistent with everything else. The Harrods bag detail: he's noted with dry humour that at least he was left in a quality carrier bag.
+
+**Literacy campaigning:** Given his own illiteracy until adulthood, he's been involved in promoting reading for young men and veterans. This is arguably his most genuine public contribution.
 
 ---
 

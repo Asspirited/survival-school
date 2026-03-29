@@ -4,17 +4,37 @@
 
 ---
 
-## Rod's Memory (verbatim — TBC)
+## Rod's Memory (verbatim — captured 2026-03-29)
 
-**NOT YET CAPTURED.** Rod's personal memories for Coyote Peterson have not been given verbatim. Protocol: Claude Code writes to this file immediately when Rod provides them.
+My son knows him, not me. Nutter who gets stung by shit. But the thing I love most about him — and I told the AI that lost the chat — is how carefully he treats the thing that has just bitten him. Taking care not to kill it or let it escape, but carefully trapping it back in its container, while his veins course with venom. That's the defining image. That's the comedy and the character in one action.
+
+**Rod's read:** The careful replacement IS the character. Everything else — the screaming, the ratings, the clinical reports — is secondary to the fact that he prioritises the animal's safety while his own body is on fire. That's not performed. That's real.
 
 ---
 
 ## The Character
 
-Coyote Peterson. YouTube: Brave Wilderness. Deliberately stung and bitten by bullet ant (4.0), executioner wasp (4.5+, off the scale), Gila monster, tarantula hawk, warrior wasp, and others. All documented. All for science.
+Real name: Nathaniel "Coyote" Peterson. Born 1981, Newbury Center, Ohio — rural, horse farm. Mother gave him the name "Coyote" at age eight because he stalked roadrunners in Arizona trying to find regal horned lizards, Wile E. Coyote style. It stuck permanently. Film degree from Ohio State. No formal biological training whatsoever — entirely self-taught. Has been handling wildlife since childhood. Approximately 50 creatures have bitten or stung him on camera.
+
+YouTube: Brave Wilderness — 21.6 million subscribers, 5.29 billion views. Guinness World Record holder: most-subscribed animal channel. Emmy winner (Breaking Trail, 2015).
+
+**The sting progression:** Systematically worked his way up the Schmidt Sting Pain Index from harvester ants through the only three insects rated 4.0 — tarantula hawk, warrior wasp, bullet ant — then discovered the executioner wasp isn't even on Schmidt's index and crowned it king.
+
+**The bullet ant (Costa Rica, December 2016):** Grasped the ant with forceps, pressed it to his shaved forearm. Received approximately three times the normal venom load. Screamed, collapsed trembling, face turned white, veins in neck popping, vocalisations became "stranger and more primitive." Described it as "like it got smashed by a scalding hot hammer." Pain lasted over 24 hours. Reportedly experienced hallucinations. 40+ million views.
+
+**The executioner wasp:** Hit with near-paralysis, almost made him cry. Curled into fetal position. Pain lasted 36 hours and only got worse, not better. A week later the necrotic venom had rotted a permanent hole-shaped scar into his arm. His verdict: "The executioner is king."
+
+**The Gila monster (accidental):** Worst bite of his career, unplanned. Thumb in its mouth for less than a second. Venom travelled through hand, up arm, into shoulder and chest. "Hot lava coursing through your veins." Within two hours he entered a state of delusion where he "actually started considering that removing my arm would be less painful." Eight hours. No anti-venom exists. You ride it out.
+
+**The giant desert centipede:** First time cameras were ever shut down — pain too intense to continue. Arm swelled to three times normal size. "My arm looked like a hotdog that was ready to explode." Blood cells literally detonating. Nine hours. First time he ever sought emergency medical care after an encounter.
+
+**The porcupine that started everything (2014):** Montana. Noticed the handler wearing leather gloves. "Because I don't want to get quilled." Peterson immediately volunteered to get quilled on camera to show viewers how the quills work. 22+ million views. Launched the entire sting/bite format by accident.
+
+**No formal training.** Works alongside Mario Aldecoa, a trained wildlife biologist. They maintain epinephrine pens, medical professionals on standby, and satellite phones ensuring helicopter evacuation within minutes. Studies up to 100 species before entering an environment.
 
 The defining image: screams in documented agony, then carefully returns the animal to the handler with full respect, then delivers a clinical pain report. The animal is never harmed. He has strong feelings about this. Carefully replacing the trolley in the bay, while the venom floods his system, and giving it a respectful pat.
+
+**His default metaphor for swelling under venom is sausage-based.** Hot dogs, specifically. This appears to be involuntary.
 
 ---
 

@@ -26,6 +26,8 @@ cd /home/rodent/survival-school && cat \
   docs/the-rooms-design-brief.md \
   docs/ss-086-roast-review.md \
   docs/doors-ui-redesign.md \
+  docs/character-parity-audit.md \
+  docs/armed-forces-distinction-map.md \
   $(find docs/domains/ -name "*.md" 2>/dev/null | sort) \
   $(find docs/characters/ -name "*.md" 2>/dev/null | sort) \
   $(find features/ -name "*.feature" 2>/dev/null | sort) \

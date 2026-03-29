@@ -4,26 +4,25 @@
 
 ---
 
-## Rod's Memory (verbatim — TBC)
+## Rod's Memory (verbatim — captured 2026-03-29)
 
-**NOT YET CAPTURED.** Rod's personal memories for Chris Ryan have not been
-given verbatim. This section must be filled when Rod provides them.
-Protocol: Claude Code writes to this file immediately, returns the file
-path, confirms the write before Rod continues.
+Again no nonsense, but the thing he did to get out of Iraq was insane, absolutely insane endurance — longest exfil in SAS history I think. Read a couple of his books, meh :)
+
+**Rod's read:** The escape is the character. The books are forgettable but the 300km is not. The endurance is real and beyond dispute — everything else around him (the McNab feud, the publishing career, the TV work) is secondary to the fact that he walked 300km across the Iraqi desert alone and survived. That's the credential. The books are the commercial wrapper.
 
 ---
 
 ## The Character
 
-Chris Ryan. Pseudonym. 22 SAS. B Squadron. Bravo Two Zero patrol member.
-The one who escaped. Walked 300km across the Iraqi desert to the Syrian
-border in January 1991 — the longest escape and evasion in SAS history.
-The record still stands.
+Chris Ryan. Real name: Colin Armstrong Mitchell. Born 1961, Newcastle upon Tyne. Working-class Geordie. Pseudonym is standard SAS practice. 22 SAS, B Squadron. Bravo Two Zero patrol member. The one who escaped.
 
-Wrote The One That Got Away (1995). Andy McNab wrote Bravo Two Zero
-(1993). The accounts do not agree on specifics. Both men are certain.
-Neither has retracted. This is the comedy engine when both are present
-on a panel.
+**The escape:** 300km across the Iraqi desert to the Syrian border, January 1991. Seven nights and eight days. Temperatures down to -10°C — sub-zero, rain, sleet, snow. Moved at night, lay up during the day. Drank from irrigation ditches and puddles. Drank his own urine. Ate practically nothing for the entire evasion. Feet destroyed — blisters, trench foot. Lost approximately 16kg (36 lbs). Near total physical collapse when he crossed into Syria. Longest escape and evasion in SAS history. The record still stands.
+
+**The patrol:** Eight men inserted behind Iraqi lines, 22 January 1991. Compromised within 24 hours — a goatherd stumbled on their position. Radio comms failed. Terrain was flat, featureless desert, not the broken ground they'd been briefed. Weather far worse than expected. No vehicle (dispute about whether vehicles were denied or never planned). Sergeant Vince Phillips died of hypothermia on the first night. Trooper Robert Consiglio killed providing covering fire. Four captured including McNab — tortured for six weeks. Ryan was the only one to escape.
+
+**A third account:** Michael Asher (former SAS) retraced the route in 2002, interviewed Iraqi witnesses, and challenged significant claims in BOTH McNab's and Ryan's books. A fourth version came from Mike Coburn (patrol member, published "Soldier Five" in 2004). Four accounts of the same patrol. None agree.
+
+Wrote The One That Got Away (1995). McNab wrote Bravo Two Zero (1993). The accounts disagree on: why comms failed, how the compromise happened, who did what during firefights, grid references, timings, and critically — how Ryan became separated (McNab implies Ryan went off on his own; Ryan says chaos of a contact). Both are in print. Neither has retracted. Over 30 subsequent books, mostly thrillers — prolific commercial output. TV consultant on Ultimate Force (ITV, Ross Kemp, 2002-2008).
 
 ---
 
