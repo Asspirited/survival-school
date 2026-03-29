@@ -847,3 +847,37 @@ describe('Feature: Cross-character panel references (SS-060)', () => {
     assert.ok(html.includes('thread-indicator') || html.includes('reacts-to'), 'IHW must contain thread indicator rendering element or class');
   });
 });
+
+// ── Feature: Multi-turn auto-escalation loop for Doors (SS-061) ──
+describe('Feature: Multi-turn auto-escalation loop for Doors (SS-061)', () => {
+
+  test('Given the IHW system prompt, Then it contains protagonist_response instruction', async () => {
+    const r = await fetch(`${BASE}/survival-school/ive-had-worse`, { signal: AbortSignal.timeout(TIMEOUT) });
+    const html = await r.text();
+    assert.ok(html.includes('protagonist_response'), 'IHW prompt must contain protagonist_response instruction');
+  });
+
+  test('Given the IHW output schema, Then it includes protagonist_response field', async () => {
+    const r = await fetch(`${BASE}/survival-school/ive-had-worse`, { signal: AbortSignal.timeout(TIMEOUT) });
+    const html = await r.text();
+    assert.ok(html.includes('"protagonist_response"'), 'IHW output schema must include protagonist_response field');
+  });
+
+  test('Given the IHW page, Then it contains LET THEM DIG interaction element', async () => {
+    const r = await fetch(`${BASE}/survival-school/ive-had-worse`, { signal: AbortSignal.timeout(TIMEOUT) });
+    const html = await r.text();
+    assert.ok(html.includes('LET THEM DIG'), 'IHW must contain LET THEM DIG button');
+  });
+
+  test('Given the IMD system prompt, Then it contains protagonist_response instruction', async () => {
+    const r = await fetch(`${BASE}/survival-school/in-my-defence`, { signal: AbortSignal.timeout(TIMEOUT) });
+    const html = await r.text();
+    assert.ok(html.includes('protagonist_response'), 'IMD prompt must contain protagonist_response instruction');
+  });
+
+  test('Given the IMD page, Then it contains LET THEM DIG interaction element', async () => {
+    const r = await fetch(`${BASE}/survival-school/in-my-defence`, { signal: AbortSignal.timeout(TIMEOUT) });
+    const html = await r.text();
+    assert.ok(html.includes('LET THEM DIG'), 'IMD must contain LET THEM DIG button');
+  });
+});
