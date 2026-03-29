@@ -611,6 +611,74 @@ describe('Sir Nick Faldo — SS-098', () => {
   });
 });
 
+// ── SS-013 — Chris Packham character ──────────────────────────────────────────
+
+describe('Chris Packham — SS-013', () => {
+  test('"packham" is present in CHARACTERS', () => {
+    assert.ok(Object.prototype.hasOwnProperty.call(CHARACTERS, 'packham'),
+      '"packham" must be a key in CHARACTERS');
+  });
+
+  test('"packham" is in PANEL_POOL', () => {
+    assert.ok(PANEL_POOL.includes('packham'),
+      '"packham" must be in PANEL_POOL');
+  });
+
+  test('"packham" has required character fields', () => {
+    const packham = CHARACTERS.packham;
+    assert.ok(packham.name,    '"packham" must have a name');
+    assert.ok(packham.role,    '"packham" must have a role');
+    assert.ok(packham.av,      '"packham" must have av initials');
+    assert.ok(packham.avClass, '"packham" must have avClass');
+    assert.ok(packham.voice,   '"packham" must have a voice description');
+  });
+
+  test('"packham" av initials are "CP"', () => {
+    assert.strictEqual(CHARACTERS.packham.av, 'CP');
+  });
+
+  test('"packham" is in CHAR_COLOURS', () => {
+    assert.ok(Object.prototype.hasOwnProperty.call(CHAR_COLOURS, 'packham'),
+      '"packham" must have an entry in CHAR_COLOURS');
+  });
+
+  test('"packham" has integrity with NEGOTIATE-THROW position', () => {
+    assert.ok(CHARACTERS.packham.integrity, '"packham" must have integrity');
+    assert.strictEqual(CHARACTERS.packham.integrity.position, 'NEGOTIATE-THROW');
+  });
+
+  test('"packham" has incidents array', () => {
+    assert.ok(Array.isArray(CHARACTERS.packham.incidents), '"packham" must have incidents array');
+    assert.ok(CHARACTERS.packham.incidents.length >= 3, '"packham" must have at least 3 incidents');
+  });
+
+  test('"packham" has COMPOSURE_PROFILES entry', () => {
+    assert.ok(Object.prototype.hasOwnProperty.call(COMPOSURE_PROFILES, 'packham'),
+      '"packham" must have a COMPOSURE_PROFILES entry');
+    assert.strictEqual(COMPOSURE_PROFILES.packham.baseline, 8);
+  });
+
+  test('"packham" has NAMING_CONVENTIONS entry', () => {
+    assert.ok(Object.prototype.hasOwnProperty.call(NAMING_CONVENTIONS, 'packham'),
+      '"packham" must have a NAMING_CONVENTIONS entry');
+  });
+
+  test('"packham" deathLine references animals', () => {
+    assert.ok(CHARACTERS.packham.deathLine.toLowerCase().includes('animal'),
+      '"packham" deathLine must reference animals');
+  });
+
+  test('"packham" voice mentions ETHICAL OVERRIDE', () => {
+    assert.ok(CHARACTERS.packham.voice.includes('ETHICAL OVERRIDE'),
+      '"packham" voice must describe the Ethical Override mechanic');
+  });
+
+  test('"packham" does NOT have a fish property (he is an expert, not fish-out-of-water)', () => {
+    assert.ok(!CHARACTERS.packham.fish,
+      '"packham" must NOT have a fish property — he is a domain expert');
+  });
+});
+
 // ── SS-098 — Fish Disposition Engine ────────────────────────────────────────
 
 describe('FISH_DISPOSITIONS — SS-098', () => {

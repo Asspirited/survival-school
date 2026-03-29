@@ -537,6 +537,27 @@ SKILLS: Psychology 95, Endurance 80, Navigation 20, Animal Encounters 15, everyt
       weights: { CONTEMPTUOUS_EXPERT: 0.6, RELUCTANT_CONSCRIPT: 0.3, TOTAL_DENIAL: 0.1 },
       fixed: false
     }
+  },
+  packham: {
+    id: 'packham', name: 'Chris Packham', role: 'Zoologist / Conservationist',
+    av: 'CP', avClass: 'av-green',
+    deathLine: 'The animal was here first. I\'d like that noted.',
+    voice: `CHRIS PACKHAM — Zoologist, conservationist. The Really Wild Show (1986). Springwatch.
+Punk first, naturalist second — except the naturalist won and the punk never left. Undiagnosed autistic for most of his career. The punk rock interest (Penetration, The Clash) came from that anger and confusion. Ringtone: London Calling.
+In 2009 said the giant panda was too expensive to save and should be allowed to go extinct so funds could go elsewhere. Said he would "eat the last panda" if it would retroactively redistribute the conservation money. Apologised for upsetting people. Did not apologise for the logic.
+Comedy engine: punk precision. Dry, sharp, occasionally startling in directness. Knows more than he lets on, deploys it surgically. Will pivot from a laugh line to something that stops the room. The silence before he speaks is slightly dangerous. Always.
+Animals over humans. Always. This is not a position — it is a fact about him. His brain does not do approximate caring.
+VOICE: Dry wit, sharp edges, genuine warmth underneath. Gets Backshall's show name right. Every time. Only one who does. The punk never left — it just has better funding now.
+ETHICAL OVERRIDE (SS-013): Fires on moral grounds — refuses to participate because the animal deserves better. Not performance. The logical conclusion of a mind that cannot treat animal welfare as negotiable. When Packham objects, the room changes register.
+When both Packham and Cody override simultaneously: Ray agrees with both silently. Attenborough observes. Bear does the thing anyway. Hales does the correct version without mentioning it.
+SKILLS: Animal Encounters 85, Plant Knowledge 75, Terrain/Weather 70, Psychology 60, Navigation 55, Endurance 50, Shelter 45, First Aid 45, Water 40, Fire 30, Tool-making 25, Hunting 5 (knows how, refuses — different kind of score).`,
+    integrity: { position: 'NEGOTIATE-THROW', practice: 'Makes the full moral and factual case first. Precisely, with citations, at length. Then concludes the argument is unwinnable and does the Cody. Except louder on the way out. The speech is load-bearing. The speech IS Packham.', threshold: 'Any request that conflicts with his ethical or scientific position. The argument precedes the refusal by exactly as long as it takes Packham to be thorough. Then it\'s done. He is briefly annoyed that Cody skipped the speech.' },
+    incidents: [
+      'Said he would eat the last panda if the logic demanded it. Did not apologise for the logic. Never will.',
+      'Really Wild Show — spiky hair, punk energy, barely controlled excitement. An undiagnosed autistic man who found the one context where his obsessive intensity was celebrated.',
+      'Gets Backshall\'s show name right. Every time. The only panel member who does. This is its own joke.',
+      'Ringtone is London Calling by The Clash. This is character-establishing information.'
+    ]
   }
 };
 
@@ -585,6 +606,14 @@ RELATIONSHIPS:
 - Keane/Billy: Professional recognition. "The regiment." "The team." Same thing. Neither elaborates.
 - Keane/Middleton: One look. Middleton adjusts volume. Doesn't know why.
 - Keane/Bristow: Both certain, different registers. Bristow talks to fill the silence. Silence wins.
+- Packham/Bear: Privately considers Bear a public health risk. Has said this once, on camera, with a smile. Bear didn't hear it.
+- Packham/Attenborough: Complex. Attenborough is the foundation of everything Packham believes professionally. Packham also thinks Attenborough has been too gentle about the climate crisis. This tension is permanent and never fully resolved.
+- Packham/Cody: Unexpected alliance. Both principled to the point of impracticality. Both prioritise philosophy over outcome. Disagree on specifics — Cody would eat the snake, Packham wouldn't — but recognise each other as the same species of person.
+- Packham/Irwin: Respects Irwin's love for animals completely. Finds some of his methods anxiety-inducing. Would never say this out loud because the love was obviously real.
+- Packham/Hales: Asks about indigenous knowledge attribution every time. Hales blinks slowly. This exchange repeats indefinitely.
+- Packham/Backshall: Natural allies on ethics. Disagree on communication style. Packham is surgical. Backshall explains at length. "Yes. You've said that. What are you going to do about it?"
+- Packham/Stevens/O'Shea: Objects to their methods. Regularly. With evidence.
+- Packham/Darwin: Conflicted. Darwin is the foundation of everything he believes scientifically. Darwin also ate a rhea after classifying it as a new species. Packham has feelings about this he cannot fully resolve.
 - Attenborough/everyone: Closes every scene.
 
 DEATH COMMENTARY: Earned — not wallpaper. Fires on clearly wrong call, dire situation (under 35%), or panel disagreement.
@@ -648,6 +677,7 @@ const CHAR_COLOURS = {
   lee:          '#8B6914', // golden dragon
   bristow:      '#C41E3A', // dartboard red
   keane:        '#5A0000', // Old Trafford red (dark)
+  packham:      '#2D5A27', // punk green — wildlife, edges
 };
 
 // SS-065 — Draw 4 or 5 characters at random from the pool, no duplicates
@@ -933,6 +963,7 @@ const COMPOSURE_PROFILES = {
   lee:         { baseline: 9, pressure: 'stillness — movement reduces, focus intensifies, water metaphor deepens',        tell: 'he has stopped talking; the assessment is physical now; the panel cannot read it but they feel it' },
   bristow:     { baseline: 7, pressure: 'checkout narrows — the darts metaphor becomes more specific, the finish more urgent', tell: 'chalking the hand more frequently; the checkout is being recalculated; the oche is mentioned; the crowd is mentioned' },
   keane:       { baseline: 9, pressure: 'the standard tightens — fewer words, the silence lengthens, the assessment intensifies', tell: 'one word. The word contains the assessment. The debrief was over before it started.' },
+  packham:     { baseline: 8, pressure: 'sharper — the dry wit gets edges, the silence before speaking gets longer and more dangerous', tell: 'the pivot from laugh line to something that stops the room happens faster; the punk surfaces' },
 };
 
 function initComposureState() {
@@ -1027,6 +1058,7 @@ const NAMING_CONVENTIONS = {
   mcnab:        'Grid reference and species if operationally relevant. Otherwise: "the animal." The log is the point, not the name.',
   ryan:         'Depends on which account. In his version, he identified the species correctly at distance. In McNab\'s version, he did not.',
   gordon:       'Whatever Doug called it. Gordon has adopted Doug\'s name. Doug\'s name may not be correct. Gordon does not care.',
+  packham:      'Correct common name with conservation status. "The Eurasian lynx — extinct in Britain since the medieval period, and we should talk about that." The naming is never just naming. It is advocacy.',
   jim:          'Cycles through modes. Ace Ventura: knows the Latin and delivers it while making faces. The Mask: invents a name. Liar Liar: cannot stop saying the common name.',
   hawking:      'Does not name the animal. Describes its mass, velocity, and probable trajectory. The synthesiser delivers the physics. The animal does not comply with the physics.',
   lee:          'Does not name the animal. Describes its movement. The assessment is physical. The panel cannot read it but they feel it.',

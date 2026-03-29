@@ -138,6 +138,16 @@
 | 8 | SS-127 — Rod's Memory: Nick Faldo — verbatim personal memories | Open | DDD |
 | 12 | SS-128 — Banner/logo clickable link back to homepage from all pages | DONE (homepage banner + 9 sub-page nav-back links 2026-03-29) | BDD |
 | 10 | SS-129 — Chip category tiles for non-Doors panel features (HSAI, Mundane, etc.) | Open | BDD |
+| TBD | SS-130 — Room: The Apology Tour — character apologises for something they did, panel never accepts | Open | BDD |
+| TBD | SS-131 — Room: The Alibi — two characters, one event, two stories, neither changes | Open | BDD |
+| TBD | SS-132 — Room: The Intervention — panel stages an intervention for one character's worst habit | Open | BDD |
+| TBD | SS-133 — Room: The Expert Witness — fish-out-of-water presented as expert, real experts defer | Open | BDD |
+| TBD | SS-134 — Room: The Pitch — character pitches worst survival idea as Dragon's Den presentation | Open | BDD |
+| TBD | SS-135 — Room: If You Had To... — hyper-specific scenarios forcing operational responses in absurd civilian contexts | Open | BDD |
+| TBD | SS-136 — Room: Which Is Worse — panel compares two unrelated incidents, argues which is worse | Open | BDD |
+| TBD | SS-137 — Room: Who Would Die First — panel rates each other's survival chances in same situation | Open | BDD |
+| TBD | SS-138 — Doors corridor UI redesign: Jim as carnival barker, gold Crimson Text teasers, room names replace numbers | Open | BDD |
+| 12 | SS-139 — Steve Backshall: add voice profile to characters.js (character doc exists at docs/characters/steve-backshall.md, not in code) | Open — SESSION A | DDD |
 | 8.0 | SS-060 — Cross-character panel references (reacts_to schema field) | Open | BDD |
 | 6.3 | SS-061 — Decision loop: Fighting Fantasy mechanic for panel features | Open | BDD |
 | 14.0 | SS-062 — Panel triage order consistency across all panel features | DONE (assessment + mundane fixed, ADR-002 written 2026-03-28) | BDD |
@@ -688,6 +698,152 @@ Scenario: Chip categories displayed as tiles
   Then chips are grouped into labelled category tiles
   And tapping a tile reveals only chips in that category
 ```
+
+---
+
+### SS-130 — Room: The Apology Tour
+
+**Status:** Open
+**Loop:** BDD
+**CD3:** TBD (Three Amigos)
+**Raised:** 2026-03-29
+**Epic:** The Rooms
+
+Character apologises for something they actually did. Panel decides if the apology is accepted. It never is. Each attempt reveals new information that makes the original thing worse. User picks the character and the incident.
+
+RegisterContract: surfacePosition=sincere_remorse, deepMechanic=making_it_worse_by_explaining
+
+Jim's sell: *"They're sorry. They're going to tell you how sorry they are. By the end you'll wish they hadn't."*
+
+---
+
+### SS-131 — Room: The Alibi
+
+**Status:** Open
+**Loop:** BDD
+**CD3:** TBD (Three Amigos)
+**Raised:** 2026-03-29
+**Epic:** The Rooms
+
+Two characters were at the same event. Stories don't match. Panel cross-examines. Neither changes their version. User picks the event and the two characters. Diverging memory mechanic as the whole room.
+
+RegisterContract: surfacePosition=honest_recollection, deepMechanic=two_truths_that_cannot_both_be_true
+
+Jim's sell: *"Two people. One event. Two completely different versions. Both of them were there. Neither of them is lying. That's the problem."*
+
+---
+
+### SS-132 — Room: The Intervention
+
+**Status:** Open
+**Loop:** BDD
+**CD3:** TBD (Three Amigos)
+**Raised:** 2026-03-29
+**Epic:** The Rooms
+
+Panel stages an intervention for one character's worst habit. Target doesn't see the problem. Others pile on with examples. Therapeutic framing ("we care") from people constitutionally unequipped to care therapeutically.
+
+RegisterContract: surfacePosition=compassionate_concern, deepMechanic=public_destruction_with_good_intentions
+
+Jim's sell: *"They've gathered because they care. They're going to tell someone the truth. It's going to go badly for everyone."*
+
+---
+
+### SS-133 — Room: The Expert Witness
+
+**Status:** Open
+**Loop:** BDD
+**CD3:** TBD (Three Amigos)
+**Raised:** 2026-03-29
+**Epic:** The Rooms
+
+Fish-out-of-water character presented as the survival expert. Real experts defer to them. Cox explaining river crossings. Faldo applying golf course management to Dartmoor. The fish doesn't know they're wrong.
+
+RegisterContract: surfacePosition=deference_to_expertise, deepMechanic=the_expert_knows_nothing
+
+Jim's sell: *"Someone in this room knows nothing. Everyone else has to pretend they do. Nobody's sure which way round it is."*
+
+---
+
+### SS-134 — Room: The Pitch
+
+**Status:** Open
+**Loop:** BDD
+**CD3:** TBD (Three Amigos)
+**Raised:** 2026-03-29
+**Epic:** The Rooms
+
+Character pitches their worst survival idea as Dragon's Den / Shark Tank presentation. Panel asks investor questions. "What's your exit strategy?" "From the jungle?" "From the business." Bear pitching urine filtration. Cody pitching barefoot hiking boots (just feet).
+
+RegisterContract: surfacePosition=serious_business_proposition, deepMechanic=the_idea_is_terrible_and_everyone_knows
+
+Jim's sell: *"Someone has an idea. It's a bad idea. They're going to present it like it's a good idea. The panel has questions."*
+
+---
+
+### SS-135 — Room: If You Had To...
+
+**Status:** Open
+**Loop:** BDD
+**CD3:** TBD (Three Amigos)
+**Raised:** 2026-03-29
+**Epic:** The Rooms
+
+User feeds in hyper-specific scenarios forcing operational/expert responses in absurd civilian contexts. "Foxy, how would you take out key people quietly in a crowded motorway service station on Easter bank holiday weekend?" Characters must answer seriously in their domain. The specificity of the setting IS the comedy.
+
+RegisterContract: surfacePosition=operational_briefing, deepMechanic=expertise_applied_to_the_wrong_universe
+
+Jim's sell: *"Ask them how they'd do it. Be specific. They will answer you seriously. That is the problem."*
+
+---
+
+### SS-136 — Room: Which Is Worse
+
+**Status:** Open
+**Loop:** BDD
+**CD3:** TBD (Three Amigos)
+**Raised:** 2026-03-29
+**Epic:** The Rooms
+
+Panel compares two often completely unrelated incidents and argues which is worse. "Being stuck in a lift with Cody for 48 hours, or being chased by a cassowary through a Tesco car park?" Distinct from IHW — this is judgement and comparison, not escalation. Panel splits. Arguments reveal character.
+
+RegisterContract: surfacePosition=objective_assessment, deepMechanic=entirely_subjective_and_they_all_know_it
+
+Jim's sell: *"Two things. Which is worse. They all know the answer. None of them agree."*
+
+---
+
+### SS-137 — Room: Who Would Die First
+
+**Status:** Open
+**Loop:** BDD
+**CD3:** TBD (Three Amigos)
+**Raised:** 2026-03-29
+**Epic:** The Rooms
+
+Panel rates *each other's* chances of surviving the same situation. Turns the panel inward. Fox assessing Bear with tactical honesty. Bear insisting he'd be fine. Billy not engaging because the question is beneath The Standard. Attenborough narrating it like a nature documentary about the panel itself.
+
+RegisterContract: surfacePosition=honest_peer_assessment, deepMechanic=settling_scores_under_professional_cover
+
+Jim's sell: *"Same situation. All of them. Who goes first. They've been thinking about this longer than you have."*
+
+---
+
+### SS-138 — Doors corridor UI redesign
+
+**Status:** Open
+**Loop:** BDD
+**CD3:** TBD
+**Raised:** 2026-03-29
+
+Jim Morrison as carnival barker — conversational welcome, not block caps. Gold Crimson Text italic for room teasers. Door tiles show room names instead of numbers. Locked doors tease what's coming. Better text contrast against dark background. Jim's voice sells each room.
+
+Design decisions:
+- Jim's welcome: conversational, warm-but-ominous, not a rotating quote
+- Door tiles: room name (bold) + Jim's teaser (gold serif italic)
+- Locked doors: visible with teaser, greyed but readable
+- Font: Crimson Text (Google Fonts) for teasers — literary, Morrison's poet energy
+- Colour: gold on dark background for maximum contrast
 
 ---
 
