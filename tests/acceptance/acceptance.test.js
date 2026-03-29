@@ -711,3 +711,47 @@ describe('Feature: Homepage tile links to One Man In', () => {
     assert.ok(!html.includes('class="tile soon"') || !html.includes('One Man In</div>\n      <div class="tile-desc">Fit'), 'One Man In tile must not be marked as SOON');
   });
 });
+
+// ── Feature: Packham Ethical Override (SS-013) ──
+describe('Feature: Packham Ethical Override (SS-013)', () => {
+
+  test('Given the IHW page loads, Then packham is a valid charId in the system prompt', async () => {
+    const r = await fetch(`${BASE}/survival-school/ive-had-worse`, { signal: AbortSignal.timeout(TIMEOUT) });
+    const html = await r.text();
+    // The VALID charIds line must include packham
+    assert.ok(html.includes('packham'), 'IHW page must include packham as a valid charId');
+  });
+
+  test('Given the IMD page loads, Then packham is a valid charId in the system prompt', async () => {
+    const r = await fetch(`${BASE}/survival-school/in-my-defence`, { signal: AbortSignal.timeout(TIMEOUT) });
+    const html = await r.text();
+    assert.ok(html.includes('packham'), 'IMD page must include packham as a valid charId');
+  });
+
+  test('Given the IHW page loads, Then the system prompt contains a dedicated PACKHAM ETHICAL OVERRIDE block', async () => {
+    const r = await fetch(`${BASE}/survival-school/ive-had-worse`, { signal: AbortSignal.timeout(TIMEOUT) });
+    const html = await r.text();
+    assert.ok(
+      html.includes('PACKHAM ETHICAL OVERRIDE'),
+      'IHW system prompt must contain dedicated PACKHAM ETHICAL OVERRIDE mechanic block'
+    );
+  });
+
+  test('Given the IMD page loads, Then the system prompt contains a dedicated PACKHAM ETHICAL OVERRIDE block', async () => {
+    const r = await fetch(`${BASE}/survival-school/in-my-defence`, { signal: AbortSignal.timeout(TIMEOUT) });
+    const html = await r.text();
+    assert.ok(
+      html.includes('PACKHAM ETHICAL OVERRIDE'),
+      'IMD system prompt must contain dedicated PACKHAM ETHICAL OVERRIDE mechanic block'
+    );
+  });
+
+  test('Given the IHW page loads, Then packham is listed as an expert charId', async () => {
+    const r = await fetch(`${BASE}/survival-school/ive-had-worse`, { signal: AbortSignal.timeout(TIMEOUT) });
+    const html = await r.text();
+    // Expert charIds line should include packham
+    const expertLine = html.match(/Expert charIds:([^\n]+)/);
+    assert.ok(expertLine, 'IHW must have Expert charIds line');
+    assert.ok(expertLine[1].includes('packham'), 'packham must be in expert charIds');
+  });
+});
