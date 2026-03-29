@@ -9,7 +9,7 @@
 import { test, describe, before } from 'node:test';
 import assert from 'node:assert/strict';
 
-import { buildSystemPrompt, CHARACTERS, PANEL_IDS, PANEL_POOL, drawPanel, CHAR_COLOURS, FISH_DISPOSITIONS, DISPOSITION_SHIFTS, drawDisposition, buildDispositionState, buildFishDispositionInjection, shiftDisposition, COMPOSURE_PROFILES, initComposureState, computeComposureDeltas, composureTier, buildComposureInjection } from '../js/characters.js';
+import { buildSystemPrompt, CHARACTERS, PANEL_IDS, PANEL_POOL, drawPanel, CHAR_COLOURS, FISH_DISPOSITIONS, DISPOSITION_SHIFTS, drawDisposition, buildDispositionState, buildFishDispositionInjection, shiftDisposition, COMPOSURE_PROFILES, initComposureState, computeComposureDeltas, composureTier, buildComposureInjection, TEMPORAL_LENS, TEMPORAL_STATES, hasTemporalLensCharacters, buildTemporalLensInjection, NAMING_CONVENTIONS, buildNamingConventionInjection } from '../js/characters.js';
 
 // ── SS-065 — Panel pool + drawPanel ──────────────────────────────────────────
 
@@ -1112,5 +1112,254 @@ describe('buildComposureInjection — SS-100', () => {
     assert.ok(injection.includes('GONE'), 'jim at 0 must show GONE tier');
     assert.ok(injection.includes('No recovery mid-response'),
       'GONE tier must include no-recovery note');
+  });
+});
+
+// ── SS-006 — Temporal Lens ──────────────────────────────────────────────────
+
+describe('TEMPORAL_LENS — SS-006', () => {
+
+  test('TEMPORAL_LENS is defined and non-empty', () => {
+    assert.ok(typeof TEMPORAL_LENS === 'object', 'TEMPORAL_LENS must be an object');
+    assert.ok(Object.keys(TEMPORAL_LENS).length > 0, 'TEMPORAL_LENS must have at least one entry');
+  });
+
+  test('every TEMPORAL_LENS key is a valid CHARACTERS id', () => {
+    for (const id of Object.keys(TEMPORAL_LENS)) {
+      assert.ok(Object.prototype.hasOwnProperty.call(CHARACTERS, id),
+        `TEMPORAL_LENS has key '${id}' but CHARACTERS has no entry`);
+    }
+  });
+
+  test('eligible entries have required fields', () => {
+    const required = ['reckoning', 'trigger_keywords', 'responses', 'special_rule', 'max_fires_per_session'];
+    for (const [id, lens] of Object.entries(TEMPORAL_LENS)) {
+      if (!lens.eligible) continue;
+      for (const field of required) {
+        assert.ok(Object.prototype.hasOwnProperty.call(lens, field),
+          `TEMPORAL_LENS[${id}] is eligible but missing '${field}'`);
+      }
+    }
+  });
+
+  test('eligible entries have non-empty trigger_keywords array', () => {
+    for (const [id, lens] of Object.entries(TEMPORAL_LENS)) {
+      if (!lens.eligible) continue;
+      assert.ok(Array.isArray(lens.trigger_keywords), `TEMPORAL_LENS[${id}].trigger_keywords must be an array`);
+      assert.ok(lens.trigger_keywords.length > 0, `TEMPORAL_LENS[${id}].trigger_keywords must not be empty`);
+    }
+  });
+
+  test('eligible entries have at least gentle and accusation responses', () => {
+    for (const [id, lens] of Object.entries(TEMPORAL_LENS)) {
+      if (!lens.eligible) continue;
+      assert.ok(lens.responses.gentle, `TEMPORAL_LENS[${id}] must have a 'gentle' response`);
+      assert.ok(lens.responses.accusation || lens.responses.packham,
+        `TEMPORAL_LENS[${id}] must have an 'accusation' or 'packham' response`);
+    }
+  });
+
+  test('every response has a valid state', () => {
+    for (const [id, lens] of Object.entries(TEMPORAL_LENS)) {
+      if (!lens.eligible) continue;
+      for (const [raiser, resp] of Object.entries(lens.responses)) {
+        assert.ok(TEMPORAL_STATES.includes(resp.state),
+          `TEMPORAL_LENS[${id}].responses.${raiser}.state '${resp.state}' is not a valid TEMPORAL_STATE`);
+      }
+    }
+  });
+
+  test('every response has a non-empty line', () => {
+    for (const [id, lens] of Object.entries(TEMPORAL_LENS)) {
+      if (!lens.eligible) continue;
+      for (const [raiser, resp] of Object.entries(lens.responses)) {
+        assert.ok(typeof resp.line === 'string' && resp.line.length > 0,
+          `TEMPORAL_LENS[${id}].responses.${raiser}.line must be a non-empty string`);
+      }
+    }
+  });
+
+  test('max_fires_per_session is 1 for all eligible entries', () => {
+    for (const [id, lens] of Object.entries(TEMPORAL_LENS)) {
+      if (!lens.eligible) continue;
+      assert.strictEqual(lens.max_fires_per_session, 1,
+        `TEMPORAL_LENS[${id}].max_fires_per_session must be 1`);
+    }
+  });
+
+  test('non-eligible entries have eligible: false', () => {
+    for (const [id, lens] of Object.entries(TEMPORAL_LENS)) {
+      if (lens.eligible) continue;
+      assert.strictEqual(lens.eligible, false,
+        `TEMPORAL_LENS[${id}] must have eligible: false`);
+    }
+  });
+
+  test('hales is eligible', () => {
+    assert.ok(TEMPORAL_LENS.hales, 'hales must be in TEMPORAL_LENS');
+    assert.strictEqual(TEMPORAL_LENS.hales.eligible, true, 'hales must be eligible');
+  });
+
+  test('attenborough is eligible', () => {
+    assert.ok(TEMPORAL_LENS.attenborough, 'attenborough must be in TEMPORAL_LENS');
+    assert.strictEqual(TEMPORAL_LENS.attenborough.eligible, true, 'attenborough must be eligible');
+  });
+
+  test('TEMPORAL_STATES has exactly 4 states', () => {
+    assert.strictEqual(TEMPORAL_STATES.length, 4, 'TEMPORAL_STATES must have exactly 4 states');
+    assert.ok(TEMPORAL_STATES.includes('WISTFUL'));
+    assert.ok(TEMPORAL_STATES.includes('DEFENSIVE_THEN_OPEN'));
+    assert.ok(TEMPORAL_STATES.includes('OPEN'));
+    assert.ok(TEMPORAL_STATES.includes('REGRETFUL'));
+  });
+});
+
+describe('hasTemporalLensCharacters — SS-006', () => {
+
+  test('returns true when panel includes an eligible character', () => {
+    assert.strictEqual(hasTemporalLensCharacters(['ray', 'bear', 'hales', 'fox']), true);
+  });
+
+  test('returns false when panel has no eligible characters', () => {
+    assert.strictEqual(hasTemporalLensCharacters(['ray', 'bear', 'fox', 'cody']), false);
+  });
+
+  test('returns false for empty panel', () => {
+    assert.strictEqual(hasTemporalLensCharacters([]), false);
+  });
+
+  test('returns true for attenborough in panel', () => {
+    assert.strictEqual(hasTemporalLensCharacters(['attenborough']), true);
+  });
+
+  test('returns false for candidate-only characters (hawking)', () => {
+    assert.strictEqual(hasTemporalLensCharacters(['hawking']), false);
+  });
+});
+
+describe('buildTemporalLensInjection — SS-006', () => {
+
+  test('returns empty string for panel with no eligible characters', () => {
+    const result = buildTemporalLensInjection(['ray', 'bear', 'fox', 'cody']);
+    assert.strictEqual(result, '');
+  });
+
+  test('returns non-empty string for panel with eligible character', () => {
+    const result = buildTemporalLensInjection(['ray', 'bear', 'hales', 'fox']);
+    assert.ok(result.length > 0, 'injection must be non-empty when hales is in panel');
+  });
+
+  test('injection includes character name for eligible member', () => {
+    const result = buildTemporalLensInjection(['ray', 'hales', 'fox']);
+    assert.ok(result.includes('LES HIDDINS'), 'injection must include Hiddins name');
+  });
+
+  test('injection includes reckoning topic', () => {
+    const result = buildTemporalLensInjection(['ray', 'hales']);
+    assert.ok(result.includes('Aboriginal knowledge attribution') || result.includes('bush tucker'),
+      'injection must reference Hiddins reckoning topic');
+  });
+
+  test('injection includes TEMPORAL LENS header', () => {
+    const result = buildTemporalLensInjection(['attenborough']);
+    assert.ok(result.includes('TEMPORAL LENS'), 'injection must include mechanic header');
+  });
+
+  test('injection includes max-once rule', () => {
+    const result = buildTemporalLensInjection(['hales']);
+    assert.ok(result.includes('once') || result.includes('ONCE'),
+      'injection must include max-once firing rule');
+  });
+
+  test('injection includes both eligible characters when both present', () => {
+    const result = buildTemporalLensInjection(['hales', 'attenborough']);
+    assert.ok(result.includes('LES HIDDINS'), 'must include Hiddins');
+    assert.ok(result.includes('DAVID ATTENBOROUGH'), 'must include Attenborough');
+  });
+
+  test('injection includes raiser-specific responses', () => {
+    const result = buildTemporalLensInjection(['hales']);
+    assert.ok(result.includes('Raised gently'), 'must include gentle raiser');
+  });
+});
+
+// ── SS-039 — Naming Conventions ─────────────────────────────────────────────
+
+describe('NAMING_CONVENTIONS — SS-039', () => {
+
+  test('NAMING_CONVENTIONS is defined and non-empty', () => {
+    assert.ok(typeof NAMING_CONVENTIONS === 'object', 'NAMING_CONVENTIONS must be an object');
+    assert.ok(Object.keys(NAMING_CONVENTIONS).length > 0, 'NAMING_CONVENTIONS must have entries');
+  });
+
+  test('every NAMING_CONVENTIONS key is a valid CHARACTERS id', () => {
+    for (const id of Object.keys(NAMING_CONVENTIONS)) {
+      assert.ok(Object.prototype.hasOwnProperty.call(CHARACTERS, id),
+        `NAMING_CONVENTIONS has key '${id}' but CHARACTERS has no entry`);
+    }
+  });
+
+  test('every convention is a non-empty string', () => {
+    for (const [id, convention] of Object.entries(NAMING_CONVENTIONS)) {
+      assert.ok(typeof convention === 'string' && convention.length > 0,
+        `NAMING_CONVENTIONS[${id}] must be a non-empty string`);
+    }
+  });
+
+  test('core survivalist characters have naming conventions', () => {
+    const coreIds = ['ray', 'bear', 'cody', 'hales', 'fox', 'stroud', 'oshea', 'stevens', 'attenborough'];
+    for (const id of coreIds) {
+      assert.ok(NAMING_CONVENTIONS[id],
+        `core character '${id}' must have a naming convention`);
+    }
+  });
+
+  test('O\'Shea convention mentions binomial', () => {
+    assert.ok(NAMING_CONVENTIONS.oshea.includes('binomial'),
+      "O'Shea's convention must reference binomial nomenclature");
+  });
+
+  test('Bear convention mentions Fact-Checker', () => {
+    assert.ok(NAMING_CONVENTIONS.bear.toLowerCase().includes('fact'),
+      "Bear's convention must reference Fact-Checker");
+  });
+
+  test('Hales convention mentions Aboriginal/Australian', () => {
+    assert.ok(NAMING_CONVENTIONS.hales.includes('Australian') || NAMING_CONVENTIONS.hales.includes('Aboriginal'),
+      "Hales's convention must reference Australian or Aboriginal naming");
+  });
+});
+
+describe('buildNamingConventionInjection — SS-039', () => {
+
+  test('returns empty string for empty panel', () => {
+    assert.strictEqual(buildNamingConventionInjection([]), '');
+  });
+
+  test('returns non-empty string for panel with characters', () => {
+    const result = buildNamingConventionInjection(['ray', 'bear', 'oshea']);
+    assert.ok(result.length > 0, 'injection must be non-empty for valid panel');
+  });
+
+  test('injection includes character names', () => {
+    const result = buildNamingConventionInjection(['oshea', 'bear']);
+    assert.ok(result.includes("MARK O'SHEA"), 'must include O\'Shea name');
+    assert.ok(result.includes('BEAR GRYLLS'), 'must include Bear name');
+  });
+
+  test('injection includes NAMING CONVENTIONS header', () => {
+    const result = buildNamingConventionInjection(['ray']);
+    assert.ok(result.includes('NAMING CONVENTIONS'), 'must include mechanic header');
+  });
+
+  test('injection includes indigenous/cultural respect rule', () => {
+    const result = buildNamingConventionInjection(['hales']);
+    assert.ok(result.includes('indigenous') || result.includes('Indigenous'),
+      'must include indigenous naming rule');
+  });
+
+  test('skips characters without naming conventions', () => {
+    const result = buildNamingConventionInjection(['nonexistent_id']);
+    assert.strictEqual(result, '', 'must return empty for unknown character IDs');
   });
 });
