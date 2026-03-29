@@ -22,7 +22,9 @@ cd /home/rodent/survival-school && cat \
   docs/testing-standards.md \
   docs/oat-nft-principles.md \
   docs/panel-integrity-spectrum.md \
+  docs/panel-archetypes.md \
   docs/the-rooms-design-brief.md \
+  docs/ss-086-roast-review.md \
   $(find docs/domains/ -name "*.md" 2>/dev/null | sort) \
   $(find docs/characters/ -name "*.md" 2>/dev/null | sort) \
   $(find features/ -name "*.feature" 2>/dev/null | sort) \
