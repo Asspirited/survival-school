@@ -200,19 +200,21 @@ describe('Feature: The Doors corridor page loads', () => {
 
 describe('Feature: The Doors corridor page contains door elements', () => {
 
-  test('Given the corridor page loads, Then it contains six door tiles and a Morrison quote', async () => {
+  test('Given the corridor page loads, Then it contains six door tiles with room names and a Morrison welcome', async () => {
     const r = await fetch(`${BASE}/survival-school/rooms`, { signal: AbortSignal.timeout(TIMEOUT) });
     const html = await r.text();
     assert.ok(html.includes('morrison-quote'), 'page must contain morrison-quote element');
     assert.ok(html.includes('THE DOORS'),      'page must contain THE DOORS title');
-    // Six doors: 12, 12A, 13, 14, 15, 16
-    assert.ok(html.includes('>12<'), 'page must contain Door 12');
-    assert.ok(html.includes('>13<'), 'page must contain Door 13');
-    assert.ok(html.includes('>16<'), 'page must contain Door 16');
-    // Door 13 live: I've Had Worse
-    assert.ok(html.includes('/survival-school/ive-had-worse'), 'Door 13 must link to ive-had-worse');
-    // Door 14 live: In My Defence
-    assert.ok(html.includes('/survival-school/in-my-defence'), 'Door 14 must link to in-my-defence');
+    // Six doors by room name (SS-138: names replace numbers)
+    assert.ok(html.includes('The Denial Loop'), 'page must contain The Denial Loop room');
+    assert.ok(html.includes('The Argument'),    'page must contain The Argument room');
+    assert.ok(html.includes("I've Had Worse") || html.includes("I\\'ve Had Worse"), 'page must contain I\'ve Had Worse room');
+    assert.ok(html.includes('In My Defence'),   'page must contain In My Defence room');
+    assert.ok(html.includes('Going With It'),   'page must contain Going With It room');
+    assert.ok(html.includes('The Detail'),      'page must contain The Detail room');
+    // Live doors link correctly
+    assert.ok(html.includes('/survival-school/ive-had-worse'), 'I\'ve Had Worse must link to ive-had-worse');
+    assert.ok(html.includes('/survival-school/in-my-defence'), 'In My Defence must link to in-my-defence');
   });
 });
 
@@ -753,5 +755,42 @@ describe('Feature: Packham Ethical Override (SS-013)', () => {
     const expertLine = html.match(/Expert charIds:([^\n]+)/);
     assert.ok(expertLine, 'IHW must have Expert charIds line');
     assert.ok(expertLine[1].includes('packham'), 'packham must be in expert charIds');
+  });
+});
+
+// ── Feature: Doors corridor UI redesign (SS-138) ──
+describe('Feature: Doors corridor UI redesign (SS-138)', () => {
+
+  test('Given a user navigates to /survival-school/rooms, Then Jim Morrison welcome text is present', async () => {
+    const r = await fetch(`${BASE}/survival-school/rooms`, { signal: AbortSignal.timeout(TIMEOUT) });
+    const html = await r.text();
+    assert.ok(html.includes('You found the corridor'), 'rooms page must contain Jim welcome text "You found the corridor"');
+  });
+
+  test('Given a user navigates to /survival-school/rooms, Then door tiles show room names not numbers', async () => {
+    const r = await fetch(`${BASE}/survival-school/rooms`, { signal: AbortSignal.timeout(TIMEOUT) });
+    const html = await r.text();
+    assert.ok(html.includes('door-name'), 'rooms page must contain door-name elements');
+    assert.ok(html.includes("I've Had Worse") || html.includes('I\\&#39;ve Had Worse') || html.includes("I\\'ve Had Worse"), 'rooms page must show room name "I\'ve Had Worse"');
+    assert.ok(html.includes('In My Defence'), 'rooms page must show room name "In My Defence"');
+  });
+
+  test('Given a user navigates to /survival-school/rooms, Then door tiles have gold italic teasers', async () => {
+    const r = await fetch(`${BASE}/survival-school/rooms`, { signal: AbortSignal.timeout(TIMEOUT) });
+    const html = await r.text();
+    assert.ok(html.includes('door-teaser'), 'rooms page must contain door-teaser elements');
+  });
+
+  test('Given a user navigates to /survival-school/rooms, Then locked doors show room name and teaser', async () => {
+    const r = await fetch(`${BASE}/survival-school/rooms`, { signal: AbortSignal.timeout(TIMEOUT) });
+    const html = await r.text();
+    // Locked doors (like The Denial Loop) should have name + teaser visible
+    assert.ok(html.includes('The Denial Loop'), 'locked door must show room name "The Denial Loop"');
+  });
+
+  test('Given a user navigates to /survival-school/rooms, Then Crimson Text font is loaded', async () => {
+    const r = await fetch(`${BASE}/survival-school/rooms`, { signal: AbortSignal.timeout(TIMEOUT) });
+    const html = await r.text();
+    assert.ok(html.includes('Crimson+Text') || html.includes('Crimson Text'), 'rooms page must load Crimson Text font');
   });
 });
