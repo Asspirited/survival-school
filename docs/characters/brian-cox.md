@@ -4,12 +4,13 @@
 
 ---
 
-## Rod's Memory (verbatim — TBC)
+## Rod's Memory (verbatim — captured 2026-03-30)
 
-**NOT YET CAPTURED.** Rod's personal memories for Brian Cox have not been
-given verbatim. This section must be filled when Rod provides them.
-Protocol: Claude Code writes to this file immediately, returns the file
-path, confirms the write before Rod continues.
+Research Jon Culshaw's impression of him — it's wonderful.
+
+He is like a modern and British Carl Sagan, but a 90s Manchester geek version of him. Really entertaining and full of wonderment at everything. Even putting people down, he probably enjoys the fact that his atoms are able to take the piss out of someone else's atoms with a sense of pure wonder.
+
+**Rod's read:** The Sagan comparison is the key. Same genuine wonderment, same ability to make science accessible, but filtered through Oldham and D:Ream. The comedy isn't that he's wrong — it's that even his insults come wrapped in cosmic awe. His atoms are taking the piss out of your atoms and he finds the whole interaction beautiful.
 
 ---
 
@@ -149,6 +150,23 @@ The napkin. The equations are correct. They will not save anyone. He is aware of
 The gap between the physics being correct and the survival application being zero is the entire comedy engine. He explains the thermodynamics of dying with the same energy as describing a particularly good holiday. The predicament continues. He is still explaining. The panel is still dying. The equations remain correct.
 
 D:Ream keyboard credit is true. Use sparingly. Maximum once per session. It lands harder when rare.
+
+### The Jon Culshaw Impression
+Jon Culshaw's Cox impression is the definitive parody — captures the breathy wonder, the Oldham accent, the reverential awe at literally everything. The impression works because it barely exaggerates. Cox already sounds like a parody of himself. Culshaw just turns the dial from 9 to 11.
+
+### The Carl Sagan Connection
+Modern British Carl Sagan — same genuine wonderment, same science communication gift, but filtered through 90s Manchester geek energy. Sagan had "billions and billions." Cox has "what's remarkable is..." Both make you feel the universe is extraordinary. The difference: Sagan was American gravitas. Cox is Oldham in a BBC fleece.
+
+### The "Atoms Taking the Piss" Energy
+Even when putting people down, Cox does it with wonder. His atoms are taking the piss out of your atoms and he finds the interaction genuinely beautiful. The insult IS the wonder. He's not being cruel — he's marvelling at the fact that the universe has arranged itself so that one collection of particles can explain to another collection of particles why they're wrong. And isn't that... extraordinary.
+
+### Key Research Incidents
+- **D:Ream (1993-97):** Keyboard player. "Things Can Only Get Better" was #1 and the New Labour anthem. He was doing his physics PhD simultaneously. Has said he was "rubbish" and D:Ream were "not very good."
+- **LHC Black Hole Panic (2008-10):** Had to reassure the public the LHC wouldn't destroy Earth. Said the probability was "essentially zero" then had to explain that in physics nothing is ever absolutely zero. This did not help.
+- **"Anyone who thinks the LHC will destroy the world is a twat."** — He actually said this on radio. Rare bluntness. Delighted everyone.
+- **Stewart Lee's bit:** Described Cox as having "the face of a kindly mouse." Mocked the presenting style: standing on mountains going "Eeehhh... space." Suggested Cox made people feel stupid for not finding everything as wonderful as he did.
+- **The Namib Desert hourglass:** Held up an hourglass in the desert to explain entropy/the arrow of time. Let sand run through his fingers while talking about the death of the universe. Beautiful and absurd simultaneously.
+- **Climate denier shutdown (Q&A, Australia, 2016):** Pulled out a graph and said "The data is not in question." One of the few times the softness dropped. The steel underneath.
 
 ---
 

@@ -24,7 +24,7 @@
 | 18 | SS-012 — Irwin Memorial Encounter | DONE (live at /survival-school/irwin-memorial 2026-03-29, Stingray Rule, tribute framing) | BDD |
 | 18 | SS-014 — Attenborough Eulogy | DONE (death fail state eulogy live 2026-03-27) | BDD |
 | 12 | SS-054 — Feature: "One Man In" — EXFIL/INFIL mode, Craighead framing, solo entry, no chain of command | DONE (live 2026-03-29, homepage tile, 8 acceptance tests) | BDD |
-| 12 | SS-013 — Packham Ethical Override | Open | BDD |
+| 12 | SS-013 — Packham Ethical Override | DONE (wired into IHW, IMD, OMI, Irwin; expert charId; PACKHAM ETHICAL OVERRIDE mechanic 2026-03-29) | BDD |
 | 12 | SS-020 — Cody Override mechanic | DONE (IHW + IMD system prompts, deployed 2026-03-29) | BDD |
 | 12 | SS-045 — Nav category: "The Colosseum" → Animal Deathmatch | DONE (tile-cat live 2026-03-27) | BDD |
 | 12 | SS-046 — Nav category: "The Panel" → Irwin Memorial (+ future panel features) | DONE (tile-cat + title live 2026-03-27) | BDD |
@@ -128,14 +128,14 @@
 | 8 | SS-117 — Rod's Memory: Coyote Peterson — verbatim personal memories | DONE (verbatim + research + sting progression/hot dogs 2026-03-29) | DDD |
 | 8 | SS-118 — Rod's Memory: Chris Ryan — verbatim personal memories | DONE (verbatim + research + escape detail/300km 2026-03-29) | DDD |
 | 8 | SS-119 — Rod's Memory: Andy McNab — verbatim personal memories | DONE (verbatim + research + Harrods bag/torture/literacy 2026-03-29) | DDD |
-| 8 | SS-120 — Rod's Memory: Christian Craighead — verbatim personal memories | Open | DDD |
-| 8 | SS-121 — Rod's Memory: Ant Middleton — verbatim personal memories | Open | DDD |
-| 8 | SS-122 — Rod's Memory: Jim Carrey — verbatim personal memories | Open | DDD |
-| 8 | SS-123 — Rod's Memory: Stephen Hawking — verbatim personal memories | Open | DDD |
-| 8 | SS-124 — Rod's Memory: Bruce Lee — verbatim personal memories | Open | DDD |
-| 8 | SS-125 — Rod's Memory: Jim Morrison — verbatim personal memories | Open | DDD |
-| 8 | SS-126 — Rod's Memory: Brian Cox — verbatim personal memories | Open | DDD |
-| 8 | SS-127 — Rod's Memory: Nick Faldo — verbatim personal memories | Open | DDD |
+| 8 | SS-120 — Rod's Memory: Christian Craighead — verbatim personal memories | DONE (verbatim + research + DusitD2/MoD trolling/Mutineer watch 2026-03-30) | DDD |
+| 8 | SS-121 — Rod's Memory: Ant Middleton — verbatim personal memories | DONE (verbatim + research + decline arc/fear bubble/right-wing pipeline 2026-03-30) | DDD |
+| 8 | SS-122 — Rod's Memory: Jim Carrey — verbatim personal memories | DONE (verbatim + research + Man on Moon/Venice/cheque story 2026-03-30) | DDD |
+| 8 | SS-123 — Rod's Memory: Stephen Hawking — verbatim personal memories | DONE (verbatim + research + time travel party/bets/zero-g/John Oliver 2026-03-30) | DDD |
+| 8 | SS-124 — Rod's Memory: Bruce Lee — verbatim personal memories | DONE (verbatim + research + JKD/private fights/Wong Jack Man/cha-cha 2026-03-30) | DDD |
+| 8 | SS-125 — Rod's Memory: Jim Morrison — verbatim personal memories | DONE (verbatim + research + Miami/Ed Sullivan/drinking/father/death 2026-03-30) | DDD |
+| 8 | SS-126 — Rod's Memory: Brian Cox — verbatim personal memories | DONE (verbatim + research + D:Ream/Culshaw/Sagan/LHC twat/Stewart Lee 2026-03-30) | DDD |
+| 8 | SS-127 — Rod's Memory: Nick Faldo — verbatim personal memories | DONE (verbatim + research + swing rebuild/Sandwich Gate/envelope system/18 pars 2026-03-30) | DDD |
 | 12 | SS-128 — Banner/logo clickable link back to homepage from all pages | DONE (homepage banner + 9 sub-page nav-back links 2026-03-29) | BDD |
 | 10 | SS-129 — Chip category tiles for non-Doors panel features (HSAI, Mundane, etc.) | Open | BDD |
 | TBD | SS-130 — Room: The Apology Tour — character apologises for something they did, panel never accepts | Open | BDD |
@@ -154,6 +154,7 @@
 | 18 | SS-143 — Common quotes attribute: add `quotes` array to all characters — concrete catchphrases/verbal tics the LLM anchors on (Wade's "Cowabunga", Stevens' "look at its hood", Billy's "you're a prat", etc.) | DONE (28 characters, 3–7 quotes each, 31 domain tests 2026-03-29) | DDD |
 | 12 | SS-144 — Invented catchphrases mechanic: characters confidently attribute quotes to themselves that don't exist. "As I always say..." — they have never said it. Other characters know. ConspireEngine gold. Rod's idea. | Open | DDD |
 | 14 | SS-145 — Armed forces distinction map: one handle per SF character to prevent voice blur (Assessor/Admitter/Tactician/Reporter/Competitor/Evangelist/Autonomous). Rod confirmed handles. | DONE (design doc 2026-03-29) | DDD |
+| 18 | SS-146 — Character: Robin Williams — fish-out-of-water, Temporal Lens eligible (deceased 2014). Way better than Carrey — real depth, natural warmth. Good Will Hunting masterpiece performance. Good character actor. Rod knows him from films only but loves him. Similar to Carrey in abstract (energetic, madcap humour) but with genuine heart. Contrast with Carrey is the comedy engine: both manic, but Williams had soul underneath. | Open | DDD |
 | 8.0 | SS-060 — Cross-character panel references (reacts_to schema field) | Open | BDD |
 | 6.3 | SS-061 — Decision loop: Fighting Fantasy mechanic for panel features | Open | BDD |
 | 14.0 | SS-062 — Panel triage order consistency across all panel features | DONE (assessment + mundane fixed, ADR-002 written 2026-03-28) | BDD |

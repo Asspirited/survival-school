@@ -4,12 +4,11 @@
 
 ---
 
-## Rod's Memory (verbatim — TBC)
+## Rod's Memory (verbatim — captured 2026-03-30)
 
-**NOT YET CAPTURED.** Rod's personal memories for Stephen Hawking have not
-been given verbatim. This section must be filled when Rod provides them.
-Protocol: Claude Code writes to this file immediately, returns the file
-path, confirms the write before Rod continues.
+Hawking — you know as well as me. Rod and his sons have an in-joke about "Steven in the stables" where he is into bestiality. It is in no way true. Family in-joke only. :)
+
+**Rod's read:** No special personal take needed — Hawking is universally known. The character doc captures the comedy engine well already.
 
 ---
 
@@ -104,6 +103,42 @@ anyway.
 **vs Fox:** Fox has assessed Hawking. Non-mobile. High-value intelligence
 asset. Zero tactical utility but zero tactical liability — the chair is
 where it is. Fox positions himself accordingly.
+
+---
+
+## Known Incidents
+
+### The Time Travel Party (2009)
+Held a party for time travellers. Only sent out the invitations AFTER the party had already taken place. Logic: if time travel is ever invented, someone could come back. Nobody showed up. He sat alone with champagne, balloons, and a banner reading "Welcome, Time Travellers." Used this as experimental evidence that time travel to the past is not possible. "I sat there a long time, but no one came." The invitation remains open.
+
+### The Bets (lost almost all of them)
+- **Cygnus X-1 (1975, vs Kip Thorne):** Bet AGAINST it being a black hole — as "insurance" in case his life's work was wrong. Stake: Hawking owes Thorne a Penthouse subscription; Thorne owes Hawking Private Eye. Lost. Broke into Thorne's office at night to sign the concession. Thorne's wife not thrilled about the Penthouse.
+- **Black hole information paradox (1997, vs John Preskill):** Bet that information falling into a black hole is destroyed forever. Lost. Gave Preskill a baseball encyclopedia — a deliberate "information" joke.
+- **Higgs boson (2012):** Bet $100 it would NOT be found. Lost. Pattern: consistently bets against his own interests and enjoys being wrong.
+
+### The Wheelchair and Toes
+Allegedly ran over Prince Charles's toes. Never confirmed, never denied. His stated greatest regret: "One of my regrets is that I have never had the chance to run over Margaret Thatcher's toes." Said this publicly. Multiple times. Drove the wheelchair like a go-kart around Cambridge — pedestrians leapt out of the way. Used it to nudge people's shins when he disagreed with them.
+
+### The Zero-Gravity Flight (2007)
+Flew on a zero-g parabolic flight aged 65. Lifted from wheelchair, floated freely, did somersaults. Originally planned for one parabola — did eight because he was having such a good time. "It was amazing... For me, this was true freedom." First time in years his body existed without gravity. Photos show him genuinely grinning.
+
+### The Voice
+DECtalk synthesiser, "Perfect Paul" voice. American accent despite being thoroughly English. Offered upgrades to more natural-sounding British voices. Refused every time: "It is my voice." Intel maintained custom hardware to preserve it. At 15 words per minute, every word chosen carefully — accidentally made him sound like an oracle.
+
+### The John Oliver Exchange
+Oliver: "Does that mean there's a universe where I'm smarter than you?" Hawking: "Yes. And also a universe where you're funny." The synthesiser delay enhanced the comic beat.
+
+### Monty Python Live (2014)
+Delivered the Galaxy Song. At the end, his wheelchair rolled off the stage into apparent darkness. Audience gasped, then laughed. Staged pratfall. Pure Hawking.
+
+### Star Trek: The Next Generation
+Played poker with Einstein, Newton, and Data. The only person in Star Trek history to play himself.
+
+### The Quote Collection
+- "People who boast about their IQ are losers." (When asked his own IQ. Claimed not to know it.)
+- "Life would be tragic if it weren't funny."
+- "My expectations were reduced to zero when I was 21. Everything since then has been a bonus."
+- "I have noticed that even people who claim everything is predetermined and that we can do nothing to change it, look before they cross the road."
 
 ---
 

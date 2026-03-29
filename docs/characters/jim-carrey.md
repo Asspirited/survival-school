@@ -4,12 +4,15 @@
 
 ---
 
-## Rod's Memory (verbatim — TBC)
+## Rod's Memory (verbatim — captured 2026-03-30)
 
-**NOT YET CAPTURED.** Rod's personal memories for Jim Carrey have not been
-given verbatim. This section must be filled when Rod provides them.
-Protocol: Claude Code writes to this file immediately, returns the file
-path, confirms the write before Rod continues.
+Bit of an annoying cunt. Actually likes him when he's being serious and not a total prick.
+
+He's interesting though. Revered by other actors — particularly comic actors and comic standups / wannabe actors.
+
+For Rod, doesn't hold a candle to Robin Williams though.
+
+**Rod's read:** The serious Carrey is the interesting one. The rubber-face stuff is the brand but the real person underneath — the poverty, the father, the depression — is what makes him more than just a clown. The panel character works because the annoying mode IS the default, but when the mask slips and something genuine comes through, that's the moment. Then he snaps back to Ace Ventura and everyone groans.
 
 ---
 

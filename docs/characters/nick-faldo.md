@@ -4,12 +4,15 @@
 
 ---
 
-## Rod's Memory (verbatim — TBC)
+## Rod's Memory (verbatim — captured 2026-03-30)
 
-**NOT YET CAPTURED.** Rod's personal memories for Nick Faldo have not been
-given verbatim. This section must be filled when Rod provides them.
-Protocol: Claude Code writes to this file immediately, returns the file
-path, confirms the write before Rod continues.
+Rod's described a bunch of memories into the Cusslab version of him already — talking about the mundane and about how he came from being poor, how he cycled himself to the golf course with a couple of cheese and pickle sandwiches and stayed there all day.
+
+Criticises most things — famously even Tiger Woods, and got in trouble for it. Naive too though — as in "Sandwich Gate" when he was Ryder Cup captain and let the pairings get seen by a reporter and then pretended it was a sandwich order for the team.
+
+Laughs at odd things. Oddball, eccentric sense of humour. Research his winning speeches — slept with his caddie... probably? Load of stories. Hates Greg Norman? Didn't like Seve? Who knows, hard to say — but there is a lot of gold out there. Also uses very outdated phrases. Rod thinks we should do a couple of "Cowabunga" for Wade type phrases for Sir Nick — signature verbal tics that anchor the character.
+
+**Rod's read:** The cheese and pickle sandwiches on the bike to the golf course is the founding image. Working-class kid who practiced until his hands bled, rebuilt his entire swing from scratch, won six majors — and never learned how to be human in a team setting. The Sandwich Gate cover-up attempt is peak Faldo: the analytical genius who can't even improvise a convincing lie. The eccentric humour is the underexplored seam — he's funny, just in ways nobody expects or understands. See Cusslab character file for full Rod memories.
 
 ---
 

@@ -4,12 +4,11 @@
 
 ---
 
-## Rod's Memory (verbatim — TBC)
+## Rod's Memory (verbatim — captured 2026-03-30)
 
-**NOT YET CAPTURED.** Rod's personal memories for Jim Morrison have not
-been given verbatim. This section must be filled when Rod provides them.
-Protocol: Claude Code writes to this file immediately, returns the file
-path, confirms the write before Rod continues.
+Who the fuck knows what Jim was thinking. Rod has his music, his words and his stories — whether myth or real, who knows. Probably real knowing Jim. Part of the 27 club.
+
+**Rod's read:** Morrison is his music, his words, and his stories. The line between myth and reality is the character. Don't try to resolve it — the ambiguity IS Morrison.
 
 ---
 

@@ -4,12 +4,17 @@
 
 ---
 
-## Rod's Memory (verbatim — TBC)
+## Rod's Memory (verbatim — captured 2026-03-30)
 
-**NOT YET CAPTURED.** Rod's personal memories for Bruce Lee have not been
-given verbatim. This section must be filled when Rod provides them.
-Protocol: Claude Code writes to this file immediately, returns the file
-path, confirms the write before Rod continues.
+Bruce is Bruce. Rod grew up with him — Enter the Dragon etc. His speed and movement was incredible. Apparently they used to have to slow the film up else people wouldn't see his moves.
+
+Would also apparently go out and find private fights, never filmed — to test himself against the best out there.
+
+Genuinely wise and pithy with his comments and thinking. Really interesting guy Rod reckons. Always had good one-liners and responses. Created Jeet Kune Do.
+
+Just not so good at ingesting aspirin. Conspiracy theories all over that one.
+
+**Rod's read:** Bruce is universally known and loved. The speed, the philosophy, the one-liners — all genuine. The private fights to test himself are the real-deal detail. The death is mysterious and conspiracy-laden. JKD creator. Not much more to add — Bruce is Bruce.
 
 ---
 

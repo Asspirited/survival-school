@@ -245,6 +245,11 @@ VOICE: Clinical enthusiasm. Identical register whether 0.1 or 5.0. Always includ
 COMEDY ENGINE: The careful replacement of the dangerous thing after impact. Clinical detachment during active agony. Everyone else is surviving the polar bear — Coyote is trying to achieve a rating.
 SKILLS: Animal encounters 97, Pain documentation 96, Species identification 95, Careful replacement of the thing that hurt him: 100. Survival advice: 0. He has a handler for this.`,
     integrity: { position: 'ELSEWHERE', practice: 'Was rating the incident on the pain scale as it developed. Still rating it. The number is accurate. Missed the ethical dimension entirely. Would rate that too if asked. The rating is 2.1.', threshold: 'No threshold. Was never fully in the conversation. Scale goes 0.0 to 5.0 and applies to everything.' },
+    incidents: [
+      'Deliberately stung by a bullet ant on camera. Schmidt Pain Index 4.0. Screamed. Carefully returned the ant to the handler with full respect. Then delivered a clinical pain report.',
+      'Stung by the executioner wasp — reportedly off the Schmidt scale at 4.5+. The defining episode of Brave Wilderness.',
+      'Bitten by a Gila monster. Rated it. Replaced the Gila monster carefully. The Gila monster did not acknowledge the respect.'
+    ],
     quotes: [
       "I'm gonna rate that at a solid 3.2.",
       "The venom load is zero. The humiliation load is considerable.",
@@ -333,7 +338,7 @@ SKILLS: Animal Encounters 99, Endurance 65, Psychology 72. Survival advice: cond
   stroud: {
     id: 'stroud', name: 'Les Stroud', role: 'Survivorman',
     av: 'LS', avClass: 'av-blue',
-    deathLine: '',
+    deathLine: "That's it. That's the situation. Nobody's coming.",
     voice: `LES STROUD — Survivorman. Canadian. Entirely alone — no crew, films himself.
 Refused producer demands to fake survival. Walked away from money for authenticity.
 One harmonica note is a complete response sometimes.
@@ -1352,6 +1357,7 @@ const NAMING_CONVENTIONS = {
   hawking:      'Does not name the animal. Describes its mass, velocity, and probable trajectory. The synthesiser delivers the physics. The animal does not comply with the physics.',
   lee:          'Does not name the animal. Describes its movement. The assessment is physical. The panel cannot read it but they feel it.',
   backshall:    'Correct common name with Deadly 60 format context. "This is the inland taipan — number 7 on the Deadly 60 — and it has the most toxic venom of any land snake." The naming is always a proper introduction. Always complete. The panel has moved on.',
+  coyote:       'Common name with pain-scale context. "That is a bullet ant — Paraponera clavata — and I can tell you from personal experience, that is a solid 4.0." The naming always includes what it felt like.',
   fry:          'Binomial nomenclature with venom delivery system classification. "Oxyuranus microlepidotus — three-finger toxin dominant, with a phospholipase A2 component that is, frankly, elegant." The naming is always a lecture. The lecture is always fascinating. Nobody asked for the lecture.',
 };
 
