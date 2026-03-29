@@ -819,3 +819,31 @@ describe('Feature: Chip category tiles — consistent UX (SS-129)', () => {
     });
   }
 });
+
+// ── Feature: Cross-character panel references (SS-060) ──
+describe('Feature: Cross-character panel references (SS-060)', () => {
+
+  test('Given the IHW system prompt, Then it contains reacts_to instruction', async () => {
+    const r = await fetch(`${BASE}/survival-school/ive-had-worse`, { signal: AbortSignal.timeout(TIMEOUT) });
+    const html = await r.text();
+    assert.ok(html.includes('reacts_to'), 'IHW must contain reacts_to instruction in system prompt');
+  });
+
+  test('Given the IMD system prompt, Then it contains reacts_to instruction', async () => {
+    const r = await fetch(`${BASE}/survival-school/in-my-defence`, { signal: AbortSignal.timeout(TIMEOUT) });
+    const html = await r.text();
+    assert.ok(html.includes('reacts_to'), 'IMD must contain reacts_to instruction in system prompt');
+  });
+
+  test('Given the IHW output schema, Then panel card includes optional reacts_to field', async () => {
+    const r = await fetch(`${BASE}/survival-school/ive-had-worse`, { signal: AbortSignal.timeout(TIMEOUT) });
+    const html = await r.text();
+    assert.ok(html.includes('"reacts_to"'), 'IHW output schema must include reacts_to field');
+  });
+
+  test('Given the IHW page, Then it contains thread indicator rendering logic', async () => {
+    const r = await fetch(`${BASE}/survival-school/ive-had-worse`, { signal: AbortSignal.timeout(TIMEOUT) });
+    const html = await r.text();
+    assert.ok(html.includes('thread-indicator') || html.includes('reacts-to'), 'IHW must contain thread indicator rendering element or class');
+  });
+});
