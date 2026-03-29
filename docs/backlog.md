@@ -23,7 +23,7 @@
 | 18 | SS-034 — Panel response logic | DONE (triage order in reaction mode 2026-03-27) | Feature |
 | 18 | SS-012 — Irwin Memorial Encounter | DONE (live at /survival-school/irwin-memorial 2026-03-29, Stingray Rule, tribute framing) | BDD |
 | 18 | SS-014 — Attenborough Eulogy | DONE (death fail state eulogy live 2026-03-27) | BDD |
-| 12 | SS-054 — Feature: "One Man In" — EXFIL/INFIL mode, Craighead framing, solo entry, no chain of command | Open | BDD |
+| 12 | SS-054 — Feature: "One Man In" — EXFIL/INFIL mode, Craighead framing, solo entry, no chain of command | DONE (live 2026-03-29, homepage tile, 8 acceptance tests) | BDD |
 | 12 | SS-013 — Packham Ethical Override | Open | BDD |
 | 12 | SS-020 — Cody Override mechanic | DONE (IHW + IMD system prompts, deployed 2026-03-29) | BDD |
 | 12 | SS-045 — Nav category: "The Colosseum" → Animal Deathmatch | DONE (tile-cat live 2026-03-27) | BDD |
@@ -1393,17 +1393,20 @@ Ollie: "Right."
 
 ### SS-054 — Feature: "One Man In"
 
-**Status:** Open
+**Status:** DONE
 **Priority:** Medium — depends on SS-048 mode architecture
 **Loop:** BDD
 **Raised:** 2026-03-27
+**Closed:** 2026-03-29
 **Depends on:** SS-048 (mode architecture), SS-052 (Craighead character)
 
 **The concept:** EXFIL/INFIL mode named after Craighead's banned memoir. You receive a phone call. Situation described. No orders. No chain of command. Panel briefs your solo entry — approach, exit, speed/aggression/surprise. You make the calls. Panel assesses whether you make it out.
 
-**The framing:** Attenborough narrates your approach as a nature documentary. Craighead is the briefing officer. Billy assesses whether your plan meets the standard. Foxy notes the thing you missed. Coyote rates the anticipated pain. Ollie asks if you're sure you want to do this and respects the answer.
+**The framing:** Attenborough narrates your approach as a nature documentary. Craighead is the briefing officer. Billy assesses whether your plan meets the standard. Foxy notes the thing you missed. Ollie asks if you're sure you want to do this and respects the answer.
 
 **Applies to:** Any EXFIL/INFIL scenario — DusitD2, IKEA car park on a Sunday, hostile Pret a Manger, actual combat.
+
+**Shipped:** Live at /survival-school/one-man-in. Homepage tile LIVE. 8 situation chips (DusitD2, IKEA, Pret, embassy, mountain, wedding, self-checkout, Bravo Two Zero). Kit chips. EXFIL probability meter, route, abandon list, movement order, abort criteria. Craighead lead + Billy/Fox/Ollie + rotating pool. Morrison integration. Composure engine. Share button. 8 acceptance tests, L5 OAT green.
 
 ---
 
