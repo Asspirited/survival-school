@@ -21,12 +21,12 @@ For every BL item touched this session:
 - Add any new items surfaced during the session
 - Note any acceptance criteria changes
 
-**Display the full backlog report** per `leanspirited-standards/standards/backlog-display.md`:
-- Three tables: Open (N items), Closed Today (N items), Closed Prior (N items)
-- Closed Today includes push time (HH:MM UK time) from git log
-- Each table shows: ID, Title, Description, CD3, [Pushed/Closed date]
-- Summary line with totals
-- This display is mandatory at every closedown
+**Display the backlog report** — two tables, mandatory at every closedown:
+1. **Open items** — CD3, ID, Title (all open items, CD3 descending)
+2. **Closed Today** — ID, Title, Push time (HH:MM UK time from git log)
+Do NOT display Closed Prior — backlog is too large, it's noise.
+Summary line with totals (open / closed today).
+No skipping. No summarising. The tables are the session receipt.
 
 For WL (`docs/waste-log.md`):
 - Close any WL items resolved this session
