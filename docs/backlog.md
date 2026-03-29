@@ -72,7 +72,7 @@
 | 18 | SS-097 — New character: Eric Bristow — darts legend, survival commentary + darts panel crossover (Cusslab) | Open | DDD |
 | 27 | SS-098 — Fish Disposition Engine: arrival mode for fish-out-of-water characters (EXCITABLE_NOVICE, CORRECTOR, CHECKED_OUT, CONTEMPTUOUS, CONVERT) — dependency of SS-087, SS-090, SS-091 | DONE (design doc + characters.js + domain tests 2026-03-28) | DDD |
 | 18 | SS-090 — Fish-out-of-water pair: Cox + Faldo both in panel — vehement mutual agreement on something both are completely wrong about, experts looking on in horror | DONE (MUTUAL AGREEMENT mechanic in IHW + IMD, acceptance tests green 2026-03-28) | BDD |
-| 18 | SS-091 — Fish-out-of-water pair: Cox + Faldo argue with each other when neither knows anything — escalating confident wrongness, no expert present to correct them | Open | BDD |
+| 18 | SS-091 — Fish-out-of-water pair: Cox + Faldo argue with each other when neither knows anything — escalating confident wrongness, no expert present to correct them | DONE (ARGUMENT mechanic in IHW + IMD system prompts, deployed 2026-03-29) | BDD |
 | 18 | SS-059 — Character interaction dynamics: wounds, lies, calling each other out | DONE (SOCIAL DYNAMICS ENGINE live, panel_tension in all modes, ADR-002 2026-03-28) | DDD |
 | 8 | SS-005 — Telephone Game mechanic | DONE (system prompt mechanic live 2026-03-28) | DDD |
 | 8 | SS-039 — Latin / indigenous naming layer in panel responses | Open | DDD |
