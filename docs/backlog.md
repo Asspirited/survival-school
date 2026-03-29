@@ -68,7 +68,7 @@
 | 18 | SS-092 — Fish-out-of-water character: Jim Carrey — cycles Ace Ventura / The Mask / Liar Liar / all other modes, red rag to the panel, funny and also not funny, just fuck off Jim | DONE 2026-03-28 | BDD |
 | 18 | SS-095 — New character: Jeremy Wade — Freshwater Biologist, River Monsters, protagonist + panel rotation, notebook/translator/tuning out/Cowabunga mechanics | DONE 2026-03-28 | BDD |
 | 12 | SS-096 — Wade predicament chips: River Monsters scenarios, freshwater predator experiences, Congo/Mekong incidents, candiru, witchcraft accusation | DONE (5 chips in worker.js 2026-03-28) | BDD |
-| 6 | SS-099 — Morrison contextual trigger: Morrison interrupts when panel conversation touches something he'd respond to (doors, poetry, snakes, death, the end) | Open | BDD |
+| 6 | SS-099 — Morrison contextual trigger: Morrison interrupts when panel conversation touches something he'd respond to (doors, poetry, snakes, death, the end) | DONE (contextual trigger in IHW + IMD, ~80% on trigger words, deployed 2026-03-29) | BDD |
 | 18 | SS-097 — New character: Eric Bristow — darts legend, survival commentary + darts panel crossover (Cusslab) | DONE (characters.js + character doc + domain tests 2026-03-29) | DDD |
 | 27 | SS-098 — Fish Disposition Engine: arrival mode for fish-out-of-water characters (EXCITABLE_NOVICE, CORRECTOR, CHECKED_OUT, CONTEMPTUOUS, CONVERT) — dependency of SS-087, SS-090, SS-091 | DONE (design doc + characters.js + domain tests 2026-03-28) | DDD |
 | 18 | SS-090 — Fish-out-of-water pair: Cox + Faldo both in panel — vehement mutual agreement on something both are completely wrong about, experts looking on in horror | DONE (MUTUAL AGREEMENT mechanic in IHW + IMD, acceptance tests green 2026-03-28) | BDD |
