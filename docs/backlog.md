@@ -48,7 +48,7 @@
 | 18 | SS-083 — Jim Morrison mid-session interruption: wanders in, helps or hinders, panel doesn't know what to do with him | DONE (IHW + IMD, ~20% random, warm→hostile flip, morrison_present state 2026-03-28) | BDD |
 | 8 | SS-075 — Corrupted door quotes: rotating list of Morrison + corrupted motivational banalities | DONE (25 quotes live 2026-03-28) | BDD |
 | 10 | SS-076 — Scenario predicament chips: airplane aisle, shandy, badger, pigeon, tortoise | DONE (5 chips live 2026-03-28) | BDD |
-| 12 | SS-077 — Room-specific guiding copy: freetext prompt hints congruent with each room's mechanic | Open | BDD |
+| 12 | SS-077 — Room-specific guiding copy: freetext prompt hints congruent with each room's mechanic | DONE (IHW + IMD guiding copy live 2026-03-29, remaining rooms when SS-068 ships) | BDD |
 | 14 | SS-078 — Corridor send-off messages: banal good-luck wishes alongside Morrison's prophecy | DONE (per-protagonist send-offs live 2026-03-28) | BDD |
 | 8 | SS-079 — Roy Keane character: dismissive survival mode, "this is nothing compared to selection" | DONE (characters.js + character doc 2026-03-29) | DDD |
 | 18 | SS-080 — Character: Mark O'Shea — herpetologist, taxonomically forensic, urn incident origin | DONE (in PANEL_POOL 2026-03-28) | DDD |
