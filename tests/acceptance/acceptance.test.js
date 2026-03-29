@@ -594,3 +594,46 @@ describe('Feature: Cox and Faldo mutual agreement mechanic', () => {
     assert.ok(!html.includes('never both'), "Old exclusion rule 'never both' must be removed from IHW");
   });
 });
+
+// ── Feature: Irwin Memorial Encounter (SS-012) ──
+
+describe('Feature: Irwin Memorial Encounter page loads', () => {
+
+  test('Given a user navigates to /survival-school/irwin-memorial, Then the page returns 200', async () => {
+    const r = await fetch(`${BASE}/survival-school/irwin-memorial`, { signal: AbortSignal.timeout(TIMEOUT) });
+    assert.strictEqual(r.status, 200);
+    const ct = r.headers.get('content-type') || '';
+    assert.ok(ct.includes('text/html'), `expected text/html, got ${ct}`);
+  });
+});
+
+describe('Feature: Irwin Memorial Encounter page contains expected elements', () => {
+
+  test('Given the irwin-memorial page loads, Then it contains animal chips, encounter input, and submit button', async () => {
+    const r = await fetch(`${BASE}/survival-school/irwin-memorial`, { signal: AbortSignal.timeout(TIMEOUT) });
+    const html = await r.text();
+    assert.ok(html.includes('encounter-input'), 'page must contain encounter-input element');
+    assert.ok(html.includes('btn-go'), 'page must contain btn-go submit button');
+    assert.ok(html.includes('chip'), 'page must contain chip elements');
+  });
+
+  test('Given the irwin-memorial page loads, Then it contains Stingray Rule memorial markup', async () => {
+    const r = await fetch(`${BASE}/survival-school/irwin-memorial`, { signal: AbortSignal.timeout(TIMEOUT) });
+    const html = await r.text();
+    assert.ok(html.includes('stingray-memorial'), 'page must contain stingray-memorial element');
+    assert.ok(html.includes('4 SEPTEMBER 2006'), 'page must contain Irwin death date');
+  });
+
+  test('Given the irwin-memorial page loads, Then it contains the isStingray function', async () => {
+    const r = await fetch(`${BASE}/survival-school/irwin-memorial`, { signal: AbortSignal.timeout(TIMEOUT) });
+    const html = await r.text();
+    assert.ok(html.includes('isStingray'), 'page must contain isStingray function for Stingray Rule');
+  });
+
+  test('Page contains tribute framing language, not mockery', async () => {
+    const r = await fetch(`${BASE}/survival-school/irwin-memorial`, { signal: AbortSignal.timeout(TIMEOUT) });
+    const html = await r.text();
+    assert.ok(html.includes('TRIBUTE'), 'system prompt must frame as tribute');
+    assert.ok(html.includes('never depicted as being in danger'), 'system prompt must protect Steve from danger framing');
+  });
+});

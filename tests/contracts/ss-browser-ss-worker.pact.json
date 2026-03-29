@@ -186,6 +186,32 @@
           "panel_min_length": 3
         }
       }
+    },
+    {
+      "description": "GET /survival-school/irwin-memorial returns HTML",
+      "request": { "method": "GET", "path": "/survival-school/irwin-memorial" },
+      "response": { "status": 200, "headers": { "Content-Type": "text/html; charset=utf-8" } }
+    },
+    {
+      "description": "POST /survival-school/irwin-memorial returns structured JSON for Irwin Memorial Encounter (SS-012)",
+      "request": {
+        "method": "POST",
+        "path": "/survival-school/irwin-memorial",
+        "headers": { "Content-Type": "application/json" },
+        "body": {
+          "system": "You are the Survival School IRWIN MEMORIAL ENCOUNTER engine. Respond ONLY with valid JSON matching exactly: {\"attenborough_opening\":\"<string>\",\"irwin_encounter\":\"<string>\",\"panel\":[{\"charId\":\"<string>\",\"text\":\"<string>\",\"nerve_score\":<integer 1-10>}],\"attenborough_verdict\":\"<string>\"}. No markdown. No prose. JSON only.",
+          "encounter": "A 4-metre saltwater crocodile basking on a riverbank"
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": { "Content-Type": "application/json" },
+        "schema": {
+          "required": ["attenborough_opening", "irwin_encounter", "panel", "attenborough_verdict"],
+          "panel_required_fields": ["charId", "text", "nerve_score"],
+          "panel_min_length": 3
+        }
+      }
     }
   ]
 }

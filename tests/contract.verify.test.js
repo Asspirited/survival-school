@@ -267,3 +267,49 @@ describe("POST /survival-school/in-my-defence — In My Defence mode", () => {
     }
   });
 });
+
+// ── POST /survival-school/irwin-memorial — Irwin Memorial Encounter schema (SS-012) ──
+describe("POST /survival-school/irwin-memorial — Irwin Memorial Encounter", () => {
+
+  test("returns 200 with structured JSON containing irwin_encounter, panel with nerve_score, and attenborough_verdict", async () => {
+    const interaction = contract.interactions.find(i =>
+      i.request.method === 'POST' && i.description.includes('irwin-memorial')
+    );
+    assert.ok(interaction, "contract interaction for irwin-memorial not found");
+
+    const response = await fetch(`${BASE_URL}${interaction.request.path}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(interaction.request.body),
+      signal: AbortSignal.timeout(CONTRACT_TIMEOUT_MS)
+    });
+
+    assert.strictEqual(response.status, 200, 'expected HTTP 200');
+
+    const data = await response.json();
+
+    assertSchemaFields(data, interaction.response.schema.required, "irwin-memorial response");
+
+    assert.ok(typeof data.irwin_encounter === 'string' && data.irwin_encounter.length > 0,
+      'irwin_encounter must be a non-empty string');
+
+    assert.ok(Array.isArray(data.panel), 'panel must be an array');
+    assert.ok(
+      data.panel.length >= interaction.response.schema.panel_min_length,
+      `panel must have at least ${interaction.response.schema.panel_min_length} characters`
+    );
+
+    for (const card of data.panel) {
+      assertSchemaFields(card, interaction.response.schema.panel_required_fields, 'panel card');
+      assert.ok(typeof card.charId === 'string' && card.charId.length > 0, 'panel card charId must be non-empty');
+      assert.ok(typeof card.text === 'string' && card.text.length > 0, 'panel card text must be non-empty');
+      assert.ok(typeof card.nerve_score === 'number' && card.nerve_score >= 1 && card.nerve_score <= 10,
+        `nerve_score must be 1-10, got ${card.nerve_score}`);
+    }
+
+    assert.ok(
+      typeof data.attenborough_verdict === 'string' && data.attenborough_verdict.length > 0,
+      'attenborough_verdict must be a non-empty string'
+    );
+  });
+});

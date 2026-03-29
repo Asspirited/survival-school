@@ -21,6 +21,7 @@ Feature: L5 — Operational Acceptance Testing (post-deploy)
       | /survival-school/rooms             |
       | /survival-school/ive-had-worse     |
       | /survival-school/in-my-defence     |
+      | /survival-school/irwin-memorial    |
 
   Scenario: POST /assess returns valid schema within threshold
     Given the worker is deployed

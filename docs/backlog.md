@@ -21,7 +21,7 @@
 | 18 | SS-031 — Animal database — first 20 entries | DONE (animals.js + ANIMAL_DB 2026-03-27) | Feature |
 | 18 | SS-033 — Animal Deathmatch data layer | DONE (stat bars + prompt enrichment 2026-03-27) | Feature |
 | 18 | SS-034 — Panel response logic | DONE (triage order in reaction mode 2026-03-27) | Feature |
-| 18 | SS-012 — Irwin Memorial Encounter | Open | BDD |
+| 18 | SS-012 — Irwin Memorial Encounter | DONE (live at /survival-school/irwin-memorial 2026-03-29, Stingray Rule, tribute framing) | BDD |
 | 18 | SS-014 — Attenborough Eulogy | DONE (death fail state eulogy live 2026-03-27) | BDD |
 | 12 | SS-054 — Feature: "One Man In" — EXFIL/INFIL mode, Craighead framing, solo entry, no chain of command | Open | BDD |
 | 12 | SS-013 — Packham Ethical Override | Open | BDD |
