@@ -25,6 +25,7 @@ cd /home/rodent/survival-school && cat \
   docs/panel-archetypes.md \
   docs/the-rooms-design-brief.md \
   docs/ss-086-roast-review.md \
+  docs/doors-ui-redesign.md \
   $(find docs/domains/ -name "*.md" 2>/dev/null | sort) \
   $(find docs/characters/ -name "*.md" 2>/dev/null | sort) \
   $(find features/ -name "*.feature" 2>/dev/null | sort) \
