@@ -1,46 +1,51 @@
 # Shared Session State — Survival School
-# Written: 2026-03-29 (Session B close — character doc completion)
-# Supersedes: Session A close (same date — Temporal Lens, archetypes, Bristow, Keane, Latin naming)
+# Written: 2026-03-29 (Claude Code Stream B close — pipeline + mechanics + Irwin)
+# Supersedes: Session B 2026-03-29 (character doc completion)
 
 ---
 
-## What shipped this session (Session B — 2026-03-29)
+## What shipped this session (Stream B)
 
-### Character docs completed (SS-102–SS-114)
-- 12 existing Draft v1 docs enriched with Comedy Engine + Wrong Answer Commentary sections
-- Jim Morrison character doc created from scratch (corridor guide, not in characters.js)
-- All 13 docs now match gold-standard schema (Irwin/Cody/Ray pattern)
-- Rod's Memory sections left as TBC — 13 dedicated BL items raised (SS-115–SS-127)
+### SS-040 — L5 OAT pipeline (DONE)
+- L5 Operational Acceptance Testing: 26 tests covering liveness (all 13 GET routes), schema (POST /assess + /ive-had-worse), performance (<5s GET, <30s POST), security (no secrets in responses)
+- Wired into pipeline-report.sh — pipeline now L0–L5, 647 tests total
 
-### Backlog items raised
-- SS-115 through SS-127: Rod's Memory richness — one per character, target file paths specified
-- New "Rod's Memory Richness" section added to backlog
+### SS-091 — Cox+Faldo ARGUMENT mechanic (DONE)
+- When both Cox and Faldo in panel with NO expert present, they argue (not agree)
+- Expert charIds: ray, bear, fox, hales, cody, stroud, stevens, jeremy
+- MUTUAL AGREEMENT now gated on expert presence
 
----
+### SS-012 — Irwin Memorial Encounter (DONE)
+- New page at /survival-school/irwin-memorial
+- Steve finds the animal, user watches, panel rates nerve (nerve_score 1-10)
+- Stingray Rule fires client-side. Tribute framing enforced. Homepage tile LIVE.
 
-## What shipped earlier today (Session A)
+### SS-020 — Cody Override mechanic (DONE)
+- Fires when Cody in panel + dangerously wrong survival advice
+- Simultaneous Packham override: Ray silent, Bear does it anyway, Hales correct version
 
-- SS-006: Temporal Lens mechanic — design doc + TEMPORAL_LENS data in characters.js + domain tests
-- SS-039: Latin/indigenous naming — NAMING_CONVENTIONS for 24 characters + injection + tests
-- SS-063: Panel archetypes — design doc with 6 named archetypes
-- SS-079: Roy Keane character — full voice profile + character doc
-- SS-097: Eric Bristow character — full voice profile + character doc + fish disposition
-- SS-086: Roast material review — mapped to chips across 4 features
-- SS-012: Irwin Memorial Encounter — live at /survival-school/irwin-memorial
-- SS-020: Cody Override mechanic — IHW + IMD system prompts
-- SS-047: App footer — branding, tagline, attribution on homepage
+### SS-047 — App footer (DONE)
+- Footer on homepage: wordmark, tagline, attribution
+
+### SS-077 — Room-specific guiding copy (DONE)
+- IHW: "Think small" hint. IMD: "Pick something indefensible" hint.
+- Remaining rooms pending SS-068.
+
+### SS-099 — Morrison contextual trigger (DONE)
+- Trigger words (door, death, snake, the end, desert, poetry etc.) → ~80% Morrison appearance
+- Both IHW and IMD
 
 ---
 
 ## Worker state
-- Last deployed hash: unknown (no deploy this session — docs only)
+- Last deployed hash: 128fdb6
 - Worker: cusslab-api.leanspirited.workers.dev
 - Deploy: source /home/rodent/.cf-deploy-token && CLOUDFLARE_API_TOKEN="${CLOUDFLARE_API_TOKEN}" CLOUDFLARE_ACCOUNT_ID="ce5ebfc99d1b37a7537a039d0b09d0b6" npx wrangler deploy --config /home/rodent/cusslab/wrangler.toml
 
 ---
 
 ## Pipeline state
-L0-L5 GREEN. 647 tests, 0 failures.
+L0-L5 GREEN. 647 tests, 0 failures. Known Haiku flake on L2 (passes on rerun).
 
 ---
 
@@ -52,39 +57,39 @@ Open: WL-SS-002, 003, 006, 011, 012, 013, 019–023 (unchanged)
 ## HDD status
 HDD-001: "Panel comedy and survival expertise together create content people share with specific people in mind."
 Status: OPEN / Advancing.
+Evidence: Irwin Memorial adds shareable mode. Morrison contextual trigger improves comedy timing.
 Next action: Get a real person to share a panel output with someone specific in mind.
 
 ---
 
 ## Decisions made this session
-- DECISION 2026-03-29: Rod's Memory sections left as TBC with dedicated BL items (SS-115–127). Rod's verbatim words are the product root — cannot be approximated from research.
+- Expert charIds for argument/agreement gating: ray, bear, fox, hales, cody, stroud, stevens, jeremy
+- SS-077 partially done — IHW/IMD only, remaining rooms when SS-068 ships
+- SS-013 (Packham) still blocked — needs character profile in characters.js first
 
 ---
 
 ## Top 3 for next session
-1. SS-006 — Temporal Lens mechanic (CD3=18)
-2. SS-012 — Irwin Memorial Encounter (CD3=18)
-3. SS-063 — Panel archetypes (CD3=18)
+1. SS-054 — "One Man In" EXFIL/INFIL mode (CD3=12, new feature)
+2. SS-060 — Cross-character panel references (CD3=8)
+3. SS-013 — Packham Ethical Override (CD3=12, BLOCKED by character profile)
 
 ---
 
-## Carry-forward
-- 13 Rod's Memory items open (SS-115–SS-127) — waiting for Rod's verbatim input
-- Jim Morrison: doc written but no characters.js entry — corridor guide only, not a panel member
+## Carry-forward notes
 - Jeremy Wade: still missing Rod's verbatim quote for "Rod's Memory" section
-- Middleton, McNab, Ryan, Hawking, Lee: in characters.js but NOT in worker.js
+- Middleton, McNab, Ryan: in characters.js but NOT in worker.js
 - Fish Disposition Engine: characters.js ready, worker.js integration pending
-- Morrison mechanic live on IHW + IMD only
-- L2 contract test: known occasional Haiku flake
-- SS-013 blocked: needs Packham character profile
+- L2 contract test: known occasional Haiku flake (passes on rerun)
+- SS-013 blocked: needs Packham character profile in characters.js
 
 ---
 
 ## Live features
 | Feature | URL | Status |
 |---------|-----|--------|
-| Homepage | /survival-school | Live |
-| How Screwed Am I? | /survival-school/app | Live — composure active |
+| Homepage | /survival-school | Live — footer added |
+| How Screwed Am I? | /survival-school/app | Live |
 | I've Been Bit, Guys | /survival-school/worst | Live |
 | Mundane Mode | /survival-school/mundane | Live |
 | Will You Eat It? | /survival-school/eat | Live |
@@ -93,6 +98,6 @@ Next action: Get a real person to share a panel output with someone specific in 
 | The Coyote Index | /survival-school/coyote | Live |
 | Panel Q&A | /survival-school/panel-qa | Live |
 | The Doors (corridor) | /survival-school/rooms | Live |
-| I've Had Worse (Room 13) | /survival-school/ive-had-worse | Live — composure + mutual agreement |
-| In My Defence (Room 14) | /survival-school/in-my-defence | Live — composure + mutual agreement |
-| Irwin Memorial Encounter | /survival-school/irwin-memorial | Live |
+| I've Had Worse (Room 13) | /survival-school/ive-had-worse | Live — all mechanics |
+| In My Defence (Room 14) | /survival-school/in-my-defence | Live — all mechanics |
+| Irwin Memorial Encounter | /survival-school/irwin-memorial | Live — NEW this session |
