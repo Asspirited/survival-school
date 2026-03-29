@@ -1,7 +1,7 @@
 # Backlog — Survival School
 # Prefix: SS-NNN
 # CD3 scoring: Confidence × Desirability × Deliverability (max 27)
-# Last updated: 2026-03-28 (CD3 scored 2026-03-28)
+# Last updated: 2026-03-29 (Session A closedown)
 
 ---
 
@@ -15,7 +15,7 @@
 | 18 | SS-021 — Panel integrity spectrum | DONE (design doc + all 13 character files 2026-03-27) | DDD |
 | 18 | SS-023 — Logo integration into app | DONE (bowie knife SVG live 2026-03-27) | BDD |
 | 18 | SS-009 — Mode A: Panel Q&A | DONE (panel-qa live 2026-03-28, Contradiction Engine) | BDD |
-| 18 | SS-006 — Temporal Lens mechanic | Open | DDD |
+| 18 | SS-006 — Temporal Lens mechanic | DONE (design doc + characters.js + 25 domain tests 2026-03-29) | DDD |
 | 18 | SS-016 — Domain Knowledge Files | DONE (animal-encounters.md 2026-03-27 — first domain) | DDD |
 | 18 | SS-018 — Remaining character files | DONE (temporal lens, stingray rule, telephone game 2026-03-27) | DDD |
 | 18 | SS-031 — Animal database — first 20 entries | DONE (animals.js + ANIMAL_DB 2026-03-27) | Feature |
@@ -28,12 +28,12 @@
 | 12 | SS-020 — Cody Override mechanic | DONE (IHW + IMD system prompts, deployed 2026-03-29) | BDD |
 | 12 | SS-045 — Nav category: "The Colosseum" → Animal Deathmatch | DONE (tile-cat live 2026-03-27) | BDD |
 | 12 | SS-046 — Nav category: "The Panel" → Irwin Memorial (+ future panel features) | DONE (tile-cat + title live 2026-03-27) | BDD |
-| 12 | SS-047 — App footer: logo, stamp, About link | Open | BDD |
+| 12 | SS-047 — App footer: logo, stamp, About link | DONE (homepage footer live 2026-03-29) | BDD |
 | 8 | SS-044 — Homepage redesign: tiled category nav (Cusslab pattern), no About tile | DONE (tile grid live 2026-03-27) | BDD |
 | 8 | SS-043 — Cascading input redesign: Location → Event → Context | DONE (cascade live 2026-03-27) | BDD |
 | 8 | SS-042 — Location chip library: full sub-categorised expansion | DONE (scenarios.js 2026-03-27) | DDD |
 | 8 | SS-032 — Archetypal scenarios | DONE (10 chips live, generic categories removed 2026-03-27) | Feature |
-| 18 | SS-063 — Panel archetypes: design who goes together and why | Open | DDD |
+| 18 | SS-063 — Panel archetypes: design who goes together and why | DONE (design doc, 6 archetypes 2026-03-29) | DDD |
 | 18 | SS-064 — Cross-product fish-out-of-water characters: Cox, Faldo, others | DONE (Cox + Faldo in I've Had Worse panel rotation 2026-03-28) | DDD |
 | 18 | SS-065 — Panel pool: random 4–5 character selection across all panel modes | DONE (PANEL_POOL + drawPanel live 2026-03-28) | BDD |
 | 7.3 | SS-066 — "I've Had Worse": walking skeleton, protagonist selection, escalating panel | DONE (live 2026-03-28) | BDD |
@@ -50,14 +50,14 @@
 | 10 | SS-076 — Scenario predicament chips: airplane aisle, shandy, badger, pigeon, tortoise | DONE (5 chips live 2026-03-28) | BDD |
 | 12 | SS-077 — Room-specific guiding copy: freetext prompt hints congruent with each room's mechanic | Open | BDD |
 | 14 | SS-078 — Corridor send-off messages: banal good-luck wishes alongside Morrison's prophecy | DONE (per-protagonist send-offs live 2026-03-28) | BDD |
-| 8 | SS-079 — Roy Keane character: dismissive survival mode, "this is nothing compared to selection" | Open | DDD |
+| 8 | SS-079 — Roy Keane character: dismissive survival mode, "this is nothing compared to selection" | DONE (characters.js + character doc 2026-03-29) | DDD |
 | 18 | SS-080 — Character: Mark O'Shea — herpetologist, taxonomically forensic, urn incident origin | DONE (in PANEL_POOL 2026-03-28) | DDD |
 | 18 | SS-081 — Character: Austin Stevens — Snakemaster, casualness about injury, "I've Been Bit Guys" origin | DONE (in PANEL_POOL 2026-03-28) | DDD |
 | 27 | SS-082 — Character: Gordon Lyons — amateur herpetologist, bitten twice by same snake, friend poured beer and urinated on his head as first aid | DONE (on I've Been Bit panel 2026-03-28) | DDD |
 | 18 | SS-058 — Per-character colored card backgrounds (Cusslab pattern, survival palette) | DONE (CHAR_COLOURS + char-{id} CSS live 2026-03-28) | BDD |
 | 18 | SS-084 — Predicament chip: "why did Bear end up forcing the teacher to drink his urine out of a dead snake" | DONE (chip live on worst page 2026-03-28) | BDD |
 | 27 | SS-085 — Per-character roast + inversion chips: real embarrassing moments + out-of-character scenarios they must defend (The Doors) | DONE (10 chips + ConspireEngine system prompt 2026-03-28) | DDD |
-| 12 | SS-086 — Review SS-085 material as stimulus for chips on other features (How Screwed, I've Had Worse, etc.) | Open | DDD |
+| 12 | SS-086 — Review SS-085 material as stimulus for chips on other features (How Screwed, I've Had Worse, etc.) | DONE (review doc, SS-115/116 raised 2026-03-29) | DDD |
 | 27 | SS-093 — New door: "In My Defence" (Room 14) — Roast/Inversion mode, protagonist chips expand per-person incidents, aggressive interrogation panel | DONE (live 2026-03-28) | BDD |
 | 18 | SS-094 — Fix I've Had Worse: remove roast chips, fix panel interaction (SOCIAL_DYNAMICS_ENGINE, panel_tension, random order, escalation) | DONE (2026-03-28) | BDD |
 | 27 | SS-088 — Panel emotional state model: port LieEngine + composure from Cusslab, characters shift register mid-session | DONE (2026-03-28) | BDD |
@@ -69,13 +69,16 @@
 | 18 | SS-095 — New character: Jeremy Wade — Freshwater Biologist, River Monsters, protagonist + panel rotation, notebook/translator/tuning out/Cowabunga mechanics | DONE 2026-03-28 | BDD |
 | 12 | SS-096 — Wade predicament chips: River Monsters scenarios, freshwater predator experiences, Congo/Mekong incidents, candiru, witchcraft accusation | DONE (5 chips in worker.js 2026-03-28) | BDD |
 | 6 | SS-099 — Morrison contextual trigger: Morrison interrupts when panel conversation touches something he'd respond to (doors, poetry, snakes, death, the end) | Open | BDD |
-| 18 | SS-097 — New character: Eric Bristow — darts legend, survival commentary + darts panel crossover (Cusslab) | Open | DDD |
+| 18 | SS-097 — New character: Eric Bristow — darts legend, survival commentary + darts panel crossover (Cusslab) | DONE (characters.js + character doc + domain tests 2026-03-29) | DDD |
 | 27 | SS-098 — Fish Disposition Engine: arrival mode for fish-out-of-water characters (EXCITABLE_NOVICE, CORRECTOR, CHECKED_OUT, CONTEMPTUOUS, CONVERT) — dependency of SS-087, SS-090, SS-091 | DONE (design doc + characters.js + domain tests 2026-03-28) | DDD |
 | 18 | SS-090 — Fish-out-of-water pair: Cox + Faldo both in panel — vehement mutual agreement on something both are completely wrong about, experts looking on in horror | DONE (MUTUAL AGREEMENT mechanic in IHW + IMD, acceptance tests green 2026-03-28) | BDD |
 | 18 | SS-091 — Fish-out-of-water pair: Cox + Faldo argue with each other when neither knows anything — escalating confident wrongness, no expert present to correct them | DONE (ARGUMENT mechanic in IHW + IMD system prompts, deployed 2026-03-29) | BDD |
 | 18 | SS-059 — Character interaction dynamics: wounds, lies, calling each other out | DONE (SOCIAL DYNAMICS ENGINE live, panel_tension in all modes, ADR-002 2026-03-28) | DDD |
 | 8 | SS-005 — Telephone Game mechanic | DONE (system prompt mechanic live 2026-03-28) | DDD |
-| 8 | SS-039 — Latin / indigenous naming layer in panel responses | Open | DDD |
+| 8 | SS-039 — Latin / indigenous naming layer in panel responses | DONE (design doc + NAMING_CONVENTIONS + 13 domain tests 2026-03-29) | DDD |
+| 12 | SS-115 — "Complicating factors" chip type for How Screwed Am I | DONE (Gherkin + UI + wiring 2026-03-29) | BDD |
+| 8 | SS-116 — Data-only chip additions from SS-086 review (IHW, PQA, Fact-Checker) | DONE (6 chips across 3 features 2026-03-29) | BDD |
+| 8 | SS-117 — Gordon Lyons missing CHARACTERS entry (SS-082 gap fix) | DONE (characters.js entry + naming convention 2026-03-29) | DDD |
 | 2 | SS-022 — Clay animal visuals | Open | DDD |
 | 2 | SS-038 — session-ref.md served as Cloudflare static URL | Open | DDD |
 | 8 | SS-026 — Fictional Great White Hunter | Ideas | HDD |
@@ -491,6 +494,160 @@ All 13 character files complete. Additions this session:
 - Backshall: Telephone Game mechanic variants per panel member documented
 - Irwin: Stingray Rule documented in irwin.md, attenborough.md, founding-docs-raw.md, and relevant mode/backlog files
 - All 13 files: Integrity Spectrum attribute added (position + in-practice + trigger threshold)
+
+SS-102–SS-114: 13 additional character docs completed 2026-03-29.
+- Billy Billingham, Ollie Ollerton, Coyote Peterson, Chris Ryan, Andy McNab,
+  Christian Craighead, Ant Middleton, Jim Carrey, Stephen Hawking, Bruce Lee,
+  Jim Morrison (created from scratch), Brian Cox, Nick Faldo
+- All enriched with Comedy Engine + Wrong Answer Commentary sections
+- Rod's Memory sections left as TBC — separate backlog items SS-115–SS-127
+
+---
+
+## ROD'S MEMORY RICHNESS (capture when Rod gives verbatim memories)
+
+---
+
+### SS-115 — Rod's Memory: Billy Billingham
+
+**Status:** Open
+**Loop:** DDD
+**CD3:** C=2 D=2 D=2 → **CD3=8**
+**Raised:** 2026-03-29
+
+Rod's verbatim personal memories for Billy Billingham. When Rod provides them, write immediately to docs/characters/billy-billingham.md § Rod's Memory. Confirm file path before Rod continues.
+
+---
+
+### SS-116 — Rod's Memory: Ollie Ollerton
+
+**Status:** Open
+**Loop:** DDD
+**CD3:** C=2 D=2 D=2 → **CD3=8**
+**Raised:** 2026-03-29
+
+Rod's verbatim personal memories for Ollie Ollerton. Target: docs/characters/ollie-ollerton.md § Rod's Memory.
+
+---
+
+### SS-117 — Rod's Memory: Coyote Peterson
+
+**Status:** Open
+**Loop:** DDD
+**CD3:** C=2 D=2 D=2 → **CD3=8**
+**Raised:** 2026-03-29
+
+Rod's verbatim personal memories for Coyote Peterson. Target: docs/characters/coyote-peterson.md § Rod's Memory.
+
+---
+
+### SS-118 — Rod's Memory: Chris Ryan
+
+**Status:** Open
+**Loop:** DDD
+**CD3:** C=2 D=2 D=2 → **CD3=8**
+**Raised:** 2026-03-29
+
+Rod's verbatim personal memories for Chris Ryan. Target: docs/characters/chris-ryan.md § Rod's Memory.
+
+---
+
+### SS-119 — Rod's Memory: Andy McNab
+
+**Status:** Open
+**Loop:** DDD
+**CD3:** C=2 D=2 D=2 → **CD3=8**
+**Raised:** 2026-03-29
+
+Rod's verbatim personal memories for Andy McNab. Target: docs/characters/andy-mcnab.md § Rod's Memory.
+
+---
+
+### SS-120 — Rod's Memory: Christian Craighead
+
+**Status:** Open
+**Loop:** DDD
+**CD3:** C=2 D=2 D=2 → **CD3=8**
+**Raised:** 2026-03-29
+
+Rod's verbatim personal memories for Christian Craighead. Target: docs/characters/christian-craighead.md § Rod's Memory.
+
+---
+
+### SS-121 — Rod's Memory: Ant Middleton
+
+**Status:** Open
+**Loop:** DDD
+**CD3:** C=2 D=2 D=2 → **CD3=8**
+**Raised:** 2026-03-29
+
+Rod's verbatim personal memories for Ant Middleton. Target: docs/characters/ant-middleton.md § Rod's Memory.
+
+---
+
+### SS-122 — Rod's Memory: Jim Carrey
+
+**Status:** Open
+**Loop:** DDD
+**CD3:** C=2 D=2 D=2 → **CD3=8**
+**Raised:** 2026-03-29
+
+Rod's verbatim personal memories for Jim Carrey. Target: docs/characters/jim-carrey.md § Rod's Memory.
+
+---
+
+### SS-123 — Rod's Memory: Stephen Hawking
+
+**Status:** Open
+**Loop:** DDD
+**CD3:** C=2 D=2 D=2 → **CD3=8**
+**Raised:** 2026-03-29
+
+Rod's verbatim personal memories for Stephen Hawking. Target: docs/characters/stephen-hawking.md § Rod's Memory.
+
+---
+
+### SS-124 — Rod's Memory: Bruce Lee
+
+**Status:** Open
+**Loop:** DDD
+**CD3:** C=2 D=2 D=2 → **CD3=8**
+**Raised:** 2026-03-29
+
+Rod's verbatim personal memories for Bruce Lee. Target: docs/characters/bruce-lee.md § Rod's Memory.
+
+---
+
+### SS-125 — Rod's Memory: Jim Morrison
+
+**Status:** Open
+**Loop:** DDD
+**CD3:** C=2 D=2 D=2 → **CD3=8**
+**Raised:** 2026-03-29
+
+Rod's verbatim personal memories for Jim Morrison. Target: docs/characters/jim-morrison.md § Rod's Memory.
+
+---
+
+### SS-126 — Rod's Memory: Brian Cox
+
+**Status:** Open
+**Loop:** DDD
+**CD3:** C=2 D=2 D=2 → **CD3=8**
+**Raised:** 2026-03-29
+
+Rod's verbatim personal memories for Brian Cox. Target: docs/characters/brian-cox.md § Rod's Memory.
+
+---
+
+### SS-127 — Rod's Memory: Nick Faldo
+
+**Status:** Open
+**Loop:** DDD
+**CD3:** C=2 D=2 D=2 → **CD3=8**
+**Raised:** 2026-03-29
+
+Rod's verbatim personal memories for Nick Faldo. Target: docs/characters/nick-faldo.md § Rod's Memory.
 
 ---
 
