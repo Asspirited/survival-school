@@ -1,10 +1,15 @@
 # Session Closedown — Survival School
 # Run this in full before ending any session.
-# Last updated: 2026-03-26
+# Last updated: 2026-03-29
+#
+# EVERY STEP IS MANDATORY. Check each one. If a step has nothing to
+# report (no ADRs, no SWOT changes, no new WL items), confirm that
+# and move on. The checking is the point. Skipping a step because
+# "there's nothing for it" without checking is a protocol failure.
 
 ---
 
-## SEQUENCE — follow in order, no exceptions
+## SEQUENCE — follow in order, check every step
 
 ---
 
@@ -21,12 +26,12 @@ For every BL item touched this session:
 - Add any new items surfaced during the session
 - Note any acceptance criteria changes
 
-**Display the backlog report** — two tables, mandatory at every closedown:
+**Display the backlog report** — two tables:
 1. **Open items** — CD3, ID, Title (all open items, CD3 descending)
 2. **Closed Today** — ID, Title, Push time (HH:MM UK time from git log)
 Do NOT display Closed Prior — backlog is too large, it's noise.
 Summary line with totals (open / closed today).
-No skipping. No summarising. The tables are the session receipt.
+The tables are the session receipt.
 
 For WL (`docs/waste-log.md`):
 - Close any WL items resolved this session
