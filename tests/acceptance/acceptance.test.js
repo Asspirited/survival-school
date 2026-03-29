@@ -637,3 +637,77 @@ describe('Feature: Irwin Memorial Encounter page contains expected elements', ()
     assert.ok(html.includes('never depicted as being in danger'), 'system prompt must protect Steve from danger framing');
   });
 });
+
+// ── Feature: One Man In — EXFIL/INFIL mode (SS-054) ──
+
+describe('Feature: One Man In page loads', () => {
+
+  test('Given a user navigates to /survival-school/one-man-in, Then the page returns 200', async () => {
+    const r = await fetch(`${BASE}/survival-school/one-man-in`, { signal: AbortSignal.timeout(TIMEOUT) });
+    assert.strictEqual(r.status, 200);
+    const ct = r.headers.get('content-type') || '';
+    assert.ok(ct.includes('text/html'), `expected text/html, got ${ct}`);
+  });
+});
+
+describe('Feature: One Man In page contains expected elements', () => {
+
+  test('Given the one-man-in page loads, Then it contains situation chips, textarea, and submit button', async () => {
+    const r = await fetch(`${BASE}/survival-school/one-man-in`, { signal: AbortSignal.timeout(TIMEOUT) });
+    const html = await r.text();
+    assert.ok(html.includes('situation-chips'), 'page must contain situation-chips element');
+    assert.ok(html.includes('situation-input'), 'page must contain situation-input textarea');
+    assert.ok(html.includes('btn-submit'), 'page must contain btn-submit button');
+    assert.ok(html.includes('SEND ME IN'), 'submit button must say SEND ME IN');
+  });
+
+  test('Given the one-man-in page loads, Then it contains kit chips', async () => {
+    const r = await fetch(`${BASE}/survival-school/one-man-in`, { signal: AbortSignal.timeout(TIMEOUT) });
+    const html = await r.text();
+    assert.ok(html.includes('kit-chips'), 'page must contain kit-chips element');
+    assert.ok(html.includes('sidearm'), 'page must contain sidearm kit chip');
+    assert.ok(html.includes('loyalty card'), 'page must contain loyalty card kit chip');
+  });
+
+  test('Given the one-man-in page loads, Then situation chips include both serious and absurd', async () => {
+    const r = await fetch(`${BASE}/survival-school/one-man-in`, { signal: AbortSignal.timeout(TIMEOUT) });
+    const html = await r.text();
+    assert.ok(html.includes('DusitD2'), 'page must contain DusitD2 serious scenario');
+    assert.ok(html.includes('IKEA car park'), 'page must contain IKEA absurd scenario');
+    assert.ok(html.includes('self-checkout'), 'page must contain self-checkout absurd scenario');
+  });
+
+  test('Given the one-man-in page loads, Then it contains Craighead as lead character', async () => {
+    const r = await fetch(`${BASE}/survival-school/one-man-in`, { signal: AbortSignal.timeout(TIMEOUT) });
+    const html = await r.text();
+    assert.ok(html.includes('craighead'), 'page must contain craighead character ID');
+    assert.ok(html.includes('Obi-Wan Nairobi'), 'page must contain Craighead subtitle');
+    assert.ok(html.includes('LEAD'), 'page must contain LEAD badge for Craighead');
+  });
+
+  test('Given the one-man-in page loads, Then system prompt references EXFIL mechanics', async () => {
+    const r = await fetch(`${BASE}/survival-school/one-man-in`, { signal: AbortSignal.timeout(TIMEOUT) });
+    const html = await r.text();
+    assert.ok(html.includes('exfil_probability'), 'system prompt must reference exfil_probability');
+    assert.ok(html.includes('route'), 'system prompt must reference route');
+    assert.ok(html.includes('abort_criteria'), 'system prompt must reference abort_criteria');
+    assert.ok(html.includes('movement_order'), 'system prompt must reference movement_order');
+  });
+
+  test('Given the one-man-in page loads, Then the WORKER_ENDPOINT points to one-man-in', async () => {
+    const r = await fetch(`${BASE}/survival-school/one-man-in`, { signal: AbortSignal.timeout(TIMEOUT) });
+    const html = await r.text();
+    assert.ok(html.includes('/survival-school/one-man-in'), 'WORKER_ENDPOINT must point to /survival-school/one-man-in');
+  });
+});
+
+describe('Feature: Homepage tile links to One Man In', () => {
+
+  test('Given a user navigates to /survival-school, Then a tile links to /survival-school/one-man-in', async () => {
+    const r = await fetch(`${BASE}/survival-school`, { signal: AbortSignal.timeout(TIMEOUT) });
+    const html = await r.text();
+    assert.ok(html.includes('href="/survival-school/one-man-in"'), 'homepage must link to one-man-in');
+    assert.ok(html.includes('One Man In'), 'homepage must show One Man In title');
+    assert.ok(!html.includes('class="tile soon"') || !html.includes('One Man In</div>\n      <div class="tile-desc">Fit'), 'One Man In tile must not be marked as SOON');
+  });
+});

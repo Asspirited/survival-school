@@ -136,6 +136,8 @@
 | 8 | SS-125 — Rod's Memory: Jim Morrison — verbatim personal memories | Open | DDD |
 | 8 | SS-126 — Rod's Memory: Brian Cox — verbatim personal memories | Open | DDD |
 | 8 | SS-127 — Rod's Memory: Nick Faldo — verbatim personal memories | Open | DDD |
+| 12 | SS-128 — Banner/logo clickable link back to homepage from all pages | DONE (homepage banner + 9 sub-page nav-back links 2026-03-29) | BDD |
+| 10 | SS-129 — Chip category tiles for non-Doors panel features (HSAI, Mundane, etc.) | Open | BDD |
 | 8.0 | SS-060 — Cross-character panel references (reacts_to schema field) | Open | BDD |
 | 6.3 | SS-061 — Decision loop: Fighting Fantasy mechanic for panel features | Open | BDD |
 | 14.0 | SS-062 — Panel triage order consistency across all panel features | DONE (assessment + mundane fixed, ADR-002 written 2026-03-28) | BDD |
@@ -648,6 +650,44 @@ Rod's verbatim personal memories for Brian Cox. Target: docs/characters/brian-co
 **Raised:** 2026-03-29
 
 Rod's verbatim personal memories for Nick Faldo. Target: docs/characters/nick-faldo.md § Rod's Memory.
+
+---
+
+### SS-128 — Banner/logo clickable link back to homepage from all pages
+
+**Status:** DONE
+**Loop:** BDD
+**CD3:** C=3 D=2 D=2 → **CD3=12**
+**Raised:** 2026-03-29
+**Closed:** 2026-03-29
+
+Homepage banner wrapped in `<a href="/survival-school">`. 9 sub-pages that had no back navigation now have `← SURVIVAL SCHOOL` inline link at top of `#app`. IHW, IMD, and Rooms already had nav-back links. Pipeline GREEN (647 tests).
+
+**Acceptance Criteria:**
+```gherkin
+Scenario: Banner links to homepage
+  Given a user is on any Survival School page
+  Then the banner/logo at the top is a clickable link to /survival-school
+```
+
+---
+
+### SS-129 — Chip category tiles for non-Doors panel features
+
+**Status:** Open
+**Loop:** BDD
+**CD3:** C=2 D=3 D=2 → **CD3=12** → normalised **10** (design + build)
+**Raised:** 2026-03-29
+
+Panel features that use chips (How Screwed Am I, Mundane, Will You Eat It, etc.) currently present chips as a flat list — messy, confusing, ugly. Copy the Doors corridor tile pattern: group chips into category tiles (e.g. "Animal Encounters", "Environmental", "Human Error" for HSAI). User taps a tile to see chips in that category. Same grid layout, same visual language as the Doors.
+
+**Acceptance Criteria:**
+```gherkin
+Scenario: Chip categories displayed as tiles
+  Given a user opens a panel feature with chips
+  Then chips are grouped into labelled category tiles
+  And tapping a tile reveals only chips in that category
+```
 
 ---
 

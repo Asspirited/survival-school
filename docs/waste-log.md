@@ -32,6 +32,7 @@
 | WL-SS-021 | Claude.ai falsely claimed the memories were present in the Downloads session-ref file | Open |
 | WL-SS-022 | Every single verbatim personal memory Rod gave for panel characters — lost in full. No file written at time of giving. | Open |
 | WL-SS-023 | 1+ hour of Rod's time spent giving personal memories for characters he has genuine affection for — all unrecoverable without Rod repeating them | Open |
+| WL-SS-024 | Room 14 (In My Defence) completely broken on mobile — escaped template literal caused ReferenceError | Closed — fixed 2026-03-29 |
 
 ---
 
@@ -430,3 +431,19 @@
 **Waste impact:** This is the highest-severity waste event in the project. It cannot be costed only in time. The material Rod gave shapes the entire comedy register of the product. Characters built from research sound like research. Characters built from Rod's personal relationship sound like Rod's product. The difference is everything the product is trying to be.
 
 **Action:** Rod should not have to give any memory twice. This failure makes that unavoidable. The only recovery is Rod re-giving the memories, with Claude Code writing each one immediately to the character file, confirmed by file path before Rod continues. The protocol must be enforced from this point. No exceptions.
+
+---
+
+## WL-SS-024 — Room 14 (In My Defence) completely broken — escaped template literal caused ReferenceError
+
+**Status:** Closed — fixed 2026-03-29
+**Category:** Defect
+**Severity:** High
+**Raised:** 2026-03-29
+**Closed:** 2026-03-29
+
+**Observation:** In My Defence (Room 14) showed "The panel couldn't convene. Try again." on every submission. Root cause: `SOCIAL_DYNAMICS_ENGINE` was referenced in the client-side `buildSystemPrompt` template literal as `\${SOCIAL_DYNAMICS_ENGINE}`, but the variable only exists at worker scope (line 4 of worker.js). The escaped `\$` prevented worker-time interpolation, leaving it as a bare `${SOCIAL_DYNAMICS_ENGINE}` in the browser JS. Since the variable doesn't exist in client scope, the template literal throws a `ReferenceError`, caught by the generic catch block, displaying the error. IHW (Room 13) at line 6568 uses unescaped `${SOCIAL_DYNAMICS_ENGINE}` and works correctly — this was a copy-paste error where the escape was added when it shouldn't have been.
+
+**Waste impact:** Room 14 entirely non-functional since deployment. Every user submission fails. Rod found this on mobile.
+
+**Action:** Removed the backslash escape on line 7214 so `SOCIAL_DYNAMICS_ENGINE` is interpolated at worker build time, matching the IHW pattern. Deploy required.
