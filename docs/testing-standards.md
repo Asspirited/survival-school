@@ -245,7 +245,11 @@ Do NOT use Scenario Outline when:
 
 ### L5 — OAT (Operational Acceptance Testing)
 **What:** Post-deploy confirmation that the live system behaves as expected.
-**Not yet defined.** Placeholder in pipeline runner.
+**Files:** `tests/l5-oat.test.js`
+**Gherkin source:** `features/l5-oat.feature`
+**When:** After L4. Calls live worker — network required.
+**Pass criterion:** All GET routes return 200 with text/html under 5s. POST /assess returns valid JSON schema (survival_probability 0–100, non-empty panel array) under 30s. POST /ive-had-worse returns valid JSON under 30s. No secret patterns (`sk-ant-`, `ANTHROPIC_API_KEY`, `CLOUDFLARE_API_TOKEN`) in any response body.
+**What is NOT tested at L5:** LLM response quality (Q3 — exploratory), load testing, browser compatibility.
 
 ---
 

@@ -138,11 +138,25 @@ else
   L4_RESULT="SKIP"
 fi
 
-# ── L5: OAT ──
+# ── L5: OAT (Operational Acceptance) ──
 separator
 echo "L5 — OAT (Operational Acceptance)"
-echo "L5: SKIP — OAT not yet defined"
-L5_RESULT="SKIP"
+L5_START=$(date +%s%3N)
+L5_PASS=0; L5_FAIL=0
+L5_OUT=$(node --test tests/l5-oat.test.js 2>&1)
+L5_EXIT=$?
+L5_END=$(date +%s%3N)
+L5_TIME=$(( (L5_END - L5_START) ))
+L5_PASS=$(parse_pass "$L5_OUT")
+L5_FAIL=$(parse_fail "$L5_OUT")
+if [ $L5_EXIT -eq 0 ] && [ "$L5_FAIL" = "0" ]; then
+  L5_RESULT="GREEN"
+else
+  L5_RESULT="RED"
+  ERRORS=$((ERRORS+1))
+fi
+echo "$L5_OUT" | grep -E "(PASS|FAIL|ok|not ok)" | head -30
+echo "L5: $L5_RESULT — passed: $L5_PASS | failed: $L5_FAIL (${L5_TIME}ms)"
 
 # ── Summary ──
 END_TIME=$(date +%s)
@@ -160,7 +174,7 @@ printf "  %-6s  %-12s  %s\n" "L1" "$L1_RESULT" "Unit — pass:$L1_PASS fail:$L1_
 printf "  %-6s  %-12s  %s\n" "L2" "$L2_RESULT" "Contract — pass:$L2_PASS fail:$L2_FAIL (${L2_TIME}ms)"
 printf "  %-6s  %-12s  %s\n" "L3" "$L3_RESULT" "Acceptance — pass:$L3_PASS fail:$L3_FAIL (${L3_TIME}ms)"
 printf "  %-6s  %-12s  %s\n" "L4" "$L4_RESULT" "UI/Playwright — pass:$L4_PASS fail:$L4_FAIL (${L4_TIME}ms)"
-printf "  %-6s  %-12s  %s\n" "L5" "$L5_RESULT" "OAT"
+printf "  %-6s  %-12s  %s\n" "L5" "$L5_RESULT" "OAT — pass:$L5_PASS fail:$L5_FAIL (${L5_TIME}ms)"
 echo ""
 
 if [ $ERRORS -gt 0 ]; then

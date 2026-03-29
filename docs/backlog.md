@@ -9,7 +9,7 @@
 
 | CD3 | Item | Status | Loop |
 |-----|------|--------|------|
-| 27 | SS-040 — Build full test pipeline (L0–L5, YGW pattern) | IN PROGRESS | TDD |
+| 27 | SS-040 — Build full test pipeline (L0–L5, YGW pattern) | DONE (L5 OAT live 2026-03-29, 625 tests green) | TDD |
 | 27 | SS-015 — Survival Skills Taxonomy | DONE (docs/domains/index.md 2026-03-27) | DDD |
 | 27 | SS-029 — Shareability / screenshot | DONE (SHARE button + Web Share API + clipboard fallback on ive-had-worse 2026-03-28) | BDD |
 | 18 | SS-021 — Panel integrity spectrum | DONE (design doc + all 13 character files 2026-03-27) | DDD |
