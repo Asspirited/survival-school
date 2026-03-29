@@ -794,3 +794,28 @@ describe('Feature: Doors corridor UI redesign (SS-138)', () => {
     assert.ok(html.includes('Crimson+Text') || html.includes('Crimson Text'), 'rooms page must load Crimson Text font');
   });
 });
+
+// ── Feature: Chip category tiles — consistent UX (SS-129) ──
+describe('Feature: Chip category tiles — consistent UX (SS-129)', () => {
+
+  const CHIP_PAGES = [
+    '/survival-school/ive-had-worse',
+    '/survival-school/in-my-defence',
+    '/survival-school/worst',
+    '/survival-school/mundane',
+    '/survival-school/eat',
+    '/survival-school/fact-checker',
+    '/survival-school/coyote',
+    '/survival-school/panel-qa',
+    '/survival-school/irwin-memorial',
+    '/survival-school/one-man-in',
+  ];
+
+  for (const page of CHIP_PAGES) {
+    test(`Given a user navigates to ${page}, Then chips are grouped under chip-cat category tiles`, async () => {
+      const r = await fetch(`${BASE}${page}`, { signal: AbortSignal.timeout(TIMEOUT) });
+      const html = await r.text();
+      assert.ok(html.includes('chip-cat'), `${page} must contain chip-cat category tile elements`);
+    });
+  }
+});

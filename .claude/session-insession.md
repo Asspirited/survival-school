@@ -208,3 +208,25 @@ After building, run the UI/UX checklist from leanspirited-standards/protocols/se
 **End-of-session prep** (feeds session-closedown.md):
 - ADR session summary: titles, IDs, one-line status
 - Flag any verbal decisions not yet written as ADRs
+## UX CONSISTENCY PRINCIPLE — applies at Three Amigos gate
+
+When any UI pattern exists in one feature, the default is to apply it consistently
+across all features unless there is a specific reason to break convention for that feature.
+
+**Trigger:** Any time a UI component (chips, tiles, cards, inputs, loading states, error states,
+share buttons, category groupings, nav patterns) is built or redesigned for one feature.
+
+**Action at Three Amigos:**
+1. Ask: "Does this pattern already exist elsewhere in the app?"
+2. If yes: "Is this change being applied consistently, or only to one feature?"
+3. If only one feature: either expand scope to all features, or state the specific reason
+   this feature breaks convention (and record that reason in the ADR).
+
+**The rule:** Consistent by default. Divergent only with a stated reason.
+
+**Why:** Users experience the whole app, not individual features. Inconsistent chip layouts,
+button styles, or interaction patterns between pages feel broken even when each page works
+individually. The app should feel like one product, not six prototypes.
+
+**How to apply:** At the DDD/BDD/TDD loop boundary — before writing Gherkin for any UI change,
+check whether the pattern exists on other pages. If it does, scope the work to cover all pages.
