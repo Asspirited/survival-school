@@ -25,7 +25,7 @@
 | 18 | SS-014 — Attenborough Eulogy | DONE (death fail state eulogy live 2026-03-27) | BDD |
 | 12 | SS-054 — Feature: "One Man In" — EXFIL/INFIL mode, Craighead framing, solo entry, no chain of command | Open | BDD |
 | 12 | SS-013 — Packham Ethical Override | Open | BDD |
-| 12 | SS-020 — Cody Override mechanic | Open | BDD |
+| 12 | SS-020 — Cody Override mechanic | DONE (IHW + IMD system prompts, deployed 2026-03-29) | BDD |
 | 12 | SS-045 — Nav category: "The Colosseum" → Animal Deathmatch | DONE (tile-cat live 2026-03-27) | BDD |
 | 12 | SS-046 — Nav category: "The Panel" → Irwin Memorial (+ future panel features) | DONE (tile-cat + title live 2026-03-27) | BDD |
 | 12 | SS-047 — App footer: logo, stamp, About link | Open | BDD |
@@ -107,19 +107,32 @@
 | — | SS-055 — Scenario bank: Bravo Two Zero | DONE (added scenarios.js 2026-03-27) | DDD |
 | — | SS-056 — Scenario bank: Operation Nimrod | DONE (added scenarios.js 2026-03-27) | DDD |
 | — | SS-057 — Feature: "The Coyote Index" | DONE (live 2026-03-27) | BDD |
-| 12 | SS-102 — Character doc: Billy Billingham — full schema (Rod's Memory, Facts, Comedy Engine, Register, Voice) | Open | DDD |
-| 12 | SS-103 — Character doc: Ollie Ollerton — full schema | Open | DDD |
-| 12 | SS-104 — Character doc: Coyote Peterson — full schema | Open | DDD |
-| 12 | SS-105 — Character doc: Chris Ryan — full schema | Open | DDD |
-| 12 | SS-106 — Character doc: Andy McNab — full schema | Open | DDD |
-| 12 | SS-107 — Character doc: Christian Craighead (Obi-Wan Nairobi) — full schema | Open | DDD |
-| 12 | SS-108 — Character doc: Ant Middleton — full schema | Open | DDD |
-| 12 | SS-109 — Character doc: Jim Carrey — full schema | Open | DDD |
-| 12 | SS-110 — Character doc: Stephen Hawking — full schema | Open | DDD |
-| 12 | SS-111 — Character doc: Bruce Lee — full schema | Open | DDD |
-| 12 | SS-112 — Character doc: Jim Morrison (corridor guide) — full schema | Open | DDD |
-| 12 | SS-113 — Character doc: Brian Cox — full schema | Open | DDD |
-| 12 | SS-114 — Character doc: Nick Faldo — full schema | Open | DDD |
+| 12 | SS-102 — Character doc: Billy Billingham — full schema (Rod's Memory, Facts, Comedy Engine, Register, Voice) | DONE (full schema + Comedy Engine + WAC 2026-03-29) | DDD |
+| 12 | SS-103 — Character doc: Ollie Ollerton — full schema | DONE (full schema + Comedy Engine + WAC 2026-03-29) | DDD |
+| 12 | SS-104 — Character doc: Coyote Peterson — full schema | DONE (full schema + WAC 2026-03-29) | DDD |
+| 12 | SS-105 — Character doc: Chris Ryan — full schema | DONE (full schema + Comedy Engine + WAC 2026-03-29) | DDD |
+| 12 | SS-106 — Character doc: Andy McNab — full schema | DONE (full schema + Comedy Engine + WAC 2026-03-29) | DDD |
+| 12 | SS-107 — Character doc: Christian Craighead (Obi-Wan Nairobi) — full schema | DONE (full schema + WAC 2026-03-29) | DDD |
+| 12 | SS-108 — Character doc: Ant Middleton — full schema | DONE (full schema + Comedy Engine + WAC 2026-03-29) | DDD |
+| 12 | SS-109 — Character doc: Jim Carrey — full schema | DONE (full schema + Comedy Engine + WAC 2026-03-29) | DDD |
+| 12 | SS-110 — Character doc: Stephen Hawking — full schema | DONE (full schema + Comedy Engine + WAC 2026-03-29) | DDD |
+| 12 | SS-111 — Character doc: Bruce Lee — full schema | DONE (full schema + Comedy Engine + WAC 2026-03-29) | DDD |
+| 12 | SS-112 — Character doc: Jim Morrison (corridor guide) — full schema | DONE (created from scratch 2026-03-29) | DDD |
+| 12 | SS-113 — Character doc: Brian Cox — full schema | DONE (full schema + Comedy Engine + WAC 2026-03-29) | DDD |
+| 12 | SS-114 — Character doc: Nick Faldo — full schema | DONE (full schema + Comedy Engine + WAC 2026-03-29) | DDD |
+| 8 | SS-115 — Rod's Memory: Billy Billingham — verbatim personal memories | Open | DDD |
+| 8 | SS-116 — Rod's Memory: Ollie Ollerton — verbatim personal memories | Open | DDD |
+| 8 | SS-117 — Rod's Memory: Coyote Peterson — verbatim personal memories | Open | DDD |
+| 8 | SS-118 — Rod's Memory: Chris Ryan — verbatim personal memories | Open | DDD |
+| 8 | SS-119 — Rod's Memory: Andy McNab — verbatim personal memories | Open | DDD |
+| 8 | SS-120 — Rod's Memory: Christian Craighead — verbatim personal memories | Open | DDD |
+| 8 | SS-121 — Rod's Memory: Ant Middleton — verbatim personal memories | Open | DDD |
+| 8 | SS-122 — Rod's Memory: Jim Carrey — verbatim personal memories | Open | DDD |
+| 8 | SS-123 — Rod's Memory: Stephen Hawking — verbatim personal memories | Open | DDD |
+| 8 | SS-124 — Rod's Memory: Bruce Lee — verbatim personal memories | Open | DDD |
+| 8 | SS-125 — Rod's Memory: Jim Morrison — verbatim personal memories | Open | DDD |
+| 8 | SS-126 — Rod's Memory: Brian Cox — verbatim personal memories | Open | DDD |
+| 8 | SS-127 — Rod's Memory: Nick Faldo — verbatim personal memories | Open | DDD |
 | 8.0 | SS-060 — Cross-character panel references (reacts_to schema field) | Open | BDD |
 | 6.3 | SS-061 — Decision loop: Fighting Fantasy mechanic for panel features | Open | BDD |
 | 14.0 | SS-062 — Panel triage order consistency across all panel features | DONE (assessment + mundane fixed, ADR-002 written 2026-03-28) | BDD |
