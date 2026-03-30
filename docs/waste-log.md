@@ -34,6 +34,7 @@
 | WL-SS-023 | 1+ hour of Rod's time spent giving personal memories for characters he has genuine affection for — all unrecoverable without Rod repeating them | Open |
 | WL-SS-024 | Room 14 (In My Defence) completely broken on mobile — escaped template literal caused ReferenceError | Closed — fixed 2026-03-29 |
 | WL-SS-025 | In My Defence shows "panel couldn't convene" on slow responses — large prompt, no client timeout handling | Open |
+| WL-SS-026 | Robin Williams memories given yesterday, explicitly told to log — written as "AWAITING INPUT" instead. Same failure as WL-SS-022/023. | Open |
 
 ---
 
@@ -463,3 +464,20 @@
 **Waste impact:** Users see an error message on a working feature. They may reload or give up before the response arrives. False error undermines confidence in the product.
 
 **Action:** Two options: (a) increase client-side timeout tolerance with "still thinking..." intermediate state at ~15s, error only at ~60s; (b) reduce system prompt size for IMD route. Both may be needed. Tracked as part of SS-164 (IMD design pivot) and SS-149 (decompose monolith prompts).
+
+---
+
+## WL-SS-026 — Robin Williams memories given by Rod, explicitly told to log — not logged
+
+**Status:** Open
+**Category:** Defect / Trust
+**Severity:** Critical
+**Raised:** 2026-03-30
+
+**Observation:** Rod gave verbatim Robin Williams memories in a previous session AND explicitly told Claude to log them in the character md file. New session started SS-146 and wrote the character doc with "AWAITING ROD'S INPUT" — the memories were not carried forward because they existed only in the prior conversation context.
+
+**Waste impact:** Rod must give the memories again. Same failure pattern as WL-SS-022/023. Protocol says this must never happen again. It happened again.
+
+**Root cause:** Cross-session memory loss. The instruction to log was given in a conversation that ended. The file was never written in that session. New session had no access to the verbatim text.
+
+**Action:** When Rod gives memories, the file must be written IN THAT SAME TURN. Not at session close. Not in the next session. In the turn where Rod gives them. Verbal confirmation is not persistence. Only a file path is persistence.
