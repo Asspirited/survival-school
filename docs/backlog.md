@@ -139,9 +139,9 @@
 | 12 | SS-128 — Banner/logo clickable link back to homepage from all pages | DONE (homepage banner + 9 sub-page nav-back links 2026-03-29) | BDD |
 | 10 | SS-129 — Chip category tiles for non-Doors panel features (HSAI, Mundane, etc.) | DONE (chip-cat tiles across all 10 features 2026-03-30) | BDD |
 | TBD | SS-130 — Room: The Apology Tour — character apologises for something they did, panel never accepts | Open | BDD |
-| TBD | SS-131 — Room: The Alibi — two characters, one event, two stories, neither changes | Open | BDD |
+| 12 | SS-131 — Room: The Alibi — two characters, one event, two stories, adversarial storytelling, panel as judge/jury | DONE (live at /survival-school/the-alibi, Room 15, multi-turn CROSS-EXAMINE 2026-03-30) | BDD |
 | TBD | SS-132 — Room: The Intervention — panel stages an intervention for one character's worst habit | Open | BDD |
-| TBD | SS-133 — Room: The Expert Witness — fish-out-of-water presented as expert, real experts defer | Open | BDD |
+| 12 | SS-133 — Room: The Expert Witness — fish-out-of-water presented as expert, real experts defer, deference cracks | DONE (live at /survival-school/the-expert-witness, Room 16, multi-turn PRESS FURTHER 2026-03-30) | BDD |
 | TBD | SS-134 — Room: The Pitch — character pitches worst survival idea as Dragon's Den presentation | Open | BDD |
 | TBD | SS-135 — Room: If You Had To... — hyper-specific scenarios forcing operational responses in absurd civilian contexts | Open | BDD |
 | TBD | SS-136 — Room: Which Is Worse — panel compares two unrelated incidents, argues which is worse | Open | BDD |
