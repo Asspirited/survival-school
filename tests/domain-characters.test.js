@@ -9,7 +9,7 @@
 import { test, describe, before } from 'node:test';
 import assert from 'node:assert/strict';
 
-import { buildSystemPrompt, CHARACTERS, PANEL_IDS, PANEL_POOL, drawPanel, CHAR_COLOURS, FISH_DISPOSITIONS, DISPOSITION_SHIFTS, drawDisposition, buildDispositionState, buildFishDispositionInjection, shiftDisposition, COMPOSURE_PROFILES, initComposureState, computeComposureDeltas, composureTier, buildComposureInjection, TEMPORAL_LENS, TEMPORAL_STATES, hasTemporalLensCharacters, buildTemporalLensInjection, NAMING_CONVENTIONS, buildNamingConventionInjection, INVENTED_CATCHPHRASES, buildInventedCatchphraseInjection, PANEL_CATEGORIES, getCharacterCategories, getCharactersByCategory } from '../js/characters.js';
+import { buildSystemPrompt, CHARACTERS, PANEL_IDS, PANEL_POOL, drawPanel, CHAR_COLOURS, FISH_DISPOSITIONS, DISPOSITION_SHIFTS, drawDisposition, buildDispositionState, buildFishDispositionInjection, shiftDisposition, COMPOSURE_PROFILES, initComposureState, computeComposureDeltas, composureTier, buildComposureInjection, TEMPORAL_LENS, TEMPORAL_STATES, hasTemporalLensCharacters, buildTemporalLensInjection, NAMING_CONVENTIONS, buildNamingConventionInjection, INVENTED_CATCHPHRASES, buildInventedCatchphraseInjection, PANEL_CATEGORIES, getCharacterCategories, getCharactersByCategory, ESCALATION_PROFILES, RELATIONAL_AXES, getAxesForCharacter, getActiveAxes, buildEscalationInjection } from '../js/characters.js';
 
 // ── SS-065 — Panel pool + drawPanel ──────────────────────────────────────────
 
@@ -1737,5 +1737,265 @@ describe('INVENTED_CATCHPHRASES — SS-144', () => {
   test('buildInventedCatchphraseInjection skips unknown character IDs', () => {
     const result = buildInventedCatchphraseInjection(['nonexistent_id']);
     assert.strictEqual(result, '', 'must return empty for unknown IDs');
+  });
+});
+
+// ── SS-147 — Per-character escalation profiles ───────────────────────────────
+
+describe('ESCALATION_PROFILES — SS-147', () => {
+
+  test('ESCALATION_PROFILES is defined and is an object', () => {
+    assert.ok(ESCALATION_PROFILES && typeof ESCALATION_PROFILES === 'object');
+  });
+
+  test('every PANEL_POOL member has an ESCALATION_PROFILES entry', () => {
+    for (const id of PANEL_POOL) {
+      assert.ok(ESCALATION_PROFILES[id],
+        `PANEL_POOL member '${id}' must have an ESCALATION_PROFILES entry`);
+    }
+  });
+
+  test('attenborough has an ESCALATION_PROFILES entry (bookend wound)', () => {
+    assert.ok(ESCALATION_PROFILES.attenborough,
+      'attenborough must have an ESCALATION_PROFILES entry');
+  });
+
+  test('every entry has pools object', () => {
+    for (const [id, profile] of Object.entries(ESCALATION_PROFILES)) {
+      assert.ok(profile.pools && typeof profile.pools === 'object',
+        `${id} must have a pools object`);
+    }
+  });
+
+  test('every pool has items array and gate array', () => {
+    for (const [id, profile] of Object.entries(ESCALATION_PROFILES)) {
+      for (const [poolName, pool] of Object.entries(profile.pools)) {
+        assert.ok(Array.isArray(pool.items),
+          `${id}.${poolName} must have items array`);
+        assert.ok(Array.isArray(pool.gate),
+          `${id}.${poolName} must have gate array`);
+        assert.strictEqual(pool.gate.length, 5,
+          `${id}.${poolName} gate must have exactly 5 entries (rounds 1-5)`);
+      }
+    }
+  });
+
+  test('every pool has at least 5 items (enough for round-gating)', () => {
+    for (const [id, profile] of Object.entries(ESCALATION_PROFILES)) {
+      for (const [poolName, pool] of Object.entries(profile.pools)) {
+        if (pool.items.length > 0) {
+          assert.ok(pool.items.length >= 5,
+            `${id}.${poolName} must have at least 5 items, got ${pool.items.length}`);
+        }
+      }
+    }
+  });
+
+  test('no pool item is empty string', () => {
+    for (const [id, profile] of Object.entries(ESCALATION_PROFILES)) {
+      for (const [poolName, pool] of Object.entries(profile.pools)) {
+        for (const item of pool.items) {
+          assert.ok(typeof item === 'string' && item.trim().length > 0,
+            `${id}.${poolName} has an empty item`);
+        }
+      }
+    }
+  });
+
+  test('every entry has wound with name and pivot', () => {
+    for (const [id, profile] of Object.entries(ESCALATION_PROFILES)) {
+      assert.ok(profile.wound, `${id} must have a wound`);
+      assert.ok(typeof profile.wound.name === 'string' && profile.wound.name.length > 0,
+        `${id} wound must have a name`);
+      assert.ok(typeof profile.wound.pivot === 'string' && profile.wound.pivot.length > 0,
+        `${id} wound must have a pivot`);
+    }
+  });
+
+  test('wound threshold is number or null', () => {
+    for (const [id, profile] of Object.entries(ESCALATION_PROFILES)) {
+      const t = profile.wound.threshold;
+      assert.ok(t === null || typeof t === 'number',
+        `${id} wound threshold must be number or null, got ${typeof t}`);
+    }
+  });
+
+  test('every entry has a shape string', () => {
+    for (const [id, profile] of Object.entries(ESCALATION_PROFILES)) {
+      assert.ok(typeof profile.shape === 'string' && profile.shape.length > 0,
+        `${id} must have a shape string`);
+    }
+  });
+
+  test('gate values are non-negative integers', () => {
+    for (const [id, profile] of Object.entries(ESCALATION_PROFILES)) {
+      for (const [poolName, pool] of Object.entries(profile.pools)) {
+        for (let i = 0; i < pool.gate.length; i++) {
+          const g = pool.gate[i];
+          assert.ok(Number.isInteger(g) && g >= 0,
+            `${id}.${poolName} gate[${i}] must be non-negative integer, got ${g}`);
+        }
+      }
+    }
+  });
+
+  test('gate values are non-decreasing (pools widen, never narrow)', () => {
+    for (const [id, profile] of Object.entries(ESCALATION_PROFILES)) {
+      for (const [poolName, pool] of Object.entries(profile.pools)) {
+        for (let i = 1; i < pool.gate.length; i++) {
+          assert.ok(pool.gate[i] >= pool.gate[i - 1],
+            `${id}.${poolName} gate must be non-decreasing: gate[${i - 1}]=${pool.gate[i - 1]} > gate[${i}]=${pool.gate[i]}`);
+        }
+      }
+    }
+  });
+});
+
+// ── SS-147 — Relational axes ─────────────────────────────────────────────────
+
+describe('RELATIONAL_AXES — SS-147', () => {
+
+  test('RELATIONAL_AXES is defined and is an object', () => {
+    assert.ok(RELATIONAL_AXES && typeof RELATIONAL_AXES === 'object');
+  });
+
+  test('has at least 20 axes', () => {
+    assert.ok(Object.keys(RELATIONAL_AXES).length >= 20,
+      `must have at least 20 axes, got ${Object.keys(RELATIONAL_AXES).length}`);
+  });
+
+  test('every axis key uses > separator', () => {
+    for (const key of Object.keys(RELATIONAL_AXES)) {
+      assert.ok(key.includes('>'),
+        `axis key '${key}' must use > separator (e.g., ray>bear)`);
+    }
+  });
+
+  // Characters referenced in axes that aren't in CHARACTERS (Temporal Lens only, or non-panel like Doug)
+  const AXIS_KNOWN_REFS = ['irwin', 'doug'];
+
+  test('every axis from-character exists in CHARACTERS or is a known reference', () => {
+    for (const key of Object.keys(RELATIONAL_AXES)) {
+      const from = key.split('>')[0];
+      assert.ok(CHARACTERS[from] || AXIS_KNOWN_REFS.includes(from),
+        `axis from-character '${from}' must exist in CHARACTERS or be a known reference`);
+    }
+  });
+
+  test('every axis toward-character exists in CHARACTERS, is "everyone", or is a known reference', () => {
+    for (const key of Object.keys(RELATIONAL_AXES)) {
+      const toward = key.split('>')[1];
+      assert.ok(toward === 'everyone' || CHARACTERS[toward] || AXIS_KNOWN_REFS.includes(toward),
+        `axis toward-character '${toward}' must exist in CHARACTERS, be 'everyone', or be a known reference`);
+    }
+  });
+
+  test('every axis has temp, expr, and type', () => {
+    for (const [key, ax] of Object.entries(RELATIONAL_AXES)) {
+      assert.ok(typeof ax.temp === 'string' && ax.temp.length > 0,
+        `${key} must have temp string`);
+      assert.ok(typeof ax.expr === 'string' && ax.expr.length > 0,
+        `${key} must have expr string`);
+      assert.ok(ax.type === 'load_bearing' || ax.type === 'situational',
+        `${key} type must be load_bearing or situational`);
+    }
+  });
+
+  test('trigger is string or null', () => {
+    for (const [key, ax] of Object.entries(RELATIONAL_AXES)) {
+      assert.ok(ax.trigger === null || typeof ax.trigger === 'string',
+        `${key} trigger must be string or null`);
+    }
+  });
+});
+
+// ── SS-147 — Escalation helper functions ─────────────────────────────────────
+
+describe('getAxesForCharacter — SS-147', () => {
+
+  test('returns axes involving ray', () => {
+    const axes = getAxesForCharacter('ray');
+    assert.ok(axes.length >= 2, `ray must have at least 2 axes, got ${axes.length}`);
+    const keys = axes.map(([k]) => k);
+    assert.ok(keys.some(k => k.startsWith('ray>')), 'must include axes FROM ray');
+  });
+
+  test('returns axes toward everyone for any character', () => {
+    const axes = getAxesForCharacter('fox');
+    const keys = axes.map(([k]) => k);
+    assert.ok(keys.some(k => k.includes('>everyone')),
+      'must include axes with toward=everyone');
+  });
+});
+
+describe('getActiveAxes — SS-147', () => {
+
+  test('returns axes between panel members', () => {
+    const axes = getActiveAxes(['ray', 'bear', 'cody']);
+    assert.ok(axes.length >= 3, `ray+bear+cody must have at least 3 active axes`);
+  });
+
+  test('returns empty for unrelated characters', () => {
+    const axes = getActiveAxes(['nonexistent']);
+    assert.strictEqual(axes.length, 0);
+  });
+
+  test('includes everyone axes when character present', () => {
+    const axes = getActiveAxes(['irwin']);
+    const keys = axes.map(([k]) => k);
+    assert.ok(keys.includes('irwin>everyone'),
+      'must include irwin>everyone when irwin present');
+  });
+});
+
+describe('buildEscalationInjection — SS-147', () => {
+
+  test('returns empty for empty panel', () => {
+    assert.strictEqual(buildEscalationInjection([], 1), '');
+  });
+
+  test('returns empty for unknown IDs', () => {
+    assert.strictEqual(buildEscalationInjection(['nonexistent'], 1), '');
+  });
+
+  test('includes character name and pool items for round 1', () => {
+    const result = buildEscalationInjection(['ray'], 1);
+    assert.ok(result.includes('RAY MEARS'), 'must include character name');
+    assert.ok(result.includes('CRAFT'), 'must include pool name');
+    assert.ok(result.includes('Fire-by-friction'), 'must include pool items');
+  });
+
+  test('sealed pools show sealed message', () => {
+    const result = buildEscalationInjection(['bear'], 1);
+    assert.ok(result.includes('[sealed this round]'), 'must show sealed for round 1 hydration');
+  });
+
+  test('round 5 unlocks all items', () => {
+    const r1 = buildEscalationInjection(['ray'], 1);
+    const r5 = buildEscalationInjection(['ray'], 5);
+    assert.ok(r5.length > r1.length, 'round 5 must include more items than round 1');
+    assert.ok(r5.includes('Hampshire woodland'), 'round 5 must include deep pool items');
+  });
+
+  test('includes relational axes when both characters present', () => {
+    const result = buildEscalationInjection(['ray', 'bear'], 1);
+    assert.ok(result.includes('RELATIONAL AXES'), 'must include axes header');
+    assert.ok(result.includes('Ray Mears'), 'must include from character name');
+    assert.ok(result.includes('Bear Grylls'), 'must include toward character name');
+  });
+
+  test('includes wound information', () => {
+    const result = buildEscalationInjection(['ray'], 1);
+    assert.ok(result.includes('WOUND'), 'must include wound');
+    assert.ok(result.includes('The Show That Should Have Been His'), 'must include wound name');
+  });
+
+  test('clamps round to 1-5 range', () => {
+    const r0 = buildEscalationInjection(['ray'], 0);
+    const r1 = buildEscalationInjection(['ray'], 1);
+    const r99 = buildEscalationInjection(['ray'], 99);
+    const r5 = buildEscalationInjection(['ray'], 5);
+    assert.strictEqual(r0, r1, 'round 0 must clamp to round 1');
+    assert.strictEqual(r99, r5, 'round 99 must clamp to round 5');
   });
 });
