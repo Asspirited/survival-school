@@ -1,43 +1,43 @@
 # Shared Session State — Survival School
-# Written: 2026-03-30 (Session close — two new Doors rooms)
-# Supersedes: 2026-03-30 (Session B close — Build + Wire + Test)
+# Written: 2026-03-30 (Session close — SS-147 escalation mechanics)
+# Supersedes: 2026-03-30 (Session close — two new Doors rooms)
 
 ---
 
 ## What shipped this session
 
-### SS-131 — The Alibi (Room 15)
-- Live at /survival-school/the-alibi
-- Two protagonists, same event, contradictory stories
-- Dynamic adversarial storytelling: probe holes, concede ground, score points, redirect
-- Panel as judge and jury — cross-examine, take sides, argue amongst themselves
-- Multi-turn CROSS-EXAMINE button (up to 5 rounds)
-- Pre-built event chips: Bravo Two Zero, SAS selection, the fire, the snake, the kebab van
-- 16 selectable characters including McNab, Ryan, Billy, Ollie
-- Morrison interruption wired in
-- Corridor door + homepage tile
+### SS-147 — Per-character escalation mechanics (CD3 18)
+- Design doc: docs/domains/per-character-escalation.md (v2, literal pools)
+- ESCALATION_PROFILES in characters.js — all 28 characters with:
+  - 2–4 named pools per character, 6–18 literal items per pool
+  - Round-gated access: gate array [r1, r2, r3, r4, r5]
+  - Named wound with fire threshold and pivot behaviour
+  - Round shape description
+- RELATIONAL_AXES — 30 named directional axes (20 load-bearing, 10 situational)
+- Helper functions: getAxesForCharacter, getActiveAxes, buildEscalationInjection
+- 32 new domain tests (L1: 373 total)
+- Key design decisions:
+  - Literal pool items, not rules (prevents LLM repetition — "cheese and pickle" fix)
+  - Every character has a wound, no exceptions
+  - Hiddins wound is "The Nothing" — Crocodile Dundee in New York pattern
+  - Morrison wound is "The Admiral's Son" — father, Paris, bathtub, 27
+  - Gordon wound is "The Arm and the Chair" — visible, enormous, never discussed
+  - Attenborough wound is "The Footage He Can't Use" — "I filmed the last one"
 
-### SS-133 — The Expert Witness (Room 16)
-- Live at /survival-school/the-expert-witness
-- Fish-out-of-water character presented as the survival expert
-- 7 expert characters: Cox, Faldo, Jim Carrey, Hawking, Lee, Bristow, Keane
-- Real experts defer painfully — DEFERRING/CRACKING badge system
-- Multi-turn PRESS FURTHER (up to 5 rounds, deference erodes, someone breaks)
-- Per-expert voice: Cox applies physics, Faldo applies golf, Keane runs it like selection
-- Corridor door + homepage tile
+### Also committed
+- Untracked files from prior session: session-b-handoff.md, character-parity-audit.md, bryan-fry.md
 
 ---
 
 ## Worker state
-- Last deployed hash: bff3516
+- Last deployed hash: b324c70 (prior session)
+- No deploy this session (design + domain only, no worker.js changes)
 - Worker: cusslab-api.leanspirited.workers.dev
-- Deploy token refreshed this session (previous had expired)
 
 ---
 
 ## Pipeline state
-L0-L5 GREEN. 790 tests total.
-- L1: 341 unit, L2: 20 contract, L3: 119 acceptance, L4: 276 Playwright, L5: 34 OAT
+L0-L5 GREEN. 822 tests (373 L1 + 20 L2 + 119 L3 + 276 L4 + 34 L5).
 
 ---
 
@@ -47,35 +47,35 @@ Open: WL-SS-002, 003, 006, 011, 012, 013, 019–023 (unchanged)
 ---
 
 ## HDD status
-HDD-001: OPEN / Advancing.
-Evidence: Two new room types with distinct comedy engines increase content variety and shareability.
-Next action: Get a real person to share a panel output with someone specific in mind.
+HDD-001: OPEN / Advancing. Per-character escalation designed and built in characters.js.
+Next action: Wire buildEscalationInjection into worker.js system prompts.
 
 ---
 
 ## Decisions made this session
-- The Alibi is dynamic adversarial storytelling, not static retelling (Rod's steer)
-- Panel in The Alibi are active judge/jury who argue amongst themselves (Rod's steer)
-- Room build order: Alibi then Expert Witness (Rod's pick)
+- Literal pool items over rule-based descriptions (prevents LLM repetition)
+- Every character has a wound — no exceptions (Rod: "we all have skeletons")
+- Hiddins wound: "The Nothing" — Crocodile Dundee in NYC, could be cancelled any time
+- Per-character gate speeds: Ray slow (precision), Bear fast (obliviousness)
+- Wounds persist once fired (Cusslab pattern — once said, it's in the room)
 
 ---
 
 ## Top 3 for next session
-1. SS-146 — Robin Williams character (CD3 18)
-2. SS-147 — Per-character escalation mechanics (CD3 18)
-3. SS-069 — User panel member selection (CD3 4)
+1. Wire buildEscalationInjection into worker.js system prompts (all panel features)
+2. SS-146 — Robin Williams character
+3. SS-130–137 — Three Amigos scoring for remaining room concepts
 
 ---
 
 ## Carry-forward notes
-- Jeremy Wade: still missing Rod's verbatim "Rod's Memory" section
-- Middleton, McNab, Ryan: in characters.js but NOT in worker.js CHARACTERS objects (only in The Alibi page)
+- Jeremy Wade: still missing Rod's verbatim "Rod's Memory" section + wound TBD
+- Middleton, McNab, Ryan: in characters.js but NOT in worker.js charIds
 - Fish Disposition Engine: characters.js ready, worker.js integration pending
 - L2 contract test: known occasional Haiku flake (passes on rerun)
-- The Doors corridor now has 8 doors: 4 live + 4 coming soon
-- Homepage has 11 feature tiles
-- Deploy token at /home/rodent/.cf-deploy-token was refreshed this session
+- Faldo needs "Cowabunga"-style catchphrase anchors
 - Robin Williams: Rod loves him, knows from films only, Good Will Hunting masterpiece
+- buildEscalationInjection ready but NOT wired into any worker.js route yet
 
 ---
 
@@ -91,10 +91,10 @@ Next action: Get a real person to share a panel output with someone specific in 
 | Bear Fact-Checker | /survival-school/fact-checker | Live |
 | The Coyote Index | /survival-school/coyote | Live |
 | Panel Q&A | /survival-school/panel-qa | Live |
-| The Doors (corridor) | /survival-school/rooms | Live |
-| I've Had Worse (Room 13) | /survival-school/ive-had-worse | Live |
-| In My Defence (Room 14) | /survival-school/in-my-defence | Live |
-| The Alibi (Room 15) | /survival-school/the-alibi | Live |
-| The Expert Witness (Room 16) | /survival-school/the-expert-witness | Live |
+| The Doors (corridor) | /survival-school/rooms | Live (redesigned) |
+| I've Had Worse (Room 13) | /survival-school/ive-had-worse | Live (multi-turn) |
+| In My Defence (Room 14) | /survival-school/in-my-defence | Live (multi-turn) |
+| The Alibi (Room 15) | /survival-school/the-alibi | Live (multi-turn) |
+| The Expert Witness (Room 16) | /survival-school/the-expert-witness | Live (multi-turn) |
 | Irwin Memorial Encounter | /survival-school/irwin-memorial | Live |
 | One Man In | /survival-school/one-man-in | Live |

@@ -1,7 +1,7 @@
 # Backlog — Survival School
 # Prefix: SS-NNN
 # CD3 scoring: Confidence × Desirability × Deliverability (max 27)
-# Last updated: 2026-03-29 (Session A closedown)
+# Last updated: 2026-03-30 (Session closedown)
 
 ---
 
@@ -157,8 +157,9 @@
 | 18 | SS-146 — Character: Robin Williams — fish-out-of-water, Temporal Lens eligible (deceased 2014). Way better than Carrey — real depth, natural warmth. Good Will Hunting masterpiece performance. Good character actor. Rod knows him from films only but loves him. Similar to Carrey in abstract (energetic, madcap humour) but with genuine heart. Contrast with Carrey is the comedy engine: both manic, but Williams had soul underneath. | Open | DDD |
 | 8.0 | SS-060 — Cross-character panel references (reacts_to schema field) | DONE (reacts_to schema + thread indicators in IHW, IMD, OMI 2026-03-30) | BDD |
 | 6.3 | SS-061 — Decision loop: multi-turn auto-escalation for Doors features | DONE (protagonist_response + LET THEM DIG loop in IHW + IMD 2026-03-30) | BDD |
-| 18 | SS-147 — Per-character escalation mechanics: reference pools, wound fire-thresholds, round-gated escalation, named relational axes (Cusslab parity) | Open | DDD |
+| 18 | SS-147 — Per-character escalation mechanics: reference pools, wound fire-thresholds, round-gated escalation, named relational axes (Cusslab parity) | DONE (design doc + ESCALATION_PROFILES 28 chars + RELATIONAL_AXES 30 axes + buildEscalationInjection + 32 domain tests 2026-03-30) | DDD |
 | 14.0 | SS-062 — Panel triage order consistency across all panel features | DONE (assessment + mundane fixed, ADR-002 written 2026-03-28) | BDD |
+| 18 | SS-148 — Wire relational map into live system prompts: sacred exchanges, THE DISAGREEMENT, the looks, character-pair dynamics documented in docs/characters/ but not injected into IHW/IMD/OMI prompts. 31 chars with deep relational maps — most unfired. | Open | BDD |
 
 ---
 
