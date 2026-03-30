@@ -1130,3 +1130,36 @@ describe('Feature: User as panel member — Play As (SS-159)', () => {
     assert.ok(html.includes('/survival-school/play-as'), 'Doors corridor must link to Play As');
   });
 });
+
+// ── Feature: Adversarial panels — The Debate (SS-161) ──
+describe('Feature: Adversarial panels — The Debate (SS-161)', () => {
+
+  test('Given a user navigates to /survival-school/debate, Then the page returns 200', async () => {
+    const r = await fetch(`${BASE}/survival-school/debate`, { signal: AbortSignal.timeout(TIMEOUT) });
+    assert.strictEqual(r.status, 200);
+  });
+
+  test('Given the Debate page loads, Then two character selector groups are visible', async () => {
+    const r = await fetch(`${BASE}/survival-school/debate`, { signal: AbortSignal.timeout(TIMEOUT) });
+    const html = await r.text();
+    assert.ok(html.includes('chips-p1'), 'Debate page must contain Player 1 chips');
+    assert.ok(html.includes('chips-p2'), 'Debate page must contain Player 2 chips');
+    assert.ok(html.includes('Corner 1'), 'Debate page must label Corner 1');
+    assert.ok(html.includes('Corner 2'), 'Debate page must label Corner 2');
+  });
+
+  test('Given the Debate page loads, Then topic input and submit button are present', async () => {
+    const r = await fetch(`${BASE}/survival-school/debate`, { signal: AbortSignal.timeout(TIMEOUT) });
+    const html = await r.text();
+    assert.ok(html.includes('topic-input'), 'Debate page must contain topic input');
+    assert.ok(html.includes('btn-submit'), 'Debate page must contain submit button');
+    assert.ok(html.includes('btn-escalate'), 'Debate page must contain escalate button');
+  });
+
+  test('Given the Doors corridor page, Then The Debate room is listed', async () => {
+    const r = await fetch(`${BASE}/survival-school/rooms`, { signal: AbortSignal.timeout(TIMEOUT) });
+    const html = await r.text();
+    assert.ok(html.includes('The Debate'), 'Doors corridor must list The Debate room');
+    assert.ok(html.includes('/survival-school/debate'), 'Doors corridor must link to debate');
+  });
+});
