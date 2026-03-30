@@ -871,25 +871,26 @@ test.describe("I've Had Worse — Jeremy Wade protagonist", () => {
 
 test.describe('The Doors corridor — door grid and Morrison guide', () => {
 
-  test('corridor page loads with eight doors and Morrison quote element', async ({ page }) => {
+  test('corridor page loads with nine doors and Morrison quote element', async ({ page }) => {
     await page.goto(`${BASE}/survival-school/rooms`);
     await expect(page.locator('#morrison-quote')).toBeVisible();
-    await expect(page.locator('.door')).toHaveCount(8);
+    await expect(page.locator('.door')).toHaveCount(9);
   });
 
-  test('Four doors are live: IHW, IMD, The Alibi, and The Expert Witness', async ({ page }) => {
+  test('Five doors are live: IHW, IMD, The Alibi, The Expert Witness, Play As', async ({ page }) => {
     await page.goto(`${BASE}/survival-school/rooms`);
-    await expect(page.locator('.door.live')).toHaveCount(4);
+    await expect(page.locator('.door.live')).toHaveCount(5);
     await expect(page.locator('.door.live[href="/survival-school/ive-had-worse"]')).toHaveCount(1);
     await expect(page.locator('.door.live[href="/survival-school/in-my-defence"]')).toHaveCount(1);
     await expect(page.locator('.door.live[href="/survival-school/the-alibi"]')).toHaveCount(1);
     await expect(page.locator('.door.live[href="/survival-school/the-expert-witness"]')).toHaveCount(1);
+    await expect(page.locator('.door.live[href="/survival-school/play-as"]')).toHaveCount(1);
   });
 
   test('each door has a Morrison quote wired in data-morrison attribute', async ({ page }) => {
     await page.goto(`${BASE}/survival-school/rooms`);
     const doors = page.locator('.door[data-morrison]');
-    await expect(doors).toHaveCount(8);
+    await expect(doors).toHaveCount(9);
     // Both live doors have non-empty Morrison quotes
     const door13 = page.locator('.door.live[href="/survival-school/ive-had-worse"][data-morrison]');
     const quote13 = await door13.getAttribute('data-morrison');

@@ -1092,3 +1092,41 @@ describe('Feature: Curated panel archetype selector (SS-155)', () => {
     assert.ok(html.includes('State.setArchetype'), 'IHW page must wire archetype chips to State.setArchetype');
   });
 });
+
+// ── Feature: User as panel member (SS-159) ──
+describe('Feature: User as panel member — Play As (SS-159)', () => {
+
+  test('Given a user navigates to /survival-school/play-as, Then the page returns 200', async () => {
+    const r = await fetch(`${BASE}/survival-school/play-as`, { signal: AbortSignal.timeout(TIMEOUT) });
+    assert.strictEqual(r.status, 200);
+  });
+
+  test('Given the Play As page loads, Then character identity chips are visible', async () => {
+    const r = await fetch(`${BASE}/survival-school/play-as`, { signal: AbortSignal.timeout(TIMEOUT) });
+    const html = await r.text();
+    assert.ok(html.includes('chip-identity'), 'Play As page must contain identity chips');
+    assert.ok(html.includes('I am...'), 'Play As page must contain identity label');
+  });
+
+  test('Given the Play As page loads, Then predicament input and submit button are present', async () => {
+    const r = await fetch(`${BASE}/survival-school/play-as`, { signal: AbortSignal.timeout(TIMEOUT) });
+    const html = await r.text();
+    assert.ok(html.includes('predicament-input'), 'Play As page must contain predicament input');
+    assert.ok(html.includes('btn-submit'), 'Play As page must contain submit button');
+    assert.ok(html.includes('disabled'), 'Submit button must be initially disabled');
+  });
+
+  test('Given the Play As page loads, Then user response area is present but hidden', async () => {
+    const r = await fetch(`${BASE}/survival-school/play-as`, { signal: AbortSignal.timeout(TIMEOUT) });
+    const html = await r.text();
+    assert.ok(html.includes('user-response-area'), 'Play As page must contain user response area');
+    assert.ok(html.includes('btn-respond'), 'Play As page must contain respond button');
+  });
+
+  test('Given the Doors corridor page, Then Play As room is listed', async () => {
+    const r = await fetch(`${BASE}/survival-school/rooms`, { signal: AbortSignal.timeout(TIMEOUT) });
+    const html = await r.text();
+    assert.ok(html.includes('Play As'), 'Doors corridor must list Play As room');
+    assert.ok(html.includes('/survival-school/play-as'), 'Doors corridor must link to Play As');
+  });
+});
