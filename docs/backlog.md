@@ -137,7 +137,7 @@
 | 8 | SS-126 — Rod's Memory: Brian Cox — verbatim personal memories | DONE (verbatim + research + D:Ream/Culshaw/Sagan/LHC twat/Stewart Lee 2026-03-30) | DDD |
 | 8 | SS-127 — Rod's Memory: Nick Faldo — verbatim personal memories | DONE (verbatim + research + swing rebuild/Sandwich Gate/envelope system/18 pars 2026-03-30) | DDD |
 | 12 | SS-128 — Banner/logo clickable link back to homepage from all pages | DONE (homepage banner + 9 sub-page nav-back links 2026-03-29) | BDD |
-| 10 | SS-129 — Chip category tiles for non-Doors panel features (HSAI, Mundane, etc.) | Open | BDD |
+| 10 | SS-129 — Chip category tiles for non-Doors panel features (HSAI, Mundane, etc.) | DONE (chip-cat tiles across all 10 features 2026-03-30) | BDD |
 | TBD | SS-130 — Room: The Apology Tour — character apologises for something they did, panel never accepts | Open | BDD |
 | TBD | SS-131 — Room: The Alibi — two characters, one event, two stories, neither changes | Open | BDD |
 | TBD | SS-132 — Room: The Intervention — panel stages an intervention for one character's worst habit | Open | BDD |
@@ -146,7 +146,7 @@
 | TBD | SS-135 — Room: If You Had To... — hyper-specific scenarios forcing operational responses in absurd civilian contexts | Open | BDD |
 | TBD | SS-136 — Room: Which Is Worse — panel compares two unrelated incidents, argues which is worse | Open | BDD |
 | TBD | SS-137 — Room: Who Would Die First — panel rates each other's survival chances in same situation | Open | BDD |
-| TBD | SS-138 — Doors corridor UI redesign: Jim as carnival barker, gold Crimson Text teasers, room names replace numbers | Open | BDD |
+| 12 | SS-138 — Doors corridor UI redesign: Jim as carnival barker, gold Crimson Text teasers, room names replace numbers | DONE (Jim welcome, room names, gold teasers, Crimson Text 2026-03-30) | BDD |
 | 12 | SS-139 — Steve Backshall: add voice profile to characters.js (character doc exists at docs/characters/steve-backshall.md, not in code) | DONE (characters.js + COMPOSURE + NAMING + relationships + 12 domain tests 2026-03-29) | DDD |
 | 12 | SS-140 — Character parity audit: matrix of every character vs every attribute (voice, integrity, composure, fish disposition, temporal lens, Rod's Memory, character doc, CHAR_COLOUR). Identify and close gaps. | DONE (audit doc + billy/ollie/craighead incidents + Jim Carrey relationships 2026-03-29) | DDD |
 | 10 | SS-141 — Panel member categories: tag each character (Survivalist, Naturalist, Herpetologist, Armed Forces, Fish-Out-of-Water, Wildcard). Powers future selection UI (SS-069). | DONE (PANEL_CATEGORIES + getCharacterCategories + getCharactersByCategory + 9 domain tests 2026-03-29) | DDD |
@@ -155,8 +155,9 @@
 | 12 | SS-144 — Invented catchphrases mechanic: characters confidently attribute quotes to themselves that don't exist. "As I always say..." — they have never said it. Other characters know. ConspireEngine gold. Rod's idea. | DONE (INVENTED_CATCHPHRASES + buildInventedCatchphraseInjection + 8 domain tests + drift mode 2026-03-30) | DDD |
 | 14 | SS-145 — Armed forces distinction map: one handle per SF character to prevent voice blur (Assessor/Admitter/Tactician/Reporter/Competitor/Evangelist/Autonomous). Rod confirmed handles. | DONE (design doc 2026-03-29) | DDD |
 | 18 | SS-146 — Character: Robin Williams — fish-out-of-water, Temporal Lens eligible (deceased 2014). Way better than Carrey — real depth, natural warmth. Good Will Hunting masterpiece performance. Good character actor. Rod knows him from films only but loves him. Similar to Carrey in abstract (energetic, madcap humour) but with genuine heart. Contrast with Carrey is the comedy engine: both manic, but Williams had soul underneath. | Open | DDD |
-| 8.0 | SS-060 — Cross-character panel references (reacts_to schema field) | Open | BDD |
-| 6.3 | SS-061 — Decision loop: Fighting Fantasy mechanic for panel features | Open | BDD |
+| 8.0 | SS-060 — Cross-character panel references (reacts_to schema field) | DONE (reacts_to schema + thread indicators in IHW, IMD, OMI 2026-03-30) | BDD |
+| 6.3 | SS-061 — Decision loop: multi-turn auto-escalation for Doors features | DONE (protagonist_response + LET THEM DIG loop in IHW + IMD 2026-03-30) | BDD |
+| 18 | SS-147 — Per-character escalation mechanics: reference pools, wound fire-thresholds, round-gated escalation, named relational axes (Cusslab parity) | Open | DDD |
 | 14.0 | SS-062 — Panel triage order consistency across all panel features | DONE (assessment + mundane fixed, ADR-002 written 2026-03-28) | BDD |
 
 ---
@@ -2853,3 +2854,63 @@ anchors both products. Character file: docs/characters/eric-bristow.md to be wri
 
 **CD3:** C=3 D=3 D=3 → **CD3=27**
 **Status:** OPEN — raised 2026-03-28.
+
+
+### SS-147 — Per-character escalation mechanics (Cusslab parity)
+
+**Status:** Open
+**Priority:** High
+**CD3:** 18 (Confidence 3 × Desirability 3 × Deliverability 2)
+**Loop:** DDD → BDD
+**Raised:** 2026-03-30
+**Epic:** Panel Interaction Model
+
+**The problem:** SS characters interact via generic mechanics (any character can telephone-game,
+any can over-reach). Cusslab characters interact via specific documented behaviours (only Radar
+corrupts by round, only Faldo has theological altitude). SS characters feel like they're in the
+same system. Cusslab characters feel like themselves.
+
+**The fix:** Port the Cusslab per-character escalation pattern to SS characters:
+
+1. **Reference pools per character** — hard-coded pools that widen by round (round 1: items 1-3,
+   round 5: anywhere including strange end). Ray's pool: craft techniques → specific woodlands →
+   particular fire he built in 1998. Bear's pool: expeditions → near-death → hydration unprompted.
+
+2. **Wound fire-thresholds** — each character has a named wound with a numeric trigger. When
+   panel_tension targets them or composure drops below threshold, the wound surfaces. Cody's
+   wound: the spear pool incident. Stevens: the RSPCA report. Bear: the Travelodge.
+
+3. **Round-gated escalation** — delivery stays identical across rounds but content corrupts
+   (Radar pattern). Ray's precision doesn't change — what he's precise ABOUT changes. Fox's
+   threat assessment doesn't soften — the things he assesses as threats change.
+
+4. **Named relational axes** — like Jesus/Moses in Cusslab. Candidates:
+   - Ray/Bear axis: craft vs spectacle (Bear never directly contradicts Ray; the silence IS the axis)
+   - Fox/Billy axis: operational mutual respect, one-word confirmations
+   - Stevens/O'Shea axis: herpetological one-upmanship, neither acknowledges the other's expertise
+   - Packham/everyone axis: conservation override changes the room's register
+
+**Applies to:** All panel features (IHW, IMD, assessment, mundane, panel-qa, One Man In).
+
+**Session A work:** Design doc + reference pools + wound definitions in characters.js.
+**Session B work:** Wire into worker.js system prompts, round-gate the prompt instructions.
+
+**Acceptance Criteria:**
+```gherkin
+Feature: Per-character escalation mechanics
+
+  Scenario: Character reference pool widens by round
+    Given Ray is in the panel on round 1
+    Then his references draw from items 1-3 of his pool
+    Given the same panel on round 5
+    Then his references draw from anywhere in the pool including strange end
+
+  Scenario: Wound fires at composure threshold
+    Given Bear's composure drops below his wound threshold
+    Then the Travelodge reference surfaces in his response
+
+  Scenario: Named relational axis shapes interaction
+    Given both Ray and Bear are in the panel
+    Then Bear never directly contradicts Ray
+    And the silence between them is structurally significant
+```
