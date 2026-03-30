@@ -810,6 +810,7 @@ describe('Feature: Chip category tiles — consistent UX (SS-129)', () => {
     '/survival-school/irwin-memorial',
     '/survival-school/one-man-in',
     '/survival-school/the-alibi',
+    '/survival-school/the-expert-witness',
   ];
 
   for (const page of CHIP_PAGES) {
@@ -958,5 +959,81 @@ describe('Feature: The Alibi corridor door (SS-131)', () => {
     const html = await r.text();
     assert.ok(html.includes('The Alibi'), 'rooms page must contain The Alibi door');
     assert.ok(html.includes('/survival-school/the-alibi'), 'The Alibi must link to /survival-school/the-alibi');
+  });
+});
+
+// ── Feature: The Expert Witness — Room 16 (SS-133) ────────────────────────────
+
+describe('Feature: The Expert Witness page loads (SS-133)', () => {
+  test('Given a user navigates to /survival-school/the-expert-witness, Then the page returns 200', async () => {
+    const r = await fetch(`${BASE}/survival-school/the-expert-witness`, { signal: AbortSignal.timeout(TIMEOUT) });
+    assert.strictEqual(r.status, 200);
+    const ct = r.headers.get('content-type') || '';
+    assert.ok(ct.includes('text/html'), `expected text/html, got ${ct}`);
+  });
+});
+
+describe('Feature: The Expert Witness page contains required elements (SS-133)', () => {
+  test('Given the page loads, Then it contains expert chips, scenario input, and submit button', async () => {
+    const r = await fetch(`${BASE}/survival-school/the-expert-witness`, { signal: AbortSignal.timeout(TIMEOUT) });
+    const html = await r.text();
+    assert.ok(html.includes('chips-expert'),     'page must contain expert chips area');
+    assert.ok(html.includes('scenario-input'),   'page must contain scenario-input element');
+    assert.ok(html.includes('btn-submit'),       'page must contain btn-submit button');
+    assert.ok(html.includes('chips-scenario'),   'page must contain scenario chips area');
+  });
+
+  test('Given the page loads, Then expert chips are limited to fish-out-of-water characters', async () => {
+    const r = await fetch(`${BASE}/survival-school/the-expert-witness`, { signal: AbortSignal.timeout(TIMEOUT) });
+    const html = await r.text();
+    assert.ok(html.includes('data-id="cox"'),     'page must contain Cox chip');
+    assert.ok(html.includes('data-id="faldo"'),   'page must contain Faldo chip');
+    assert.ok(html.includes('data-id="jim"'),     'page must contain Jim chip');
+    assert.ok(html.includes('data-id="keane"'),   'page must contain Keane chip');
+  });
+
+  test('Page declares State, UI, and API module objects', async () => {
+    const r = await fetch(`${BASE}/survival-school/the-expert-witness`, { signal: AbortSignal.timeout(TIMEOUT) });
+    const html = await r.text();
+    assert.ok(html.includes('const State = {'), 'page must declare State object');
+    assert.ok(html.includes('const UI = {'),    'page must declare UI object');
+    assert.ok(html.includes('const API = {'),   'page must declare API object');
+  });
+});
+
+describe('Feature: The Expert Witness panel response (SS-133)', () => {
+  const POST_TIMEOUT = 30000;
+  const buildEWPrompt = (expert) =>
+    `You are the Survival School panel running The Expert Witness mechanic. ${expert} is presented as the expert. Real experts defer. Use ONLY these charIds: ray, bear, fox, hales, cody, stroud, cox, faldo, jim, keane. The expert charId "${expert}" MUST appear as expert_analysis. Include at least 2 deferring panel members. Respond ONLY with valid JSON: {"attenborough_opening":"<string>","expert_analysis":{"charId":"${expert}","text":"<string>"},"panel":[{"charId":"<id>","text":"<string>","deference_holding":true}],"attenborough_verdict":"<string>","panel_tension":{"type":"none","subject":"","by":[],"note":""},"morrison_interruption":null}. No markdown. JSON only.`;
+
+  test('Given a user submits an expert and scenario, When panel responds, Then response has expert_analysis, deferring panel, and verdict', async () => {
+    const response = await fetch(`${BASE}/survival-school/the-expert-witness`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        system: buildEWPrompt('cox'),
+        scenario: 'A venomous snake bite in the Australian outback',
+        expert: 'cox',
+      }),
+    });
+    assert.strictEqual(response.status, 200);
+    const data = await response.json();
+    assert.ok(data.attenborough_opening, 'response must have attenborough_opening');
+    assert.ok(data.expert_analysis, 'response must have expert_analysis');
+    assert.ok(data.expert_analysis.charId, 'expert_analysis must have charId');
+    assert.ok(data.expert_analysis.text, 'expert_analysis must have text');
+    assert.ok(Array.isArray(data.panel), 'response must have panel array');
+    assert.ok(data.panel.length >= 2, 'panel must have at least 2 deferring members');
+    assert.ok(data.attenborough_verdict, 'response must have attenborough_verdict');
+    assert.ok(data.panel_tension, 'response must have panel_tension');
+  }, POST_TIMEOUT);
+});
+
+describe('Feature: The Expert Witness corridor door (SS-133)', () => {
+  test('Given the corridor page loads, Then The Expert Witness is a live door linking to /survival-school/the-expert-witness', async () => {
+    const r = await fetch(`${BASE}/survival-school/rooms`, { signal: AbortSignal.timeout(TIMEOUT) });
+    const html = await r.text();
+    assert.ok(html.includes('The Expert Witness'), 'rooms page must contain The Expert Witness door');
+    assert.ok(html.includes('/survival-school/the-expert-witness'), 'The Expert Witness must link to /survival-school/the-expert-witness');
   });
 });

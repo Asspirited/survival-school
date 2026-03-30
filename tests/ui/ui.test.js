@@ -44,7 +44,7 @@ test.describe('Homepage — tile grid and navigation', () => {
     expect(count).toBeGreaterThanOrEqual(1);
   });
 
-  test('all 10 live feature tiles have correct hrefs', async ({ page }) => {
+  test('all 11 live feature tiles have correct hrefs', async ({ page }) => {
     await page.goto('/survival-school');
     const LIVE_TILES = [
       '/survival-school/app',
@@ -57,6 +57,7 @@ test.describe('Homepage — tile grid and navigation', () => {
       '/survival-school/panel-qa',
       '/survival-school/rooms',
       '/survival-school/the-alibi',
+      '/survival-school/the-expert-witness',
     ];
     for (const href of LIVE_TILES) {
       await expect(page.locator(`a[href="${href}"]`)).toBeVisible();
@@ -870,24 +871,25 @@ test.describe("I've Had Worse — Jeremy Wade protagonist", () => {
 
 test.describe('The Doors corridor — door grid and Morrison guide', () => {
 
-  test('corridor page loads with seven doors and Morrison quote element', async ({ page }) => {
+  test('corridor page loads with eight doors and Morrison quote element', async ({ page }) => {
     await page.goto(`${BASE}/survival-school/rooms`);
     await expect(page.locator('#morrison-quote')).toBeVisible();
-    await expect(page.locator('.door')).toHaveCount(7);
+    await expect(page.locator('.door')).toHaveCount(8);
   });
 
-  test('Three doors are live: IHW, IMD, and The Alibi', async ({ page }) => {
+  test('Four doors are live: IHW, IMD, The Alibi, and The Expert Witness', async ({ page }) => {
     await page.goto(`${BASE}/survival-school/rooms`);
-    await expect(page.locator('.door.live')).toHaveCount(3);
+    await expect(page.locator('.door.live')).toHaveCount(4);
     await expect(page.locator('.door.live[href="/survival-school/ive-had-worse"]')).toHaveCount(1);
     await expect(page.locator('.door.live[href="/survival-school/in-my-defence"]')).toHaveCount(1);
     await expect(page.locator('.door.live[href="/survival-school/the-alibi"]')).toHaveCount(1);
+    await expect(page.locator('.door.live[href="/survival-school/the-expert-witness"]')).toHaveCount(1);
   });
 
   test('each door has a Morrison quote wired in data-morrison attribute', async ({ page }) => {
     await page.goto(`${BASE}/survival-school/rooms`);
     const doors = page.locator('.door[data-morrison]');
-    await expect(doors).toHaveCount(7);
+    await expect(doors).toHaveCount(8);
     // Both live doors have non-empty Morrison quotes
     const door13 = page.locator('.door.live[href="/survival-school/ive-had-worse"][data-morrison]');
     const quote13 = await door13.getAttribute('data-morrison');

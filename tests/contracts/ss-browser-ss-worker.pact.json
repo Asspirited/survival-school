@@ -217,6 +217,11 @@
       "description": "GET /survival-school/the-alibi returns HTML",
       "request": { "method": "GET", "path": "/survival-school/the-alibi" },
       "response": { "status": 200, "headers": { "Content-Type": "text/html; charset=utf-8" } }
+    },
+    {
+      "description": "GET /survival-school/the-expert-witness returns HTML",
+      "request": { "method": "GET", "path": "/survival-school/the-expert-witness" },
+      "response": { "status": 200, "headers": { "Content-Type": "text/html; charset=utf-8" } }
     }
   ]
 }

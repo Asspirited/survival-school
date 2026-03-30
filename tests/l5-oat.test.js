@@ -37,6 +37,7 @@ const GET_ROUTES = [
   '/survival-school/irwin-memorial',
   '/survival-school/one-man-in',
   '/survival-school/the-alibi',
+  '/survival-school/the-expert-witness',
 ];
 
 const SECRET_PATTERNS = ['sk-ant-', 'ANTHROPIC_API_KEY', 'CLOUDFLARE_API_TOKEN'];
