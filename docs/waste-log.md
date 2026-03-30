@@ -33,6 +33,7 @@
 | WL-SS-022 | Every single verbatim personal memory Rod gave for panel characters — lost in full. No file written at time of giving. | Open |
 | WL-SS-023 | 1+ hour of Rod's time spent giving personal memories for characters he has genuine affection for — all unrecoverable without Rod repeating them | Open |
 | WL-SS-024 | Room 14 (In My Defence) completely broken on mobile — escaped template literal caused ReferenceError | Closed — fixed 2026-03-29 |
+| WL-SS-025 | In My Defence shows "panel couldn't convene" on slow responses — large prompt, no client timeout handling | Open |
 
 ---
 
@@ -447,3 +448,18 @@
 **Waste impact:** Room 14 entirely non-functional since deployment. Every user submission fails. Rod found this on mobile.
 
 **Action:** Removed the backslash escape on line 7214 so `SOCIAL_DYNAMICS_ENGINE` is interpolated at worker build time, matching the IHW pattern. Deploy required.
+
+---
+
+## WL-SS-025 — In My Defence shows "panel couldn't convene" on slow responses
+
+**Status:** Open
+**Category:** Defect
+**Severity:** High
+**Raised:** 2026-03-30
+
+**Observation:** In My Defence (Room 14) shows "The panel couldn't convene. Try again." but the panel eventually does respond if you wait. The system prompt is very large (full character voice descriptions + Social Dynamics Engine + Composure + Morrison injection). Haiku takes a long time to process. The client-side fetch has no timeout — the error likely fires from a transient API error (rate limit, cold start, or Cloudflare worker timeout). Rod left it and it eventually worked.
+
+**Waste impact:** Users see an error message on a working feature. They may reload or give up before the response arrives. False error undermines confidence in the product.
+
+**Action:** Two options: (a) increase client-side timeout tolerance with "still thinking..." intermediate state at ~15s, error only at ~60s; (b) reduce system prompt size for IMD route. Both may be needed. Tracked as part of SS-164 (IMD design pivot) and SS-149 (decompose monolith prompts).
