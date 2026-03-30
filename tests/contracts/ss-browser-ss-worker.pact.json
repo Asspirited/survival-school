@@ -212,6 +212,11 @@
           "panel_min_length": 3
         }
       }
+    },
+    {
+      "description": "GET /survival-school/the-alibi returns HTML",
+      "request": { "method": "GET", "path": "/survival-school/the-alibi" },
+      "response": { "status": 200, "headers": { "Content-Type": "text/html; charset=utf-8" } }
     }
   ]
 }

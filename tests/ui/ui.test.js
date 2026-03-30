@@ -44,7 +44,7 @@ test.describe('Homepage — tile grid and navigation', () => {
     expect(count).toBeGreaterThanOrEqual(1);
   });
 
-  test('all 9 live feature tiles have correct hrefs', async ({ page }) => {
+  test('all 10 live feature tiles have correct hrefs', async ({ page }) => {
     await page.goto('/survival-school');
     const LIVE_TILES = [
       '/survival-school/app',
@@ -56,6 +56,7 @@ test.describe('Homepage — tile grid and navigation', () => {
       '/survival-school/coyote',
       '/survival-school/panel-qa',
       '/survival-school/rooms',
+      '/survival-school/the-alibi',
     ];
     for (const href of LIVE_TILES) {
       await expect(page.locator(`a[href="${href}"]`)).toBeVisible();
@@ -869,23 +870,24 @@ test.describe("I've Had Worse — Jeremy Wade protagonist", () => {
 
 test.describe('The Doors corridor — door grid and Morrison guide', () => {
 
-  test('corridor page loads with six doors and Morrison quote element', async ({ page }) => {
+  test('corridor page loads with seven doors and Morrison quote element', async ({ page }) => {
     await page.goto(`${BASE}/survival-school/rooms`);
     await expect(page.locator('#morrison-quote')).toBeVisible();
-    await expect(page.locator('.door')).toHaveCount(6);
+    await expect(page.locator('.door')).toHaveCount(7);
   });
 
-  test('Door 13 and Door 14 are live; Door 13 links to ive-had-worse, Door 14 to in-my-defence', async ({ page }) => {
+  test('Three doors are live: IHW, IMD, and The Alibi', async ({ page }) => {
     await page.goto(`${BASE}/survival-school/rooms`);
-    await expect(page.locator('.door.live')).toHaveCount(2);
+    await expect(page.locator('.door.live')).toHaveCount(3);
     await expect(page.locator('.door.live[href="/survival-school/ive-had-worse"]')).toHaveCount(1);
     await expect(page.locator('.door.live[href="/survival-school/in-my-defence"]')).toHaveCount(1);
+    await expect(page.locator('.door.live[href="/survival-school/the-alibi"]')).toHaveCount(1);
   });
 
   test('each door has a Morrison quote wired in data-morrison attribute', async ({ page }) => {
     await page.goto(`${BASE}/survival-school/rooms`);
     const doors = page.locator('.door[data-morrison]');
-    await expect(doors).toHaveCount(6);
+    await expect(doors).toHaveCount(7);
     // Both live doors have non-empty Morrison quotes
     const door13 = page.locator('.door.live[href="/survival-school/ive-had-worse"][data-morrison]');
     const quote13 = await door13.getAttribute('data-morrison');

@@ -809,6 +809,7 @@ describe('Feature: Chip category tiles — consistent UX (SS-129)', () => {
     '/survival-school/panel-qa',
     '/survival-school/irwin-memorial',
     '/survival-school/one-man-in',
+    '/survival-school/the-alibi',
   ];
 
   for (const page of CHIP_PAGES) {
@@ -879,5 +880,83 @@ describe('Feature: Multi-turn auto-escalation loop for Doors (SS-061)', () => {
     const r = await fetch(`${BASE}/survival-school/in-my-defence`, { signal: AbortSignal.timeout(TIMEOUT) });
     const html = await r.text();
     assert.ok(html.includes('LET THEM DIG'), 'IMD must contain LET THEM DIG button');
+  });
+});
+
+// ── Feature: The Alibi — Room 15 (SS-131) ────────────────────────────────
+
+describe('Feature: The Alibi page loads (SS-131)', () => {
+  test('Given a user navigates to /survival-school/the-alibi, Then the page returns 200', async () => {
+    const r = await fetch(`${BASE}/survival-school/the-alibi`, { signal: AbortSignal.timeout(TIMEOUT) });
+    assert.strictEqual(r.status, 200);
+    const ct = r.headers.get('content-type') || '';
+    assert.ok(ct.includes('text/html'), `expected text/html, got ${ct}`);
+  });
+});
+
+describe('Feature: The Alibi page contains required elements (SS-131)', () => {
+  test('Given the page loads, Then it contains two protagonist selectors, event chips, and submit button', async () => {
+    const r = await fetch(`${BASE}/survival-school/the-alibi`, { signal: AbortSignal.timeout(TIMEOUT) });
+    const html = await r.text();
+    assert.ok(html.includes('chips-protagonist-1'),  'page must contain first protagonist selector');
+    assert.ok(html.includes('chips-protagonist-2'),  'page must contain second protagonist selector');
+    assert.ok(html.includes('event-input'),           'page must contain event-input element');
+    assert.ok(html.includes('btn-submit'),            'page must contain btn-submit button');
+    assert.ok(html.includes('chips-event'),           'page must contain event chips area');
+  });
+
+  test('Given the page loads, Then it contains pre-built event chips including Bravo Two Zero', async () => {
+    const r = await fetch(`${BASE}/survival-school/the-alibi`, { signal: AbortSignal.timeout(TIMEOUT) });
+    const html = await r.text();
+    assert.ok(html.includes('Bravo Two Zero'), 'page must contain Bravo Two Zero event chip');
+  });
+
+  test('Page declares State, UI, and API module objects', async () => {
+    const r = await fetch(`${BASE}/survival-school/the-alibi`, { signal: AbortSignal.timeout(TIMEOUT) });
+    const html = await r.text();
+    assert.ok(html.includes('const State = {'), 'page must declare State object');
+    assert.ok(html.includes('const UI = {'),    'page must declare UI object');
+    assert.ok(html.includes('const API = {'),   'page must declare API object');
+  });
+});
+
+describe('Feature: The Alibi panel response (SS-131)', () => {
+  const POST_TIMEOUT = 30000;
+  const buildAlibiPrompt = (p1, p2) =>
+    `You are the Survival School panel running The Alibi mechanic. Two characters tell contradictory stories about the same event. Use ONLY these charIds: ray, bear, fox, hales, cody, stroud, mcnab, ryan. Protagonist 1 charId "${p1}" and Protagonist 2 charId "${p2}" MUST appear. Include at least 2 jury panel members. Respond ONLY with valid JSON: {"attenborough_opening":"<string>","account_1":{"charId":"${p1}","text":"<string>"},"account_2":{"charId":"${p2}","text":"<string>"},"panel":[{"charId":"<id>","text":"<string>"}],"attenborough_verdict":"<string>","panel_tension":{"type":"callout","subject":"","by":[],"note":""},"morrison_interruption":null}. No markdown. JSON only.`;
+
+  test('Given a user submits two protagonists and an event, When panel responds, Then response has account_1, account_2, panel, and verdict', async () => {
+    const response = await fetch(`${BASE}/survival-school/the-alibi`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        system: buildAlibiPrompt('mcnab', 'ryan'),
+        event: 'Bravo Two Zero — what actually happened on the patrol',
+        protagonist1: 'mcnab',
+        protagonist2: 'ryan',
+      }),
+    });
+    assert.strictEqual(response.status, 200);
+    const data = await response.json();
+    assert.ok(data.attenborough_opening, 'response must have attenborough_opening');
+    assert.ok(data.account_1, 'response must have account_1');
+    assert.ok(data.account_1.charId, 'account_1 must have charId');
+    assert.ok(data.account_1.text, 'account_1 must have text');
+    assert.ok(data.account_2, 'response must have account_2');
+    assert.ok(data.account_2.charId, 'account_2 must have charId');
+    assert.ok(data.account_2.text, 'account_2 must have text');
+    assert.ok(Array.isArray(data.panel), 'response must have panel array');
+    assert.ok(data.panel.length >= 2, 'panel must have at least 2 jury members');
+    assert.ok(data.attenborough_verdict, 'response must have attenborough_verdict');
+    assert.ok(data.panel_tension, 'response must have panel_tension');
+  }, POST_TIMEOUT);
+});
+
+describe('Feature: The Alibi corridor door (SS-131)', () => {
+  test('Given the corridor page loads, Then The Alibi is a live door linking to /survival-school/the-alibi', async () => {
+    const r = await fetch(`${BASE}/survival-school/rooms`, { signal: AbortSignal.timeout(TIMEOUT) });
+    const html = await r.text();
+    assert.ok(html.includes('The Alibi'), 'rooms page must contain The Alibi door');
+    assert.ok(html.includes('/survival-school/the-alibi'), 'The Alibi must link to /survival-school/the-alibi');
   });
 });
