@@ -1056,3 +1056,39 @@ describe('Feature: Per-character escalation injection wired into multi-turn feat
     assert.ok(workerCode.includes('panelCharIds || []'), "Escalation injection must use panelCharIds from POST body");
   });
 });
+
+// ── Feature: Curated panel archetype selector (SS-155) ──
+describe('Feature: Curated panel archetype selector (SS-155)', () => {
+
+  test('Given the IHW page loads, Then archetype chips are visible', async () => {
+    const r = await fetch(`${BASE}/survival-school/ive-had-worse`, { signal: AbortSignal.timeout(TIMEOUT) });
+    const html = await r.text();
+    assert.ok(html.includes('chip-archetype'), 'IHW page must contain archetype chips');
+    assert.ok(html.includes('Core Four'), 'IHW page must contain Core Four archetype');
+    assert.ok(html.includes('Contradictors'), 'IHW page must contain Contradictors archetype');
+    assert.ok(html.includes('Authority Room'), 'IHW page must contain Authority Room archetype');
+    assert.ok(html.includes('Enthusiasts'), 'IHW page must contain Enthusiasts archetype');
+    assert.ok(html.includes('Pub Panel'), 'IHW page must contain Pub Panel archetype');
+  });
+
+  test('Given the worker defines PANEL_ARCHETYPES, Then all 5 archetypes are defined with cast and tension', () => {
+    const workerCode = fs.readFileSync('/home/rodent/cusslab/worker.js', 'utf8');
+    assert.ok(workerCode.includes('PANEL_ARCHETYPES'), 'Worker must define PANEL_ARCHETYPES');
+    assert.ok(workerCode.includes("'core-four'"), 'PANEL_ARCHETYPES must include core-four');
+    assert.ok(workerCode.includes("'contradictors'"), 'PANEL_ARCHETYPES must include contradictors');
+    assert.ok(workerCode.includes("'authority'"), 'PANEL_ARCHETYPES must include authority');
+    assert.ok(workerCode.includes("'enthusiasts'"), 'PANEL_ARCHETYPES must include enthusiasts');
+    assert.ok(workerCode.includes("'pub-panel'"), 'PANEL_ARCHETYPES must include pub-panel');
+  });
+
+  test('Given the IHW POST handler, Then it calls buildArchetypeInjection when archetype is present', () => {
+    const workerCode = fs.readFileSync('/home/rodent/cusslab/worker.js', 'utf8');
+    assert.ok(workerCode.includes('buildArchetypeInjection(body.archetype)'), 'IHW POST handler must call buildArchetypeInjection');
+  });
+
+  test('Given archetype chip click, Then State.archetype is set', async () => {
+    const r = await fetch(`${BASE}/survival-school/ive-had-worse`, { signal: AbortSignal.timeout(TIMEOUT) });
+    const html = await r.text();
+    assert.ok(html.includes('State.setArchetype'), 'IHW page must wire archetype chips to State.setArchetype');
+  });
+});
