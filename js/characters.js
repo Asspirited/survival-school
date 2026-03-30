@@ -1387,6 +1387,180 @@ Rules:
 `;
 }
 
+// SS-144 — Invented catchphrases: characters confidently attribute quotes to themselves
+// that don't exist. "As I always say..." — they have never said it. Other characters know.
+// ConspireEngine gold. Each entry: { setups: [...], phrases: [...] }
+// setups = character-specific intro framings. phrases = the invented sayings.
+// Trigger: ~1 in 3-4 panel responses, a character drops one. Others may call it out.
+
+const INVENTED_CATCHPHRASES = {
+  ray: {
+    setups: ['As we used to say in the woodlands...', 'There\'s an old bushcraft saying...', 'My old mentor always told me...', 'As I\'ve said many times on the show...'],
+    phrases: ['You can\'t rush a rabbit.', 'The forest forgives twice. Never three times.', 'A wet log teaches patience. A dry log teaches nothing.']
+  },
+  bear: {
+    setups: ['As we used to say on Everest...', 'There\'s a saying in the Special Forces...', 'My instructor back in 21 SAS always said...', 'As I wrote in my second book...'],
+    phrases: ['The summit doesn\'t care about your schedule.', 'Fear is just gravity with an opinion.', 'You can\'t negotiate with altitude.']
+  },
+  cody: {
+    setups: ['As we used to say back in the desert...', 'The Paiute have a saying...', 'Back when I was teaching primitive skills...', 'My old survival school rule was...'],
+    phrases: ['The ground remembers every footstep except the right one.', 'Barefoot is a state of mind before it\'s a state of foot.', 'You don\'t find water. Water decides to find you.']
+  },
+  hales: {
+    setups: ['As we used to say back in the Territory...', 'Old Arrernte saying...', 'Bloke I knew up in Darwin always reckoned...', 'Bush tucker rule number one...'],
+    phrases: ['If it crawls and it\'s ugly, it\'s probably lunch.', 'The outback takes what you offer. Don\'t offer much.', 'A witchetty grub never lied to anyone.']
+  },
+  fox: {
+    setups: ['As we used to say back at Poole...', 'SBS rule of thumb...', 'Something we learned on the ground in Afghanistan...', 'Standard operating procedure, as we called it...'],
+    phrases: ['The extraction is the plan. Everything else is improvisation.', 'Noise discipline applies to opinions too.', 'If you can hear it, it\'s already too close.']
+  },
+  billy: {
+    setups: ['As we used to say back in Hereford...', 'Something the Regiment teaches you early...', 'An old warrant officer told me once...', 'Three rules. The second one is...'],
+    phrases: ['Non-compliant is non-compliant. The temperature doesn\'t change the standard.', 'You don\'t assess twice. You assessed wrong the first time.', 'The look is the briefing.']
+  },
+  ollie: {
+    setups: ['As we used to say back in the Troop...', 'Something I learned the hard way in Iraq...', 'A bloke I served with always said...', 'My old team sergeant\'s rule...'],
+    phrases: ['The debrief is where you find the bodies you missed.', 'Everyone has a plan until the helo doesn\'t come.', 'Quiet is a weapon. Most people don\'t carry it.']
+  },
+  craighead: {
+    setups: ['As we used to say on attachment...', 'SAS thing...', 'Something you learn on the ground...', 'Standard.'],
+    phrases: ['The exit is the first thing. The exit is the only thing.', 'Nobody answered the phone. So you go.', 'Speed is a decision. Aggression is a decision. Surprise is what happens after.']
+  },
+  middleton: {
+    setups: ['As we used to say on selection...', 'Something I talk about in my book...', 'Back when I was in the SBS...', 'As I always tell my audience...'],
+    phrases: ['Chaos is just mindset without a postcode.', 'You don\'t embrace the chaos. The chaos embraces you. That\'s the point, fella.', 'Fear is a bubble. Pop it. Mindset.']
+  },
+  mcnab: {
+    setups: ['As we used to say on the patrol...', 'Something from Bravo Two Zero...', 'Standard operating. Back in the day...', 'First thing they teach you at Hereford...'],
+    phrases: ['The log is the mission. Everything else is noise.', 'You don\'t remember the cold. You remember the admin.', 'If it\'s not in the report, it didn\'t happen. That\'s the beauty of reports.']
+  },
+  ryan: {
+    setups: ['As I wrote in The One That Got Away...', 'Something I learned during the escape...', 'A saying from my time in the Regiment...', 'Back in the desert, we used to say...'],
+    phrases: ['Three hundred kilometres teaches you one thing: the next step.', 'Navigation is memory. Memory is survival. Everything else is McNab\'s version.', 'The border doesn\'t care whose account is correct.']
+  },
+  attenborough: {
+    setups: ['As I once remarked to a colleague at the BBC...', 'There is an old naturalist\'s observation...', 'A sentiment I have expressed, I believe, more than once...', 'As I noted in a programme some years ago...'],
+    phrases: ['The natural world does not audition for our approval.', 'Patience and a good lens will show you everything. Impatience shows you only yourself.', 'The creature does not know it is being observed. This is the foundation of all science, and most comedy.']
+  },
+  oshea: {
+    setups: ['As I used to tell my students at NUI Galway...', 'Something we say in herpetology...', 'A principle I have expressed in the field many times...', 'As I noted after my third paper on Boiga...'],
+    phrases: ['The snake is always right. You are the variable.', 'Taxonomy is love expressed as Latin.', 'If the snake has bitten you, the argument is settled.']
+  },
+  stevens: {
+    setups: ['As I used to say on Snake Master...', 'Something I learned in the cage...', 'A rule I developed after the fourteenth bite...', 'Back in KwaZulu-Natal, we always said...'],
+    phrases: ['The hood is not a warning. The hood is a conversation opener.', 'Respect the snake and the snake will only bite you once. Usually.', 'Day 96 in the cage teaches you: the cage was never the problem.']
+  },
+  stroud: {
+    setups: ['As I said to camera once, alone, in the dark...', 'Something I figured out around day three...', 'A rule. My rule. Nobody else was there to argue with it...', 'Survivorman lesson...'],
+    phrases: ['The harmonica knows when you\'re lying.', 'Nobody\'s coming. That\'s not despair. That\'s the starting position.', 'Film it or it didn\'t happen. That\'s the irony of doing this alone.']
+  },
+  jeremy: {
+    setups: ['As I used to say on the Mekong...', 'Something I noted in my field journal in the Congo...', 'A principle I developed after the arapaima incident...', 'River Monsters rule of thumb...'],
+    phrases: ['The river knows what\'s in it. You don\'t. That\'s the arrangement.', 'Cowabunga is not a technique. It is a state of acceptance.', 'If the locals won\'t fish there, you probably shouldn\'t either. I\'m going to fish there.']
+  },
+  cox: {
+    setups: ['As we used to say at CERN...', 'There\'s a beautiful principle in particle physics...', 'Something I mentioned on Wonders of the Universe...', 'As I once explained to Dara on the podcast...'],
+    phrases: ['Every atom in your body was forged in the heart of a dying star. Including the ones that are panicking right now.', 'Entropy is not a suggestion. It is the universe\'s only rule. Isn\'t that extraordinary.', 'The napkin is the tool. The equation is the shelter.']
+  },
+  faldo: {
+    setups: ['As we used to say at Wentworth...', 'Something I learned during the Leadbetter rebuild...', 'A saying from the European Tour...', 'Back at the \'96 Masters, I said to my caddie...'],
+    phrases: ['You can\'t rush the backswing of a crisis.', 'Grip pressure reveals everything. Everything.', 'The follow-through is where you find out who you are. Address it. Head down. Commit.']
+  },
+  hawking: {
+    setups: ['As I once wrote...', 'A principle I have expressed in several publications...', 'Something I said to a reporter, though the synthesiser made it sound more dramatic...', 'As I calculated...'],
+    phrases: ['The universe is under no obligation to make sense to you. Or to survive.', 'I have outlasted my prognosis by a factor that should concern this entire panel.', 'The probability is not encouraging. I have calculated it. On a napkin. Cox left one.']
+  },
+  lee: {
+    setups: ['As I used to tell my students in Oakland...', 'A principle of Jeet Kune Do...', 'Something I wrote in the Tao...', 'Back at the kwoon, we always said...'],
+    phrases: ['The bear has practised one thing for six million years. Respect the practice.', 'Empty your mind. Be formless. The shelter will not build itself, but you will understand why.', 'Boards don\'t hit back. Neither do rivers. That is the problem.']
+  },
+  jim: {
+    setups: ['As I once said — or was it Ace? — anyway...', 'Something I learned on the set of When Nature Calls...', 'A wise man once told me — it was me, I was the wise man...', 'ALLLRIGHTY, here\'s the thing...'],
+    phrases: ['The animal doesn\'t know you\'re doing a bit. That\'s what makes it real.', 'Method acting IS survival. I once WAS a rhino for three weeks.', 'Nobody expects the second face. That\'s its power.']
+  },
+  bristow: {
+    setups: ['As we used to say down the Lakeside...', 'Something I told Eric in the practice room...', 'A darts principle, applicable to all of life...', 'Back in the BDO days...'],
+    phrases: ['Double top solves everything. Name one problem double top doesn\'t solve.', 'The oche is a state of mind. Everything is an oche if you commit.', 'Tungsten doesn\'t lie. People lie. Tungsten just goes where you throw it.']
+  },
+  keane: {
+    setups: ['As I said in Saipan...', 'Something I told the lads once...', 'A principle. Simple.', 'Back at the Cliff...'],
+    phrases: ['Standards. That\'s it. Standards.', 'The problem with most survival situations is a lack of standards.', 'I\'ve seen better. From youth players.']
+  },
+  gordon: {
+    setups: ['As Doug always used to say...', 'Something I learned from the first bite...', 'A rule Doug and I developed...', 'Back in the shed with Doug...'],
+    phrases: ['If your mate pours beer on your head, that\'s first aid where I come from.', 'The snake bites you twice, it\'s a relationship.', 'Doug would know what to do here. I don\'t know what to do here. But Doug would.']
+  },
+  packham: {
+    setups: ['As I\'ve said repeatedly on Springwatch...', 'A conservation principle I have expressed at some length...', 'Something I said to the Minister, who did not listen...', 'Back when I was campaigning against the badger cull...'],
+    phrases: ['The animal has a right to be here. You are the one with the explaining to do.', 'Conservation is not sentiment. It is arithmetic.', 'If you wouldn\'t do it to a panda, don\'t do it to a rat. The rat has more right to be here.']
+  },
+  backshall: {
+    setups: ['As I once noted on Deadly 60...', 'Something I said to the crew in Borneo...', 'A principle from the Dirty Dozen — sorry, Deadly 60...', 'Back on expedition...'],
+    phrases: ['Number 47 on the Deadly 60 is complacency. I added it myself.', 'A proper introduction saves lives. The animal deserves to know who you are.', 'The Deadly 60 is actually the Deadly 312 but the BBC had a format.']
+  },
+  coyote: {
+    setups: ['As I always say before the sting...', 'Something I noted in the field journal at a pain level of about 3.8...', 'A principle of the Schmidt Index that people overlook...', 'Back on the Brave Wilderness set, I always told Mark...'],
+    phrases: ['Pain is just the animal\'s way of reviewing your performance.', 'You haven\'t truly met a species until it\'s bitten you. That\'s peer review.', 'The higher the rating, the more the animal respects you. That\'s not true but I believe it.']
+  },
+  fry: {
+    setups: ['As I once explained to a somewhat alarmed undergraduate...', 'A principle of venom evolution I have published on...', 'Something I noted after the twenty-third bite...', 'Back at the University of Queensland lab...'],
+    phrases: ['Venom is just evolution\'s way of saying I love you with commitment.', 'The LD50 is not a threat. It is a conversation about dose.', 'If the phospholipase A2 is elegant, the snake has earned your respect.']
+  },
+};
+
+// Build system prompt injection for invented catchphrases
+function buildInventedCatchphraseInjection(panelCharIds) {
+  const entries = panelCharIds
+    .filter(id => INVENTED_CATCHPHRASES[id])
+    .map(id => {
+      const char = CHARACTERS[id];
+      const ic = INVENTED_CATCHPHRASES[id];
+      if (!char || !ic) return '';
+      return `${char.name.toUpperCase()}:
+  Setups (vary these): ${ic.setups.join(' / ')}
+  Invented phrases (they have NEVER said these — they claim they always say them): ${ic.phrases.join(' / ')}`;
+    })
+    .filter(Boolean);
+
+  if (entries.length === 0) return '';
+
+  return `
+INVENTED CATCHPHRASES (SS-144) — characters confidently attribute quotes to themselves that don't exist.
+"As I always say..." — they have NEVER said it. They believe they have. Other characters know they haven't.
+
+Rules:
+- ~1 in 3-4 panel responses, ONE character drops an invented catchphrase using one of their setup phrases.
+- The phrase that follows is something they have categorically never said. They deliver it with total conviction.
+- At least one other character should react: a silent beat, a glance, or directly calling it out ("You have literally never said that" / "When? When did you say that?" / "That's not a thing").
+- The character who said it is genuinely confused by the challenge. They are certain they say it all the time.
+- Do NOT overuse. One per round maximum. The rarity makes it land.
+- CRITICAL: The invented phrases are often UTTER NONSENSE — not just "unheard of" but genuinely meaningless. They may be:
+  - Tautological ("You can't be wet if you're already in water")
+  - Non-sequitur ("The third fish always knows")
+  - Contradicting logic ("The faster you go, the more still you become")
+  - Spoonerisms or malapropisms delivered with conviction
+  - Pseudo-profound gibberish that sounds wise for exactly 0.5 seconds
+  - Blending opposites without noticing (like calling a company "Syntropy" — synergy + entropy — without seeing the contradiction)
+  The character delivers these with TOTAL conviction. The panel's reaction is: nobody has EVER heard ANYONE say this, because it is nonsense. The character is baffled by the reaction.
+- DRIFT MODE: Sometimes a character drifts into an area where they don't know what they're saying — and to project confidence and "I do know this stuff" energy, they firmly say something utterly ridiculous. This is different from the planned catchphrase — it's a panic-confidence response. The eyes are certain. The words are chaos. The panel stares.
+
+UNIVERSAL SETUP PHRASES (any character may also use these alongside their specific setups):
+- "The lads back at [location] used to say..."
+- "My dad/nan/uncle always used to say..."
+- "I can't begin to describe the number of times I've said..."
+- "I mean it seems obvious to say but..." [it is not obvious, and they have never said it]
+- "As I've always maintained..."
+- "It's funny, I was just saying to [name] the other day..."
+- "People always quote me on this one..."
+- "I met this bloke once who said..." [they did not meet this bloke]
+- "A woman I knew back in [place] always reckoned..."
+- "There was this old [fisherman/hunter/shaman/tree] who told me once..."
+- "One thing I'm especially known for saying is..." [nobody has ever heard them say this. The phrase that follows is incomprehensible.]
+
+${entries.join('\n\n')}
+`;
+}
+
 // SS-141 — Panel member categories: powers future user selection UI (SS-069)
 // A character can appear in multiple categories (e.g. Wade is both Naturalist and Survivalist)
 const PANEL_CATEGORIES = {
@@ -1501,4 +1675,4 @@ ${blocks.join('\n\n')}
 `;
 }
 
-export { CHARACTERS, PANEL_IDS, PANEL_POOL, drawPanel, CHAR_COLOURS, buildSystemPrompt, FISH_DISPOSITIONS, DISPOSITION_SHIFTS, drawDisposition, buildDispositionState, buildFishDispositionInjection, shiftDisposition, COMPOSURE_PROFILES, initComposureState, computeComposureDeltas, composureTier, buildComposureInjection, TEMPORAL_LENS, TEMPORAL_STATES, hasTemporalLensCharacters, buildTemporalLensInjection, NAMING_CONVENTIONS, buildNamingConventionInjection, PANEL_CATEGORIES, getCharacterCategories, getCharactersByCategory };
+export { CHARACTERS, PANEL_IDS, PANEL_POOL, drawPanel, CHAR_COLOURS, buildSystemPrompt, FISH_DISPOSITIONS, DISPOSITION_SHIFTS, drawDisposition, buildDispositionState, buildFishDispositionInjection, shiftDisposition, COMPOSURE_PROFILES, initComposureState, computeComposureDeltas, composureTier, buildComposureInjection, TEMPORAL_LENS, TEMPORAL_STATES, hasTemporalLensCharacters, buildTemporalLensInjection, NAMING_CONVENTIONS, buildNamingConventionInjection, INVENTED_CATCHPHRASES, buildInventedCatchphraseInjection, PANEL_CATEGORIES, getCharacterCategories, getCharactersByCategory };

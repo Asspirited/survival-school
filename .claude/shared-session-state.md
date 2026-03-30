@@ -1,55 +1,31 @@
 # Shared Session State — Survival School
-# Written: 2026-03-29 (Session A close — quotes + character memories)
-# Supersedes: 2026-03-29 (Session A close — Packham + Doors design)
+# Written: 2026-03-30 (Session B close — Rod's Memory captures)
+# Supersedes: 2026-03-29 (Session A close — quotes + character memories)
 
 ---
 
-## What shipped this session (Session A)
+## What shipped this session
 
-### SS-143 — Common quotes attribute (CD3 18)
-- `quotes` arrays added to all 28 characters in js/characters.js
-- 3–7 quotes per character, 140+ total
-- Verbal tics, sentence openers, signature phrases — not just catchphrases
-- Variety per Rod's steer: multiple per character, usable in good and bad contexts
-- 31 new domain tests, all green
-- Gherkin at features/common-quotes.feature
+### SS-120–SS-127: Rod's Memory for 8 characters
+All 13 Rod's Memory items now complete. Each character doc enriched with Rod's verbatim memories + deep research + multi-layered Comedy Engine updates.
 
-### SS-115–119 — Rod's Memory: 5 characters (Billy, Ollie, Coyote, Ryan, McNab)
-- New pattern established: Claude researches stories, Rod adds memories, compare notes
-- Billy: Rod's verbatim + Eastwood encounter, Tom Cruise headlock, hostage rescue, upbringing
-- Ollie: Rod's verbatim + Iraq contract work, child trafficking, break point, grey man
-- Coyote: Rod's verbatim (careful replacement IS the character) + sting progression, hot dogs
-- Ryan: Rod's verbatim ("insane endurance, books meh") + 300km escape detail, four contradictory accounts
-- McNab: Rod's verbatim ("black tape across eyes", hard as nails) + Harrods bag, torture, literacy
+Characters: Middleton (decline arc), Craighead (DusitD2/MoD trolling), Carrey (annoying but interesting), Hawking (time travel party/bets), Bruce Lee (speed/JKD/private fights), Morrison (myth IS the character), Brian Cox (atoms taking the piss with wonder), Faldo (cheese sandwiches to six majors/Sandwich Gate).
 
-### SS-145 — Armed forces distinction map (new design doc)
-- docs/armed-forces-distinction-map.md
-- One HANDLE per SF character to prevent voice blur:
-  - Billy = THE ASSESSOR (grades against a standard)
-  - Ollie = THE ADMITTER (says what nobody else will)
-  - Fox = THE TACTICIAN (maps threats everywhere)
-  - McNab = THE REPORTER (files everything flat)
-  - Ryan = THE COMPETITOR (had less, walked further)
-  - Middleton = THE EVANGELIST (MINDSET is the technique)
-  - Craighead = THE AUTONOMOUS OPERATOR (no chain of command)
-- Rod confirmed handles, noted need to amplify/exaggerate for comedy
+### SS-146 — Robin Williams raised
+Fish-out-of-water, Temporal Lens eligible. Way better than Carrey — real depth, natural warmth.
 
-### SS-144 — Invented catchphrases mechanic (RAISED, open)
-- Rod's idea: characters confidently quoting things they never said
-- "As I always say: sweaty onion bags." Panel: "You've never said that."
-- Pure ConspireEngine — Rod's favourite comedy pattern
-- Idea snapshot at /mnt/c/Users/roden/Downloads/idea-invented-catchphrases-2026-03-29.md
+### Schema parity fixes
+Stroud deathLine, Coyote incidents + NAMING_CONVENTIONS. 333 domain tests green.
 
 ---
 
 ## Worker state
-- Last deployed hash: 128fdb6 (unchanged — Session A is docs/domain only)
-- Worker: cusslab-api.leanspirited.workers.dev
+- Last deployed hash: 128fdb6 (unchanged — docs/domain only)
 
 ---
 
 ## Pipeline state
-L0-L5 GREEN at startup. L1: 333 tests (up from 302, +31 quotes tests). Session A only ran L1.
+L0-L5 GREEN. 333 L1 domain tests. L2 known Haiku flake (passes on rerun).
 
 ---
 
@@ -59,35 +35,23 @@ Open: WL-SS-002, 003, 006, 011, 012, 013, 019–023 (unchanged)
 ---
 
 ## HDD status
-HDD-001: "Panel comedy and survival expertise together create content people share with specific people in mind."
-Status: OPEN / Advancing.
-Evidence: Quotes give LLM concrete anchors. Distinction map sharpens SF voices. Both improve shareability.
-Next action: Get a real person to share a panel output with someone specific in mind.
-
----
-
-## Decisions made this session
-- Character memory pattern: research first, Rod adds, compare notes, both into doc
-- SF distinction map: seven handles to prevent voice blur (Rod confirmed)
-- Invented catchphrases mechanic: ConspireEngine feature, Rod's idea (SS-144)
+HDD-001: OPEN / Advancing. All 28 characters have Rod's memories. Next: real person shares a panel output.
 
 ---
 
 ## Top 3 for next session
-1. SS-120–127 — Rod's Memory: remaining 8 characters (same research+memory pattern)
-2. SS-013 — Packham Ethical Override (Session B, CD3 12)
-3. SS-144 — Invented catchphrases mechanic design (Session A, CD3 12)
+1. SS-146 — Robin Williams full character build
+2. SS-013 — Packham Ethical Override (wire into worker.js)
+3. SS-144 — Invented catchphrases mechanic
 
 ---
 
 ## Carry-forward notes
-- Jeremy Wade: still missing Rod's verbatim quote for "Rod's Memory" section
+- Jeremy Wade: still missing Rod's verbatim "Rod's Memory" section
 - Middleton, McNab, Ryan: in characters.js but NOT in worker.js
 - Fish Disposition Engine: characters.js ready, worker.js integration pending
-- L2 contract test: known occasional Haiku flake (passes on rerun)
-- Doors UI: design doc ready, Session B to build (worker.js HTML)
-- Pre-flight updated: docs/armed-forces-distinction-map.md added to cat command
-- Character research+memory pattern confirmed as standard workflow
+- Faldo needs "Cowabunga"-style catchphrase anchors
+- Robin Williams: Rod loves him, knows from films only, Good Will Hunting masterpiece
 
 ---
 

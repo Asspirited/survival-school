@@ -9,7 +9,7 @@
 import { test, describe, before } from 'node:test';
 import assert from 'node:assert/strict';
 
-import { buildSystemPrompt, CHARACTERS, PANEL_IDS, PANEL_POOL, drawPanel, CHAR_COLOURS, FISH_DISPOSITIONS, DISPOSITION_SHIFTS, drawDisposition, buildDispositionState, buildFishDispositionInjection, shiftDisposition, COMPOSURE_PROFILES, initComposureState, computeComposureDeltas, composureTier, buildComposureInjection, TEMPORAL_LENS, TEMPORAL_STATES, hasTemporalLensCharacters, buildTemporalLensInjection, NAMING_CONVENTIONS, buildNamingConventionInjection, PANEL_CATEGORIES, getCharacterCategories, getCharactersByCategory } from '../js/characters.js';
+import { buildSystemPrompt, CHARACTERS, PANEL_IDS, PANEL_POOL, drawPanel, CHAR_COLOURS, FISH_DISPOSITIONS, DISPOSITION_SHIFTS, drawDisposition, buildDispositionState, buildFishDispositionInjection, shiftDisposition, COMPOSURE_PROFILES, initComposureState, computeComposureDeltas, composureTier, buildComposureInjection, TEMPORAL_LENS, TEMPORAL_STATES, hasTemporalLensCharacters, buildTemporalLensInjection, NAMING_CONVENTIONS, buildNamingConventionInjection, INVENTED_CATCHPHRASES, buildInventedCatchphraseInjection, PANEL_CATEGORIES, getCharacterCategories, getCharactersByCategory } from '../js/characters.js';
 
 // ── SS-065 — Panel pool + drawPanel ──────────────────────────────────────────
 
@@ -1677,4 +1677,65 @@ describe('SS-143 — Common quotes attribute', () => {
         `${charId} needs at least ${min} quotes for variety, got ${CHARACTERS[charId].quotes.length}`);
     });
   }
+});
+
+// ── SS-144 — Invented catchphrases ───────────────────────────────────────────
+
+describe('INVENTED_CATCHPHRASES — SS-144', () => {
+
+  test('every PANEL_POOL member has an INVENTED_CATCHPHRASES entry', () => {
+    for (const id of PANEL_POOL) {
+      assert.ok(INVENTED_CATCHPHRASES[id],
+        `PANEL_POOL member '${id}' must have an INVENTED_CATCHPHRASES entry`);
+    }
+  });
+
+  test('every entry has setups array with at least 3 items', () => {
+    for (const [id, entry] of Object.entries(INVENTED_CATCHPHRASES)) {
+      assert.ok(Array.isArray(entry.setups), `${id} setups must be an array`);
+      assert.ok(entry.setups.length >= 3,
+        `${id} must have at least 3 setup phrases, got ${entry.setups.length}`);
+    }
+  });
+
+  test('every entry has phrases array with at least 2 items', () => {
+    for (const [id, entry] of Object.entries(INVENTED_CATCHPHRASES)) {
+      assert.ok(Array.isArray(entry.phrases), `${id} phrases must be an array`);
+      assert.ok(entry.phrases.length >= 2,
+        `${id} must have at least 2 invented phrases, got ${entry.phrases.length}`);
+    }
+  });
+
+  test('no setup or phrase is empty string', () => {
+    for (const [id, entry] of Object.entries(INVENTED_CATCHPHRASES)) {
+      for (const s of entry.setups) {
+        assert.ok(s.trim().length > 0, `${id} has an empty setup`);
+      }
+      for (const p of entry.phrases) {
+        assert.ok(p.trim().length > 0, `${id} has an empty phrase`);
+      }
+    }
+  });
+
+  test('buildInventedCatchphraseInjection returns empty for empty array', () => {
+    assert.strictEqual(buildInventedCatchphraseInjection([]), '');
+  });
+
+  test('buildInventedCatchphraseInjection includes character names and phrases', () => {
+    const result = buildInventedCatchphraseInjection(['ray', 'bear']);
+    assert.ok(result.includes('RAY MEARS'), 'must include Ray Mears');
+    assert.ok(result.includes('BEAR GRYLLS'), 'must include Bear Grylls');
+    assert.ok(result.includes('INVENTED CATCHPHRASES'), 'must include mechanic header');
+  });
+
+  test('buildInventedCatchphraseInjection includes universal setup phrases', () => {
+    const result = buildInventedCatchphraseInjection(['ray']);
+    assert.ok(result.includes('UNIVERSAL SETUP PHRASES'), 'must include universal setups');
+    assert.ok(result.includes('The lads back at'), 'must include "The lads" universal');
+  });
+
+  test('buildInventedCatchphraseInjection skips unknown character IDs', () => {
+    const result = buildInventedCatchphraseInjection(['nonexistent_id']);
+    assert.strictEqual(result, '', 'must return empty for unknown IDs');
+  });
 });
