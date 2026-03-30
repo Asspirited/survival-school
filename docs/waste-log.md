@@ -461,6 +461,24 @@
 
 **Observation:** In My Defence (Room 14) shows "The panel couldn't convene. Try again." but the panel eventually does respond if you wait. The system prompt is very large (full character voice descriptions + Social Dynamics Engine + Composure + Morrison injection). Haiku takes a long time to process. The client-side fetch has no timeout — the error likely fires from a transient API error (rate limit, cold start, or Cloudflare worker timeout). Rod left it and it eventually worked.
 
+---
+
+## WL-SS-026 — Deploy broke IMD due to stale cached page
+
+**Status:** Closed — fixed 2026-03-30
+**Category:** Defect / Process
+**Severity:** High
+**Raised:** 2026-03-30
+**Closed:** 2026-03-30
+
+**Observation:** SS-150 Morrison consolidation removed `buildMorrisonInjection` from all client-side page templates. Worker HTML responses had no Cache-Control header. Rod's mobile browser served a cached version of the IMD page that still referenced the removed function. Result: ReferenceError on every submission → "panel couldn't convene." Rod had not visited the page before that day — the browser cache (or Cloudflare edge) served stale HTML from a prior session.
+
+**Waste impact:** IMD completely broken for Rod on mobile. Appeared as a new feature failure, not a cache issue. Error message was generic — no way to distinguish ReferenceError from timeout. Trust impact.
+
+**Root cause:** No cache headers on worker HTML responses. A deploy that removes client-side functions will break any user whose browser/CDN serves stale HTML. This was a foreseeable consequence of removing functions that the page JS calls.
+
+**Action:** Added `Cache-Control: no-cache` to all 18 HTML GET responses in worker.js. Browsers will revalidate with the server on every page load. Also improved IMD error message to show specific cause (AbortError vs generic). Deployed bda0dc3.
+
 **Waste impact:** Users see an error message on a working feature. They may reload or give up before the response arrives. False error undermines confidence in the product.
 
 **Action:** Two options: (a) increase client-side timeout tolerance with "still thinking..." intermediate state at ~15s, error only at ~60s; (b) reduce system prompt size for IMD route. Both may be needed. Tracked as part of SS-164 (IMD design pivot) and SS-149 (decompose monolith prompts).
