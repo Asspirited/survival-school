@@ -56,8 +56,8 @@ test.describe('Homepage — tile grid and navigation', () => {
       '/survival-school/coyote',
       '/survival-school/panel-qa',
       '/survival-school/rooms',
-      '/survival-school/the-alibi',
-      '/survival-school/the-expert-witness',
+      '/survival-school/one-man-in',
+      '/survival-school/irwin-memorial',
     ];
     for (const href of LIVE_TILES) {
       await expect(page.locator(`a[href="${href}"]`)).toBeVisible();

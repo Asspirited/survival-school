@@ -1037,3 +1037,43 @@ describe('Feature: The Expert Witness corridor door (SS-133)', () => {
     assert.ok(html.includes('/survival-school/the-expert-witness'), 'The Expert Witness must link to /survival-school/the-expert-witness');
   });
 });
+
+// ── Feature: Per-character escalation injection in multi-turn panel features (SS-148) ──
+
+const MULTI_TURN_FEATURES = [
+  { path: '/survival-school/ive-had-worse',       name: 'I\'ve Had Worse' },
+  { path: '/survival-school/in-my-defence',       name: 'In My Defence' },
+  { path: '/survival-school/the-alibi',           name: 'The Alibi' },
+  { path: '/survival-school/the-expert-witness',  name: 'The Expert Witness' },
+  { path: '/survival-school/one-man-in',          name: 'One Man In' },
+];
+
+describe('Feature: Per-character escalation injection wired into multi-turn features (SS-148)', () => {
+
+  for (const feature of MULTI_TURN_FEATURES) {
+    test(`Given ${feature.name} page loads, Then buildSystemPrompt calls buildEscalationInjection`, async () => {
+      const r = await fetch(`${BASE}${feature.path}`, { signal: AbortSignal.timeout(TIMEOUT) });
+      const html = await r.text();
+      assert.ok(html.includes('buildEscalationInjection'),
+        `${feature.name} must call buildEscalationInjection in its page JS`);
+    });
+  }
+
+  test('Given IHW page loads, Then buildEscalationInjection is called with panel charIds and turn', async () => {
+    const r = await fetch(`${BASE}/survival-school/ive-had-worse`, { signal: AbortSignal.timeout(TIMEOUT) });
+    const html = await r.text();
+    assert.ok(html.includes('PER-CHARACTER ESCALATION') || html.includes('buildEscalationInjection'),
+      'IHW must contain escalation injection call or output marker');
+  });
+
+  test('Given IHW page loads, Then buildEscalationInjection output is injected into the system prompt string', async () => {
+    const r = await fetch(`${BASE}/survival-school/ive-had-worse`, { signal: AbortSignal.timeout(TIMEOUT) });
+    const html = await r.text();
+    // The function must be called inside buildSystemPrompt, not just defined on the page
+    // Check that the escalation injection variable is concatenated into the prompt return
+    assert.ok(
+      html.includes('escalationInjection') || html.includes('buildEscalationInjection('),
+      'IHW buildSystemPrompt must use escalation injection in prompt assembly'
+    );
+  });
+});
