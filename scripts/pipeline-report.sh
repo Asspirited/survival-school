@@ -57,7 +57,7 @@ fi
 separator
 echo "L1 — UNIT TESTS (domain)"
 L1_START=$(date +%s%3N)
-L1_OUT=$(node --test --experimental-test-coverage tests/domain.test.js tests/domain-worst.test.js tests/domain-characters.test.js 2>&1)
+L1_OUT=$(node --test --experimental-test-coverage tests/domain.test.js tests/domain-worst.test.js tests/domain-characters.test.js tests/domain-eat-it.test.js 2>&1)
 L1_EXIT=$?
 L1_END=$(date +%s%3N)
 L1_TIME=$(( (L1_END - L1_START) ))

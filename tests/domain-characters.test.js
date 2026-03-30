@@ -9,7 +9,7 @@
 import { test, describe, before } from 'node:test';
 import assert from 'node:assert/strict';
 
-import { buildSystemPrompt, CHARACTERS, PANEL_IDS, PANEL_POOL, drawPanel, CHAR_COLOURS, FISH_DISPOSITIONS, DISPOSITION_SHIFTS, drawDisposition, buildDispositionState, buildFishDispositionInjection, shiftDisposition, COMPOSURE_PROFILES, initComposureState, computeComposureDeltas, composureTier, buildComposureInjection, TEMPORAL_LENS, TEMPORAL_STATES, hasTemporalLensCharacters, buildTemporalLensInjection, NAMING_CONVENTIONS, buildNamingConventionInjection, INVENTED_CATCHPHRASES, buildInventedCatchphraseInjection, PANEL_CATEGORIES, getCharacterCategories, getCharactersByCategory, ESCALATION_PROFILES, RELATIONAL_AXES, getAxesForCharacter, getActiveAxes, buildEscalationInjection } from '../js/characters.js';
+import { buildSystemPrompt, CHARACTERS, PANEL_IDS, PANEL_POOL, drawPanel, CHAR_COLOURS, FISH_DISPOSITIONS, DISPOSITION_SHIFTS, drawDisposition, buildDispositionState, buildFishDispositionInjection, shiftDisposition, COMPOSURE_PROFILES, initComposureState, computeComposureDeltas, composureTier, buildComposureInjection, TEMPORAL_LENS, TEMPORAL_STATES, hasTemporalLensCharacters, buildTemporalLensInjection, NAMING_CONVENTIONS, buildNamingConventionInjection, INVENTED_CATCHPHRASES, buildInventedCatchphraseInjection, PANEL_CATEGORIES, getCharacterCategories, getCharactersByCategory, ESCALATION_PROFILES, RELATIONAL_AXES, getAxesForCharacter, getActiveAxes, buildEscalationInjection, REPUTATION_TIERS, getReputationTier, computeReputationStats, buildReputationInjection, OBLIVIOUS_CHARACTERS, getCharacterEncounters, computeCharacterSentiment, buildCharacterCallback, buildCharacterLearningInjection, MORRISON_CLAIM_TEMPLATES, pickClaimTarget, buildMorrisonClaimInjection, CHARACTER_PACKS, getPackById, getPacksForCharacter, getReleasedPacks, isNewCharacter, AUDIENCE_FEATURES, AUDIENCE_CONFIG, isAudienceFeature, buildSpectatorCard, buildSpectatorView } from '../js/characters.js';
 
 // ── SS-065 — Panel pool + drawPanel ──────────────────────────────────────────
 
@@ -2107,5 +2107,828 @@ describe('Robin Williams — SS-146', () => {
     const result = buildEscalationInjection(['robin'], 1);
     assert.ok(result.includes('Robin Williams'), 'escalation must include character name');
     assert.ok(result.includes('The Underneath'), 'escalation must include wound name');
+  });
+});
+
+// ── SS-152 — User Reputation ────────────────────────────────────────────────
+
+describe('REPUTATION_TIERS — SS-152', () => {
+  test('REPUTATION_TIERS has four tiers', () => {
+    assert.strictEqual(Object.keys(REPUTATION_TIERS).length, 4);
+    assert.ok(REPUTATION_TIERS.STRANGER);
+    assert.ok(REPUTATION_TIERS.FAMILIAR);
+    assert.ok(REPUTATION_TIERS.REGULAR);
+    assert.ok(REPUTATION_TIERS.VETERAN);
+  });
+
+  test('tiers have ascending levels 0-3', () => {
+    assert.strictEqual(REPUTATION_TIERS.STRANGER.level, 0);
+    assert.strictEqual(REPUTATION_TIERS.FAMILIAR.level, 1);
+    assert.strictEqual(REPUTATION_TIERS.REGULAR.level, 2);
+    assert.strictEqual(REPUTATION_TIERS.VETERAN.level, 3);
+  });
+
+  test('tiers have ascending minEncounters', () => {
+    assert.ok(REPUTATION_TIERS.STRANGER.minEncounters < REPUTATION_TIERS.FAMILIAR.minEncounters);
+    assert.ok(REPUTATION_TIERS.FAMILIAR.minEncounters < REPUTATION_TIERS.REGULAR.minEncounters);
+    assert.ok(REPUTATION_TIERS.REGULAR.minEncounters < REPUTATION_TIERS.VETERAN.minEncounters);
+  });
+
+  test('STRANGER has 0 callback slots, VETERAN has the most', () => {
+    assert.strictEqual(REPUTATION_TIERS.STRANGER.callbackSlots, 0);
+    assert.ok(REPUTATION_TIERS.VETERAN.callbackSlots > REPUTATION_TIERS.REGULAR.callbackSlots);
+  });
+});
+
+describe('getReputationTier — SS-152', () => {
+  test('0 encounters returns STRANGER', () => {
+    assert.strictEqual(getReputationTier(0).name, 'STRANGER');
+  });
+
+  test('null/undefined returns STRANGER', () => {
+    assert.strictEqual(getReputationTier(null).name, 'STRANGER');
+    assert.strictEqual(getReputationTier(undefined).name, 'STRANGER');
+  });
+
+  test('1 encounter returns FAMILIAR', () => {
+    assert.strictEqual(getReputationTier(1).name, 'FAMILIAR');
+  });
+
+  test('3 encounters returns FAMILIAR', () => {
+    assert.strictEqual(getReputationTier(3).name, 'FAMILIAR');
+  });
+
+  test('4 encounters returns REGULAR', () => {
+    assert.strictEqual(getReputationTier(4).name, 'REGULAR');
+  });
+
+  test('9 encounters returns REGULAR', () => {
+    assert.strictEqual(getReputationTier(9).name, 'REGULAR');
+  });
+
+  test('10 encounters returns VETERAN', () => {
+    assert.strictEqual(getReputationTier(10).name, 'VETERAN');
+  });
+
+  test('50 encounters returns VETERAN', () => {
+    assert.strictEqual(getReputationTier(50).name, 'VETERAN');
+  });
+});
+
+describe('computeReputationStats — SS-152', () => {
+  test('null reputation returns empty stats', () => {
+    const stats = computeReputationStats(null);
+    assert.strictEqual(stats.totalEncounters, 0);
+    assert.deepStrictEqual(stats.uniqueCharacters, []);
+    assert.strictEqual(stats.favouriteFeature, null);
+  });
+
+  test('empty encounters returns empty stats', () => {
+    const stats = computeReputationStats({ encounters: [] });
+    assert.strictEqual(stats.totalEncounters, 0);
+  });
+
+  test('counts total encounters', () => {
+    const rep = {
+      created: new Date().toISOString(),
+      encounters: [
+        { feature: 'ive-had-worse', charIds: ['bear', 'ray'], highlights: [] },
+        { feature: 'in-my-defence', charIds: ['fox', 'billy'], highlights: [] }
+      ]
+    };
+    const stats = computeReputationStats(rep);
+    assert.strictEqual(stats.totalEncounters, 2);
+  });
+
+  test('deduplicates uniqueCharacters across encounters', () => {
+    const rep = {
+      created: new Date().toISOString(),
+      encounters: [
+        { feature: 'ive-had-worse', charIds: ['bear', 'ray'], highlights: [] },
+        { feature: 'in-my-defence', charIds: ['ray', 'fox'], highlights: [] }
+      ]
+    };
+    const stats = computeReputationStats(rep);
+    assert.strictEqual(stats.uniqueCharacters.length, 3);
+    assert.ok(stats.uniqueCharacters.includes('bear'));
+    assert.ok(stats.uniqueCharacters.includes('ray'));
+    assert.ok(stats.uniqueCharacters.includes('fox'));
+  });
+
+  test('identifies favourite feature', () => {
+    const rep = {
+      created: new Date().toISOString(),
+      encounters: [
+        { feature: 'ive-had-worse', charIds: [], highlights: [] },
+        { feature: 'ive-had-worse', charIds: [], highlights: [] },
+        { feature: 'in-my-defence', charIds: [], highlights: [] }
+      ]
+    };
+    const stats = computeReputationStats(rep);
+    assert.strictEqual(stats.favouriteFeature, 'ive-had-worse');
+  });
+
+  test('collects woundsSeen from highlights', () => {
+    const rep = {
+      created: new Date().toISOString(),
+      encounters: [
+        { feature: 'ive-had-worse', charIds: ['bear'], highlights: [
+          { type: 'wound_fired', charId: 'bear', detail: 'childhood' }
+        ]},
+        { feature: 'ive-had-worse', charIds: ['bear'], highlights: [
+          { type: 'wound_fired', charId: 'bear', detail: 'childhood again' }
+        ]}
+      ]
+    };
+    const stats = computeReputationStats(rep);
+    assert.deepStrictEqual(stats.woundsSeen, ['bear']);
+  });
+
+  test('builds notableCallbacks from wound_fired highlights', () => {
+    const rep = {
+      created: new Date().toISOString(),
+      encounters: [
+        { feature: 'ive-had-worse', charIds: ['bear'], scenario: 'pigeon attack', highlights: [
+          { type: 'wound_fired', charId: 'bear', detail: 'childhood' }
+        ]}
+      ]
+    };
+    const stats = computeReputationStats(rep);
+    assert.ok(stats.notableCallbacks.length > 0);
+    assert.ok(stats.notableCallbacks[0].includes('bear'));
+    assert.ok(stats.notableCallbacks[0].includes('wound'));
+  });
+
+  test('builds notableCallbacks from morrison_appeared', () => {
+    const rep = {
+      created: new Date().toISOString(),
+      encounters: [
+        { feature: 'ive-had-worse', charIds: ['bear'], scenario: 'snake', highlights: [
+          { type: 'morrison_appeared', charId: 'morrison', detail: 'mentioned doors' }
+        ]}
+      ]
+    };
+    const stats = computeReputationStats(rep);
+    assert.ok(stats.notableCallbacks[0].includes('Morrison'));
+  });
+});
+
+describe('buildReputationInjection — SS-152', () => {
+  test('returns empty string for null', () => {
+    assert.strictEqual(buildReputationInjection(null), '');
+  });
+
+  test('returns empty string for zero encounters', () => {
+    const rep = { encounters: [], stats: { totalEncounters: 0, uniqueCharacters: [] } };
+    assert.strictEqual(buildReputationInjection(rep), '');
+  });
+
+  test('FAMILIAR tier includes tier name and characters but no encounter summaries', () => {
+    const rep = {
+      encounters: [{ feature: 'ive-had-worse', charIds: ['bear', 'ray'], scenario: 'pigeon', rounds: 3 }],
+      stats: { totalEncounters: 1, uniqueCharacters: ['bear', 'ray'], notableCallbacks: [] }
+    };
+    const result = buildReputationInjection(rep);
+    assert.ok(result.includes('FAMILIAR'));
+    assert.ok(result.includes('bear'));
+    assert.ok(!result.includes('Recent encounters'));
+  });
+
+  test('REGULAR tier includes recent encounter summaries', () => {
+    const encounters = [];
+    for (let i = 0; i < 5; i++) {
+      encounters.push({ feature: 'ive-had-worse', charIds: ['bear'], scenario: `scenario-${i}`, rounds: 2 });
+    }
+    const rep = {
+      encounters,
+      stats: { totalEncounters: 5, uniqueCharacters: ['bear'], notableCallbacks: [] }
+    };
+    const result = buildReputationInjection(rep);
+    assert.ok(result.includes('REGULAR'));
+    assert.ok(result.includes('Recent encounters'));
+  });
+
+  test('VETERAN tier includes notable callbacks', () => {
+    const encounters = [];
+    for (let i = 0; i < 12; i++) {
+      encounters.push({ feature: 'ive-had-worse', charIds: ['bear'], scenario: `scenario-${i}`, rounds: 1, highlights: [] });
+    }
+    const rep = {
+      encounters,
+      stats: {
+        totalEncounters: 12, uniqueCharacters: ['bear'],
+        notableCallbacks: ["bear's wound fired during \"childhood\""]
+      }
+    };
+    const result = buildReputationInjection(rep);
+    assert.ok(result.includes('VETERAN'));
+    assert.ok(result.includes('Notable events'));
+    assert.ok(result.includes('wound fired'));
+  });
+
+  test('includes tone instruction for each tier level', () => {
+    // FAMILIAR
+    const fam = buildReputationInjection({
+      encounters: [{ feature: 'x', charIds: ['bear'], scenario: 'y', rounds: 1 }],
+      stats: { totalEncounters: 1, uniqueCharacters: ['bear'], notableCallbacks: [] }
+    });
+    assert.ok(fam.includes('you again'));
+
+    // REGULAR
+    const reg = buildReputationInjection({
+      encounters: Array.from({ length: 5 }, () => ({ feature: 'x', charIds: ['bear'], scenario: 'y', rounds: 1 })),
+      stats: { totalEncounters: 5, uniqueCharacters: ['bear'], notableCallbacks: [] }
+    });
+    assert.ok(reg.includes('half-recognition'));
+
+    // VETERAN
+    const vet = buildReputationInjection({
+      encounters: Array.from({ length: 12 }, () => ({ feature: 'x', charIds: ['bear'], scenario: 'y', rounds: 1 })),
+      stats: { totalEncounters: 12, uniqueCharacters: ['bear'], notableCallbacks: [] }
+    });
+    assert.ok(vet.includes('familiarity'));
+  });
+
+  test('computeReputationStats is used when stats not provided', () => {
+    const rep = {
+      created: new Date().toISOString(),
+      encounters: [
+        { feature: 'ive-had-worse', charIds: ['bear', 'ray'], scenario: 'pigeon', rounds: 2, highlights: [] }
+      ]
+    };
+    const result = buildReputationInjection(rep);
+    assert.ok(result.includes('FAMILIAR'));
+    assert.ok(result.includes('bear'));
+  });
+});
+
+// ── SS-154 — Character Learning ─────────────────────────────────────────────
+
+describe('OBLIVIOUS_CHARACTERS — SS-154', () => {
+  test('morrison is oblivious', () => {
+    assert.ok(OBLIVIOUS_CHARACTERS.includes('morrison'));
+  });
+
+  test('carrey is oblivious', () => {
+    assert.ok(OBLIVIOUS_CHARACTERS.includes('carrey'));
+  });
+});
+
+describe('getCharacterEncounters — SS-154', () => {
+  test('returns empty array for null reputation', () => {
+    assert.deepStrictEqual(getCharacterEncounters(null, 'bear'), []);
+  });
+
+  test('returns empty array for no encounters', () => {
+    assert.deepStrictEqual(getCharacterEncounters({ encounters: [] }, 'bear'), []);
+  });
+
+  test('filters encounters to only those containing the charId', () => {
+    const rep = {
+      encounters: [
+        { charIds: ['bear', 'ray'], feature: 'ihw' },
+        { charIds: ['fox', 'billy'], feature: 'imd' },
+        { charIds: ['bear', 'fox'], feature: 'ihw2' }
+      ]
+    };
+    const bearEnc = getCharacterEncounters(rep, 'bear');
+    assert.strictEqual(bearEnc.length, 2);
+    assert.strictEqual(bearEnc[0].feature, 'ihw');
+    assert.strictEqual(bearEnc[1].feature, 'ihw2');
+  });
+
+  test('returns empty for character not in any encounter', () => {
+    const rep = {
+      encounters: [{ charIds: ['bear', 'ray'], feature: 'ihw' }]
+    };
+    assert.deepStrictEqual(getCharacterEncounters(rep, 'hawking'), []);
+  });
+});
+
+describe('computeCharacterSentiment — SS-154', () => {
+  test('oblivious characters always return oblivious', () => {
+    const encounters = [
+      { charIds: ['morrison'], highlights: [{ type: 'wound_fired', charId: 'morrison' }] }
+    ];
+    assert.strictEqual(computeCharacterSentiment('morrison', encounters), 'oblivious');
+    assert.strictEqual(computeCharacterSentiment('carrey', encounters), 'oblivious');
+  });
+
+  test('no encounters returns neutral', () => {
+    assert.strictEqual(computeCharacterSentiment('bear', []), 'neutral');
+  });
+
+  test('null encounters returns neutral', () => {
+    assert.strictEqual(computeCharacterSentiment('bear', null), 'neutral');
+  });
+
+  test('wound_fired returns wary', () => {
+    const enc = [{ charIds: ['bear'], highlights: [{ type: 'wound_fired', charId: 'bear', detail: 'childhood' }] }];
+    assert.strictEqual(computeCharacterSentiment('bear', enc), 'wary');
+  });
+
+  test('lie_exposed returns grudging', () => {
+    const enc = [{ charIds: ['bear'], highlights: [{ type: 'lie_exposed', charId: 'bear', detail: 'claimed SAS' }] }];
+    assert.strictEqual(computeCharacterSentiment('bear', enc), 'grudging');
+  });
+
+  test('sacred_exchange returns warm', () => {
+    const enc = [{ charIds: ['fox'], highlights: [{ type: 'sacred_exchange', charId: 'fox', detail: 'billy moment' }] }];
+    assert.strictEqual(computeCharacterSentiment('fox', enc), 'warm');
+  });
+
+  test('wound_fired takes priority over lie_exposed', () => {
+    const enc = [{
+      charIds: ['bear'],
+      highlights: [
+        { type: 'lie_exposed', charId: 'bear', detail: 'claimed SAS' },
+        { type: 'wound_fired', charId: 'bear', detail: 'childhood' }
+      ]
+    }];
+    assert.strictEqual(computeCharacterSentiment('bear', enc), 'wary');
+  });
+
+  test('3+ encounters with no highlights returns familiar', () => {
+    const enc = [
+      { charIds: ['ray'], highlights: [] },
+      { charIds: ['ray'], highlights: [] },
+      { charIds: ['ray'], highlights: [] }
+    ];
+    assert.strictEqual(computeCharacterSentiment('ray', enc), 'familiar');
+  });
+
+  test('2 encounters with no highlights returns neutral', () => {
+    const enc = [
+      { charIds: ['ray'], highlights: [] },
+      { charIds: ['ray'], highlights: [] }
+    ];
+    assert.strictEqual(computeCharacterSentiment('ray', enc), 'neutral');
+  });
+
+  test('highlights for OTHER characters are ignored', () => {
+    const enc = [{ charIds: ['bear', 'ray'], highlights: [{ type: 'wound_fired', charId: 'ray', detail: 'test' }] }];
+    assert.strictEqual(computeCharacterSentiment('bear', enc), 'neutral');
+  });
+});
+
+describe('buildCharacterCallback — SS-154', () => {
+  test('oblivious returns null', () => {
+    assert.strictEqual(buildCharacterCallback('morrison', [{ charIds: ['morrison'] }], 'oblivious'), null);
+  });
+
+  test('neutral returns null', () => {
+    assert.strictEqual(buildCharacterCallback('bear', [{ charIds: ['bear'] }], 'neutral'), null);
+  });
+
+  test('wary includes character name and "guarded"', () => {
+    const result = buildCharacterCallback('bear', [{ charIds: ['bear'] }], 'wary');
+    assert.ok(result.includes(CHARACTERS.bear.name));
+    assert.ok(result.toLowerCase().includes('guarded'));
+  });
+
+  test('grudging includes "lie"', () => {
+    const result = buildCharacterCallback('bear', [{ charIds: ['bear'] }], 'grudging');
+    assert.ok(result.toLowerCase().includes('lie'));
+  });
+
+  test('warm includes "genuine moment"', () => {
+    const result = buildCharacterCallback('fox', [{ charIds: ['fox'] }], 'warm');
+    assert.ok(result.toLowerCase().includes('genuine'));
+  });
+
+  test('familiar includes encounter count', () => {
+    const enc = [{ charIds: ['ray'] }, { charIds: ['ray'] }, { charIds: ['ray'] }];
+    const result = buildCharacterCallback('ray', enc, 'familiar');
+    assert.ok(result.includes('3'));
+  });
+
+  test('returns null for unknown charId', () => {
+    assert.strictEqual(buildCharacterCallback('nonexistent', [{}], 'wary'), null);
+  });
+});
+
+describe('buildCharacterLearningInjection — SS-154', () => {
+  test('returns empty string for null reputation', () => {
+    assert.strictEqual(buildCharacterLearningInjection(null, ['bear']), '');
+  });
+
+  test('returns empty string for empty encounters', () => {
+    assert.strictEqual(buildCharacterLearningInjection({ encounters: [] }, ['bear']), '');
+  });
+
+  test('returns empty string when no panel chars have encounter history', () => {
+    const rep = {
+      encounters: [{ charIds: ['ray'], highlights: [], feature: 'ihw', scenario: 'test' }]
+    };
+    assert.strictEqual(buildCharacterLearningInjection(rep, ['fox']), '');
+  });
+
+  test('includes header and rule for chars with history', () => {
+    const rep = {
+      encounters: [
+        { charIds: ['bear'], highlights: [{ type: 'wound_fired', charId: 'bear', detail: 'test' }], feature: 'ihw', scenario: 'pigeon' }
+      ]
+    };
+    const result = buildCharacterLearningInjection(rep, ['bear']);
+    assert.ok(result.includes('CHARACTER-SPECIFIC MEMORY'));
+    assert.ok(result.includes('bear'));
+    assert.ok(result.includes('wary'));
+    assert.ok(result.includes('Rule:'));
+  });
+
+  test('skips oblivious characters even with history', () => {
+    const rep = {
+      encounters: [
+        { charIds: ['morrison', 'bear'], highlights: [{ type: 'wound_fired', charId: 'bear', detail: 'test' }], feature: 'ihw', scenario: 'pigeon' }
+      ]
+    };
+    const result = buildCharacterLearningInjection(rep, ['morrison', 'bear']);
+    assert.ok(!result.includes('morrison'));
+    assert.ok(result.includes('bear'));
+  });
+
+  test('handles multiple characters with different sentiments', () => {
+    const rep = {
+      encounters: [
+        { charIds: ['bear', 'fox', 'ray'], highlights: [
+          { type: 'wound_fired', charId: 'bear', detail: 'childhood' },
+          { type: 'sacred_exchange', charId: 'fox', detail: 'billy' }
+        ], feature: 'ihw', scenario: 'test' },
+        { charIds: ['bear', 'fox', 'ray'], highlights: [], feature: 'ihw', scenario: 'test2' },
+        { charIds: ['bear', 'fox', 'ray'], highlights: [], feature: 'ihw', scenario: 'test3' }
+      ]
+    };
+    const result = buildCharacterLearningInjection(rep, ['bear', 'fox', 'ray']);
+    assert.ok(result.includes('wary'));
+    assert.ok(result.includes('warm'));
+    assert.ok(result.includes('familiar'));
+  });
+});
+
+// ── SS-162 — Morrison Meta-Layer ────────────────────────────────────────────
+
+describe('MORRISON_CLAIM_TEMPLATES — SS-162', () => {
+  test('has three claim types', () => {
+    assert.ok(MORRISON_CLAIM_TEMPLATES.rumour);
+    assert.ok(MORRISON_CLAIM_TEMPLATES.invention);
+    assert.ok(MORRISON_CLAIM_TEMPLATES.oracle);
+  });
+
+  test('each type has at least 2 templates', () => {
+    assert.ok(MORRISON_CLAIM_TEMPLATES.rumour.length >= 2);
+    assert.ok(MORRISON_CLAIM_TEMPLATES.invention.length >= 2);
+    assert.ok(MORRISON_CLAIM_TEMPLATES.oracle.length >= 2);
+  });
+
+  test('rumour templates contain {charName} and {seed} placeholders', () => {
+    for (const t of MORRISON_CLAIM_TEMPLATES.rumour) {
+      assert.ok(t.includes('{charName}'), `rumour template missing {charName}: ${t.slice(0, 50)}`);
+      assert.ok(t.includes('{seed}'), `rumour template missing {seed}: ${t.slice(0, 50)}`);
+    }
+  });
+
+  test('invention templates contain {charName} placeholder', () => {
+    for (const t of MORRISON_CLAIM_TEMPLATES.invention) {
+      assert.ok(t.includes('{charName}'), `invention template missing {charName}: ${t.slice(0, 50)}`);
+    }
+  });
+
+  test('oracle templates contain {charName} and {woundName} placeholders', () => {
+    for (const t of MORRISON_CLAIM_TEMPLATES.oracle) {
+      assert.ok(t.includes('{charName}'), `oracle template missing {charName}: ${t.slice(0, 50)}`);
+      assert.ok(t.includes('{woundName}'), `oracle template missing {woundName}: ${t.slice(0, 50)}`);
+    }
+  });
+});
+
+describe('pickClaimTarget — SS-162', () => {
+  test('excludes morrison from targets', () => {
+    for (let i = 0; i < 50; i++) {
+      const target = pickClaimTarget(['morrison', 'bear', 'ray']);
+      assert.notStrictEqual(target, 'morrison');
+    }
+  });
+
+  test('returns null for empty panel', () => {
+    assert.strictEqual(pickClaimTarget([]), null);
+  });
+
+  test('returns null for morrison-only panel', () => {
+    assert.strictEqual(pickClaimTarget(['morrison']), null);
+  });
+
+  test('returns a valid charId from the panel', () => {
+    const panel = ['bear', 'ray', 'fox'];
+    for (let i = 0; i < 20; i++) {
+      const target = pickClaimTarget(panel);
+      assert.ok(panel.includes(target), `target ${target} not in panel`);
+    }
+  });
+
+  test('prefers characters with escalation profiles', () => {
+    // Run many times — chars with profiles should dominate
+    const withProfile = Object.keys(ESCALATION_PROFILES).filter(id => id !== 'morrison')[0];
+    const panel = [withProfile, 'morrison'];
+    const target = pickClaimTarget(panel);
+    assert.strictEqual(target, withProfile);
+  });
+});
+
+describe('buildMorrisonClaimInjection — SS-162', () => {
+  test('returns empty string for invalid claim type', () => {
+    assert.strictEqual(buildMorrisonClaimInjection(['bear', 'ray'], 'nonexistent'), '');
+    assert.strictEqual(buildMorrisonClaimInjection(['bear', 'ray'], null), '');
+  });
+
+  test('returns empty string for empty panel', () => {
+    assert.strictEqual(buildMorrisonClaimInjection([], 'rumour'), '');
+  });
+
+  test('rumour injection includes header and target name', () => {
+    const result = buildMorrisonClaimInjection(['bear', 'ray'], 'rumour');
+    assert.ok(result.includes('MORRISON META-LAYER'));
+    assert.ok(result.includes('RUMOUR'));
+    // Should include one of bear or ray's name
+    const hasBear = result.includes(CHARACTERS.bear.name);
+    const hasRay = result.includes(CHARACTERS.ray.name);
+    assert.ok(hasBear || hasRay, 'must include target character name');
+  });
+
+  test('rumour injection includes a seed from escalation pools', () => {
+    // Run several times to get a rumour with a real seed
+    let foundSeed = false;
+    for (let i = 0; i < 20; i++) {
+      const result = buildMorrisonClaimInjection(['bear'], 'rumour');
+      if (!result.includes('something nobody can quite remember')) {
+        foundSeed = true;
+        break;
+      }
+    }
+    assert.ok(foundSeed, 'at least one rumour should draw a real seed from escalation pools');
+  });
+
+  test('invention injection includes header and INVENTION type', () => {
+    const result = buildMorrisonClaimInjection(['bear', 'fox'], 'invention');
+    assert.ok(result.includes('MORRISON META-LAYER'));
+    assert.ok(result.includes('INVENTION'));
+  });
+
+  test('oracle injection includes wound name', () => {
+    // Use a character with a known wound
+    const charWithWound = Object.keys(ESCALATION_PROFILES).find(
+      id => ESCALATION_PROFILES[id].wound && ESCALATION_PROFILES[id].wound.name && id !== 'morrison'
+    );
+    if (charWithWound) {
+      const result = buildMorrisonClaimInjection([charWithWound], 'oracle');
+      assert.ok(result.includes('ORACLE'));
+      assert.ok(result.includes(ESCALATION_PROFILES[charWithWound].wound.name),
+        `oracle must include wound name "${ESCALATION_PROFILES[charWithWound].wound.name}"`);
+    }
+  });
+
+  test('injection includes panel reaction instruction', () => {
+    const result = buildMorrisonClaimInjection(['bear'], 'rumour');
+    assert.ok(result.includes('Panel reaction'));
+  });
+});
+
+// ── SS-153 — Audience Mechanic ──────────────────────────────────────────────
+
+describe('AUDIENCE_FEATURES — SS-153', () => {
+  test('includes multi-turn features only', () => {
+    assert.ok(AUDIENCE_FEATURES.includes('ive-had-worse'));
+    assert.ok(AUDIENCE_FEATURES.includes('in-my-defence'));
+    assert.ok(AUDIENCE_FEATURES.includes('the-alibi'));
+    assert.ok(AUDIENCE_FEATURES.includes('the-expert-witness'));
+    assert.ok(AUDIENCE_FEATURES.includes('one-man-in'));
+  });
+
+  test('excludes single-shot features', () => {
+    assert.ok(!AUDIENCE_FEATURES.includes('app'));
+    assert.ok(!AUDIENCE_FEATURES.includes('mundane'));
+    assert.ok(!AUDIENCE_FEATURES.includes('worst'));
+    assert.ok(!AUDIENCE_FEATURES.includes('deathmatch'));
+    assert.ok(!AUDIENCE_FEATURES.includes('eat'));
+  });
+});
+
+describe('AUDIENCE_CONFIG — SS-153', () => {
+  test('has required timing constants', () => {
+    assert.strictEqual(typeof AUDIENCE_CONFIG.pollIntervalMs, 'number');
+    assert.strictEqual(typeof AUDIENCE_CONFIG.sessionTtlMs, 'number');
+    assert.strictEqual(typeof AUDIENCE_CONFIG.staggerDelayMs, 'number');
+    assert.strictEqual(typeof AUDIENCE_CONFIG.maxSpectators, 'number');
+  });
+
+  test('poll interval is reasonable (1-10 seconds)', () => {
+    assert.ok(AUDIENCE_CONFIG.pollIntervalMs >= 1000);
+    assert.ok(AUDIENCE_CONFIG.pollIntervalMs <= 10000);
+  });
+
+  test('session TTL is at least 30 minutes', () => {
+    assert.ok(AUDIENCE_CONFIG.sessionTtlMs >= 1800000);
+  });
+});
+
+describe('isAudienceFeature — SS-153', () => {
+  test('returns true for supported features', () => {
+    assert.ok(isAudienceFeature('ive-had-worse'));
+    assert.ok(isAudienceFeature('in-my-defence'));
+  });
+
+  test('returns false for unsupported features', () => {
+    assert.ok(!isAudienceFeature('app'));
+    assert.ok(!isAudienceFeature('mundane'));
+    assert.ok(!isAudienceFeature('nonexistent'));
+  });
+});
+
+describe('buildSpectatorCard — SS-153', () => {
+  test('returns card with name, text, and colour for valid charId', () => {
+    const card = buildSpectatorCard({ text: 'Test response' }, 'bear');
+    assert.strictEqual(card.charId, 'bear');
+    assert.strictEqual(card.charName, CHARACTERS.bear.name);
+    assert.strictEqual(card.text, 'Test response');
+    assert.strictEqual(card.colour, CHAR_COLOURS.bear);
+  });
+
+  test('returns null for unknown charId', () => {
+    assert.strictEqual(buildSpectatorCard({ text: 'test' }, 'nonexistent'), null);
+  });
+
+  test('handles string response (not object)', () => {
+    const card = buildSpectatorCard('Plain text', 'ray');
+    assert.strictEqual(card.text, 'Plain text');
+  });
+
+  test('uses fallback colour when CHAR_COLOURS missing', () => {
+    // Test with a valid character that might not have a colour
+    const card = buildSpectatorCard({ text: 'test' }, 'bear');
+    assert.strictEqual(typeof card.colour, 'string');
+    assert.ok(card.colour.startsWith('#'));
+  });
+});
+
+describe('buildSpectatorView — SS-153', () => {
+  test('returns null for null session data', () => {
+    assert.strictEqual(buildSpectatorView(null), null);
+  });
+
+  test('builds view from session data with rounds', () => {
+    const session = {
+      sessionId: 'abc123',
+      feature: 'ive-had-worse',
+      scenario: 'attacked by pigeon',
+      protagonist: 'bear',
+      status: 'active',
+      rounds: [{
+        roundNumber: 1,
+        responses: [
+          { charId: 'bear', text: 'Bear says something' },
+          { charId: 'ray', text: 'Ray disagrees' }
+        ],
+        morrisonPresent: false
+      }]
+    };
+    const view = buildSpectatorView(session);
+    assert.strictEqual(view.sessionId, 'abc123');
+    assert.strictEqual(view.feature, 'ive-had-worse');
+    assert.strictEqual(view.scenario, 'attacked by pigeon');
+    assert.strictEqual(view.protagonistName, CHARACTERS.bear.name);
+    assert.strictEqual(view.status, 'active');
+    assert.strictEqual(view.rounds.length, 1);
+    assert.strictEqual(view.rounds[0].cards.length, 2);
+    assert.strictEqual(view.rounds[0].cards[0].charName, CHARACTERS.bear.name);
+    assert.strictEqual(view.rounds[0].morrisonPresent, false);
+  });
+
+  test('handles empty rounds', () => {
+    const view = buildSpectatorView({ sessionId: 'x', feature: 'ihw', rounds: [] });
+    assert.strictEqual(view.rounds.length, 0);
+  });
+
+  test('handles missing protagonist', () => {
+    const view = buildSpectatorView({ sessionId: 'x', feature: 'ihw', rounds: [] });
+    assert.strictEqual(view.protagonistName, null);
+  });
+
+  test('filters out cards with invalid charIds', () => {
+    const session = {
+      sessionId: 'x', feature: 'ihw', rounds: [{
+        roundNumber: 1,
+        responses: [
+          { charId: 'bear', text: 'valid' },
+          { charId: 'nonexistent', text: 'invalid' }
+        ],
+        morrisonPresent: false
+      }]
+    };
+    const view = buildSpectatorView(session);
+    assert.strictEqual(view.rounds[0].cards.length, 1);
+  });
+
+  test('defaults status to active', () => {
+    const view = buildSpectatorView({ sessionId: 'x', feature: 'ihw', rounds: [] });
+    assert.strictEqual(view.status, 'active');
+  });
+});
+
+// ── SS-157 — Character Packs ────────────────────────────────────────────────
+
+describe('CHARACTER_PACKS — SS-157', () => {
+  test('has at least 5 packs', () => {
+    assert.ok(CHARACTER_PACKS.length >= 5);
+  });
+
+  test('every pack has required fields', () => {
+    for (const p of CHARACTER_PACKS) {
+      assert.ok(p.id, `pack missing id`);
+      assert.ok(p.name, `${p.id} missing name`);
+      assert.ok(p.tagline, `${p.id} missing tagline`);
+      assert.ok(Array.isArray(p.characters), `${p.id} characters must be array`);
+      assert.ok(p.category, `${p.id} missing category`);
+      assert.ok(p.announcement, `${p.id} missing announcement`);
+    }
+  });
+
+  test('all pack IDs are unique', () => {
+    const ids = CHARACTER_PACKS.map(p => p.id);
+    assert.strictEqual(new Set(ids).size, ids.length);
+  });
+
+  test('all pack characters exist in CHARACTERS', () => {
+    for (const p of CHARACTER_PACKS) {
+      for (const charId of p.characters) {
+        assert.ok(CHARACTERS[charId], `pack "${p.id}" references unknown character "${charId}"`);
+      }
+    }
+  });
+
+  test('pack categories are valid', () => {
+    const validCategories = ['themed', 'crossover', 'solo', 'seasonal'];
+    for (const p of CHARACTER_PACKS) {
+      assert.ok(validCategories.includes(p.category), `${p.id} has invalid category "${p.category}"`);
+    }
+  });
+});
+
+describe('getPackById — SS-157', () => {
+  test('returns pack for valid ID', () => {
+    const p = getPackById('pack-founding');
+    assert.ok(p);
+    assert.strictEqual(p.name, 'The Founding Panel');
+  });
+
+  test('returns null for unknown ID', () => {
+    assert.strictEqual(getPackById('nonexistent'), null);
+  });
+});
+
+describe('getPacksForCharacter — SS-157', () => {
+  test('returns packs containing the character', () => {
+    const packs = getPacksForCharacter('bear');
+    assert.ok(packs.length >= 1);
+    assert.ok(packs.some(p => p.id === 'pack-founding'));
+  });
+
+  test('returns empty array for character in no packs', () => {
+    // backshall might not be in any pack yet
+    const packs = getPacksForCharacter('nonexistent_char');
+    assert.deepStrictEqual(packs, []);
+  });
+
+  test('character can be in multiple packs', () => {
+    // hawking is in crossover pack, might also be in others
+    const packs = getPacksForCharacter('hawking');
+    assert.ok(packs.length >= 1);
+  });
+});
+
+describe('getReleasedPacks — SS-157', () => {
+  test('returns only packs with releaseDate in the past', () => {
+    const released = getReleasedPacks();
+    for (const p of released) {
+      assert.ok(p.releaseDate);
+      assert.ok(p.releaseDate <= new Date().toISOString());
+    }
+  });
+
+  test('returns at least the founding pack', () => {
+    const released = getReleasedPacks();
+    assert.ok(released.some(p => p.id === 'pack-founding'));
+  });
+});
+
+describe('isNewCharacter — SS-157', () => {
+  test('returns false for null sinceDate', () => {
+    assert.strictEqual(isNewCharacter('robin', null), false);
+  });
+
+  test('returns true for character released after sinceDate', () => {
+    assert.ok(isNewCharacter('robin', '2026-03-29'));
+  });
+
+  test('returns false for character released before sinceDate', () => {
+    assert.strictEqual(isNewCharacter('ray', '2026-03-28'), false);
   });
 });

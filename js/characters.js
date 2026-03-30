@@ -2898,4 +2898,387 @@ ${blocks.join('\n\n')}
 `;
 }
 
-export { CHARACTERS, PANEL_IDS, PANEL_POOL, drawPanel, CHAR_COLOURS, buildSystemPrompt, FISH_DISPOSITIONS, DISPOSITION_SHIFTS, drawDisposition, buildDispositionState, buildFishDispositionInjection, shiftDisposition, COMPOSURE_PROFILES, initComposureState, computeComposureDeltas, composureTier, buildComposureInjection, TEMPORAL_LENS, TEMPORAL_STATES, hasTemporalLensCharacters, buildTemporalLensInjection, NAMING_CONVENTIONS, buildNamingConventionInjection, INVENTED_CATCHPHRASES, buildInventedCatchphraseInjection, PANEL_CATEGORIES, getCharacterCategories, getCharactersByCategory, ESCALATION_PROFILES, RELATIONAL_AXES, getAxesForCharacter, getActiveAxes, buildEscalationInjection };
+// SS-152 — User Reputation: returning users get recognised by the panel
+const REPUTATION_TIERS = {
+  STRANGER:  { level: 0, name: 'STRANGER',  minEncounters: 0,  callbackSlots: 0 },
+  FAMILIAR:  { level: 1, name: 'FAMILIAR',  minEncounters: 1,  callbackSlots: 0 },
+  REGULAR:   { level: 2, name: 'REGULAR',   minEncounters: 4,  callbackSlots: 2 },
+  VETERAN:   { level: 3, name: 'VETERAN',   minEncounters: 10, callbackSlots: 5 }
+};
+
+function getReputationTier(encounterCount) {
+  const n = encounterCount || 0;
+  if (n >= REPUTATION_TIERS.VETERAN.minEncounters)  return REPUTATION_TIERS.VETERAN;
+  if (n >= REPUTATION_TIERS.REGULAR.minEncounters)   return REPUTATION_TIERS.REGULAR;
+  if (n >= REPUTATION_TIERS.FAMILIAR.minEncounters)  return REPUTATION_TIERS.FAMILIAR;
+  return REPUTATION_TIERS.STRANGER;
+}
+
+function computeReputationStats(reputation) {
+  if (!reputation || !reputation.encounters || reputation.encounters.length === 0) {
+    return {
+      totalEncounters: 0, uniqueCharacters: [], favouriteFeature: null,
+      lastVisit: null, daysSinceFirst: 0, woundsSeen: [],
+      sacredExchangesSeen: [], notableCallbacks: []
+    };
+  }
+
+  const allChars = [...new Set(reputation.encounters.flatMap(e => e.charIds || []))];
+
+  const featureCounts = {};
+  for (const e of reputation.encounters) {
+    if (e.feature) featureCounts[e.feature] = (featureCounts[e.feature] || 0) + 1;
+  }
+  const favEntry = Object.entries(featureCounts).sort((a, b) => b[1] - a[1])[0];
+
+  const highlights = reputation.encounters
+    .flatMap(e => (e.highlights || []).map(h => ({
+      ...h, feature: e.feature, scenario: e.scenario, timestamp: e.timestamp
+    })));
+
+  const notableTypes = ['wound_fired', 'sacred_exchange', 'composure_gone', 'morrison_appeared'];
+  const callbacks = highlights
+    .filter(h => notableTypes.includes(h.type))
+    .slice(-10)
+    .map(h => {
+      if (h.type === 'wound_fired') return `${h.charId}'s wound fired during "${h.detail}"`;
+      if (h.type === 'sacred_exchange') return `Sacred exchange: ${h.detail}`;
+      if (h.type === 'composure_gone') return `${h.charId} lost composure completely during "${h.detail}"`;
+      if (h.type === 'morrison_appeared') return `Morrison appeared uninvited: "${h.detail}"`;
+      return h.detail;
+    });
+
+  const woundsSeen = [...new Set(
+    highlights.filter(h => h.type === 'wound_fired').map(h => h.charId)
+  )];
+  const sacredSeen = [...new Set(
+    highlights.filter(h => h.type === 'sacred_exchange').map(h => h.detail)
+  )];
+
+  const created = reputation.created ? new Date(reputation.created).getTime() : Date.now();
+
+  return {
+    totalEncounters: reputation.encounters.length,
+    uniqueCharacters: allChars,
+    favouriteFeature: favEntry ? favEntry[0] : null,
+    lastVisit: reputation.encounters.length > 0
+      ? reputation.encounters[reputation.encounters.length - 1].timestamp : null,
+    daysSinceFirst: Math.floor((Date.now() - created) / 86400000),
+    woundsSeen,
+    sacredExchangesSeen: sacredSeen,
+    notableCallbacks: callbacks
+  };
+}
+
+function buildReputationInjection(reputation) {
+  if (!reputation) return '';
+  const stats = reputation.stats || computeReputationStats(reputation);
+  if (stats.totalEncounters === 0) return '';
+
+  const tier = getReputationTier(stats.totalEncounters);
+  const lines = [];
+
+  lines.push(`USER REPUTATION TIER: ${tier.name} (${stats.totalEncounters} prior encounters)`);
+
+  if (stats.uniqueCharacters.length > 0) {
+    lines.push(`Characters previously encountered: ${stats.uniqueCharacters.join(', ')}`);
+  }
+
+  // Tier 2+ (REGULAR): include recent encounter summaries
+  if (tier.level >= 2 && reputation.encounters && reputation.encounters.length > 0) {
+    const recent = reputation.encounters.slice(-tier.callbackSlots);
+    lines.push('Recent encounters this user has had:');
+    for (const enc of recent) {
+      const charList = (enc.charIds || []).join(', ');
+      lines.push(`  - ${enc.feature}: "${enc.scenario}" with ${charList} (${enc.rounds || 1} rounds)`);
+    }
+  }
+
+  // Tier 3 (VETERAN): include notable callbacks
+  if (tier.level >= 3 && stats.notableCallbacks && stats.notableCallbacks.length > 0) {
+    lines.push('Notable events from past encounters (characters may reference these):');
+    for (const cb of stats.notableCallbacks.slice(0, tier.callbackSlots)) {
+      lines.push(`  - ${cb}`);
+    }
+  }
+
+  // Tone instruction per tier
+  if (tier.level === 1) {
+    lines.push('This user has visited before. Slightly less preamble than a stranger, but no specific callbacks. Just a hint of "you again."');
+  } else if (tier.level === 2) {
+    lines.push('This user has been here a few times. Characters who were in previous encounters vaguely remember them. Keep it subtle — a half-recognition, not a reunion.');
+  } else if (tier.level === 3) {
+    lines.push('This user is a regular. Characters know them. Treat with familiarity — affection, contempt, or wariness depending on character. Reference their past encounters naturally. Do NOT explicitly say "welcome back" — just act like you know them.');
+  }
+
+  return lines.join('\n');
+}
+
+// SS-154 — Character Learning: per-character memory of this user
+const OBLIVIOUS_CHARACTERS = ['morrison', 'carrey'];
+
+function getCharacterEncounters(reputation, charId) {
+  if (!reputation || !reputation.encounters) return [];
+  return reputation.encounters.filter(e => e.charIds && e.charIds.includes(charId));
+}
+
+function computeCharacterSentiment(charId, encounters) {
+  if (OBLIVIOUS_CHARACTERS.includes(charId)) return 'oblivious';
+  if (!encounters || encounters.length === 0) return 'neutral';
+
+  const highlights = encounters.flatMap(e => e.highlights || [])
+    .filter(h => h.charId === charId);
+
+  if (highlights.some(h => h.type === 'wound_fired')) return 'wary';
+  if (highlights.some(h => h.type === 'lie_exposed')) return 'grudging';
+  if (highlights.some(h => h.type === 'sacred_exchange')) return 'warm';
+  if (encounters.length >= 3) return 'familiar';
+  return 'neutral';
+}
+
+function buildCharacterCallback(charId, encounters, sentiment) {
+  if (sentiment === 'oblivious' || sentiment === 'neutral') return null;
+  if (!encounters || encounters.length === 0) return null;
+
+  const char = CHARACTERS[charId];
+  if (!char) return null;
+
+  if (sentiment === 'wary') {
+    return `${char.name} remembers something painful happened last time this user was present. Be guarded.`;
+  }
+  if (sentiment === 'grudging') {
+    return `${char.name} was caught in a lie in front of this user before. Slightly more careful with claims.`;
+  }
+  if (sentiment === 'warm') {
+    return `${char.name} had a genuine moment with this user present. Slightly warmer baseline.`;
+  }
+  if (sentiment === 'familiar') {
+    return `${char.name} has seen this user ${encounters.length} times. Less preamble, more shorthand.`;
+  }
+  return null;
+}
+
+function buildCharacterLearningInjection(reputation, panelCharIds) {
+  if (!reputation || !reputation.encounters || reputation.encounters.length === 0) return '';
+
+  const memories = panelCharIds.map(charId => {
+    const encounters = getCharacterEncounters(reputation, charId);
+    if (encounters.length === 0) return null;
+
+    const sentiment = computeCharacterSentiment(charId, encounters);
+    const callback = buildCharacterCallback(charId, encounters, sentiment);
+    if (!callback) return null;
+
+    return { charId, encounterCount: encounters.length, sentiment, callback };
+  }).filter(Boolean);
+
+  if (memories.length === 0) return '';
+
+  const lines = ['CHARACTER-SPECIFIC MEMORY (SS-154) — characters remember this user individually:'];
+  for (const m of memories) {
+    lines.push(`  ${m.charId} [${m.sentiment}, ${m.encounterCount} prior]: ${m.callback}`);
+  }
+  lines.push('Rule: Character memories are subtle. No "welcome back" speeches. The memory shows in HOW they talk, not THAT they remember.');
+
+  return lines.join('\n');
+}
+
+// SS-162 — Morrison Meta-Layer: unreliable narrator who introduces unverifiable claims
+const MORRISON_CLAIM_TEMPLATES = {
+  rumour: [
+    'Morrison has heard a rumour about {charName}. Based on: "{seed}". Morrison\'s version is distorted through retellings — the core is recognisable but the details are wrong. {charName} recognises the seed but not the version.',
+    'Morrison claims to have been told something about {charName} by someone who may not exist. The claim is loosely based on: "{seed}". Morrison presents it as established fact.',
+    'Morrison heard from "a reliable source" (Morrison does not have reliable sources) that {charName} once did something related to: "{seed}". The story has been corrupted in transit.'
+  ],
+  invention: [
+    'Morrison has invented a completely false story about {charName}. The story must sound plausible for {charName}\'s character but is entirely fabricated. Morrison delivers it as fact and does not know it is false.',
+    'Morrison claims {charName} was involved in an incident that never happened. The incident is character-consistent but event-false. Morrison genuinely believes it.',
+    'Morrison describes something {charName} supposedly did that is entirely a product of Morrison\'s imagination. It sounds like it could be true. It is not. Morrison cannot tell the difference.'
+  ],
+  oracle: [
+    'Morrison says something cryptic that accidentally maps to {charName}\'s wound: "{woundName}". Morrison does not know about the wound. The reference is coincidental. When the room reacts, Morrison is confused by the reaction.',
+    'Morrison, while drifting, mentions something that touches {charName}\'s deepest topic: "{woundName}". Morrison is not targeting {charName}. He is just saying words. The words happen to land on the exact wrong thing.',
+    'Morrison introduces a vague observation that accidentally references "{woundName}". The panel freezes. {charName} freezes. Morrison does not notice. He continues talking about something else entirely.'
+  ]
+};
+
+function pickClaimTarget(panelCharIds) {
+  // Exclude Morrison himself, prefer chars with escalation profiles (richer pools)
+  const candidates = panelCharIds.filter(id => id !== 'morrison' && CHARACTERS[id]);
+  if (candidates.length === 0) return null;
+  const withProfiles = candidates.filter(id => ESCALATION_PROFILES[id]);
+  const pool = withProfiles.length > 0 ? withProfiles : candidates;
+  return pool[Math.floor(Math.random() * pool.length)];
+}
+
+function buildMorrisonClaimInjection(panelCharIds, claimType) {
+  if (!claimType || !MORRISON_CLAIM_TEMPLATES[claimType]) return '';
+
+  const targetId = pickClaimTarget(panelCharIds);
+  if (!targetId) return '';
+
+  const char = CHARACTERS[targetId];
+  const templates = MORRISON_CLAIM_TEMPLATES[claimType];
+  const template = templates[Math.floor(Math.random() * templates.length)];
+
+  let injection = template;
+  injection = injection.replace(/\{charName\}/g, char.name);
+
+  if (claimType === 'rumour') {
+    // Draw seed from escalation profile pools
+    const profile = ESCALATION_PROFILES[targetId];
+    let seed = 'something nobody can quite remember';
+    if (profile && profile.pools) {
+      const poolNames = Object.keys(profile.pools);
+      if (poolNames.length > 0) {
+        const pool = profile.pools[poolNames[Math.floor(Math.random() * poolNames.length)]];
+        if (pool.items && pool.items.length > 0) {
+          seed = pool.items[Math.floor(Math.random() * pool.items.length)];
+        }
+      }
+    }
+    injection = injection.replace(/\{seed\}/g, seed);
+  }
+
+  if (claimType === 'oracle') {
+    const profile = ESCALATION_PROFILES[targetId];
+    let woundName = 'something unspoken';
+    if (profile && profile.wound) {
+      woundName = profile.wound.name;
+    }
+    injection = injection.replace(/\{woundName\}/g, woundName);
+  }
+
+  return `MORRISON META-LAYER (SS-162) — Morrison introduces an unverifiable claim:\nClaim type: ${claimType.toUpperCase()}\nTarget: ${char.name}\n${injection}\nPanel reaction: The panel must deal with this claim. They cannot verify it. The tension from the claim persists after Morrison leaves.`;
+}
+
+// SS-157 — Character Packs: content drops as marketing moments
+const CHARACTER_PACKS = [
+  {
+    id: 'pack-founding',
+    name: 'The Founding Panel',
+    tagline: 'The originals. The ones who were there from the start.',
+    characters: ['ray', 'bear', 'stroud', 'cody', 'hales', 'packham', 'attenborough'],
+    releaseDate: '2026-03-26',
+    category: 'themed',
+    announcement: 'The seven characters who launched Survival School. Ray\'s silence, Bear\'s confidence, Cody\'s stillness, and Attenborough watching it all.'
+  },
+  {
+    id: 'pack-herps',
+    name: 'The Herpetologists',
+    tagline: 'Three men. Thousands of bites. No regrets.',
+    characters: ['stevens', 'oshea', 'gordon', 'fry', 'jeremy'],
+    releaseDate: '2026-03-28',
+    category: 'themed',
+    announcement: 'Austin Stevens, Mark O\'Shea, Gordon Lyons, Bryan Fry, and Jeremy Wade. The men who made being bitten a career choice.'
+  },
+  {
+    id: 'pack-armed-forces',
+    name: 'The Armed Forces',
+    tagline: 'Five operators. One panel. God help them.',
+    characters: ['fox', 'billy', 'ollie', 'middleton', 'craighead', 'mcnab', 'ryan'],
+    releaseDate: '2026-03-28',
+    category: 'themed',
+    announcement: 'Fox, Billy, Ollie, Middleton, Craighead, McNab, and Ryan. Seven former special forces. At least three distinct versions of every story.'
+  },
+  {
+    id: 'pack-crossover',
+    name: 'The Cusslab Crossover',
+    tagline: 'They don\'t belong here. They know. The panel knows. Nobody cares.',
+    characters: ['hawking', 'lee'],
+    releaseDate: '2026-03-28',
+    category: 'crossover',
+    announcement: 'Stephen Hawking and Bruce Lee. Neither has any survival credentials. Both have opinions. The panel\'s reaction is the product.'
+  },
+  {
+    id: 'pack-fish-out-of-water',
+    name: 'The Fish Out of Water',
+    tagline: 'Confident. Wrong. Unbothered.',
+    characters: ['cox', 'faldo', 'jim', 'keane'],
+    releaseDate: '2026-03-29',
+    category: 'themed',
+    announcement: 'Brian Cox, Nick Faldo, Jim Carrey, and Roy Keane. Not one of them should be here. All of them think they should.'
+  },
+  {
+    id: 'pack-robin',
+    name: 'Robin Williams Has Entered the Building',
+    tagline: 'Way better than Carrey. Real depth. Natural warmth.',
+    characters: ['robin'],
+    releaseDate: '2026-03-30',
+    category: 'solo',
+    announcement: 'Robin Williams joins the panel. Temporal Lens eligible. The manic energy of Carrey with genuine soul underneath.'
+  }
+];
+
+function getPackById(packId) {
+  return CHARACTER_PACKS.find(p => p.id === packId) || null;
+}
+
+function getPacksForCharacter(charId) {
+  return CHARACTER_PACKS.filter(p => p.characters.includes(charId));
+}
+
+function getReleasedPacks() {
+  const now = new Date().toISOString();
+  return CHARACTER_PACKS.filter(p => p.releaseDate && p.releaseDate <= now);
+}
+
+function isNewCharacter(charId, sinceDate) {
+  if (!sinceDate) return false;
+  return CHARACTER_PACKS.some(p =>
+    p.characters.includes(charId) &&
+    p.releaseDate &&
+    p.releaseDate >= sinceDate
+  );
+}
+
+// SS-153 — Audience Mechanic: spectator mode for multi-turn panel features
+const AUDIENCE_FEATURES = ['ive-had-worse', 'in-my-defence', 'the-alibi', 'the-expert-witness', 'one-man-in'];
+
+const AUDIENCE_CONFIG = {
+  pollIntervalMs: 3000,
+  sessionTtlMs: 3600000,
+  maxSpectators: 50,
+  staggerDelayMs: 500
+};
+
+function isAudienceFeature(featureSlug) {
+  return AUDIENCE_FEATURES.includes(featureSlug);
+}
+
+function buildSpectatorCard(response, charId) {
+  const char = CHARACTERS[charId];
+  if (!char) return null;
+  return {
+    charId,
+    charName: char.name,
+    text: response.text || response,
+    colour: CHAR_COLOURS[charId] || '#666666'
+  };
+}
+
+function buildSpectatorView(sessionData) {
+  if (!sessionData) return null;
+
+  const rounds = (sessionData.rounds || []).map(r => ({
+    roundNumber: r.roundNumber,
+    cards: (r.responses || []).map(resp => {
+      const cId = resp.charId || resp.id;
+      return buildSpectatorCard(resp, cId);
+    }).filter(Boolean),
+    morrisonPresent: !!r.morrisonPresent
+  }));
+
+  const protagonistChar = sessionData.protagonist ? CHARACTERS[sessionData.protagonist] : null;
+
+  return {
+    sessionId: sessionData.sessionId,
+    feature: sessionData.feature,
+    scenario: sessionData.scenario || '',
+    rounds,
+    status: sessionData.status || 'active',
+    protagonistName: protagonistChar ? protagonistChar.name : null
+  };
+}
+
+export { CHARACTERS, PANEL_IDS, PANEL_POOL, drawPanel, CHAR_COLOURS, buildSystemPrompt, FISH_DISPOSITIONS, DISPOSITION_SHIFTS, drawDisposition, buildDispositionState, buildFishDispositionInjection, shiftDisposition, COMPOSURE_PROFILES, initComposureState, computeComposureDeltas, composureTier, buildComposureInjection, TEMPORAL_LENS, TEMPORAL_STATES, hasTemporalLensCharacters, buildTemporalLensInjection, NAMING_CONVENTIONS, buildNamingConventionInjection, INVENTED_CATCHPHRASES, buildInventedCatchphraseInjection, PANEL_CATEGORIES, getCharacterCategories, getCharactersByCategory, ESCALATION_PROFILES, RELATIONAL_AXES, getAxesForCharacter, getActiveAxes, buildEscalationInjection, REPUTATION_TIERS, getReputationTier, computeReputationStats, buildReputationInjection, OBLIVIOUS_CHARACTERS, getCharacterEncounters, computeCharacterSentiment, buildCharacterCallback, buildCharacterLearningInjection, MORRISON_CLAIM_TEMPLATES, pickClaimTarget, buildMorrisonClaimInjection, CHARACTER_PACKS, getPackById, getPacksForCharacter, getReleasedPacks, isNewCharacter, AUDIENCE_FEATURES, AUDIENCE_CONFIG, isAudienceFeature, buildSpectatorCard, buildSpectatorView };
