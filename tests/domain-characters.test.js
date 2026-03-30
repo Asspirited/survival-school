@@ -1999,3 +1999,113 @@ describe('buildEscalationInjection — SS-147', () => {
     assert.strictEqual(r99, r5, 'round 99 must clamp to round 5');
   });
 });
+
+// ── SS-146 — Robin Williams character ─────────────────────────────────────────
+
+describe('Robin Williams — SS-146', () => {
+  test('"robin" exists in CHARACTERS', () => {
+    assert.ok(CHARACTERS.robin, '"robin" must exist in CHARACTERS');
+  });
+
+  test('"robin" has required fields', () => {
+    const r = CHARACTERS.robin;
+    assert.strictEqual(r.id, 'robin');
+    assert.strictEqual(r.name, 'Robin Williams');
+    assert.ok(r.role, 'must have a role');
+    assert.ok(r.av, 'must have avatar initials');
+    assert.ok(r.avClass, 'must have avatar CSS class');
+    assert.ok(r.deathLine, 'must have a death line');
+    assert.ok(r.voice.length > 100, 'voice must be substantial');
+    assert.ok(r.integrity, 'must have integrity');
+    assert.ok(Array.isArray(r.incidents), 'must have incidents array');
+    assert.ok(r.incidents.length >= 3, 'must have at least 3 incidents');
+    assert.ok(Array.isArray(r.quotes), 'must have quotes array');
+    assert.ok(r.quotes.length >= 3, 'must have at least 3 quotes');
+  });
+
+  test('"robin" voice mentions THE SHIFT', () => {
+    assert.ok(CHARACTERS.robin.voice.includes('SHIFT'),
+      '"robin" voice must reference THE SHIFT — the core comedy engine');
+  });
+
+  test('"robin" voice mentions Good Will Hunting', () => {
+    assert.ok(CHARACTERS.robin.voice.includes('Good Will Hunting'),
+      '"robin" voice must reference Good Will Hunting mode');
+  });
+
+  test('"robin" voice mentions awareness is total', () => {
+    assert.ok(CHARACTERS.robin.voice.toLowerCase().includes('awareness mode: total'),
+      '"robin" must have total awareness — contrast with Carrey');
+  });
+
+  test('"robin" is a fish-out-of-water with EXCITABLE_NOVICE default', () => {
+    assert.ok(CHARACTERS.robin.fish, '"robin" must have fish property');
+    assert.strictEqual(CHARACTERS.robin.fish.default, 'EXCITABLE_NOVICE');
+    assert.strictEqual(CHARACTERS.robin.fish.fixed, false, 'robin disposition shifts');
+  });
+
+  test('"robin" is in fish_out_of_water and wildcard categories', () => {
+    assert.ok(PANEL_CATEGORIES.fish_out_of_water.includes('robin'),
+      '"robin" must be in fish_out_of_water category');
+    assert.ok(PANEL_CATEGORIES.wildcard.includes('robin'),
+      '"robin" must be in wildcard category');
+  });
+
+  test('"robin" has a CHAR_COLOURS entry', () => {
+    assert.ok(CHAR_COLOURS.robin, '"robin" must have a colour');
+    assert.match(CHAR_COLOURS.robin, /^#[0-9A-Fa-f]{6}$/);
+  });
+
+  test('"robin" has COMPOSURE_PROFILES entry with baseline 5', () => {
+    assert.ok(COMPOSURE_PROFILES.robin, '"robin" must have a composure profile');
+    assert.strictEqual(COMPOSURE_PROFILES.robin.baseline, 5);
+    assert.ok(COMPOSURE_PROFILES.robin.pressure, 'must have pressure description');
+    assert.ok(COMPOSURE_PROFILES.robin.tell, 'must have tell description');
+  });
+
+  test('"robin" has NAMING_CONVENTIONS entry', () => {
+    assert.ok(NAMING_CONVENTIONS.robin, '"robin" must have naming conventions');
+  });
+
+  test('"robin" has INVENTED_CATCHPHRASES entry', () => {
+    const ic = INVENTED_CATCHPHRASES.robin;
+    assert.ok(ic, '"robin" must have invented catchphrases');
+    assert.ok(Array.isArray(ic.setups) && ic.setups.length >= 3);
+    assert.ok(Array.isArray(ic.phrases) && ic.phrases.length >= 3);
+  });
+
+  test('"robin" has ESCALATION_PROFILES entry with performance pool', () => {
+    const ep = ESCALATION_PROFILES.robin;
+    assert.ok(ep, '"robin" must have escalation profile');
+    assert.ok(ep.pools.performance, 'must have performance pool');
+    assert.ok(ep.pools.performance.items.length >= 10, 'performance pool must have 10+ items');
+    assert.ok(Array.isArray(ep.pools.performance.gate), 'must have gate array');
+    assert.strictEqual(ep.pools.performance.gate.length, 5, 'gate must have 5 rounds');
+  });
+
+  test('"robin" wound is "The Underneath"', () => {
+    assert.strictEqual(ESCALATION_PROFILES.robin.wound.name, 'The Underneath');
+    assert.ok(ESCALATION_PROFILES.robin.wound.threshold <= 5, 'wound threshold must fire under pressure');
+  });
+
+  test('"robin" is Temporal Lens eligible (deceased 2014)', () => {
+    assert.ok(TEMPORAL_LENS.robin, '"robin" must have Temporal Lens entry');
+    assert.strictEqual(TEMPORAL_LENS.robin.eligible, true, '"robin" must be Temporal Lens eligible');
+    assert.ok(TEMPORAL_LENS.robin.reckoning.toLowerCase().includes('depression'),
+      'reckoning must reference the depression');
+    assert.ok(Array.isArray(TEMPORAL_LENS.robin.trigger_keywords));
+    assert.ok(TEMPORAL_LENS.robin.trigger_keywords.length >= 5);
+    assert.strictEqual(TEMPORAL_LENS.robin.max_fires_per_session, 1);
+  });
+
+  test('"robin" has relational axes', () => {
+    const axes = getAxesForCharacter('robin');
+    assert.ok(axes.length >= 3, '"robin" must have at least 3 relational axes');
+  });
+
+  test('buildEscalationInjection works for robin', () => {
+    const result = buildEscalationInjection(['robin'], 1);
+    assert.ok(result.includes('Robin Williams'), 'escalation must include character name');
+    assert.ok(result.includes('The Underneath'), 'escalation must include wound name');
+  });
+});
