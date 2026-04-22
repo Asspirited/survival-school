@@ -629,6 +629,124 @@ are reference material.
 
 ---
 
+### Archetype #004 — False-Attribution Self-Anecdote With Absurd Inflation
+**First captured via:** Geoffrey Boycott, 2026-04-22
+**Status:** LIVE
+**Fits characters:** Boycott (primary), Faldo, Clarkson, Mitchell,
+possibly Bristow. Requires ego-driven register.
+**Does not fit:** Theroux, Ray, Wade, Attenborough (wrong register —
+self-erasing or observer, not hijacking).
+
+**Rod's verbatim instance (via Boycott, 2026-04-22):**
+> "'it's funny you mention Headingley, 1970(-whatever date)' when
+> no-one has mentioned it 'I went on to score a ton there, in just
+> 645 balls, and the cheering and adulation from the crowd for
+> me....just the sheer cheering...it went on for 17 days'"
+
+**Abstract formula (cross-character):**
+```
+[FALSE-ATTRIBUTION OPENER — "it's funny you mention X" where X
+ was NOT mentioned]
+→ [REAL CAREER ANCHOR — specific place + year, verifiable]
+→ [SELF-DEPRECATING-AS-BRAGGING STAT — a number that reads as
+ modest to outsiders but as pride to insiders]
+→ [GRANDIOSE ADULATION CLAIM]
+→ [ABSURDLY-SPECIFIC INFLATED DURATION OR QUANTITY]
+```
+
+**The triple-stack engine.**
+1. **Hijack comedy** — false-attribution opener reveals the
+   character as someone who forces their own anecdotes in.
+   Nobody mentioned the career moment. The character pretends
+   they did. Character-reveal in the first clause.
+2. **Real-mixed-with-unreal** — the career anchor is genuine
+   (checkable). The inflated duration is nonsense. Audience
+   can't tell where the truth ends, which amplifies both.
+3. **Self-unaware narcissism** — the crowd cheering *for me*
+   is the peak. No irony. The character genuinely believes it.
+
+**The dial.** The absurd number. Sweet spot is *specific and
+weird*: 17 days (not "for ages"), 47 times (not "loads"), "a
+fortnight" (not "a while"). Specificity sells the lie; weirdness
+reveals it.
+
+**"Just" as the bragging tell.** "In just 645 balls" is the
+masterclass. 645 balls for a Test century is extraordinarily
+slow — but Boycott considers it an exemplary innings. The "just"
+pretends modesty. It is the opposite. This pattern requires a
+character-stat that WOULD look bad to outsiders but which the
+character considers their best work.
+
+**Character parameterisations:**
+
+### Boycott
+| Slot | Pool |
+|---|---|
+| CAREER ANCHOR | Headingley 1977 (100th century), Trent Bridge 1977, various Tests '67–'82, Yorkshire Championship moments |
+| PROUD-MODEST STAT | "in just 645 balls", "off only 420 deliveries", "over just 6 sessions", "for just a 1.4 strike rate" |
+| ABSURD DURATION | "17 days", "three full weeks", "a fortnight of standing ovation" |
+
+### Faldo
+| Slot | Pool |
+|---|---|
+| CAREER ANCHOR | 1996 Masters, 1987 Open, various Ryder Cups |
+| PROUD-MODEST STAT | "I shot a 67 that Sunday" (Masters closing round is good; Faldo would consider it a benchmark), "took just one practice swing", "dropped only two shots over the back nine" |
+| ABSURD DURATION | "14 days", "a full tournament week of applause", "three sponsor's dinners' worth" |
+
+**Faldo instance:**
+> "It's funny you mention the '96 Masters — (*no one has*) — I shot
+> a 67 that Sunday. Just one practice swing. Dropped two shots
+> over the back nine. Norman's reaction, though — Norman's reaction
+> lasted 14 days on its own."
+
+### Clarkson
+| Slot | Pool |
+|---|---|
+| CAREER ANCHOR | Reliant Robin rolls, Argentina H982 FKL, Burma bikes, Diddly Squat wheat harvest |
+| PROUD-MODEST STAT | "I rolled that thing 47 times", "it only caught fire twice", "I drove the whole thing on just one wheel for, oh, 40 minutes" |
+| ABSURD DURATION | "a full WEEK of applause", "an actual fortnight", "the emails went on for a solid YEAR" |
+
+**Clarkson instance:**
+> "It's funny you mention the Reliant Robin — (*no one did*) — I
+> rolled that thing FORTY-SEVEN times in one afternoon. The
+> applause went on for a WEEK. An actual WEEK."
+
+### Mitchell
+| Slot | Pool |
+|---|---|
+| CAREER ANCHOR | Observer column topics, QI appearances, WILTY rounds, The Unbelievable Truth episodes |
+| PROUD-MODEST STAT | "I wrote that in just seven hours", "fact-checked only twice", "under 1,200 words" |
+| ABSURD DURATION | "a fortnight of emails", "I think the Twitter-feed lasted three days", "my wife handled most of them" |
+
+**Mitchell instance:**
+> "It's funny you mention my Observer column from 2011 — (*no? — no
+> one did*) — well, anyway. Wrote that in, I think, seven hours.
+> Fact-checked twice. The email fallout went on for, oh, a
+> fortnight. My wife handled most of them, actually. I'm — I'm not
+> saying I'm proud of that but — I'm not NOT."
+
+### Bristow
+| Slot | Pool |
+|---|---|
+| CAREER ANCHOR | World titles '80/'81/'84/'85/'86, specific nine-dart attempts |
+| PROUD-MODEST STAT | "I was averaging, what, just 97 per 3 darts", "hit the double 16 on the first attempt", "finished on the bull" |
+| ABSURD DURATION | "Leicester was cheering for a full week", "the pub wouldn't let me leave for three days" |
+
+**Bristow instance:**
+> "It's funny you mention the '85 Embassy — (*no one has*) — I was
+> averaging just 97. Just 97. Hit the double 16 on the first
+> attempt, left-handed mind. Leicester cheered for a full week.
+> The pub wouldn't let me leave for three days. Son."
+
+**Wiring status:** Pattern added to Boycott's affinity table
+(`false_attribution_self_anecdote`: **very high**). Cross-
+character sketches above are reference material for SS-211
+(Pack Two wiring) and SS-208 (existing character bank
+extensions). Rarity: once or twice per session — the false-
+attribution loses force if overused.
+
+---
+
 ### Archetype #003 — Cross-Character Phrase Echo (the panel callback)
 **First captured via:** Rod's instruction for Boycott, 2026-04-22
 **Status:** LIVE
