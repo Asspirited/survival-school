@@ -499,3 +499,41 @@
 **Root cause:** Cross-session memory loss. The instruction to log was given in a conversation that ended. The file was never written in that session. New session had no access to the verbatim text.
 
 **Action:** When Rod gives memories, the file must be written IN THAT SAME TURN. Not at session close. Not in the next session. In the turn where Rod gives them. Verbal confirmation is not persistence. Only a file path is persistence.
+
+---
+
+## WL-SS-027 — Verbose mode regression on phone after hard reset
+
+**Status:** Open
+**Category:** Defect / Voice
+**Severity:** High
+**Raised:** 2026-04-22
+
+**Observation:** Rod reported on 2026-04-22 that panel output on his phone (after hard reset) looks the same as before voice work — all the same length, too long, favouring mundane accuracy over wit, rhythm, timing, passive aggression, sarcasm, indulgence. No character voice variation. "Verbose" = Claude's natural LLM writing mode, not a feature toggle.
+
+**Initial mis-diagnosis:** Claude searched `worker.js` and `js/` in `/home/rodent/survival-school/` and found no `verbose` string. Declared "I don't know where it lives" and raised a WL item. This was correct but incomplete.
+
+**Actual root cause:** The 2026-04-22 panel voice rebuild (commit 6cc1e2f) shipped flavour-bank + mannerism + pattern model and wired it into 4 Wall Walkers endpoints only — shredding, ask, wilderment, predictions. The remaining 13 SS panel features (How Screwed Am I, I've Had Worse, In My Defence, Panel Q&A, Mundane, Deathmatch, Fact-Checker, Coyote, One Man In, Alibi, Expert Witness, Debate, Irwin Memorial) still run the old monolith prompts with uniform `<2-3 sentences>` schema. Whatever feature Rod is on, if it isn't one of the four rebuilt endpoints, it is producing LLM-verbose output by design. **Additionally: Wall Walkers Legends (`wall-walkers-legends`) was missed in the rebuild — the fifth Wall Walkers endpoint, but not in the wiring list.**
+
+**Waste impact:** Rod believed the rebuild was live across the product. He had explained "verbose" many times. Claude had to re-ask what he meant despite the context existing in shared-session-state.md and the canonical standard at leanspirited-standards/standards/panel-voice-principles.md. Cost: time re-explaining + loss of confidence.
+
+**Fix:** Tracked as SS-209 (Legends miss) and SS-210 (port to all features).
+
+**Root cause category:** Partial-coverage rebuild reported as complete. Session closedown described "panel voice rebuild" without listing which endpoints were excluded. Future rebuilds must explicitly enumerate out-of-scope endpoints at closedown.
+
+---
+
+## WL-SS-028 — Claude did not know what "Heckler" or "Verbose" meant despite building the products
+
+**Status:** Open
+**Category:** Defect / Trust
+**Severity:** High
+**Raised:** 2026-04-22
+
+**Observation:** Rod used the terms "Heckler" (= Heckler and Cox = Cusslab, the product Claude built) and "verbose" (= Claude's natural LLM writing mode, explained "300 times" per Rod) during a live debugging session. Claude did not recognise either term and had to ask Rod twice for definitions. Rod: "heckler is Heckler and Cox - Cusslab, you know it? you built it" and "Verbose is when you go into natural LLM writing mode as explained 300 times".
+
+**Waste impact:** Trust deficit. Rod should not have to explain his own project's brand name to the AI that built it. Memory mentions Cusslab extensively, and MEMORY.md references `/home/rodent/cusslab/` as the project directory. The Heckler and Cox brand is everywhere in that repo (CLAUDE.md first line: "Heckler and Cocks Project Brief"). Claude had all the information and failed to synthesise it.
+
+**Root cause:** Claude searched `/home/rodent/cusslab/` for file path `hecklers-v2.9.html` (a Zone.Identifier stub) and concluded the file was missing rather than reading the Cusslab CLAUDE.md or STANDARDS.md, which both state "Heckler and Cox" in their first lines. Same pattern for "verbose": Claude searched for the literal string instead of interpreting Rod's meaning from context.
+
+**Action:** Before asking Rod to define a term: (a) grep the project READMEs and CLAUDE.mds, (b) grep the memory MEMORY.md references, (c) check the shared-session-state for the most recent definition. Only ask if all three return nothing.

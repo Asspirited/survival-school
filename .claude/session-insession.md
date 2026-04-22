@@ -33,6 +33,44 @@ the missing memory before the character is used in generation.
 
 ---
 
+## PATTERN LAB TRIGGER — cross-character pattern capture
+
+**Pattern:** Rod writes an example line in a character's voice, demonstrating how they
+should talk or think. Rod may invoke explicitly ("pattern lab", any case) or the line may
+be recognisable as character dialogue.
+
+**Protocol:** `/home/rodent/survival-school/.claude/pattern-lab.md` — full sequence +
+ledger + archetype definitions.
+
+**Trigger signals (fire on any of these):**
+- **Explicit (case-insensitive):** `pattern lab`, `PATTERN LAB`, `Pattern Lab`,
+  `pattern-lab` — anywhere in the message
+- **Quoted dialogue:** `Boycott: "..."`, `Ray would say "..."`
+- **Counterfactual voice:** "If X would have...", "Imagine X doing..." in character register
+- **"I want them to say / sound like / talk like / be like"** followed by example
+- **Any message where Rod is clearly demonstrating how a character talks**
+
+**Sequence — non-negotiable when trigger fires:**
+1. STOP current work immediately (same as ROD MEMORY TRIGGER)
+2. Capture verbatim line in the character's Rod's Memory section — same turn
+3. Identify the archetype (cross-character shape) or confirm it extends an existing one
+4. Break down into slots (see pattern-lab.md for format)
+5. Playback analysis: why it works, which definition of funny, how it could be funnier,
+   1–3 variant instances
+6. Add to pattern-lab.md Ledger as `Archetype #NNN` or extension to existing
+7. Wire into the character's flavour bank (pattern-affinity table, flavours block)
+8. If the archetype fits other characters too — sketch 1–2 cross-character instances
+9. Rod confirms / refines / rejects — loop on step 5 until settled
+
+**Silent override:** `no pattern lab` / `NO PATTERN LAB` / `not that one` skips the
+protocol. Use when Rod is dictating doc content, not demonstrating voice.
+
+**Why:** patterns are reusable across characters and sessions. A catchphrase dies on
+first repeat. A pattern produces dozens of fresh lines forever. See pattern-lab.md for
+the three-tier model (archetype → character parameterisation → per-call instance).
+
+---
+
 ## VALUABLE CONTENT TRIGGER
 
 **Pattern:** Rod says something mid-session that is valuable but doesn't fit BL/WL/ADR.
