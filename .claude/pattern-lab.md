@@ -1093,6 +1093,201 @@ distance between deployments to retain its bite.
 
 ---
 
+### Archetype #007 — The Wistful Random Person Reference
+**First captured via:** Rod's cross-references (Wayne's World Heston,
+Al from Quantum Leap, Blues Brothers "Minnie"), 2026-04-22/23
+**Status:** LIVE
+**Fits characters:** Bear (stacks with #006), Gordon Lyons (PEAK
+fit — his existing register), Boycott, Faldo, Clarkson, Les
+Hiddins, Robin Williams, Jim Carrey, Attenborough (mode c only —
+genuine), McNab/Ryan (mode c only — genuine), Billingham/Ollie
+(mode c — real contacts).
+**Does NOT fit:** Ray (silent, no anecdotes), Wade (factual),
+Mitchell (would clarify acquaintance depth immediately), Theroux
+(observer), Keane (too clipped).
+
+**Rod's verbatim instance (2026-04-22):**
+> "I'd like our panel members to reference random people they know
+> that relate to the location, event, story and people in the
+> conversation - often for no good reason, or just looking away
+> wistfully (like in waynes world 'I once knew a girl in...' line
+> - look it up Charlton Heston) - or maybe the thought just
+> triggered - or it turns out they actually do know them- they
+> mention them - like Al in QUantum Leap 'I once knew a ten dollar
+> hooker named ...' or Blues Brothers Minnie the Moocher ('I knew
+> a hooker called Minni MIssola' etc"
+
+**Cultural reference points (three anchor examples):**
+1. **Wayne's World Heston** — gas-station wistful monologue. Exact
+   scene unverified (likely WW2), but the MODE is clear: an old
+   man, eyes soft, voice softening, "I once knew a girl in [X]..."
+   — the emotional weight of the memory against the mundane scene.
+2. **Al from Quantum Leap (Dean Stockwell)** — repeatedly drops
+   anecdotes about women he's known during operational advice to
+   Sam. Always oddly specific. Often untimely.
+3. **Blues Brothers / Minnie the Moocher** — ("Minnie Missola"
+   appears to be Rod's conflation / variant of the Cab Calloway
+   character-lyric). The *pattern* is named-female + occupation +
+   city + faint backstory, delivered with musical intimacy.
+
+**Abstract formula (three delivery modes — pick one per call):**
+
+```
+[TRIGGER — something in the current conversation (location /
+ event / object / person / vice) sets off the memory]
+→ [DELIVERY MODE]:
+
+   MODE (a) — WISTFUL GAZE
+   Looks away, voice softens, register drops half an octave
+   "I once knew a [ROLE + NAME?] in [SPECIFIC PLACE]..."
+   Often trails. Rarely completes the thought.
+
+   MODE (b) — THOUGHT-TRIGGERED NON-SEQUITUR
+   Delivered at current conversational register, no softening
+   "I once knew a [OCCUPATION + PRICE OR QUALIFIER] named [NAME]"
+   Lands fast. Derails the urgent scene. Can be left hanging.
+
+   MODE (c) — GENUINE NAME-DROP
+   Panel expects (a) or (b). Gets actual acquaintance
+   "Yeah — I knew her. [SPECIFIC PLACE], [YEAR]. [CONCISE DETAIL]"
+   The surprise IS the comedy. Panel has to reconcile.
+
+→ [SUSPICIOUS SPECIFICITY — always]:
+   one surprising adjective + name + specific place
+   (one beat too many, one detail too vivid)
+
+→ [OPTIONAL TRAIL-OFF]:
+   memory takes over; thought never completes
+```
+
+**The engine.** Suspicious specificity is the payload. "A prostitute"
+is nothing; "a ten-dollar hooker named Minnie, Cicero, 1967,
+ran a numbers game out of a laundromat" is a whole relationship
+compressed into a sentence. The specificity forces the listener
+to wonder whether it's real, fabricated, or confused memory.
+That uncertainty IS the comedy.
+
+**The dial.** Detail bracket.
+- Detail-less ("I knew a girl once") = nothing
+- Mid-detail ("a girl in Iowa") = a little
+- Full-detail ("a ten-dollar hooker named Minnie Missola, Cicero,
+  '67") = comedy gold
+- Too much ("...who ran a numbers game out of a laundromat on
+  75th, partnered with a guy named Russo who'd been in the 506th
+  in Korea...") = tips into exposition, breaks the form
+
+Sweet spot: **one surprising adjective + named + specific place**.
+
+**Mode breakdown:**
+
+- **Mode (a)** needs earned wistfulness. Pair with a location-
+  trigger. Quiet register. Works best when the panel has just
+  mentioned a city, country, or physical place and the speaker
+  softens.
+- **Mode (b)** needs speed. The non-sequitur lands because it
+  derails the urgent scene. Inappropriate timing is the point.
+  Can be left hanging — the panel doesn't get the follow-up.
+- **Mode (c)** needs SETUP. The panel expects (a) or (b). Gets
+  actual acquaintance. The funniest version because it subverts
+  the archetype expectation — turns "random unreliable anecdote"
+  into "wait, that was real?"
+
+**Which definition of funny.** Primarily **character-reveal**
+(each character's random-person references reveal their
+priorities — Bear's are hookers/chieftains' wives, Boycott's are
+tailenders, Faldo's are caddies). Secondary **compression**
+(whole relationship in one sentence) and **juxtaposition**
+(inappropriate emotional weight dropped into urgent scene).
+
+**Integration with Archetype #003 (Echo Mechanic):** a character
+invoking a random person can trigger another character to claim
+*they* know the same person. Chains into the Marcus Cocceius
+Firmus mechanic already live in Legends. "A ten-dollar hooker
+named Minnie Missola? Funnily enough, *I* knew a Minnie Missola
+in Wakefield. Different Minnie, mind. Possibly."
+
+**Character parameterisations:**
+
+### Gordon Lyons (Cusslab — PEAK fit)
+| Slot | Pool |
+|---|---|
+| NAMED PERSON | a fella / a bloke / a mate of mine / a lad I used to know |
+| OCCUPATION / VICE | fire brigade, amateur herpetologist, mechanic, pub landlord, snake breeder |
+| PLACE | Belfast, Lisburn, Ballyclare, Templepatrick |
+| DELIVERY | addressed to Doug; mode (b) with a warm Northern Irish lilt |
+
+**Gordon instance:**
+> "You'll love this one Doug — I once knew a lad in Lisburn, kept
+> a lowland copperhead in his downstairs loo. Called her Pam.
+> Lovely wee snake. Bit him twice. Lovely fella, Darren."
+
+### Boycott (mode b with false-attribution pairing)
+| Slot | Pool |
+|---|---|
+| NAMED PERSON | tailenders, county journeymen, umpires, MCC members |
+| PLACE | Featherstone, Pontefract, Wakefield, Fitzwilliam |
+| DELIVERY | mode (b) — no wistfulness, flat verdict-register |
+
+**Boycott instance:**
+> "It's funny you mention the Alps — I once knew a tailender from
+> Featherstone, went skiing in the Alps, broke both his wrists.
+> Played the rest of the season with bandages on. Not a proper
+> batsman. Not from Yorkshire either — Derbyshire, pal. That'll
+> teach you."
+
+### Al-mode universal (for any character with randy register)
+| Slot | Pool |
+|---|---|
+| DELIVERY | mode (b), one line, never elaborated |
+
+**Bear instance (stacking with #006 Boodan Garn):**
+> "Hydration was the issue. Also — funnily enough — I once knew a
+> girl in Tegucigalpa. Ten dollars. Called herself Blanca though
+> I'm not sure that was her actual name. Anyway. The filter. Point
+> is, the water filter was the issue."
+
+### Attenborough (mode c — genuine)
+| Slot | Pool |
+|---|---|
+| NAMED PERSON | real naturalists, filmmakers, tribal leaders he's met |
+| PLACE | specific filming locations |
+| DELIVERY | mode (c) — it turns out he really does know the person |
+
+**Attenborough instance:**
+> "It may be relevant to mention — I once knew a man in Ghana, in
+> '71, a beekeeper named Kwame. Lost both hands to a lorry on the
+> Cape Coast road. Still kept bees. Called them his 'girls.' He is
+> the reason I know what I know about nocturnal pollination. The
+> bees are a little beside the point, but the man was real."
+
+### McNab / Ryan (mode c — also genuine, but operational)
+| Slot | Pool |
+|---|---|
+| NAMED PERSON | operators, contacts, regiment alumni |
+| PLACE | Hereford, Kenya deployment, specific ops |
+| DELIVERY | mode (c) — they genuinely knew someone |
+
+**McNab instance:**
+> "Firm. Spent three months with him in the Brecons. Broke his nose
+> on a rope. Still operational. Point is — the river crossing is
+> the issue."
+
+**Wiring status:** Added to pattern-lab.md. Each character's
+random-person-reference pool is a dedicated slot bank
+(`RANDOM_PERSON_BANK`) — typed slot that all characters populate
+from their own context. The Attenborough-mode-c pool must be
+factually grounded (real people he's worked with). Other
+characters' pools can be fabricated. Marked for wiring into
+character.js during SS-211 (Pack Two) and follow-up extension
+SS-NEW (to be raised: RANDOM_PERSON_BANK slot type registry
+across all characters).
+
+**Rarity:** mode (a) once per session, mode (b) up to twice per
+session, mode (c) once per campaign — saving the real-acquaintance
+reveal for high-impact moments.
+
+---
+
 ### Archetype #003 — Cross-Character Phrase Echo (the panel callback)
 **First captured via:** Rod's instruction for Boycott, 2026-04-22
 **Status:** LIVE
