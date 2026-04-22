@@ -440,6 +440,312 @@ not apply to them — only the four-tier structure of the archetype does.
 
 ---
 
+### Archetype #002 — Tactless Reduction of Historical Loss via Expertise-Frame Idiom
+**First captured via:** Geoffrey Boycott, 2026-04-22
+**Status:** LIVE
+**Fits characters:** Boycott (primary — cricket idiom is the reference),
+Faldo (golf elimination idiom), Clarkson (car-crash / motoring DNF),
+Keane (football-management dismissal), Bristow (darts-miss idiom),
+possibly McNab (operational-report idiom — dryer register)
+**Does not fit:** Attenborough (observer register, not dismissal),
+Theroux (would ask about it, not reduce it), Mitchell (would apologise
+for the reduction), Ray (silence)
+
+**Rod's verbatim instance (via Boycott, 2026-04-22):**
+> "'Back in the hutch' and 'back in the shed' need to be used a lot —
+> maybe also to describe tragic deaths and historical losses with the
+> lack of tact we all find funny"
+
+**Abstract formula (cross-character):**
+```
+[HISTORICAL CATASTROPHE or TRAGIC LOSS — named, recognisable]
+→ [EXPERTISE-FRAME DISMISSAL IDIOM — flat delivery, no concession
+   to the scale of the loss]
+→ (optional) [brief technical diagnosis in the expertise frame]
+→ (optional) [comparative aside — "bit like X" from career anchor]
+```
+
+The essential quality: **the tactlessness is the engine.** The
+dismissal must be delivered flat — no solemnity, no irony, no
+knowing wink. The character is genuinely applying their frame
+to a tragedy that doesn't fit, and the gap between the scale of
+the event and the banality of the verdict is the laugh.
+
+**Character parameterisations:**
+
+### Boycott (cricket dismissal — the source)
+| Slot | Character-specific pool |
+|---|---|
+| DISMISSAL IDIOM | "back in the hutch", "back in the shed", "back in the hutch before tea", "straight back in the hutch", "played across the line", "rush of blood, that" |
+| TECHNICAL DIAGNOSIS | "Poor technique. No discipline. Played across the line." |
+| COMPARATIVE ANCHOR | Randall, Gooch, a tailender, a Test-match collapse |
+
+**Boycott instances (sketches):**
+> "Custer at Little Bighorn? Back in the hutch before tea. Played
+> across the line, hadn't he. Rush of blood. No discipline."
+
+> "The Titanic? Straight back in the shed, that lot. Whole side
+> out. Bit like the '48 Ashes — bowled out for 52. Same face on
+> the captain, mind."
+
+> "Light Brigade? All back in the hutch. Every one of 'em. Not a
+> single proper batsman among 'em."
+
+### Faldo (golf elimination)
+| Slot | Character-specific pool |
+|---|---|
+| DISMISSAL IDIOM | "missed the cut", "took a double bogey", "in the rough by the 4th", "didn't commit to the shot", "couldn't find the fairway" |
+| TECHNICAL DIAGNOSIS | "Didn't address the problem. Follow-through was all wrong." |
+| COMPARATIVE ANCHOR | 14th at Augusta, Norman's collapse, sandwich-gate |
+
+**Faldo instance (sketch):**
+> "Custer at Little Bighorn. Mmm. He didn't read the lie, did he.
+> Hazard left, hazard right, and he went STRAIGHT at it. Missed
+> the cut by about, oh, two-hundred-and-seventy. Like Norman in
+> '96 — addressed the problem, didn't follow through."
+
+### Clarkson (car-crash register)
+| Slot | Character-specific pool |
+|---|---|
+| DISMISSAL IDIOM | "DNF", "written off", "blew a gearbox", "rolled it at the first corner", "towed home behind a Peugeot" |
+| TECHNICAL DIAGNOSIS | "Wrong vehicle for the terrain. ABSOLUTE wrong vehicle." |
+| COMPARATIVE ANCHOR | Hammond's crash, Reliant Robin rolls, Burma bikes |
+
+**Clarkson instance (sketch):**
+> "The Titanic? Oh for GOD'S sake. That's a DNF, isn't it. Hit an
+> iceberg. That's — that's like driving a SKODA into a WALL.
+> Towed home? No. NO. The whole thing went DOWN. Absolute write-
+> off. Bit like Hammond in the Zonda, except Hammond at least made
+> the hospital."
+
+### Keane (football dismissal)
+| Slot | Character-specific pool |
+|---|---|
+| DISMISSAL IDIOM | "should've been subbed", "red card, that", "out of the derby", "wouldn't have started for us", "lost the dressing room" |
+| TECHNICAL DIAGNOSIS | "Weak. Soft. Lacked bottle." |
+| COMPARATIVE ANCHOR | Leeds '00, Cantona, a name he won't say |
+
+**Keane instance (sketch):**
+> "Custer? Lost the dressing room. Should've been subbed at
+> half-time. Red card, that."
+
+### Bristow (darts miss register)
+| Slot | Character-specific pool |
+|---|---|
+| DISMISSAL IDIOM | "missed the double", "bust", "3-dart average was rubbish", "couldn't hit the treble" |
+| TECHNICAL DIAGNOSIS | "Chalked his hand for that one, did he. Daft." |
+| COMPARATIVE ANCHOR | Eric the Crafty Cockney, a big-stage choke |
+
+**Bristow instance (sketch):**
+> "Titanic? Bust. Whole ship. Missed the iceberg double. Leave it
+> OUT. That's a 3-dart average of rubbish, son."
+
+**Wiring status:** Boycott mannerisms updated with
+`signature_dismissal_idioms` high-frequency pool
+(`back in the hutch` / `back in the shed` + variants). Pattern
+added as `tactless_tragedy_dismissal` to his affinity table.
+Cross-character sketches above are reference material for when
+Faldo / Clarkson / Keane / Bristow are wired into SS
+(SS-211 / SS-208).
+
+---
+
+#### Sub-pattern #002-a — Equipment-Selection Diagnosis
+
+Rod's verbatim instance (2026-04-22):
+> "'no, no, no, no, no, you can't expect to make it out of the 20s
+> or 30s using a decapitated head, poor equipment selection'"
+
+**Shape (within #002):**
+```
+[5-deep "no, no, no, no, no" refusal opener]
+→ [cricket-innings-milestone framing: "make it out of the 20s/30s"]
+→ [body part OR misfortune as LITERAL equipment — the pivot]
+→ [flat coaching verdict: "poor equipment selection"]
+```
+
+**The engine.** Three frame-shifts in one sentence: historical
+bodily event → stuck-in-the-twenties cricket innings → equipment
+malfunction → coach's post-mortem verdict. The pivot is treating
+a body part (or lack thereof) as kit — "decapitated head" read
+as *equipment the batter was using*. Boycott's cricket-brain
+genuinely maps bodies onto technique.
+
+**Dial.** The literalness. Softer ("used his head") = clever;
+full literal ("using a decapitated head") = devastating because
+it's factually true and cricket-frame-absurd simultaneously.
+
+**Why it might not land.** Cricket-innings-milestone idiom
+("make it out of the 20s or 30s") is parseable in TMS-register
+but opaque to non-cricket audiences. Loses ~30% of impact
+without that.
+
+**Tightening variants (Boycott):**
+> "Anne Boleyn? No, no, no, no, no. You can't expect to make it
+> out of the 20s or 30s using a decapitated head. Poor equipment
+> selection. Wouldn't have happened in Yorkshire — we'd have kept
+> our heads."
+
+> "Marie Antoinette? Same problem. Took strike without her head.
+> What was she thinking. Back in the hutch before lunch."
+
+> "Mary Queen of Scots batted above her average for two decades,
+> mind. Then lost her head. Same way Randall lost his at Trent
+> Bridge — though Randall at least kept it attached."
+
+**Cross-character parameterisations of sub-pattern #002-a:**
+
+**Faldo — wrong club:**
+> "Custer? Wrong club, wasn't it. He went at it with a driver
+> when the course demanded a 5-iron. You can't attack the 14th
+> at Little Bighorn with a driver. Pin's tucked left. Wind off
+> the water. Shape the approach."
+
+**Clarkson — wrong vehicle:**
+> "The Light Brigade? Oh for GOD'S sake. Wrong VEHICLE, wasn't
+> it. They should've been in DISCOVERIES. They were on HORSES.
+> HORSES. Absolute DNF. Whole brigade TOWED home."
+
+**Keane — wrong substitution:**
+> "Mary Queen of Scots should've had a centre-back on. Went into
+> extra time with a weak midfield. Should've been subbed at
+> half-time. Red card, that."
+
+**Bristow — wrong flights:**
+> "Custer? Wrong flights, son. He was using standards when he
+> needed slims. Dart was wobbling all the way to the board. No
+> wonder he missed the double. Bust."
+
+**Mitchell — wrong grammatical mood:**
+> "If Anne Boleyn had — and I'm — I'm not saying it was her
+> fault, exactly — but if she'd — she'd have been better served
+> by the subjunctive. 'If I were to keep my head.' Conditional.
+> She — she committed to the indicative. That's where — that's
+> where it went wrong, I think. I'm sorry. I know."
+
+**Wiring status:** Added to Boycott mannerisms as 5-deep "no"
+opener. Sub-pattern catalogued here. Cross-character sketches
+are reference material.
+
+---
+
+### Archetype #003 — Cross-Character Phrase Echo (the panel callback)
+**First captured via:** Rod's instruction for Boycott, 2026-04-22
+**Status:** LIVE
+**Fits:** any character pair; triggers when a memorable signature
+phrase has landed in a prior round
+**Mechanic type:** panel-dynamics (Lever 3 extension), not a
+character-standalone archetype
+
+**Rod's verbatim instances (2026-04-22):**
+> "maybe also other panel members could reference someone elses
+> quote 'as you said Geoffrey, back in the hutch'"
+
+> "but also get it wron sometimes too 'as you said Geoffrey, back
+> of the crotch' etc - thats a pattern too for pattern lab"
+
+**The mechanic.** When one panel member has deployed a memorable
+signature phrase, other panel members can echo it back within the
+next round or two. Four flavours, differentiated by fidelity:
+
+#### Flavour A — Faithful echo
+The phrase is quoted accurately, attributed, deployed in agreement.
+```
+"As you said, [Character] — [exact phrase]."
+```
+> "As you said, Geoffrey — back in the hutch."
+
+Use: agreement / rapport / building consensus around a verdict.
+Register: sincere.
+
+#### Flavour B — Character-styled echo (translation)
+The phrase is acknowledged, then translated into the echoing
+character's own expertise-frame idiom.
+```
+"As [Character] says, [exact phrase] — though for my money it's
+more of a [own-frame equivalent]."
+```
+> "As Geoff says, BACK IN THE HUTCH — though for my money it's
+> more of a DNF, isn't it." (Clarkson)
+> "As you'd have it, Geoffrey — back in the hutch. Though I'd
+> call it missing the cut." (Faldo)
+> "As Mr Boycott — well — the hutch, yes. Though technically,
+> grammatically, it's more — I don't know. Sorry." (Mitchell)
+> "And... mm... back in the hutch, was he? Is that — is that
+> the right idiom, Geoffrey?" (Theroux — pattern becomes
+> repeat-back-as-question, his signature)
+
+Use: character-voicing each recognises the phrase but routes it
+through their own frame. Highlights the pattern-lab architecture.
+
+#### Flavour C — Misquoted echo (plausibly wrong)
+The phrase is remembered imperfectly. Attribution intact, content
+drifted. Ties directly into **SS-212 (mis-quoting attribute)**.
+```
+"Like [Character] said — [plausible misremembering]."
+```
+> "Like Geoffrey says, back in the kennel."
+> "As Boycott put it — back in the shed, back in the barn, one
+> of those."
+
+Use: the mis-rememberer is themselves unreliable (Clarkson, Jim
+Carrey, Robin Williams), OR memory has been corrupted by rounds
+of tension. Rod's favourite mechanic per
+`feedback_character_comedy`.
+
+#### Flavour D — Mangled echo (phonetic corruption)
+Phrase is echoed with phonetic near-neighbour substitution,
+producing absurd or filthy nonsense. Attribution intact.
+```
+"As you said, [Character] — [phonetically-adjacent corruption]."
+```
+> "As you said, Geoffrey — back of the crotch." (Rod's example)
+> "Like Geoffrey said, back in the butch."
+> "Back in the hatch, was it?"
+> "Back in the stutch, you said."
+> "Back in the hitch."
+
+Use: high-chaos characters (Carrey, Robin Williams, Clarkson when
+drunk, Bristow), OR deliberate misdirection from a character who
+knows what they're doing (Theroux, rarely — he'd only do this if
+the original phrase merited it). Works ONLY when the original
+phrase is recent enough that the audience remembers the correct
+version — the corruption is perceived as corruption.
+
+**Boycott's reaction to corruption (Flavours C and D)** is its own
+comedy engine:
+> "Hutch, pal. HUTCH. Not kennel. Kennel's for a dog."
+> "Crotch? CROTCH? Get out. Get OUT."
+> "You what? You WHAT? It's hutch. As in the pavilion. Where you
+> go when you're out, pal. Rubbish."
+
+The reaction is scathing, period-register, Yorkshire-moral —
+i.e. perfect Boycott (see calibration point in his character
+file). Character responding to their signature-phrase being
+mangled is a set-piece.
+
+**Wiring status:**
+- Mechanism noted in Boycott's file (signature_dismissal_idioms
+  pool) as high-frequency deployment material.
+- Echo-callback mechanic cross-references Lever 3 of
+  `leanspirited-standards/standards/panel-voice-principles.md`
+  (Interaction Schema → `reacts_to` field). Proposed extension:
+  `reacts_to.register` gains values `echo_faithful`,
+  `echo_styled`, `echo_misquote`, `echo_mangled`, each
+  optionally with `phrase` and `correction` fields.
+- Feeds SS-212 (mis-quoting attribute). When a phrase has been
+  used in a prior round, the `echo_misquote` and `echo_mangled`
+  flavours are candidate corruptions.
+
+**The 5-second rule for echo timing.** An echo must be deployed
+within 1–2 rounds of the original. Beyond that, the audience no
+longer remembers the phrase clearly and the callback fails. If a
+phrase is important enough to callback 3+ rounds later, it has
+become a recurring character signature (like Bear's "Hydration?")
+and should be treated as a mannerism, not an archetype callback.
+
+---
+
 ## Ledger template (copy per new pattern)
 
 ### Pattern #NNN — pattern_name
