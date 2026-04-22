@@ -537,3 +537,44 @@
 **Root cause:** Claude searched `/home/rodent/cusslab/` for file path `hecklers-v2.9.html` (a Zone.Identifier stub) and concluded the file was missing rather than reading the Cusslab CLAUDE.md or STANDARDS.md, which both state "Heckler and Cox" in their first lines. Same pattern for "verbose": Claude searched for the literal string instead of interpreting Rod's meaning from context.
 
 **Action:** Before asking Rod to define a term: (a) grep the project READMEs and CLAUDE.mds, (b) grep the memory MEMORY.md references, (c) check the shared-session-state for the most recent definition. Only ask if all three return nothing.
+
+---
+
+## WL-SS-029 — Misdirected wrangler deploy due to stray parent wrangler.jsonc
+
+**Status:** Open
+**Category:** Defect / Deploy
+**Severity:** High
+**Raised:** 2026-04-22
+
+**Observation:** While deploying the SS-209 Legends voice fix from `/home/rodent/cusslab`, running `npx wrangler deploy` uploaded to a worker named "rodent" at `https://rodent.leanspirited.workers.dev`, not to `cusslab-api` as intended. 284 files were uploaded as static assets, including `.git` objects. The cusslab worker.js code change (Legends flavour-bank wiring) was NOT deployed to `cusslab-api`.
+
+**Root cause:** A stray `/home/rodent/wrangler.jsonc` exists with the following content:
+```json
+{
+  "name": "rodent",
+  "compatibility_date": "2025-09-27",
+  "assets": { "directory": "cusslab" },
+  ...
+}
+```
+When `npx wrangler` was invoked from `/home/rodent/cusslab`, wrangler resolved the parent-level `wrangler.jsonc` in preference to the cwd `wrangler.toml`. Likely because `.jsonc` takes precedence, or because `npx` climbed up looking for `node_modules/wrangler` and ran wrangler from there.
+
+**Waste impact:**
+1. Legends fix not actually live — Rod still sees verbose output on Wall Walkers Legends.
+2. Unknown infrastructure: `rodent.leanspirited.workers.dev` now exists with cusslab source code as static assets. Needs investigation — is this orphaned or load-bearing?
+3. One cycle of deploy-check-fix-redeploy overhead.
+
+**Fix plan:**
+1. ~~Verify the cusslab-api worker is still serving the old code (NOT overwritten).~~ **DONE** — cusslab-api returned valid old worker code when probed.
+2. ~~Either delete `/home/rodent/wrangler.jsonc` (destructive — check if anything depends on rodent worker first) OR use `wrangler deploy -c cusslab/wrangler.toml` with explicit config path from now on.~~ **DONE (temporary)** — used explicit `-c /home/rodent/cusslab/wrangler.toml` for this deploy. Rogue `.jsonc` still in place — NOT deleted without Rod's approval.
+3. ~~Redeploy the Legends fix to cusslab-api correctly.~~ **DONE** — cusslab commit bb2cbd0 deployed 2026-04-22; live verification confirmed Ray/Les/Bear voice register landing on /survival-school/wall-walkers-legends.
+4. Add a Cusslab session-startup check that fails loudly if a parent-dir wrangler config is discovered. **OPEN — follow-up for next cusslab session.**
+
+**Permanent fix for future deploys:** always use `-c <path>/wrangler.toml` explicitly when deploying from a subproject. Never bare `npx wrangler deploy` — it climbs up and may hit `/home/rodent/wrangler.jsonc`.
+
+**Status:** Resolved (fix deployed). Preventative hardening (step 4) still open.
+
+**Open question for Rod:** Is `rodent.leanspirited.workers.dev` load-bearing or was it created by accident? If accidental, delete `/home/rodent/wrangler.jsonc` and the orphaned worker. If intentional, add a CLAUDE.md note so future sessions don't get caught out again.
+
+**Related:** feedback_wrangler_deploy (never bare wrangler), feedback_auth_fix (deploy-before-auth canary), WL-SS-013 (deploy-as-auth-event).

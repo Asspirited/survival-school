@@ -747,6 +747,181 @@ attribution loses force if overused.
 
 ---
 
+### Archetype #005 — Improvised Visual Aid That Undermines Itself + Lost-Thread Derailment
+**First captured via:** Prof Brian Cox, 2026-04-22
+**Status:** LIVE
+**Fits characters:** Cox (primary), Robin Williams, Jim Carrey,
+Clarkson, Bear (with re-framing twist). Needs a character who
+reaches for a prop and doesn't self-edit.
+**Does not fit:** Ray (silent), Wade (flat), Keane (clipped),
+Theroux (observer, does not teach), Boycott (never admits a
+metaphor is wrong), Mitchell (would abandon the attempt the
+moment the prop failed), Attenborough (too controlled, narrates
+rather than demonstrates).
+
+**Rod's verbatim instance (via Brian Cox, 2026-04-22):**
+> "Brian is trying to teach others something and likes to use visual
+> examples to aid his lessons (that no-one asked for and is either
+> part interested, waningly interested over time to apathetic),, so
+> grabs a paperweight and a something smaller, or maybe even better
+> grabs a stapler and it doesn't fit a smaller star and is weird
+> shape so has to call that out and ruin the spell of his visual by
+> saying like the stapler, just totally different, round and much
+> smaller (runing the point of using the prop) 'you see the most
+> single most dead great magnificent thing...about the way that
+> stars are formed....inside dense nebulae that have themselves been
+> forming over millenia...is that...' and then either talk utter
+> bullshit, non-sequitur, or loevely ones, have talked too much and
+> gone down a completely separate thread, or just trail off having
+> forgotten what the fuck they were talking about"
+
+**Abstract formula (cross-character):**
+```
+[GRANDIOSE PREAMBLE — over-escalated register promising revelation]
+  "you see, the most single most dead great magnificent thing
+   about [cosmic/spiritual/profound topic] is..."
+→ [PROP GRAB — reaches for object to demonstrate, unprompted]
+  stapler / paperweight / coffee cup / whatever is to hand
+→ [PROP CALLOUT — acknowledges object doesn't fit the metaphor,
+   ruining the spell while still holding the object]
+  "like the stapler, just totally different, round and much smaller"
+→ [MAIN POINT ATTEMPT — "is that..."]
+→ [DERAILMENT — one of four endings, sample fresh per call]:
+    (a) confident bullshit — speaker plausibly continues with
+        content that is factually wrong or empty
+    (b) non-sequitur — sudden unrelated thought takes over
+    (c) lovely divergence — wanders into a genuinely interesting
+        separate thread that is not the point
+    (d) trail-off — loses the thread mid-sentence; "... and ...
+        I've forgotten what I was saying. Hmm. What was the
+        question?"
+```
+
+**Panel dynamic overlay (part of the archetype):** other panel
+members tune out on a decay curve while he monologues. Part-
+interested → waning → apathetic. He does not notice. This is not
+decoration — it is load-bearing. The comedy requires us to see
+the panel disengaging while the speaker remains earnestly
+committed.
+
+**The engine.** Four-layer self-sabotage, plus panel-attention
+decay as background music. Grandiose preamble promises revelation.
+Wrong prop breaks the metaphor before it starts. Prop-callout
+ruins whatever spell remained. The ending doesn't land the point
+it set up. And nobody is listening except the character, who is
+rapt.
+
+**The dial.** The prop callout. Silent failure = just a bad
+demonstration. Calling out the mismatch aloud ("like the stapler,
+just totally different, round and much smaller") and continuing
+anyway is the Cox-specific move. The earnestness survives the
+self-defeat.
+
+**Which definition of funny.** Primarily **character-reveal** —
+this is Cox's TV-presenter register compressed into a sentence-
+level mechanic. The audience recognition ("yes, he does exactly
+this") is the laugh. Secondary **compression** (cosmic topic →
+stapler) and **juxtaposition** (speaker's rapture vs panel's
+apathy).
+
+**Character parameterisations:**
+
+### Cox (primary)
+| Slot | Pool |
+|---|---|
+| GRANDIOSE PREAMBLE | "the most single most dead great magnificent thing", "the absolutely phenomenal fact is", "the really rather astonishing thing about" |
+| TOPIC | stellar formation, quantum entanglement, the LHC, dark matter, black-hole thermodynamics, the speed of light in a medium |
+| PROP | stapler, paperweight, coffee mug, pen, a boot, a rolled-up napkin |
+| PROP-CALLOUT PHRASING | "though obviously [prop is] the wrong shape — [prop] is [differences]", "ignore the fact that it's [colour/shape/size] — imagine it's [corrected attribute]" |
+| DERAILMENT TYPE | (sample a/b/c/d per call) |
+
+**Cox instance (sketch, derailment type d — trail off):**
+> "You see, the most single most *dead great* magnificent thing
+> about the way that stars are formed — inside dense nebulae that
+> have themselves been forming over millenia — [*grabs stapler*]
+> — though obviously this is a stapler, it's the wrong shape, it's
+> not even vaguely the right density — just imagine it's hot
+> hydrogen — and — and what happens inside the nebula, gravity
+> begins to, to, ah — [*looks at stapler*] — actually this is a
+> really rather well-engineered stapler. Swingline? [*pause*]
+> What was I saying?"
+
+**Cox instance (sketch, type b — non-sequitur):**
+> "The absolutely astonishing fact about stellar nucleosynthesis is
+> that — [*grabs paperweight*] — though this is obviously a
+> paperweight, it's glass, it's completely cold, it's not hot
+> hydrogen — but, crucially, the heavier elements in a star are
+> forged under immense pressure, and I saw a tortoise in Chester
+> once that had the most remarkable shell pattern, it was
+> practically a Fibonacci sequence, and — and that's really
+> connected to this, if you think about it at the right level of
+> abstraction."
+
+### Robin Williams (chaotic prop-adoption)
+| Slot | Pool |
+|---|---|
+| PROP | stapler (becomes 15 things in succession — spaceship, microphone, handgun, baby, weapon, dance partner) |
+| DERAILMENT | improv chain — prop triggers character voices, stapler becomes the star of its own show |
+
+**Williams instance (sketch):**
+> "The star is formed in a — [*grabs stapler*] — [*Schwarzenegger
+> voice*] I AM ZEE STAPLER — [*Mrs Doubtfire voice*] oh deary me
+> dear it's a stellar formation now — [*jazz scat*] and nebulae,
+> ba-ba-BA, nebulae — [*suddenly quiet, Good Will Hunting register*]
+> it's not your fault. It's not your fault. [*normal*] and THAT
+> is what stars are made of."
+
+### Jim Carrey (physical-prop comedy)
+| Slot | Pool |
+|---|---|
+| PROP | stapler becomes a body extension — staples own hand, fires it across the room, mimes being devoured by it |
+| DERAILMENT | physical; verbal content is minimal; the prop IS the whole thing |
+
+### Clarkson (derailed into prop-critique)
+| Slot | Pool |
+|---|---|
+| PROP | stapler |
+| PROP CALLOUT BECOMES 3-MINUTE RANT | ABOUT stapler design itself |
+| DERAILMENT | type c — lovely divergence into stapler engineering, forgets the original topic entirely |
+
+**Clarkson instance (sketch):**
+> "The star? Yeah. So — so — [*grabs stapler*] — WAIT. NO. This
+> is the SWINGLINE 747. They don't MAKE these any more. I had one
+> of these in the Top Gear office. The ACTION on this is — it's
+> like a — it's like a WATCH. Swiss. LISTEN. [*staples*] THAT
+> is engineering. What were we talking about?"
+
+### Bear (survival-reframing)
+| Slot | Pool |
+|---|---|
+| PROP | stapler IS reframed as a survival implement immediately |
+| DERAILMENT | type a — confident bullshit about stapler as weapon / firestarter / first-aid tool |
+
+**Bear instance (sketch):**
+> "Look — stellar formation, fascinating. Quick note though —
+> [*grabs stapler*] — this stapler. In the Rockies. Broken leg.
+> Staple your own trouser leg as an improvised splint. I've done
+> this. There's no time in a survival scenario to find a proper
+> splint. The staples rust, fine, but by then you've hiked out.
+> Hydration?"
+
+**Wiring status:** Cox character file updated with verbatim Rod
+memory. Pattern added to pattern-lab.md. Needs wiring into
+character affinity tables for Cox, Williams, Carrey, Clarkson,
+Bear when Pack Two ships (SS-211). Rarity: once per session per
+character maximum. The set-piece quality of the derailment
+protects it from overuse.
+
+**Panel-level rendering note:** because this archetype has a
+panel-dynamic overlay (attention decay), the output format
+should include per-character engagement/attention deltas across
+the speech turn. Connects to SS-216 (per-round character state
+display). Render as panel reaction notes: "Ray: glazed",
+"Keane: staring at the ceiling", "Mitchell: has started
+correcting Cox's grammar silently to himself."
+
+---
+
 ### Archetype #003 — Cross-Character Phrase Echo (the panel callback)
 **First captured via:** Rod's instruction for Boycott, 2026-04-22
 **Status:** LIVE

@@ -14,6 +14,35 @@ He is like a modern and British Carl Sagan, but a 90s Manchester geek version of
 
 ---
 
+## Rod's Memory (verbatim — captured 2026-04-22) — Archetype #005 source
+
+> "using Prof Cox as an example... (Brian is trying to teach others
+> something and likes to use visual examples to aid his lessons (that
+> no-one asked for and is either part interested, waningly interested
+> over time to apathetic?),, so grabs a paperweight and a something
+> smaller, or maybe even better grabs a stapler and it doesn't fit a
+> smaller star and is weird shape so has to call that out and ruin
+> the spell of his visual by saying like the stapler, just totally
+> different, round and much smaller (runing the point of using the
+> prop) 'you see the most single most dead great magnificent thing...
+> about the way that stars are formed....inside dense nebulae that
+> have themselves been forming over millenia...is that...' and then
+> either talk utter bullshit, non-sequitur, or loevely ones, have
+> talked too much and gone down a completely separate thread, or
+> just trail off having forgotten what the fuck they were talking
+> about"
+
+**Rod's read (Claude's interpretation):** Archetype #005 — The
+Improvised Visual Aid That Undermines Itself Followed By Lost-Thread
+Derailment. Four-stage self-sabotage: grandiose preamble → wrong
+prop grabbed → prop-callout that ruins the spell → derailment ending
+(bullshit / non-sequitur / lovely divergence / trailed-off). Plus
+panel attention decay running through it all — other panel members
+slide part-interested → waning → apathetic. He doesn't notice.
+See pattern-lab.md Archetype #005 for cross-character parameterisations.
+
+---
+
 ## The Character
 
 Professor Brian Cox. Theoretical physicist. Royal Society professorship.
