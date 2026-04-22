@@ -1544,7 +1544,573 @@ Fix: remove `"Hydration?"` from closers; add a dedicated
 `survival_concern_callouts` pool spanning water/fire/shelter/food
 with ~2-3 variants each; `buildBearVoiceBlock` samples ONE per
 call from the full pool. Net effect: hydration appears ~1/12
-calls instead of 3/6. Will deploy in next cusslab commit.
+calls instead of 3/6. **Deployed in cusslab commit 0dffc2b,
+2026-04-23.**
+
+---
+
+### Archetype #009 — The Analogy That Walks Into A Minefield
+**First captured via:** Bear Grylls, 2026-04-23
+**Status:** LIVE
+**Fits characters:** Bear (primary carrier), Ron Atkinson (Cusslab —
+PEAK REAL-WORLD FIT but handle with care), Bristow (era-register
+carries unintended mines), Clarkson (fires the analogy, can't
+exit), Robin Williams (chaotic — would pivot to a character voice).
+**Does NOT fit:** Ray (doesn't volunteer analogies), Wade (factual,
+no metaphor), Theroux (observer, not analogy-maker), Attenborough
+(too careful), Cox (too warm — safer physics-adjacent metaphors),
+Faldo (golf-specific, not culturally-loaded), Mitchell (catches
+the error EARLIER than mid-sentence and abandons the whole
+analogy).
+**ANTI-FIT:** Boycott. His `refuse_to_walk_back` fires — he
+doubles down via Yorkshire moral frame instead of retreating.
+
+**Rod's verbatim instance (via Bear, 2026-04-23):**
+> "'it's like trying to use a poncho to wrestle an eskimo....err I
+> mean...'"
+
+**Abstract formula:**
+```
+[CONFIDENT ANALOGY OPENER — "it's like trying to [X] to/with [Y]"]
+  Tool/target pair confidently stated.
+→ [THE ANALOGY GOES WRONG]:
+   (a) CULTURAL MINEFIELD — outdated term, stereotype, era-
+       inappropriate reference ("eskimo" — the specific mine)
+   (b) IMPOSSIBLE COMBINATION — wrong tool for the task
+       (exposes ignorance of the domain)
+   (c) REVEALING — shows the speaker's worldview unflatteringly
+→ [MID-SENTENCE REALISATION — "...err I mean..." /
+   "...well, not 'eskimo' obviously..."]
+  Catches it too late to rescue cleanly. The character HEARD
+  themselves. Audience sees them hear themselves.
+→ [NO CLEAN RECOVERY — one of four exits]:
+   exit-a: trail off into silence
+   exit-b: over-correct and make it worse
+   exit-c: hard pivot to a different subject
+   exit-d: double down hoping no-one noticed
+```
+
+**The engine.** Confidence → mid-sentence catch → failed rescue.
+Three register-shifts in one sentence. The "err I mean..." is the
+money shot — it tells the audience the character *heard
+themselves*, which is both worse and funnier than if they'd
+sailed on obliviously. They know. They're stuck. The poncho is
+still in play.
+
+**The dial.** The walk-back attempt itself.
+- Too clean = no comedy ("err — I mean, Inuit. Sorry. Anyway.")
+- Too long = becomes painful (full minute of apology)
+- Sweet spot: **one "err I mean" + trail-off**. Panicked
+  graceful abandonment.
+
+**Which definition of funny.** Primarily **character-reveal**
+(confident reach → fumble) + **compression** (whole
+"out-of-date speaker" arc in one sentence) + **juxtaposition**
+(two registers shift mid-sentence).
+
+**Cousin archetypes.**
+- #008 (I Was There retreat ladder) — retreating from a factual
+  claim
+- #005 (Visual Aid Derailment) — lost-thread after prop-grab
+- #009 (this) — retreating from a cultural analogy
+All three are retreat shapes. Different triggers, same abandonment
+mechanic.
+
+**Exit choice carries character information:**
+- exit-a (trail off) = Bear under pressure, Faldo uncommitted
+- exit-b (over-correct, worse) = Clarkson can't resist elaborating
+- exit-c (hard pivot) = Bear survival-callout deflection —
+  "anyway, hydration" — connects to signature concern rotation
+- exit-d (double down) = Boycott anti-fit refusal, Bristow era-
+  register, Ron Atkinson
+
+**Character parameterisations:**
+
+### Bear (primary)
+| Slot | Pool |
+|---|---|
+| ANALOGY OPENER | "it's like trying to [X] to/with [Y]" |
+| TOOL | poncho, paracord, hexi-block, bush knife, hyperbaric chamber |
+| TARGET | specific-but-problematic — cultural-ish, era-ish (keep cautious) |
+| REALISATION CUE | "err I mean...", "well, sorry, not —", "oh, that's —" |
+| EXIT | exit-a (trail off) or exit-c (pivot to signature concern rotation) |
+
+**Bear instance (sketch):**
+> "It's like trying to use a poncho to wrestle — well, a large
+> animal, say — err, I mean — [*trails off*] — speaking of, fire
+> discipline? Got a spark source?"
+
+### Ron Atkinson (Cusslab — handle with care)
+| Slot | Pool |
+|---|---|
+| ANALOGY OPENER | "It's a bit like..." / "You've got to look at this like..." |
+| TOOL/TARGET | era-register sport clichés that have aged badly |
+| REALISATION CUE | "little eyebrows" energy — noticing heat without quite knowing why |
+| EXIT | exit-d (double down, pretends not to notice) |
+
+**Important handling note for Ron Atkinson:** the archetype fires
+because he IS this pattern in real life (his sacking was this).
+Authenticity requires the register; decency requires that the
+specific real-world incident not be reproduced or referenced.
+Mine the register without recreating the crime. Stay in
+football-cliché adjacency — spatial metaphors, crowd references,
+manager-speak — and let the realisation-cue land without
+re-running the offensive content itself.
+
+### Clarkson (exit-b — over-correct, worse)
+| Slot | Pool |
+|---|---|
+| ANALOGY OPENER | "It's like driving a —" |
+| TOOL/TARGET | car comparisons that spiral into era-inappropriate territory |
+| REALISATION | no mid-sentence catch — the over-correction IS the realisation |
+| EXIT | exit-b — keeps talking, makes it worse |
+
+**Clarkson instance (sketch):**
+> "It's like trying to drive a SKODA in — well — in a place
+> where they don't really have roads. Which is most of — NO, sorry,
+> I KNOW, that's — that's patronising — what I MEANT was that
+> Skodas are bad cars, which is — also — which isn't the — where's
+> Kaleb."
+
+### Mitchell (anti-fit on the mid-sentence catch — catches EARLIER)
+| Slot | Pool |
+|---|---|
+| ANALOGY OPENER | "I suppose it's a little like —" |
+| REALISATION | PRE-SENTENCE, catches before uttering |
+| EXIT | abandonment — refuses to complete the analogy |
+
+**Mitchell instance (sketch):**
+> "I suppose it's a little like — no, actually, I'm not going to
+> finish that one. I could see where it was going and I don't
+> think any of us want to be there. Scrap it. Next."
+
+### Boycott (full anti-fit — doesn't walk back)
+| Slot | Pool |
+|---|---|
+| ANALOGY OPENER | same register |
+| REALISATION | registers no alarm |
+| EXIT | exit-d, Yorkshire-moral double-down |
+
+**Boycott instance (sketch):**
+> "It's like trying to bat without a bat. Doesn't matter where
+> they're from, pal — not from Yorkshire, either of 'em, the
+> Eskimo or the poncho. Different thing entirely. Village green
+> stuff."
+
+**Bear bank addition (mannerism):**
+New mannerism pool for Bear (and Clarkson, Ron Atkinson) — the
+**realisation-cue phrases**:
+- "err I mean..."
+- "well, not —"
+- "oh, that's —"
+- "sorry, I — sorry —"
+- "obviously not literally —"
+- "not in — not in that way obviously —"
+
+These are the mid-sentence catch. Deploy with care — one per
+scene maximum. Over-deployment becomes verbal tic.
+
+**Wiring status:** Pattern added to pattern-lab.md. Cusslab Bear
+bank needs extension (realisation-cue pool). Ron Atkinson cross-
+character variant is a Cusslab-side integration, not immediate SS
+concern. Rarity: **once per session max** for Bear on Archetype
+#009 — the archetype's power depends on its rarity. If it fires
+twice in a session it becomes the pattern rather than the
+incident.
+
+---
+
+### Cross-reference: the retreat family
+
+Archetypes #008, #005, and #009 are a related family, all
+about characters exiting an over-committed moment.
+
+|  | Over-commitment type | Walk-back mechanism |
+|---|---|---|
+| #005 | Visual aid + teaching | Lost-thread derailment |
+| #008 | Factual first-person claim | Strength-rung retreat ladder |
+| #009 | Cultural/metaphorical analogy | Mid-sentence realisation + failed rescue |
+
+Characters tend to have coherent carriage across the family —
+if a character fires #009's exit-a (trail off), they likely fire
+#008's rung-5 collapse ("Hydration?" topic change). Bear is the
+canonical carrier of all three retreat shapes. Boycott is the
+canonical anti-fit for all three — his
+`refuse_to_walk_back` is the structural opposite.
+
+---
+
+#### Sub-pattern #009-a — The Cornered Dig-In (Entrenchment Under Challenge)
+
+Rod verbatim (2026-04-23):
+> "Or when they get backed a bit into a corner with their bad
+> examples, but decide to dig in that would be good"
+
+**When character is challenged on a bad example/analogy, instead
+of walking back (exits a-c of #009), they entrench.** The core
+retreat family cousin: same trigger as #009, inverted response.
+
+Shape:
+```
+[ORIGINAL FLAWED CLAIM/ANALOGY — fired at full confidence]
+→ [CHALLENGE — panel member pushes back, raises eyebrow, says "mate..."]
+→ [DIG-IN RESPONSE — one of]:
+   - Escalate the claim ("AND ANOTHER THING —")
+   - Shift blame to challenger ("typical of you — can't take a
+     direct comparison")
+   - Moralise about modern life ("the problem with this generation —")
+   - Attack political correctness ("you can't say anything any more")
+   - Invoke authority ("I've been doing this 40 years, pal")
+   - Yorkshire-moral dismissal ("not from round these parts, are they")
+→ [NO RESOLUTION — scene moves on with tension unresolved, or
+   challenger gives up visibly]
+```
+
+**Character fits:**
+- **Boycott (canonical)** — already named `refuse_to_walk_back`.
+  Yorkshire-moral dismissal is his default dig-in shape.
+- **Clarkson** — PC-escalation flavour ("you can't say anything
+  these days") + louder-volume double-down.
+- **Bristow** — "leave it out, son" + era-register entrenchment.
+- **Ron Atkinson** — doubles down on era cliché, acts wounded
+  that anyone objected.
+- **Keane** — digs in via contempt not escalation. "Is that
+  supposed to be a problem?" Silent stare.
+
+**Anti-fits:**
+- **Bear** — usually retreats; dig-in feels false for him
+  (exception: SAS credentials challenged → "I served, mate,"
+  once, then pivot)
+- **Mitchell** — catastrophic admission spiral; cannot dig in
+- **Theroux** — doesn't dig in; asks another question
+- **Cox** — doesn't register the challenge as a challenge
+
+**Comedy engine.** The gap between the obvious indefensibility
+of the original claim and the speaker's confidence in defending
+it. This is pure character-reveal. Escalates the panel tension
+in multi-round scenes.
+
+**Dial.** The dig-in VERB.
+- Mild escalation ("well, I think it's fine") = weak comedy
+- Full moralise ("the problem with this generation —") =
+  Rod-gold, if it fits the era-register
+- Attack-the-challenger ("typical of you") = high-tension
+- Silent-contempt stare = Keane-register, works when paired
+  with a verbose opponent
+
+**Pairs with Archetype #008 (I Was There retreat) as the
+opposite shape.** Some characters walk down the ladder, some
+refuse the ladder. Character file `pattern_affinity.refuse_to_
+walk_back` vs `claim_strength_ladder` should be mutually
+exclusive — a character is one or the other at their core.
+
+---
+
+### Archetype #010 — Expert-Register Deployed Against Innocuous Target With Total Commitment
+**First captured via:** research into Rod's Partridge reference, 2026-04-23
+**Reference scene:** Mid-Morning Matters with Alan Partridge,
+"Tora Bora Alan" (2011). Ex-special-forces "Tommy Gaskell" walks
+Alan through clearing a cave of "neo-fundamentalist RSPB
+insurgents radicalised by Bill Oddie" at Wookey Hole — signature
+line "the neck opens up like a Muppet's mouth," Alan later
+reassures a child caller that "no muppets were hurt, he simply
+dispatched some terrorists from a radicalised RSPB in Wookey
+Hole."
+**Status:** LIVE
+**Fits characters:** Fox (PRIMARY — his tactical register IS this,
+already deployed in Legends against ghosts/werewolves but
+under-formalised), Bear (chaotic cousin — urine-bait-for-ghosts
+SAS-manual claim), McNab (dry report register), Ryan (operational
+calm), possibly Clarkson (car-engineering gravitas applied to
+innocuous).
+**Does NOT fit:** Mitchell (cannot maintain straight face),
+Theroux (would ask questions instead), Cox (too warm, too
+genuine), Attenborough (observer register, not tactical),
+Boycott (different register entirely — cricket-frame rather
+than tactical-frame), Mears (silent, doesn't brief), Wade (too
+factual).
+
+**Abstract formula:**
+```
+[EXPERT REGISTER ASSUMED — tactical/military/operational
+ briefing format adopted without preamble]
+  "standard extraction protocol", "lines of sight",
+  "the neck opens up like a Muppet's mouth"
+→ [TARGET — ostensibly innocuous real-world figure, organisation,
+   or location reframed as serious threat]
+  Bill Oddie, RSPB, a local wildlife trust, a garden centre,
+  a WI chapter, the British Trust for Ornithology
+→ [GRAPHIC OR TECHNICAL DETAIL delivered flat, no concession
+   to absurdity]
+  The character does not wink. They are not joking. The
+  register is indistinguishable from genuine expert briefing.
+→ [THIRD-PARTY SOFTENING — someone on the scene worries about
+   the wrong thing, confirming they've entirely missed the
+   register]
+  Alan worried about muppets (not violence). A panel member
+  asks whether the wildlife trust had been given warning.
+```
+
+**The four non-negotiables:**
+1. **Total commitment.** The character plays it completely
+   straight. No comedy-aware wink. The register matches genuine
+   tactical briefing.
+2. **Innocuous target.** The target must be real-world and
+   genuinely innocuous — Bill Oddie, the Women's Institute, a
+   pub quiz team, the Chelsea Flower Show. Fictional or violent
+   targets break the pattern.
+3. **Graphic/technical register.** The violence or technical
+   detail must be specific and flat. "Neck opens up like a
+   Muppet's mouth" is the benchmark: visceral + specific +
+   Monty-Python-adjacent metaphor delivered as operational
+   terminology.
+4. **Third-party missed-register pivot.** Someone else in the
+   scene worries about the wrong thing. This IS the
+   confirmation that the archetype fired — the pivot shows the
+   register-mismatch landing on someone inside the scene, not
+   just the audience.
+
+**Which definition of funny.** **Juxtaposition** primary — expert
+register vs innocuous target. Secondary **compression** (full
+military scene compressed into a sentence). Secondary
+**character-reveal** — only certain characters carry total-
+straight-face expert-register.
+
+**The dial.** The target's INNOCUOUSNESS. Too harmless (a
+specific baby) = too dark. Too-threat-adjacent (a protest group)
+= the register becomes plausible, loses absurdity. Sweet spot:
+**a real-world figure or organisation famous for being
+gentle/wholesome/harmless** — Bill Oddie, David Attenborough,
+Mary Berry, the RSPB, the WI, a specific quiz team, the Bake
+Off crew.
+
+**Character parameterisations:**
+
+### Fox (primary — his existing Legends register formalised)
+| Slot | Pool |
+|---|---|
+| EXPERT REGISTER | tactical briefing, cover/concealment, extraction protocols, RV points |
+| INNOCUOUS TARGET | RSPB, National Trust, WI, Bake Off crew, Chris Packham's camera team |
+| GRAPHIC DETAIL | specific-but-operational violence phrasing |
+| THIRD-PARTY PIVOT | Alan-type worried-about-the-wrong-thing response |
+
+**Fox instance (sketch — Wall Walkers Legends extension):**
+> "Right so — if the RSPB had been operating from Wookey Hole,
+> standard extraction is a two-team flank. Front and dorsal. You
+> want to cut off the egress — the cave has three natural
+> chokepoints — and you neutralise the central cluster before
+> they can fragment. Minimum collateral."
+> [Bear: "Packham wasn't actually there, was he?"]
+> [Fox: "Not in my scenario. But yeah. Could've been."]
+
+### Bear (chaotic cousin — existing ghost-urine register)
+Already fires this in current Legends output. Formalisation here
+strengthens the pattern: Bear's version is looser (he cites the
+SAS manual for ghost-urine-bait), Fox's is clean operational.
+
+### McNab (dry report register)
+| Slot | Pool |
+|---|---|
+| EXPERT REGISTER | operational report format, "was on the ground", timings |
+| INNOCUOUS TARGET | similar pool |
+| DELIVERY | flat. No upspeak. No dramatic beats. |
+
+**McNab instance (sketch):**
+> "If the Women's Institute had been insurgents — hypothetical —
+> at Wookey Hole — the extraction would have been bloody. Two of
+> my regiment would have gone in through the tourist entrance.
+> One through the gift shop. That's what the training is for."
+
+### Clarkson (car-engineering gravitas variant)
+Applies motoring-journalist seriousness to innocuous targets.
+"The Chelsea Flower Show is, fundamentally, a LOGISTICS problem
+— you've got fourteen thousand visitors per day, approach routes
+constrained by the Embankment, the Royal Hospital gardens have a
+SINGLE egress point — it's a tactical NIGHTMARE, Kaleb."
+
+**Wiring status:** Pattern added. Fox's existing Legends tactical
+register is already this archetype partially — the rebuild just
+needs the **third-party missed-register pivot** added as a
+rendering note (a panel member reacts to the wrong part of the
+briefing, confirming the register-mismatch lands in-scene).
+Links to SS-216 (per-round state display) — other panel
+members' reactions to expert-register become renderable state.
+
+**Rarity:** once per scene for Fox, once per session for Bear's
+cousin version. The archetype's power depends on the rest of
+the panel's straight-faced reception. Over-deployment makes the
+register performative.
+
+Sources for research on the Partridge scene:
+- [Alan Partridge, Bill Oddie & RSPB Terrorism (YouTube)](https://www.youtube.com/watch?v=9_xCZHC83qk)
+- ["Mid Morning Matters with Alan Partridge" Tora Bora Alan (IMDb)](https://www.imdb.com/title/tt1927617/movieconnections/)
+- [Mid Morning Matters: Alan Partridge on the RSPB and Bill Oddie (YouTube)](https://www.youtube.com/watch?v=KfY_7jPCfdQ)
+- [Like a Muppet's Mouth — Mid Morning Matters / Baby Cow (YouTube)](https://www.youtube.com/watch?v=kYE2h-2BABU)
+
+---
+
+### Archetype #011 — Anthropological Rationalisation of Personal Indignity
+**First captured via:** Ray Mears, 2026-04-23
+**Status:** LIVE
+**Fits characters:** Ray Mears (PRIMARY — his bushcraft-anthropology
+register is the canonical carrier), Les Hiddins (bush tucker man
+equivalent), Cody Lundin (barefoot-ancestral analogue), Bruce Lee
+(martial-philosophy analogue, rarer), Jeremy Wade (fish-
+investigation frame, rare).
+**Does NOT fit:** Bear (different rescue shape — SAS-manual
+rationalisation, Archetype #010 cousin), Fox (tactical-briefing
+rescue, #010), Clarkson (car-comparison rescue), Mitchell (admits
+immediately, cannot rationalise), Theroux (would ask questions
+about his own behaviour), Attenborough (observer, does not
+self-rationalise), Boycott (Yorkshire-moral rescue — different
+frame, same structure).
+**ANTI-FIT (structural):** any character without a cultural-authority
+register to retreat into.
+
+**Rod's verbatim instance (via Ray Mears, 2026-04-23):**
+> "Ray Mears caught masturbating off camera into a dried up ravine
+> tries to explain it away as something the tribal people of this
+> area have done for tens of thousands of years as a 'rain dance'
+> of sorts"
+
+**Abstract formula:**
+```
+[CAUGHT IN COMPROMISING / UNDIGNIFIED / PRIVATE ACT]
+  Public witness required. Alone doesn't fire the archetype.
+→ [ASSUME AUTHORITATIVE TEACHING REGISTER — no acknowledgement
+   of the compromise]
+  Voice drops half-octave, measured, educational cadence adopted.
+→ [INVOKE TRIBAL / ANCIENT / INDIGENOUS PRACTICE as frame]
+  "The X people have done this for [implausibly long period]"
+  "In [remote region], this is how they [euphemism]"
+  "You'll find this practice across [broad geographic sweep]"
+→ [REFRAME THE ACT AS RITUAL / CULTURAL WISDOM]
+  "a rain dance of sorts"
+  "a form of communion with the land"
+  "an ancestral practice linking [body thing] and [land thing]"
+  "what our ancestors would have understood as [invented term]"
+→ [COMMIT TO THE LIE — earnest, zero concession to absurdity,
+   full teaching posture]
+  Ray will sketch a diagram if allowed to.
+```
+
+**The key distinguishing move:** the ESCAPE is into *authority*,
+not into silence. The character uses their genuine expertise
+(bushcraft / anthropology / martial philosophy) as a shield. The
+expertise is real; its application to the compromising act is
+fabricated on the fly. The audience can't easily rebut because
+the register is indistinguishable from genuine teaching.
+
+**The comedy engine.** Three-layer compression: banal indignity →
+serious anthropological frame → specific implausible attribution
+to real peoples. The third layer — naming actual tribal peoples
+as the authority for the invented practice — is what makes it
+land AND what makes it uncomfortable. The character is willing
+to throw real cultures under the bus to rescue themselves.
+
+**Which definition of funny.** Primarily **character-reveal** — the
+specific rescue-frame is Ray's register. Secondary **compression**
+(banal act → cosmological frame) and **juxtaposition** (teaching
+voice → undignified context).
+
+**Dial.** The specificity of the invoked tradition. Vague
+("some ancient peoples") = weak. Medium-specific ("the Yanomami,
+broadly") = medium. Full-specific ("the Walpiri of central
+Australia, specifically the northern group near Yuendumu") =
+Rod-gold but tips into genuine offence territory if not handled
+carefully. Sweet spot: **specific enough to sound authoritative,
+vague enough to be plausibly deniable** — "the Aboriginal
+peoples of this region", "tribes across the Kimberley",
+"practitioners of bushcraft across the southern hemisphere."
+
+**Handle-with-care note.** This archetype mines real-world
+cultures as comedy infrastructure. Executed well, the joke is
+AT THE CHARACTER'S EXPENSE — Ray is the idiot for claiming the
+tradition, not the tradition itself. Executed poorly, the joke
+becomes at the culture's expense. The distinction:
+- **Good:** Ray's attribution is absurd on the face of it. The
+  implausibility of the "rain dance" framing is the signal that
+  he's fabricating. Cultures are dignified; Ray is undignified.
+- **Bad:** the actual practice gets mocked, or the "tribal
+  people" are positioned as gullible, primitive, or foolish.
+  Never do this.
+
+Keep the comedy on the character's fabrication, not the culture.
+
+**Sibling archetype: the EXPERTISE RESCUE family.** Every
+character has a domain they retreat to under threat. Formalising:
+
+| Character | Rescue frame |
+|---|---|
+| Ray Mears | Anthropological-bushcraft ("the X people have always...") |
+| Les Hiddins | Bush tucker authority ("in the outback, you see this...") |
+| Cody Lundin | Barefoot-ancestral ("feet-on-earth is older than civilisation...") |
+| Bear | SAS-manual ("this is in the SAS survival guide — page...") |
+| Fox | Tactical ("standard extraction protocol...") |
+| McNab | Operational report ("was on the ground — timing was...") |
+| Clarkson | Automotive ("it's the equivalent of a Skoda...") |
+| Cox | Physics ("interestingly, thermodynamically...") |
+| Faldo | Golf ("it's like the 14th at Augusta...") |
+| Boycott | Yorkshire-cricket-moral ("in my day, pal...") |
+| Mitchell | Cannot rescue — admits immediately |
+
+This is a character dimension that modulates Archetype #011
+(and many others). Each character's rescue frame IS their
+pattern_affinity bias. When challenged or compromised, they
+retreat into the frame listed above. Boycott's
+`refuse_to_walk_back` fires from this bias. Mitchell's
+inability to rescue fires from his honesty.
+
+**Character parameterisations:**
+
+### Ray Mears (primary)
+| Slot | Pool |
+|---|---|
+| INDIGNITY | (context-driven — sampled from scene) |
+| CULTURAL AUTHORITY | "the Aboriginal peoples of this region", "Inuit elders I've met", "tribal practitioners across the southern hemisphere", "the San of the Kalahari", "indigenous bushcraft tradition" |
+| DURATION | "tens of thousands of years", "since before the ice retreated", "longer than written history records" |
+| RITUAL FRAME | "a form of rain communion", "land-calling", "the dry-season invocation", "a practice deeply rooted in their connection to the water cycle" |
+| COMMITMENT CUE | sketches a diagram, adopts his TV-teaching voice, moves to a different position to demonstrate |
+
+**Ray instance (sketch):**
+> "What you're observing is — and this is poorly documented in
+> Western anthropology, deliberately — a practice common to the
+> peoples of the Kimberley for tens of thousands of years. They
+> call it, broadly, a land-calling. It's a ritual response to
+> prolonged dry conditions. Read [*any book we won't name*]
+> for the formal account. You can see the specific physical
+> orientation — east-facing, into the ravine — mirrors the
+> ancestral path of the wet season's first rains. I'm not —
+> I wouldn't have attempted the full version, obviously, we're
+> only two days into the dry. But a short invocation, yes.
+> Common practice. Widespread."
+
+### Les Hiddins (bush tucker variant)
+| Slot | Pool |
+|---|---|
+| CULTURAL AUTHORITY | "Aboriginal people up north", "Top End tribes", "blokes out in the gulf country" |
+| DURATION | "forty thousand years", "longer than we've been recording" |
+| RITUAL FRAME | "a welcome to the dry", "standard bush practice", "you do this when you've been on the land a while" |
+
+**Les instance (sketch — maximum two sentences):**
+> "Aboriginal people up north have done that for forty thousand
+> years. Rain dance, they call it. Nothing strange about it."
+
+### Cody Lundin (barefoot-ancestral variant)
+| Slot | Pool |
+|---|---|
+| CULTURAL AUTHORITY | "ancestral humans", "the original barefoot peoples", "pre-agricultural societies" |
+| RITUAL FRAME | "grounding ritual", "feet-to-earth communion", "a practice connecting the human body to the soil electromagnetically" |
+| COMMITMENT | usually involves removing footwear |
+
+**Wiring status:** Pattern added. Bank of rescue-frames across
+the full character roster sketched as sibling concept — needs
+formalising as a `RESCUE_FRAME` slot-type on every character
+(follow-up for SS-219). Rarity: once per campaign — the
+archetype's power depends on rarity. Over-deployment makes the
+character's rescue-frame feel performative. Also gated on
+threshold: the character must actually be compromised / caught /
+challenged. Firing pre-emptively doesn't work.
 
 ---
 
