@@ -76,6 +76,49 @@ the shared slot-type vocabulary. The Wall Walkers voice rebuild
 partially lever 2 of this architecture. What's missing is a formal
 slot-type registry that all characters use the same keys for.
 
+---
+
+### Parameter ladders — a special kind of slot (Rod's extension, 2026-04-23)
+
+Not every slot is a sample-from-bank or a categorical choice. Some
+are **scalar ladders** — the same semantic slot has degrees of
+intensity, and which rung fires is driven by character state +
+panel pressure + plausibility checks.
+
+**Examples across existing archetypes (retroactively annotated):**
+
+| Archetype | Scalar slot | Ladder |
+|---|---|---|
+| #001 Counterfactual Humiliation | HUMILIATION_VERB | mildly disappointed → limping → crying → sobbing → inconsolable |
+| #003 Phrase Echo | ECHO_FIDELITY | faithful → styled → misquoted → mangled |
+| #004 False-Attribution Anecdote | ABSURD_DURATION | a fortnight → 17 days → three weeks → a full year → "still ongoing" |
+| #006 Dodgy Expat Anecdote | PLACE_GARBLED-NESS | slightly-off → garbled-plausible → fully fictional → wasn't a place |
+| #007 Wistful Person Reference | DETAIL_BRACKET | detail-less → mid-detail → full-detail → exposition-bloat |
+| #008 "I Was There" | CLAIM_STRENGTH | "I was there" → "I walked the same path" → "I saw the documentary" → "my mate Gary said..." → silence |
+
+**Why this matters.** Ladders encode the *graceful retreat* or
+*graceful escalation* dynamics — a character doesn't just deploy
+an archetype, they deploy it at a **rung**, and the rung can shift
+within a single turn under panel pressure. Archetype #008 is pure
+ladder: the comedy IS the retreat down rungs. Other archetypes
+use ladders as a dial — #007's detail bracket has a sweet spot
+(full-detail), and over-shooting into exposition-bloat breaks the
+form. The ladder tells you where the spot is.
+
+**Implementation note.** Scalar slots need:
+- Ordered rung labels
+- Per-character rung-preference (Boycott starts high, never
+  retreats; Mitchell starts low, never climbs; Bear starts high,
+  retreats gracefully under pressure)
+- Pressure-driven transition logic (at generation time, evaluate
+  whether the current rung is still plausible; if not, retreat/
+  climb one or two rungs)
+
+This is a future architectural item — tracked implicitly under
+SS-210 (voice rebuild porting) and SS-216 (per-round character
+state display). Character state tracks current rung per scalar
+slot across a multi-round session.
+
 **The goal:** every Rod-written example becomes an archetype +
 character parameterisation that produces fresh surface lines per
 call, and is portable across characters, panels, situations.
@@ -1285,6 +1328,223 @@ across all characters).
 **Rarity:** mode (a) once per session, mode (b) up to twice per
 session, mode (c) once per campaign — saving the real-acquaintance
 reveal for high-impact moments.
+
+---
+
+### Archetype #008 — "I Was There" With Graceful Retreat Ladder
+**First captured via:** Bear Grylls (Rod's note on over-deployment), 2026-04-23
+**Status:** LIVE
+**Fits characters:** Bear (primary — the retreat is his specific
+move), Faldo, Clarkson, Cox (with "I filmed there" frame),
+Robin Williams, Jim Carrey, Gordon Lyons (lives at rungs 3-4
+permanently)
+**Does NOT fit:** McNab/Ryan/Billingham/Ollie (they WERE there —
+no walk-back needed), Attenborough (wouldn't fabricate rung 1),
+Mitchell (lives at rungs 4-5 permanently — no climb, no retreat).
+**ANTI-FIT:** **Boycott.** He never retreats. Would die on rung 1.
+Capturing his refusal-to-walk-back AS a character-defining pattern
+(see below).
+
+**Rod's verbatim instance (2026-04-23):**
+> "Bear doesn't always talk memories tho or we are back to him
+> always saying he was there (it works as a regular but not
+> always, and we need to turn that into a pattern lab pattern too
+> 'I was there...' either because he can;t have been in Romain
+> Britain in person, or he then has to say 'Well I...' but that
+> can also be played with as a pattern parameter of different
+> strength - 'Well I walked the same path' 'Well I saw a tv
+> documentary' 'Well, my mate Gary down the Red Lion said...' etc"
+
+**The rarity rule (Rod's core point):** claiming "I was there" at
+full strength ("I was in Roman Britain / the Boer War / medieval
+Jarrow") is a regular Bear move but not the DEFAULT. If deployed
+too often it becomes the Grylls/Salty-croc catchphrase trap. Cap:
+once per session at full strength. Retreats deploy more freely but
+each walk-back must start at a different rung.
+
+**Abstract formula:**
+```
+[FULL-STRENGTH CLAIM] — "I was there"
+  Delivered sincerely, with specifics where possible.
+→ (triggered by: temporal impossibility / panel challenge /
+   specificity probe / obvious contradiction):
+[GRACEFUL RETREAT LADDER — descending strength rungs]:
+   Rung 1 (strongest):   "Well I walked the same path"
+   Rung 2:               "Well I've been to a place like it"
+   Rung 3:               "Well I saw the documentary"
+   Rung 4 (weakest):     "Well, my mate Gary down the Red Lion said..."
+   Rung 5 (collapse):    silence / topic change / "Hydration?"
+
+The comedy is the RETREAT, not the original claim. We watch
+credibility shed rung by rung. Strong setup, weak punchline.
+```
+
+**Which definition of funny.** Primarily **character-reveal** —
+the retreat shape is Bear-specific (confident claim → earnest
+weaker claim → weaker still → pub-mate). Secondary **compression**
+(entire credibility arc in four sentences).
+
+**The dial.** The *pace* of retreat. Too-fast retreat (Rung 1 →
+Rung 4 in one line) = obvious joke, breaks the character. Too-slow
+(each retreat is a full sentence of protest) = loses the comedy.
+Sweet spot: 1-2 rungs per challenge, with each rung delivered as
+if it's still a credible claim.
+
+**Parameter ladder (this archetype IS a ladder):**
+
+| Rung | Label | Example | Plausibility |
+|---|---|---|---|
+| 1 | SAME PATH | "Well I walked the same path" | High (same location) |
+| 2 | SIMILAR PLACE | "I've been somewhere like it" | Medium |
+| 3 | DOCUMENTED | "I saw the documentary" | Low — indirect |
+| 4 | PUB-MATE | "My mate Gary / an old squadron leader / a bloke I knew in Hereford said..." | Very low — second-hand, suspect mate |
+| 5 | COLLAPSE | "Hydration?" / silence / topic change | Zero — abandons the claim entirely |
+
+**Character parameterisations:**
+
+### Bear (primary — full ladder, retreats gracefully)
+| Slot | Pool |
+|---|---|
+| ORIGINAL CLAIM | "I was there in 2014" (when discussing Roman Britain) |
+| RUNG 1 | "walked the same path", "camped on the same ground" |
+| RUNG 2 | "been to Vindolanda — well, Housesteads" |
+| RUNG 3 | "saw the Time Team episode" |
+| RUNG 4 | "Gary at the Red Lion / my old CO / the Eurostar man" |
+| RUNG 5 | "Hydration?" |
+
+**Bear instance (with ladder firing under challenge):**
+> Panel mentions Roman Britain.
+> Bear: "I was there. 2014 reconnaissance. The Wall looks smaller in person."
+> Mitchell: "In Roman Britain."
+> Bear: "— well, I WALKED the same path. The Vindolanda stretch."
+> Mitchell: "In Roman Britain."
+> Bear: "— look, I've SEEN the documentary. Simon Schama's. I think. Or maybe the BBC one."
+> Mitchell: [silence]
+> Bear: "Gary at the Red Lion has a coin. Actual Roman coin. Gary said the legion was based —"
+> Ray: "Bear."
+> Bear: "— hydration?"
+
+### Faldo
+| Slot | Pool |
+|---|---|
+| ORIGINAL CLAIM | "I played there" |
+| RUNG 1 | "commentated the year" |
+| RUNG 2 | "walked the course in '05 for Sky" |
+| RUNG 3 | "watched the replay" |
+| RUNG 4 | "Norman told me about it / Langer mentioned it at dinner" |
+| RUNG 5 | silence, adjusts grip |
+
+### Clarkson
+| Slot | Pool |
+|---|---|
+| ORIGINAL CLAIM | "I drove that" |
+| RUNG 1 | "I was IN the car. Hammond was driving." |
+| RUNG 2 | "I was on the production" |
+| RUNG 3 | "I saw the cut" |
+| RUNG 4 | "Richard told me about it over a pint" |
+| RUNG 5 | "Where's Kaleb?" |
+
+### Gordon Lyons (lives at Rungs 3–4 by default)
+| Slot | Pool |
+|---|---|
+| ORIGINAL CLAIM | "I knew a fella who was there" (starts low) |
+| (no rung 1 or 2 — doesn't claim first-hand) | |
+| DEFAULT | "I knew a lad in Lisburn who was at Slieve Donard the week it happened" |
+
+### Mitchell (lives at Rungs 4–5 permanently)
+| Slot | Pool |
+|---|---|
+| ORIGINAL CLAIM | NEVER. "I'm not saying I was there, obviously —" |
+| DEFAULT | "I have *heard* of the place, obviously. There's a very good Observer piece on it." |
+
+---
+
+#### Anti-fit: Boycott — the refusal to walk back
+
+Boycott is the structural opposite of this archetype. He deploys
+original-strength claims ("I was there") but **never retreats**
+under challenge. The ladder doesn't fire. His response to
+impossibility is denial, not walk-back. This is a character-
+defining feature worth naming as its own pattern:
+
+**`refuse_to_walk_back`** — high affinity, Boycott-specific.
+
+When challenged: "Rubbish. I've been there. Wouldn't have happened
+on my watch. Move on, pal."
+
+He does not produce Rungs 2-5. He stays on Rung 1 and gets louder.
+This pairs with his `not_on_my_watch` ego and his
+`false_attribution_self_anecdote` (#004) — Boycott's whole
+character refuses graceful retreat in any form.
+
+For OTHER characters, the anti-fit would mean: "this character
+escalates rather than retreats under challenge." Rarely funny —
+usually just abrasive. Boycott is the exception because the
+Yorkshire moral frame makes the refusal land.
+
+**Wiring status:** Added to pattern-lab.md as Archetype #008.
+Bear rarity rule ("I was there" = once per session at full
+strength) added. Parameter-ladder meta-model extension captured
+earlier in this file. Needs wiring into Bear's character file
+(follow-up), Faldo/Clarkson parameterisations for SS-211 (Pack
+Two), and Boycott's anti-fit pattern (`refuse_to_walk_back`) into
+his character file.
+
+---
+
+### Principle: Signature Concern Rotation (2026-04-23, Rod)
+
+Any character with **multiple signature expertise domains** must
+rotate across them per deployment. Hammering one domain becomes
+the Grylls/Borneo / Grylls/Salty-croc catchphrase trap — the
+signature move devalues the more it fires.
+
+Rod's verbatim (2026-04-23):
+> "Bear in the app talks way too much about hydration - that is a
+> pattern, and whilst hydration is key obvs, you have water, fire,
+> shelter, food"
+
+**Bear's signature concerns (canonical four):**
+- **Water / Hydration** — "Hydration?", "Water source identified?", "Gone a bit dry"
+- **Fire** — "Fire discipline?", "Fuel situation?", "Spark source?"
+- **Shelter** — "Shelter sorted?", "Cover from the wind?", "Bivvy location?"
+- **Food / Rations** — "Rations checked?", "Calories-in?", "Foraged anything?"
+
+**The rotation rule:** per generation call, sample ONE survival-
+concern callout from the full four-domain pool — not three from a
+pool where half are water-related. Each deployment picks a
+different domain than the previous one when memory allows.
+
+**Generalisation beyond Bear:**
+- Faldo: course management / swing mechanics / mental game /
+  equipment — rotate, don't hammer grip pressure every line
+- Cox: physics / cosmology / engineering / evolution — rotate
+- Boycott: technique / discipline / Yorkshire / mother-rhubarb —
+  HE ALREADY ROTATES (and he deploys each frequently, which is
+  why the Rod-validated Boycott calibration lands — it doesn't
+  feel hammered because the four concerns take turns)
+- Clarkson: cars / farming / pub / Kaleb — rotate
+- McNab/Ryan: regiment / Hereford / op history / specific
+  operators — rotate
+
+**Implementation shape for the Wall Walkers banks:** split the
+current `closers` or `signature_callouts` pool into named
+domain-scoped sub-pools; buildXVoiceBlock samples one per domain
+per call OR one across the full rotation with a bias against
+recently-used domains.
+
+**Bear bank fix (live action item):**
+Current state (cusslab/worker.js line ~78): `closers` pool has
+`"Hydration?"` as 1/6 options, AND `non_sequiturs` has
+`"speaking of, hydration?"` as another 1/6. With `pick(closers, 3)`
+sampling, Hydration appears in ~50% of calls. That's why Rod sees
+it so often.
+
+Fix: remove `"Hydration?"` from closers; add a dedicated
+`survival_concern_callouts` pool spanning water/fire/shelter/food
+with ~2-3 variants each; `buildBearVoiceBlock` samples ONE per
+call from the full pool. Net effect: hydration appears ~1/12
+calls instead of 3/6. Will deploy in next cusslab commit.
 
 ---
 
