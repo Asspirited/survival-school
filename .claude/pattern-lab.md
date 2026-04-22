@@ -922,6 +922,177 @@ correcting Cox's grammar silently to himself."
 
 ---
 
+### Archetype #006 — The Dodgy Expat Anecdote
+**First captured via:** Bear Grylls, 2026-04-22
+**Status:** LIVE
+**Fits characters:** Bear (primary), Faldo, Clarkson, Robin
+Williams, possibly Cox (different register — would be sincere
+rather than tall-tale)
+**Does NOT fit:** Boycott (never admits doubt about a fact), Ray
+(silent, not anecdotal), Wade (flat, factual), Mitchell (too
+honest — would say "I'm not sure, let me check"), Attenborough
+(observer, narrates others not self), Keane (too clipped),
+Theroux (observer), McNab/Ryan/Billingham/Ollie (their travel
+experience is real — wrong register).
+
+**Rod's verbatim instance (via Bear, 2026-04-22):**
+> "'Back in Boodan Garn....was it Boodan Garn, that is a place
+> right, that's what they told me...lovely people, full of laughter
+> as they sent me to Boodan Garn....wasn't a nice place...got shot
+> at by natives who thought I'd slept with the chieftan's wife'
+> something like that but not quite"
+
+**Rod's extension (same day):**
+> "now either the locals fucked him over coz he's a prick, or they
+> just wanted to see him eaten in a tribes pot - maybe Boodan Garn
+> was the chieftans wife of the other village - or meant he wanted
+> to buy her or something"
+
+**Abstract formula (cross-character):**
+```
+[OPENER — "Back in [garbled / fabricated place name]"]
+  Place name is phonetically plausible for a real exotic location
+  but either wildly wrong or completely fictional.
+→ [SELF-DOUBT — "was it [Place]? That is a place, right? That's
+   what they told me"]
+  Outsources attribution. Plausible deniability built in.
+→ [LOCALS AS WARM — "lovely people, full of laughter"]
+  Crowd initially positive in the memory.
+→ [TONAL PIVOT — warmth reinterpretable as malice or mockery]
+  "...as they sent me to..." / "...as they watched me leave..."
+  / "...as they pointed me toward..."
+→ [FLAT CONTRADICTORY VERDICT — "wasn't a nice place"]
+  Sudden judgement-flip after warmth. No explanation.
+→ [PASSIVE-VICTIM SCANDALOUS CLIMAX]
+  Speaker is accidental protagonist of a romantic, cultural, or
+  political misunderstanding. Victim-of-circumstance framing.
+  Colonial-register scandal or fish-out-of-water offence.
+```
+
+**Five layers of unreliability stacked in one anecdote:**
+1. Garbled place name (spatial unreliability)
+2. Self-doubt about the name (memory unreliability)
+3. Outsourced attribution ("they told me") (source unreliability)
+4. Warmth→malice pivot (emotional unreliability)
+5. Victim-of-misunderstanding framing (agency unreliability)
+
+**The dial.** The place name. "Boodan Garn" is the sweet spot:
+plausible enough to pass as real (Burmese? Sudanese?
+West-African?), garbled enough to be suspect. Too-real ("Kathmandu")
+= no joke. Too-silly ("Wibble-Wibble") = broken tone. Garbled-
+plausible = comedy gold.
+
+**Which definition of funny.** Primarily **character-reveal** (only
+Bear constructs anecdotes this unreliable this confidently).
+Secondary **compression** (whole dodgy anecdote in 30 words) and
+**juxtaposition** (warmth→malice→scandal compressed into three
+clauses).
+
+---
+
+#### Sub-pattern #006-a — The Garbled Term That IS the Incident
+
+Rod's killer extension. The garbled "place name" was never a
+place at all — it was a CRITICAL WORD the speaker misheard, and
+that mishearing *is the root cause of the whole incident.*
+Possibilities:
+
+- Not a place — the name of someone's wife
+- Not a place — a phrase meaning "I want to buy your wife"
+- Not a place — a proposition to which the speaker gave the
+  wrong answer
+- Not a place — a dish, and the speaker was being invited to
+  BECOME it
+- Not a place — a slur the speaker accidentally repeated
+- Not a place — a dare
+
+When sub-pattern fires, the anecdote is restructured to reveal
+the mishearing as the engine:
+> "...oh — oh, I see now — Boodan Garn wasn't the place, was it.
+> It was what the chieftain CALLED his wife. They thought I was
+> — well — offering to buy her. Hence the shots."
+
+The locals' laughter is retroactively explicable (they KNEW).
+Bear is still the victim, but now the victim of his own error.
+This is more Bear-authentic than simple local malice — the
+self-confident Brit causes the catastrophe by never hearing the
+word correctly in the first place.
+
+**Boycott anti-compatibility:** this sub-pattern fundamentally
+cannot fire for Boycott — he would never admit he'd heard
+anything wrong. His anecdotes have zero linguistic unreliability.
+Every detail is confidently correct.
+
+---
+
+**Character parameterisations:**
+
+### Bear (primary)
+| Slot | Pool |
+|---|---|
+| GARBLED PLACE | Boodan Garn, Shimbé (not a real place), Neb-Halla, the Luqwok Delta, West Farkistan, the outer Grasslands of Pentchen |
+| CREDENTIAL ANCHOR | training exercise / SAS recce / documentary shoot / "liaison role" |
+| LOCAL WARMTH DETAIL | laughter, hand-gestures, food offered, drumming, children pointing |
+| WARMTH PIVOT | "as they sent me to...", "as they stopped laughing", "right up until they told me to run" |
+| VICTIM SCANDAL | slept with chieftain's wife / misread a political flag / ate the sacred goat / wore the wrong colour / turned up at a funeral in board shorts |
+
+**Bear instance (sketch, with sub-pattern #006-a):**
+> "Back in Boodan Garn — was it Boodan Garn? That's a place, right?
+> That's what the liaison told me. Lovely people. Full of laughter
+> when I arrived. Singing at dinner. Wasn't a nice place though. Got
+> shot at, day three. Apparently — and the translator told me this
+> later — Boodan Garn wasn't the place. Boodan Garn was the
+> chieftain's wife. They thought I'd — look, I hadn't. I just kept
+> SAYING the word. Thought it was a town name. Hydration?"
+
+### Faldo
+| Slot | Pool |
+|---|---|
+| GARBLED PLACE | garbled golf-course name — "Brooklime"? "Perryvale"? "Saint-Somewhere-Les-Deux"? |
+| CREDENTIAL ANCHOR | invitational / pro-am / Ryder Cup practice round |
+| WARMTH | members, caddies, clubhouse applause |
+| SCANDAL | accepted a trophy that wasn't his / misheard a dinner invitation / played through when he shouldn't have |
+
+**Faldo instance (sketch):**
+> "Back in Brookline — is it Brookline? Course outside Boston
+> somewhere. Lovely members. Dinner. Applauded me in. Then followed
+> me to the hotel and left a note saying 'enjoy your trophy.' I
+> hadn't won the trophy. They thought I had. Thought I'd taken it.
+> Long story."
+
+### Clarkson
+| Slot | Pool |
+|---|---|
+| GARBLED PLACE | dodgy road, wrong side of a border, a town name he can't be bothered to pronounce |
+| CREDENTIAL ANCHOR | Top Gear special / Grand Tour / a ferry he wasn't supposed to be on |
+| WARMTH | locals pointing and laughing at the car |
+| WARMTH PIVOT | "right up until they realised what was written on the plates" |
+| SCANDAL | H982 FKL plates in Argentina, unflattering car slogan, refused border crossing |
+
+**Clarkson instance (sketch):**
+> "Back in — what was it — Ushuaia? USHUAIA. It's a real place. It
+> IS. The locals were WAVING. Smiling. Right up until they saw
+> what was written on the number plate. FKL something. We didn't
+> know. WE DIDN'T KNOW. Had to leave at two in the morning in
+> separate vehicles. Hammond cried."
+
+### Robin Williams
+| Slot | Pool |
+|---|---|
+| GARBLED PLACE | improvised fake place names rendered in three local accents |
+| CLIMAX | becomes a scene played out by Robin himself as every character |
+
+**Wiring status:** Bear character file updated with verbatim Rod
+memory. Archetype added to pattern-lab.md. Wiring into Bear's
+existing `unnecessary_personal_experience` + `eyewitness_self_
+correct` patterns — not a replacement, an extension. Sub-pattern
+#006-a is the high-leverage variant — deploy when the archetype
+fires and the panel-dynamic supports a third-act reveal. Rarity:
+once per session maximum — the stack of unreliability needs
+distance between deployments to retain its bite.
+
+---
+
 ### Archetype #003 — Cross-Character Phrase Echo (the panel callback)
 **First captured via:** Rod's instruction for Boycott, 2026-04-22
 **Status:** LIVE

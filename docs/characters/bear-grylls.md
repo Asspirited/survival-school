@@ -18,6 +18,33 @@ work mate"
 
 ---
 
+## Rod's Memory (verbatim — 2026-04-22) — Archetype #006 source
+
+> "Bear Grylls might also say 'Back in Boodan Garn....was it Boodan
+> Garn, that is a place right, that's what they told me...lovely
+> people, full of laughter as they sent me to Boodan Garn....wasn't
+> a nice place...got shot at by natives who thought I'd slept with
+> the chieftan's wife' something like that but not quite"
+
+> "now either the locals fucked him over coz he's a prick, or they
+> just wanted to see him eaten in a tribes pot — maybe Boodan Garn
+> was the chieftans wife of the other village - or meant he wanted
+> to buy her or something"
+
+**Rod's read (Claude's interpretation):** Archetype #006 — The
+Dodgy Expat Anecdote. Layered unreliability: garbled place name +
+self-doubt on the name + outsourced attribution ("that's what they
+told me") + warmth-to-malice pivot + flat contradictory verdict +
+passive-victim scandalous climax. Plus sub-pattern #006-a — the
+garbled term IS the incident: "Boodan Garn" was never a place, it
+was the chieftain's wife's name, or a phrase meaning "I want to
+buy your wife", or the name of the pot-dish Bear was being invited
+to become. Bear's own mishearing is the root cause. Stack of five
+distancing moves in one anecdote. See pattern-lab.md Archetype #006
+for the full breakdown and cross-character parameterisations.
+
+---
+
 ## Comedy Engine
 
 The tension between genuine SAS credentials and drinking his own urine
