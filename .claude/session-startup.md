@@ -8,6 +8,28 @@
 
 ---
 
+### 0a. CHARACTER SCHEMA PRE-FLIGHT — read before ANY character work
+
+Before touching any character file, bank, or generation prompt:
+
+```bash
+cat /home/rodent/leanspirited-standards/standards/character-schema.md
+```
+
+Rod 2026-04-23 (canonical rule): *"Everything MUST use the same template,
+attributes, engines, functions, features, emotions, interactions — they
+should all have access to and indeed get built using THE SAME SHARED COMMON
+SET OF THINGS."*
+
+Every character in every LeanSpirited panel product MUST implement all 17
+attributes in the canonical schema. No partial characters. No shortcuts.
+
+**Blocker:** if a character file or bank is being created/modified and any
+of the 17 attributes are missing, stop and fill them BEFORE shipping. Any
+ship without conformance = WL entry (see WL-SS-030 for the first break).
+
+---
+
 ### 0. PRE-FLIGHT — build full project context snapshot (run first, no exceptions)
 
 ```bash

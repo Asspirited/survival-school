@@ -540,6 +540,77 @@
 
 ---
 
+## WL-SS-030 — Canonical character schema not applied to new characters
+
+**Status:** Open
+**Category:** Protocol break / Trust
+**Severity:** Critical
+**Raised:** 2026-04-23 (by Rod, during live app testing)
+
+**Observation:** Rod stated very clearly in prior sessions that ALL new
+characters must use the same canonical template as Dougherty — 17
+attributes across two layers (8 psychological + 9 mechanical), per
+`/home/rodent/cusslab/characters-schema.md`. Claude shipped Fish-Out-of-
+Water Pack Two (Mitchell, Theroux, Clarkson, Boycott) on 2026-04-22/23
+using only the lighter Wall Walkers bank shape (mannerisms + flavours
++ pattern_affinities + never_touch + voice_register). The 8 Wall
+Walkers regulars (Bear, Ray, Fox, Les, Attenborough, Irwin, Cody, Bede)
+likewise have bank-level flavour only — no wound, no mask vs truth, no
+tracked state, no escalation shape, no relational activation triggers.
+
+Rod's verbatim, live 2026-04-23:
+> "we agreed that ALL new characters would have the same richness and
+> features as those we built for Dougherty in the 19th — why has that
+> not been implemented this time?"
+> "everything MUST use the same template, attributes, engines,
+> functions, features, emotions, interactions — they should all have
+> access to and indeed get built using THE SAME SHARED COMMON SET OF
+> THINGS"
+
+**Waste impact:**
+- Characters feel flat / formulaic despite voice rebuild
+- Defects #2 (no interaction) and #4 (LLM verbosity) are downstream
+  symptoms — characters without tracked state or relational triggers
+  cannot respond to each other's moves, and characters without
+  escalation shapes default to mid-length prose
+- Rod had to re-state the rule and call out the gap during a walk-eve
+  testing session, consuming time that should have been improvement work
+- Trust deficit: Rod made a clear agreement, Claude failed to carry it
+  across sessions
+
+**Root cause:**
+- Claude did not read the schema file before creating Pack Two docs
+- No pre-flight check in session-startup.md required it
+- The Wall Walkers bank shape in cusslab/worker.js predates the canonical
+  schema — it was never upgraded to match
+- Pack Two was modelled on the Wall Walkers bank shape rather than on
+  the Dougherty P1-P6 template
+
+**Fix (committed 2026-04-23):**
+1. Promote characters-schema.md to `leanspirited-standards/standards/
+   character-schema.md` (cross-product canonical)
+2. Pointer files added in survival-school/docs/ and cusslab/ retain copy
+3. Session-startup.md in both projects gains step 0a — character schema
+   pre-flight check, non-negotiable
+4. WL-SS-030 raised (this entry)
+5. SS-220 raised — schema conformance pass for all 12 Wall Walkers
+   characters + full audit of the 33-character SS roster
+
+**Open: still to complete before the conformance work is done:**
+- Upgrade Pack Two character files to include all 17 attributes
+- Upgrade the 8 Wall Walkers banks in cusslab/worker.js with wound /
+  mask / tracked state / escalation shape / relational triggers
+- Implement generation-time use of tracked state across rounds
+- Add schema-audit script that fails loudly when a character is
+  incomplete
+
+**Related:** feedback_persist_agreements, feedback_trust_deficit,
+SS-218 (Lever 0 audit), SS-200 (panel voice principles — adjacent
+standard, not this one), panel-voice-principles.md (Lever 0 = model the
+people, which this schema operationalises)
+
+---
+
 ## WL-SS-029 — Misdirected wrangler deploy due to stray parent wrangler.jsonc
 
 **Status:** Open
